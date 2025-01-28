@@ -143,7 +143,10 @@
     <ClCompile Include="src\Entities\SDLGameObject.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Utils\InputHandler.cpp" />
+    <ClCompile Include="src\Utils\LoaderParams.cpp" />
     <ClCompile Include="src\Utils\TextureManager.cpp" />
+    <ClCompile Include="src\Utils\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\EntitiesHeaders\Enemy.h" />
@@ -151,8 +154,10 @@
     <ClInclude Include="include\EntitiesHeaders\Player.h" />
     <ClInclude Include="include\EntitiesHeaders\SDLGameObject.h" />
     <ClInclude Include="include\Game.h" />
+    <ClInclude Include="include\UtilsHeaders\InputHandler.h" />
     <ClInclude Include="include\UtilsHeaders\LoaderParams.h" />
     <ClInclude Include="include\UtilsHeaders\TextureManager.h" />
+    <ClInclude Include="include\UtilsHeaders\Vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
