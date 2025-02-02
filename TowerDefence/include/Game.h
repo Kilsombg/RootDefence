@@ -5,6 +5,8 @@
 #include "EntitiesHeaders/Player.h"
 #include "EntitiesHeaders/Enemy.h"
 
+#include "GameStateHeaders/GameStateMachine.h"
+
 #include "UtilsHeaders/TextureManager.h"
 
 #include<SDL.h>
@@ -22,9 +24,11 @@ public:
 	void handleEvents();
 	void clean();
 	void quit();
-	SDL_Renderer* getRenderer() const;
 	
-	bool running() { return m_bRunning; }
+	SDL_Renderer* getRenderer() const;
+	GameStateMachine* getStateMachine();
+	
+	bool running();
 
 private:
 	bool m_bRunning;
@@ -36,12 +40,16 @@ private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	SDL_Texture* m_pTexture;
+
 	SDL_Rect m_sourceRectangle;
 	SDL_Rect m_destinationRectangle;
+
 	GameObject* m_go;
 	GameObject* m_player;
 	GameObject* m_enemy;
+
 	std::vector<GameObject*> m_gameObjects;
+	GameStateMachine* m_pGameStateMachine;
 };
 
 

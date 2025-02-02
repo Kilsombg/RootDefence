@@ -20,6 +20,7 @@ public:
 	static InputHandler* Instance();
 	void update();
 	void clean();
+	void reset();
 
 	bool getMouseButtonState(int buttonNumber);
 	Vector2D* getMousePosition();

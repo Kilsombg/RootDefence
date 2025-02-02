@@ -1,5 +1,8 @@
 #include "../include/Game.h"
 
+#include "../include/GameStateHeaders/MenuState.h"
+#include "../include/GameStateHeaders/PlayState.h"
+
 #include "../include/UtilsHeaders/InputHandler.h"
 
 #include<iostream>
@@ -43,8 +46,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 				TheTextureManager::Instance()->load("./src/assets/animate.png", "animate", m_pRenderer);
 
-				m_gameObjects.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
-				//m_gameObjects.push_back(new Enemy(new LoaderParams(300, 300, 128, 82, "animate")));
+				m_pGameStateMachine = new GameStateMachine();
+				m_pGameStateMachine->changeState(new MenuState());
 			}
 			else
 			{
@@ -73,20 +76,14 @@ void Game::render()
 {
 	SDL_RenderClear(m_pRenderer);
 
-	for (std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->draw();
-	}
+	m_pGameStateMachine->render();
 
 	SDL_RenderPresent(m_pRenderer);
 }
 
 void Game::update()
 {
-	for (std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->update();
-	}
+	m_pGameStateMachine->update();
 }
 
 void Game::clean()
@@ -102,6 +99,16 @@ SDL_Renderer* Game::getRenderer() const
 	return m_pRenderer;
 }
 
+GameStateMachine* Game::getStateMachine()
+{
+	return m_pGameStateMachine;
+}
+
+bool Game::running()
+{
+	return m_bRunning;
+}
+
 void Game::quit()
 {
 	m_bRunning = false;
@@ -110,4 +117,9 @@ void Game::quit()
 void Game::handleEvents()
 {
 	TheInputHandler::Instance()->update();
+
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN))
+	{
+		m_pGameStateMachine->changeState(new PlayState());
+	}
 }
