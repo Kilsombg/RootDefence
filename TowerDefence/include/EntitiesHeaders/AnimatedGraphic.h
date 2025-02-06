@@ -3,10 +3,12 @@
 
 #include "SDLGameObject.h"
 
+#include "../UtilsHeaders/BaseCreator.h"
+
 class AnimatedGraphic : public SDLGameObject
 {
 public:
-	AnimatedGraphic(const LoaderParams* pParams, int animSpeed);
+	AnimatedGraphic();
 
 	void update();
 	void draw();
@@ -16,5 +18,12 @@ public:
 private:
 	int m_animSpeed;
 };
+
+class AnimatedGraphicCreator : public BaseCreator
+{
+public:
+	GameObject* createGameObject() const;
+};
+
 
 #endif // !__AnimatedGraphic__

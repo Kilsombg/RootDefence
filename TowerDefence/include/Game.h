@@ -5,8 +5,7 @@
 #include "EntitiesHeaders/Player.h"
 #include "EntitiesHeaders/Enemy.h"
 
-#include "GameStateHeaders/GameStateMachine.h"
-
+#include "UtilsHeaders/GameStateMachine.h"
 #include "UtilsHeaders/TextureManager.h"
 
 #include<SDL.h>

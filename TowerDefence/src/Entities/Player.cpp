@@ -3,7 +3,7 @@
 #include "../../include/UtilsHeaders/InputHandler.h"
 #include<SDL.h>
 
-Player::Player(const LoaderParams* pParams) : SDLGameObject(pParams)
+Player::Player() : SDLGameObject()
 {
 }
 
@@ -26,10 +26,20 @@ void Player::clean()
 	SDLGameObject::clean();
 }
 
+void Player::load(const LoaderParams* pParams)
+{
+	SDLGameObject::load(pParams);
+}
+
 void Player::handleInput()
 {
 	Vector2D* target = TheInputHandler::Instance()->getMousePosition();
-	
+
 	m_velocity = *target - m_position;
 	m_velocity /= 50;
+}
+
+GameObject* PlayerCreator::createGameObject() const
+{
+	return new Player();
 }

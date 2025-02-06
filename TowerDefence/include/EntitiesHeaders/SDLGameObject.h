@@ -8,11 +8,13 @@
 class SDLGameObject : public GameObject
 {
 public:
-	SDLGameObject(const LoaderParams* pParams);
+	SDLGameObject();
 	
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
+
+	void load(const LoaderParams* pParams);
 
 	Vector2D& getPosition();
 	int getWidth();
@@ -27,6 +29,7 @@ protected:
 	int m_height;
 	int m_currentRow;
 	int m_currentFrame;
+	int m_numFrames;
 	
 	std::string m_textureID;
 };

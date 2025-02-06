@@ -1,7 +1,7 @@
 #ifndef __GameStateMachine__
 #define __GameStateMachine__
 
-#include "GameState.h"
+#include "../GameStateHeaders/GameState.h"
 
 #include<vector>
 

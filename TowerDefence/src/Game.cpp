@@ -1,9 +1,13 @@
 #include "../include/Game.h"
 
-#include "../include/GameStateHeaders/MenuState.h"
+#include "../include/EntitiesHeaders/MenuButton.h"
+#include "../include/EntitiesHeaders/AnimatedGraphic.h"
+
+#include "../include/GameStateHeaders/MainMenuState.h"
 #include "../include/GameStateHeaders/PlayState.h"
 
 #include "../include/UtilsHeaders/InputHandler.h"
+#include "../include/UtilsHeaders/GameObjectFactory.h"
 
 #include<iostream>
 
@@ -33,21 +37,27 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
 	{
 		std::cout << "SDL init success\n";
-		m_pWindow = SDL_CreateWindow(title, xpos, ypos,
-			width, height, flags);
+		m_pWindow = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
+
 		if (m_pWindow != 0)
 		{
 			std::cout << "window creation success\n";
 			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
+
 			if (m_pRenderer != 0)
 			{
 				std::cout << "renderer creation success\n";
 				SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
 
-				TheTextureManager::Instance()->load("./src/assets/animate.png", "animate", m_pRenderer);
+				TheGameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
+				TheGameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
+				
+				TheGameObjectFactory::Instance()->registerType("MenuButton", new MenuButtonCreator());
+
+				TheGameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
 
 				m_pGameStateMachine = new GameStateMachine();
-				m_pGameStateMachine->changeState(new MenuState());
+				m_pGameStateMachine->changeState(new MainMenuState());
 			}
 			else
 			{
@@ -66,6 +76,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 		std::cout << "SDL init fail\n";
 		return false;
 	}
+
 	std::cout << "init success\n";
 	m_bRunning = true;
 	return true;

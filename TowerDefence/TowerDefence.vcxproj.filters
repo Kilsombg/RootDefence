@@ -45,13 +45,13 @@
     <ClCompile Include="src\Utils\InputHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameStates\MenuState.cpp">
+    <ClCompile Include="src\GameStates\MainMenuState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\GameStates\PlayState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameStates\GameStateMachine.cpp">
+    <ClCompile Include="src\Utils\GameStateMachine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Entities\MenuButton.cpp">
@@ -64,6 +64,24 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\GameStates\GameOverState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\tinystr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\tinyxml.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\tinyxmlerror.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\tinyxmlparser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\GameObjectFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\StateParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,13 +116,13 @@
     <ClInclude Include="include\GameStateHeaders\GameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\GameStateHeaders\MenuState.h">
+    <ClInclude Include="include\GameStateHeaders\MainMenuState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\GameStateHeaders\PlayState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\GameStateHeaders\GameStateMachine.h">
+    <ClInclude Include="include\UtilsHeaders\GameStateMachine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\EntitiesHeaders\MenuButton.h">
@@ -119,5 +137,26 @@
     <ClInclude Include="include\GameStateHeaders\GameOverState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\UtilsHeaders\tinystr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UtilsHeaders\tinyxml.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UtilsHeaders\GameObjectFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UtilsHeaders\BaseCreator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UtilsHeaders\StateParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStateHeaders\MenuState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="src\test.xml" />
   </ItemGroup>
 </Project>

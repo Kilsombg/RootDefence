@@ -1,13 +1,13 @@
 #ifndef __PauseState__
 #define __PauseState__
 
-#include "GameState.h"
+#include "MenuState.h"
 
 #include "../EntitiesHeaders/GameObject.h"
 
 #include<vector>
 
-class PauseState : public GameState
+class PauseState : public MenuState
 {
 public:
 	virtual void update();
@@ -17,6 +17,7 @@ public:
 	virtual bool onExit();
 	
 	virtual std::string getStateID() const;
+	virtual void setCallbacks(const std::vector<Callback>& callbacks);
 
 private:
 	static void s_pauseToMain();

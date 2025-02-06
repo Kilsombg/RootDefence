@@ -145,14 +145,20 @@
     <ClCompile Include="src\Entities\SDLGameObject.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameStates\GameOverState.cpp" />
-    <ClCompile Include="src\GameStates\GameStateMachine.cpp" />
-    <ClCompile Include="src\GameStates\MenuState.cpp" />
+    <ClCompile Include="src\Utils\GameStateMachine.cpp" />
+    <ClCompile Include="src\GameStates\MainMenuState.cpp" />
     <ClCompile Include="src\GameStates\PauseState.cpp" />
     <ClCompile Include="src\GameStates\PlayState.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Utils\GameObjectFactory.cpp" />
     <ClCompile Include="src\Utils\InputHandler.cpp" />
     <ClCompile Include="src\Utils\LoaderParams.cpp" />
+    <ClCompile Include="src\Utils\StateParser.cpp" />
     <ClCompile Include="src\Utils\TextureManager.cpp" />
+    <ClCompile Include="src\Utils\tinystr.cpp" />
+    <ClCompile Include="src\Utils\tinyxml.cpp" />
+    <ClCompile Include="src\Utils\tinyxmlerror.cpp" />
+    <ClCompile Include="src\Utils\tinyxmlparser.cpp" />
     <ClCompile Include="src\Utils\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,14 +171,23 @@
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\GameStateHeaders\GameOverState.h" />
     <ClInclude Include="include\GameStateHeaders\GameState.h" />
-    <ClInclude Include="include\GameStateHeaders\GameStateMachine.h" />
+    <ClInclude Include="include\UtilsHeaders\GameStateMachine.h" />
+    <ClInclude Include="include\GameStateHeaders\MainMenuState.h" />
     <ClInclude Include="include\GameStateHeaders\MenuState.h" />
     <ClInclude Include="include\GameStateHeaders\PauseState.h" />
     <ClInclude Include="include\GameStateHeaders\PlayState.h" />
+    <ClInclude Include="include\UtilsHeaders\BaseCreator.h" />
+    <ClInclude Include="include\UtilsHeaders\GameObjectFactory.h" />
     <ClInclude Include="include\UtilsHeaders\InputHandler.h" />
     <ClInclude Include="include\UtilsHeaders\LoaderParams.h" />
+    <ClInclude Include="include\UtilsHeaders\StateParser.h" />
     <ClInclude Include="include\UtilsHeaders\TextureManager.h" />
+    <ClInclude Include="include\UtilsHeaders\tinystr.h" />
+    <ClInclude Include="include\UtilsHeaders\tinyxml.h" />
     <ClInclude Include="include\UtilsHeaders\Vector2D.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="src\test.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

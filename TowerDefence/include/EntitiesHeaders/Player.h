@@ -3,16 +3,24 @@
 
 #include "SDLGameObject.h"
 
+#include "../UtilsHeaders/BaseCreator.h"
+
 class Player : public SDLGameObject
 {
 public:
-	Player(const LoaderParams* pParams);
+	Player();
 	void handleInput();
 
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
+
+	void load(const LoaderParams* pParams);
 };
 
+class PlayerCreator : public BaseCreator
+{
+	GameObject* createGameObject() const;
+};
 
 #endif // !__Player__

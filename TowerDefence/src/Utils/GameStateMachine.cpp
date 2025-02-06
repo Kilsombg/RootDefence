@@ -1,4 +1,4 @@
-#include "../../include/GameStateHeaders/GameStateMachine.h"
+#include "../../include/UtilsHeaders/GameStateMachine.h"
 
 void GameStateMachine::pushState(GameState* pState)
 {

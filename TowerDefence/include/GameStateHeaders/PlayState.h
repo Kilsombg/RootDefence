@@ -25,6 +25,7 @@ private:
 	static const std::string s_playID;
 
 	std::vector<GameObject*> m_gameObjects;
+	std::vector<std::string>m_textureIDList;
 };
 
 #endif // !__PlayState__

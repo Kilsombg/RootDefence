@@ -1,6 +1,8 @@
 #ifndef __MenuButton__
 #define __MenuButton__
 
+#include "../UtilsHeaders/BaseCreator.h"
+
 #include "SDLGameObject.h"
 
 enum button_state
@@ -14,15 +16,27 @@ class MenuButton : public SDLGameObject
 {
 public:
 
-	MenuButton(const LoaderParams* pParams, void (*callback)());
+	MenuButton();
 
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
 
+	virtual void load(const LoaderParams* pParams);
+
+	void setCallback(void(*callback)());
+	int getCallbackID();
+
 private:
-	void (*m_callback)();
 	bool m_bReleased;
+	int m_callbackID;
+	void (*m_callback)();
+};
+
+class MenuButtonCreator : public BaseCreator
+{
+public:
+	GameObject* createGameObject() const;
 };
 
 #endif // !__MenuButton__
