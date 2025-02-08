@@ -5,6 +5,8 @@
 
 #include "../UtilsHeaders/BaseCreator.h"
 
+#include<memory>
+
 class Enemy : public SDLGameObject
 {
 public:
@@ -21,7 +23,7 @@ public:
 class EnemyCreator : public BaseCreator
 {
 public:
-	GameObject* createGameObject() const;
+	std::unique_ptr<GameObject> createGameObject() const;
 };
 
 #endif // !__Enemy__

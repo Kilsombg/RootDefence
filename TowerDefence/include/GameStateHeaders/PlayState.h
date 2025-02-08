@@ -11,6 +11,8 @@
 class PlayState : public GameState
 {
 public:
+	PlayState();
+
 	virtual void update();
 	virtual void render();
 
@@ -20,12 +22,6 @@ public:
 	virtual std::string getStateID() const;
 
 	bool checkCollision(SDLGameObject* p1, SDLGameObject* p2);
-
-private:
-	static const std::string s_playID;
-
-	std::vector<GameObject*> m_gameObjects;
-	std::vector<std::string>m_textureIDList;
 };
 
 #endif // !__PlayState__

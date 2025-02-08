@@ -3,10 +3,12 @@
 
 #include "../EntitiesHeaders/GameObject.h"
 
+#include<memory>
+
 class BaseCreator
 {
 public:
-	virtual GameObject* createGameObject() const = 0;
+	virtual std::unique_ptr<GameObject> createGameObject() const = 0;
 	virtual ~BaseCreator() {}
 };
 

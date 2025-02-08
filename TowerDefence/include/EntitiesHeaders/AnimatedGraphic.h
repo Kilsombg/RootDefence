@@ -5,6 +5,8 @@
 
 #include "../UtilsHeaders/BaseCreator.h"
 
+#include<memory>
+
 class AnimatedGraphic : public SDLGameObject
 {
 public:
@@ -22,7 +24,7 @@ private:
 class AnimatedGraphicCreator : public BaseCreator
 {
 public:
-	GameObject* createGameObject() const;
+	std::unique_ptr<GameObject> createGameObject() const;
 };
 
 

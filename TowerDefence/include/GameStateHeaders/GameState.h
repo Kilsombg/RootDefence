@@ -1,7 +1,12 @@
 #ifndef __GameState__
 #define __GameState__
 
+#include "../EntitiesHeaders/GameObject.h"
+
 #include<string>
+#include<vector>
+#include<memory>
+
 class GameState
 {
 public:
@@ -12,6 +17,12 @@ public:
 	virtual bool onExit() = 0;
 	
 	virtual std::string getStateID() const = 0;
+
+protected:
+	std::string s_stateID;
+
+	std::vector<std::unique_ptr<GameObject>> m_gameObjects;
+	std::vector<std::string> m_textureIDList;
 };
 
 #endif // !__GameState__

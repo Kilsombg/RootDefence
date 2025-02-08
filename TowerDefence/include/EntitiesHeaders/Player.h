@@ -5,6 +5,8 @@
 
 #include "../UtilsHeaders/BaseCreator.h"
 
+#include<memory>
+
 class Player : public SDLGameObject
 {
 public:
@@ -20,7 +22,7 @@ public:
 
 class PlayerCreator : public BaseCreator
 {
-	GameObject* createGameObject() const;
+	std::unique_ptr<GameObject> createGameObject() const;
 };
 
 #endif // !__Player__

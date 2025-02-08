@@ -4,7 +4,7 @@
 
 #include "../../include/Game.h"
 
-bool StateParser::parseState(const char* stateFile, std::string stateID, std::vector<GameObject*>* pObjects, std::vector<std::string>* pTextureIDs)
+bool StateParser::parseState(const char* stateFile, std::string stateID, std::vector<std::unique_ptr<GameObject>>* pObjects, std::vector<std::string>* pTextureIDs)
 {
 	TiXmlDocument xmlDoc;
 	if(!xmlDoc.LoadFile(stateFile))
@@ -62,7 +62,7 @@ void StateParser::parseTextures(TiXmlElement* pStateRoot, std::vector<std::strin
 	}
 }
 
-void StateParser::parseObjects(TiXmlElement* pStateRoot, std::vector<GameObject*>* pObjects)
+void StateParser::parseObjects(TiXmlElement* pStateRoot, std::vector<std::unique_ptr<GameObject>>* pObjects)
 {
 	for (TiXmlElement* e = pStateRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
@@ -78,9 +78,9 @@ void StateParser::parseObjects(TiXmlElement* pStateRoot, std::vector<GameObject*
 		e->Attribute("animSpeed", &animSpeed);
 		textureID = e->Attribute("textureID");
 
-		GameObject* pGameObject = TheGameObjectFactory::Instance()->create(e->Attribute("type"));		
+		std::unique_ptr<GameObject> pGameObject = TheGameObjectFactory::Instance()->create(e->Attribute("type"));		
 		pGameObject->load(new LoaderParams(x, y, width, height, textureID, numFrames, callbackID, animSpeed));
 		
-		pObjects->push_back(pGameObject);
+		pObjects->push_back(std::move(pGameObject));
 	}
 }

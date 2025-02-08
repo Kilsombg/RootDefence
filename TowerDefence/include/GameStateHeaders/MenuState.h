@@ -13,8 +13,6 @@ protected:
 	virtual void setCallbacks(const std::vector<Callback>& callbacks) = 0;
 	
 	std::vector<Callback> m_callbacks;
-
-	std::vector<std::string> m_textureIDList;
 };
 
 #endif // !__MenuState__

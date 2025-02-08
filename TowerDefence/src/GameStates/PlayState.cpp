@@ -10,7 +10,10 @@
 
 #include<iostream>
 
-const std::string PlayState::s_playID = "PLAY";
+PlayState::PlayState()
+{
+	s_stateID = "PLAY";
+}
 
 void PlayState::update()
 {
@@ -23,7 +26,7 @@ void PlayState::update()
 		m_gameObjects[i]->update();
 	}
 
-	if (checkCollision(dynamic_cast<SDLGameObject*> (m_gameObjects[0]), dynamic_cast<SDLGameObject*> (m_gameObjects[1])))
+	if (checkCollision(dynamic_cast<SDLGameObject*> (m_gameObjects[0].get()), dynamic_cast<SDLGameObject*> (m_gameObjects[1].get())))
 	{
 		TheGame::Instance()->getStateMachine()->pushState(new GameOverState());
 	}
@@ -40,7 +43,7 @@ void PlayState::render()
 bool PlayState::onEnter()
 {
 	StateParser stateParser;
-	stateParser.parseState("./src/test.xml", s_playID, &m_gameObjects, &m_textureIDList);
+	stateParser.parseState("./src/test.xml", s_stateID, &m_gameObjects, &m_textureIDList);
 
 	std::cout << "entering PlayState\n";
 	return true;
@@ -67,7 +70,7 @@ bool PlayState::onExit()
 
 std::string PlayState::getStateID() const
 {
-	return s_playID;
+	return s_stateID;
 }
 
 bool PlayState::checkCollision(SDLGameObject* p1, SDLGameObject* p2)

@@ -10,6 +10,8 @@
 class GameOverState : public MenuState
 {
 public:
+	GameOverState();
+
 	virtual void update();
 	virtual void render();
 	virtual bool onEnter();
@@ -22,10 +24,6 @@ public:
 private:
 	static void s_gameOverToMain();
 	static void s_restartPlay();
-	
-	static const std::string s_gameOverID;
-	
-	std::vector<GameObject*> m_gameObjects;
 };
 
 #endif // !__GameOverState__

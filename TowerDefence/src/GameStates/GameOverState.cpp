@@ -11,7 +11,10 @@
 
 #include<iostream>
 
-const std::string GameOverState::s_gameOverID = "GAMEOVER";
+GameOverState::GameOverState()
+{
+	s_stateID = "GAMEOVER";
+}
 
 void GameOverState::update()
 {
@@ -30,7 +33,7 @@ void GameOverState::render()
 
 std::string GameOverState::getStateID() const
 {
-	return s_gameOverID;
+	return s_stateID;
 }
 
 void GameOverState::s_gameOverToMain()
@@ -46,7 +49,7 @@ void GameOverState::s_restartPlay()
 bool GameOverState::onEnter()
 {
 	StateParser stateParser;
-	stateParser.parseState("./src/test.xml", s_gameOverID, &m_gameObjects, &m_textureIDList);
+	stateParser.parseState("./src/test.xml", s_stateID, &m_gameObjects, &m_textureIDList);
 
 	m_callbacks.push_back(0);
 	m_callbacks.push_back(s_gameOverToMain);
@@ -61,10 +64,11 @@ void GameOverState::setCallbacks(const std::vector<Callback>& callbacks)
 {
 	for (int i = 0; i < m_gameObjects.size(); i++)
 	{
-		if (dynamic_cast<MenuButton*>(m_gameObjects[i]))
+		if (dynamic_cast<MenuButton*>(m_gameObjects[i].get()))
 		{
-			MenuButton* pButton = dynamic_cast<MenuButton*>(m_gameObjects[i]);
+			MenuButton* pButton = dynamic_cast<MenuButton*>(m_gameObjects[i].get());
 			pButton->setCallback(callbacks[pButton->getCallbackID()]);
+			pButton = nullptr;
 		}
 	}
 }

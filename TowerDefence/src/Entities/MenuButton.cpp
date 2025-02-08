@@ -65,7 +65,7 @@ void MenuButton::clean()
 	SDLGameObject::clean();
 }
 
-GameObject* MenuButtonCreator::createGameObject() const
+std::unique_ptr<GameObject> MenuButtonCreator::createGameObject() const
 {
-	return new MenuButton();
+	return std::make_unique<MenuButton>();
 }
