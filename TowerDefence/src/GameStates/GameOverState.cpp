@@ -53,7 +53,7 @@ bool GameOverState::onEnter()
 	m_callbacks.push_back(s_restartPlay);
 	
 	setCallbacks(m_callbacks);
-	std::cout << "entering PauseState\n";
+	std::cout << "entering GameOverState\n";
 	return true;
 }
 
@@ -74,6 +74,7 @@ bool GameOverState::onExit()
 	for (int i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->clean();
+		m_gameObjects[i] = nullptr;
 	}
 
 	m_gameObjects.clear();
@@ -83,6 +84,6 @@ bool GameOverState::onExit()
 		TheTextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
 	}
 
-	std::cout << "exiting MenuState\n";
+	std::cout << "exiting GameOverState\n";
 	return true;
 }

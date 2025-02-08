@@ -6,6 +6,8 @@
 class GameObject
 {
 public:
+	virtual ~GameObject();
+
 	virtual void draw() = 0;
 	virtual void update() = 0;
 	virtual void clean() = 0;
@@ -14,7 +16,6 @@ public:
 
 protected:
 	GameObject();
-	virtual ~GameObject();
 };
 
 #endif // !__GameObject__

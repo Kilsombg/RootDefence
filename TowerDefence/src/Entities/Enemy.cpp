@@ -22,7 +22,7 @@ void Enemy::draw()
 
 void Enemy::update()
 {
-	m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
+	m_currentFrame = int(((SDL_GetTicks() / 100) % m_numFrames));
 
 	if (m_position.getY() < 0)
 	{

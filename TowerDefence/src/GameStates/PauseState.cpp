@@ -30,7 +30,7 @@ void PauseState::s_resumePlay()
 
 void PauseState::update()
 {
-	for (int i = 0; i < m_gameObjects.size(); i++)
+	for (std::vector<GameObject*>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->update();
 	}
@@ -38,7 +38,7 @@ void PauseState::update()
 
 void PauseState::render()
 {
-	for (int i = 0; i < m_gameObjects.size(); i++)
+	for (std::vector<GameObject*>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->draw();
 	}
@@ -70,11 +70,13 @@ void PauseState::setCallbacks(const std::vector<Callback>& callbacks)
 	}
 }
 
+
 bool PauseState::onExit()
 {
-	for (int i = 0; i < m_gameObjects.size(); i++)
+	for (std::vector<GameObject*>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->clean();
+		m_gameObjects[i] = nullptr;
 	}
 	m_gameObjects.clear();
 

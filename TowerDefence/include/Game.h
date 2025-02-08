@@ -31,7 +31,6 @@ public:
 
 private:
 	bool m_bRunning;
-	int m_currentFrame;
 
 	Game();
 	static Game* s_pInstance;
@@ -39,13 +38,6 @@ private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	SDL_Texture* m_pTexture;
-
-	SDL_Rect m_sourceRectangle;
-	SDL_Rect m_destinationRectangle;
-
-	GameObject* m_go;
-	GameObject* m_player;
-	GameObject* m_enemy;
 
 	std::vector<GameObject*> m_gameObjects;
 	GameStateMachine* m_pGameStateMachine;

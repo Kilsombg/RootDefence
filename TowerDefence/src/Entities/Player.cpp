@@ -14,7 +14,7 @@ void Player::draw()
 
 void Player::update()
 {
-	m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
+	m_currentFrame = int(((SDL_GetTicks() / 100) % m_numFrames));
 
 	handleInput();
 
@@ -33,10 +33,12 @@ void Player::load(const LoaderParams* pParams)
 
 void Player::handleInput()
 {
-	Vector2D* target = TheInputHandler::Instance()->getMousePosition();
+	if (TheInputHandler::Instance()->getMouseButtonState(LEFT))
+	{
+		Vector2D* target = TheInputHandler::Instance()->getMousePosition();
 
-	m_velocity = *target - m_position;
-	m_velocity /= 50;
+		m_velocity = (*target - m_position) / 50;
+	}
 }
 
 GameObject* PlayerCreator::createGameObject() const

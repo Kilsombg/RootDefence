@@ -18,7 +18,7 @@ void PlayState::update()
 	{
 		TheGame::Instance()->getStateMachine()->pushState(new PauseState());
 	}
-	for (int i = 0; i < m_gameObjects.size(); i++)
+	for (std::vector<GameObject*>::size_type  i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->update();
 	}
@@ -31,7 +31,7 @@ void PlayState::update()
 
 void PlayState::render()
 {
-	for (int i = 0; i < m_gameObjects.size(); i++)
+	for (std::vector<GameObject*>::size_type  i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->draw();
 	}
@@ -48,12 +48,13 @@ bool PlayState::onEnter()
 
 bool PlayState::onExit()
 {
-	/*for (int i = 0; i < m_gameObjects.size(); i++)
+	for (std::vector<GameObject*>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->clean();
+		m_gameObjects[i] = nullptr;
 	}
 
-	m_gameObjects.clear();*/
+	m_gameObjects.clear();
 
 	for (int i = 0; i < m_textureIDList.size(); i++)
 	{
