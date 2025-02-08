@@ -69,11 +69,10 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 	m_bRunning = true;
 
-	TheGameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
-	TheGameObjectFactory::Instance()->registerType("Enemy", new EnemyCreator());
-	TheGameObjectFactory::Instance()->registerType("MenuButton", new MenuButtonCreator());
-	TheGameObjectFactory::Instance()->registerType("AnimatedGraphic", new AnimatedGraphicCreator());
-
+	TheGameObjectFactory::Instance()->registerType("Player", std::make_shared<PlayerCreator>());
+	TheGameObjectFactory::Instance()->registerType("Enemy", std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType("MenuButton", std::make_shared<MenuButtonCreator>());
+	TheGameObjectFactory::Instance()->registerType("AnimatedGraphic", std::make_shared<AnimatedGraphicCreator>());
 
 	m_pGameStateMachine = new GameStateMachine();
 	m_pGameStateMachine->changeState(new MainMenuState());

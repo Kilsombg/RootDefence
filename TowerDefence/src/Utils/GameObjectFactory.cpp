@@ -1,30 +1,29 @@
 #include "../../include/UtilsHeaders/GameObjectFactory.h"
 
-GameObjectFactory* GameObjectFactory::s_pInstance = nullptr;
+std::shared_ptr<GameObjectFactory> GameObjectFactory::s_pInstance = nullptr;
 
 GameObjectFactory::GameObjectFactory()
 {
 }
 
-GameObjectFactory* GameObjectFactory::Instance()
+std::shared_ptr<GameObjectFactory> GameObjectFactory::Instance()
 {
 	if (s_pInstance == nullptr) 
 	{
-		s_pInstance = new GameObjectFactory();
+		s_pInstance = std::shared_ptr<GameObjectFactory>(new GameObjectFactory);
 		return s_pInstance;
 	}
 
 	return s_pInstance;
 }
 
-bool GameObjectFactory::registerType(std::string typeID, BaseCreator* pCreator)
+bool GameObjectFactory::registerType(std::string typeID, std::shared_ptr<BaseCreator> pCreator)
 {
-	std::map<std::string, BaseCreator*>::iterator it = m_creators.find(typeID);
+	std::map<std::string, std::shared_ptr<BaseCreator>>::iterator it = m_creators.find(typeID);
 	
 	// if the type is already registered, do nothing
 	if (it != m_creators.end())
 	{
-		delete pCreator;
 		return false;
 	}
 	
@@ -32,9 +31,9 @@ bool GameObjectFactory::registerType(std::string typeID, BaseCreator* pCreator)
 	return true;
 }
 
-GameObject* GameObjectFactory::create(std::string typeID)
+std::unique_ptr<GameObject> GameObjectFactory::create(std::string typeID)
 {
-	std::map<std::string, BaseCreator*>::iterator it = m_creators.find(typeID);
+	std::map<std::string, std::shared_ptr<BaseCreator>>::iterator it = m_creators.find(typeID);
 	
 	//If the type is not already registered
 	if (it == m_creators.end())
@@ -43,7 +42,7 @@ GameObject* GameObjectFactory::create(std::string typeID)
 		return NULL;
 	}
 
-	BaseCreator* pCreator = (*it).second;
+	std::shared_ptr<BaseCreator> pCreator = it->second;
 	return pCreator->createGameObject();
 }
 

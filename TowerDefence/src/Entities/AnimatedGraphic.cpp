@@ -33,7 +33,7 @@ void AnimatedGraphic::load(const LoaderParams* pParams)
 	m_animSpeed = pParams->getAnimSpeed();
 }
 
-GameObject* AnimatedGraphicCreator::createGameObject() const
+std::unique_ptr<GameObject> AnimatedGraphicCreator::createGameObject() const
 {
-	return new AnimatedGraphic();
+	return std::make_unique<AnimatedGraphic>();
 }

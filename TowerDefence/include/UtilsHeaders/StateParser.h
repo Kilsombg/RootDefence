@@ -3,17 +3,19 @@
 
 #include "../EntitiesHeaders/GameObject.h"
 
+#include "tinyxml.h"
+
 #include <iostream>
 #include <vector>
-#include "tinyxml.h"
+#include<memory>
 
 class StateParser
 {
 public:
-	bool parseState(const char* stateFile, std::string stateID, std::vector<GameObject*>* pObjects, std::vector<std::string>* pTextureIDs);
+	bool parseState(const char* stateFile, std::string stateID, std::vector<std::unique_ptr<GameObject>>* pObjects, std::vector<std::string>* pTextureIDs);
 
 private:
-	void parseObjects(TiXmlElement* pStateRoot, std::vector<GameObject*>* pObjects);
+	void parseObjects(TiXmlElement* pStateRoot, std::vector<std::unique_ptr<GameObject>>* pObjects);
 
 	void parseTextures(TiXmlElement* pStateRoot, std::vector<std::string>* pTextureIDs);
 };

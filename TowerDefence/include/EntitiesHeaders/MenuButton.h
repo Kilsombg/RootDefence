@@ -5,6 +5,8 @@
 
 #include "SDLGameObject.h"
 
+#include<memory>
+
 class MenuButton : public SDLGameObject
 {
 public:
@@ -36,7 +38,7 @@ private:
 class MenuButtonCreator : public BaseCreator
 {
 public:
-	GameObject* createGameObject() const;
+	std::unique_ptr<GameObject> createGameObject() const;
 };
 
 #endif // !__MenuButton__
