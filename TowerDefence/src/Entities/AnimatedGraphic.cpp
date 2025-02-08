@@ -26,7 +26,7 @@ void AnimatedGraphic::clean()
 	SDLGameObject::clean();
 }
 
-void AnimatedGraphic::load(const LoaderParams* pParams)
+void AnimatedGraphic::load(const std::shared_ptr<LoaderParams> pParams)
 {
 	SDLGameObject::load(pParams);
 

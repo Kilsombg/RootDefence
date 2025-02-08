@@ -6,7 +6,7 @@ MenuButton::MenuButton() : SDLGameObject()
 {
 }
 
-void MenuButton::load(const LoaderParams* pParams)
+void MenuButton::load(const std::shared_ptr<LoaderParams> pParams)
 {
 	SDLGameObject::load(pParams);
 

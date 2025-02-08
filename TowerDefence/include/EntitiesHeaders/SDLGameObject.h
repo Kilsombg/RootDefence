@@ -5,6 +5,8 @@
 
 #include "../UtilsHeaders/Vector2D.h"
 
+#include<memory>
+
 class SDLGameObject : public GameObject
 {
 public:
@@ -14,7 +16,7 @@ public:
 	virtual void update();
 	virtual void clean();
 
-	void load(const LoaderParams* pParams);
+	 virtual void load(const std::shared_ptr<LoaderParams> pParams);
 
 	Vector2D& getPosition();
 	int getWidth();

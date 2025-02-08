@@ -3,6 +3,8 @@
 
 #include "../UtilsHeaders/LoaderParams.h"
 
+#include<memory>
+
 class GameObject
 {
 public:
@@ -12,7 +14,7 @@ public:
 	virtual void update() = 0;
 	virtual void clean() = 0;
 
-	virtual void load(const LoaderParams* pParams) = 0;
+	virtual void load(const std::shared_ptr<LoaderParams> pParams) = 0;
 
 protected:
 	GameObject();

@@ -17,7 +17,7 @@ public:
 	virtual void update();
 	virtual void clean();
 
-	virtual void load(const LoaderParams* pParams);
+	virtual void load(const std::shared_ptr<LoaderParams> pParams);
 
 	void setCallback(void(*callback)());
 	int getCallbackID();

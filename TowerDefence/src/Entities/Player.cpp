@@ -26,7 +26,7 @@ void Player::clean()
 	SDLGameObject::clean();
 }
 
-void Player::load(const LoaderParams* pParams)
+void Player::load(const std::shared_ptr<LoaderParams> pParams)
 {
 	SDLGameObject::load(pParams);
 }

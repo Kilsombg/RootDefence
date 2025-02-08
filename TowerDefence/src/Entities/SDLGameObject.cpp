@@ -7,7 +7,7 @@ SDLGameObject::SDLGameObject() : GameObject()
 {
 }
 
-void SDLGameObject::load(const LoaderParams* pParams)
+void SDLGameObject::load(const std::shared_ptr<LoaderParams> pParams)
 {
 	m_position = Vector2D(pParams->getX(), pParams->getY());
 	m_velocity = Vector2D(0, 0);

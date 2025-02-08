@@ -5,7 +5,7 @@
 #include "Vector2D.h"
 
 #include<vector>
-
+#include<memory>
 
 enum mouse_buttons
 {
@@ -17,13 +17,13 @@ enum mouse_buttons
 class InputHandler
 {
 public:
-	static InputHandler* Instance();
+	static std::shared_ptr<InputHandler> Instance();
 	void update();
 	void clean();
 	void reset();
 
 	bool getMouseButtonState(int buttonNumber);
-	Vector2D* getMousePosition();
+	std::shared_ptr<Vector2D> getMousePosition();
 	
 	bool isKeyDown(SDL_Scancode key);
 
@@ -40,9 +40,9 @@ private:
 	void onMouseButtonDown(SDL_Event& event);
 	void onMouseButtonUp(SDL_Event& event);
 
-	static InputHandler* s_pInstance;
+	static std::shared_ptr<InputHandler> s_pInstance;
 	std::vector<bool> m_mouseButtonStates;
-	Vector2D* m_mousePosition;
+	std::shared_ptr<Vector2D> m_mousePosition;
 	const Uint8* m_keystates;
 };
 typedef InputHandler TheInputHandler;

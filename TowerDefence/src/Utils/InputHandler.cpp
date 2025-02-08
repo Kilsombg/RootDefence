@@ -2,7 +2,7 @@
 
 #include "../../include/Game.h"
 
-InputHandler* InputHandler::s_pInstance = nullptr;
+std::shared_ptr<InputHandler> InputHandler::s_pInstance = nullptr;
 
 InputHandler::InputHandler() : m_mousePosition(new Vector2D(0, 0))
 {
@@ -14,11 +14,11 @@ InputHandler::InputHandler() : m_mousePosition(new Vector2D(0, 0))
 	m_keystates = SDL_GetKeyboardState(0);
 }
 
-InputHandler* InputHandler::Instance()
+std::shared_ptr<InputHandler> InputHandler::Instance()
 {
 	if (s_pInstance == nullptr)
 	{
-		s_pInstance = new InputHandler();
+		s_pInstance = std::make_shared<InputHandler>();
 	}
 	return s_pInstance;
 }
@@ -56,7 +56,7 @@ void InputHandler::update()
 
 void InputHandler::clean()
 {
-	delete s_pInstance;
+	delete s_pInstance.get();
 	s_pInstance = nullptr;
 
 	m_keystates = nullptr;
@@ -80,7 +80,7 @@ bool InputHandler::getMouseButtonState(int buttonNumber)
 	return m_mouseButtonStates[buttonNumber];
 }
 
-Vector2D* InputHandler::getMousePosition()
+std::shared_ptr<Vector2D> InputHandler::getMousePosition()
 {
 	return m_mousePosition;
 }

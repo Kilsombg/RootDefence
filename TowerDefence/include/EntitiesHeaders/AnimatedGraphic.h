@@ -15,7 +15,7 @@ public:
 	void update();
 	void draw();
 	void clean();
-	void load(const LoaderParams* pParams);
+	void load(const std::shared_ptr<LoaderParams> pParams);
 
 private:
 	int m_animSpeed;

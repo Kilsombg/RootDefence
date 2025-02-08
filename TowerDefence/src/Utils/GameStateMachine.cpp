@@ -1,6 +1,6 @@
 #include "../../include/UtilsHeaders/GameStateMachine.h"
 
-void GameStateMachine::pushState(GameState* pState)
+void GameStateMachine::pushState(std::shared_ptr<GameState> pState)
 {
 	m_gameStates.push_back(pState);
 	m_gameStates.back()->onEnter();
@@ -12,14 +12,14 @@ void GameStateMachine::popState()
 	{
 		if (m_gameStates.back()->onExit())
 		{
-			delete m_gameStates.back();
+			delete m_gameStates.back().get();
 			m_gameStates.pop_back();
 		}
 	}
 }
 
 // keeps previous states - bad
-void GameStateMachine::changeState(GameState* pState)
+void GameStateMachine::changeState(std::shared_ptr<GameState> pState)
 {
 	if (!m_gameStates.empty())
 	{
@@ -30,7 +30,7 @@ void GameStateMachine::changeState(GameState* pState)
 
 		if (m_gameStates.back()->onExit())
 		{
-			delete m_gameStates.back();
+			delete m_gameStates.back().get();
 			m_gameStates.pop_back();
 		}
 	}

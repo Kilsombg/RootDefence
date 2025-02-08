@@ -17,7 +17,7 @@ public:
 	virtual void update();
 	virtual void clean();
 
-	void load(const LoaderParams* pParams);
+	void load(const std::shared_ptr<LoaderParams> pParams);
 };
 
 class PlayerCreator : public BaseCreator

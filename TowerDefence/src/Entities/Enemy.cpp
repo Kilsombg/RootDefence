@@ -6,7 +6,7 @@ Enemy::Enemy() : SDLGameObject()
 {
 }
 
-void Enemy::load(const LoaderParams* pParams)
+void Enemy::load(const std::shared_ptr<LoaderParams> pParams)
 {
 	SDLGameObject::load(pParams);
 
