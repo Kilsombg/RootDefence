@@ -10,6 +10,7 @@
 #include "../../include/Game.h"
 
 #include<iostream>	
+#include<memory>
 
 PauseState::PauseState()
 {
@@ -23,7 +24,7 @@ std::string PauseState::getStateID() const
 
 void PauseState::s_pauseToMain()
 {
-	TheGame::Instance()->getStateMachine()->changeState(new MainMenuState());
+	TheGame::Instance()->getStateMachine()->changeState(std::make_shared<MainMenuState>());
 }
 
 void PauseState::s_resumePlay()

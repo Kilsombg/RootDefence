@@ -10,6 +10,7 @@
 
 #include<SDL.h>
 #include<vector>
+#include<memory>
 
 class Game
 {
@@ -25,7 +26,7 @@ public:
 	void quit();
 	
 	SDL_Renderer* getRenderer() const;
-	GameStateMachine* getStateMachine();
+	std::shared_ptr<GameStateMachine> getStateMachine();
 	
 	bool running();
 
@@ -39,8 +40,7 @@ private:
 	SDL_Renderer* m_pRenderer;
 	SDL_Texture* m_pTexture;
 
-	std::vector<GameObject*> m_gameObjects;
-	GameStateMachine* m_pGameStateMachine;
+	std::shared_ptr<GameStateMachine> m_pGameStateMachine;
 };
 
 

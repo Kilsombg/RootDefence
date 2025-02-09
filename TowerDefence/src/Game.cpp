@@ -10,6 +10,7 @@
 #include "../include/UtilsHeaders/GameObjectFactory.h"
 
 #include<iostream>
+#include<memory>
 
 Game* Game::s_pInstance = nullptr;
 
@@ -74,8 +75,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	TheGameObjectFactory::Instance()->registerType("MenuButton", std::make_shared<MenuButtonCreator>());
 	TheGameObjectFactory::Instance()->registerType("AnimatedGraphic", std::make_shared<AnimatedGraphicCreator>());
 
-	m_pGameStateMachine = new GameStateMachine();
-	m_pGameStateMachine->changeState(new MainMenuState());
+	m_pGameStateMachine = std::make_shared<GameStateMachine>();
+	m_pGameStateMachine->changeState(std::make_shared<MainMenuState>());
 
 
 	std::cout << "init success\n";
@@ -110,7 +111,7 @@ SDL_Renderer* Game::getRenderer() const
 	return m_pRenderer;
 }
 
-GameStateMachine* Game::getStateMachine()
+std::shared_ptr<GameStateMachine> Game::getStateMachine()
 {
 	return m_pGameStateMachine;
 }
@@ -131,6 +132,6 @@ void Game::handleEvents()
 
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN))
 	{
-		m_pGameStateMachine->changeState(new PlayState());
+		m_pGameStateMachine->changeState(std::make_shared<PlayState>());
 	}
 }

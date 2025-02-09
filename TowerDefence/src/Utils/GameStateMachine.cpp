@@ -12,7 +12,6 @@ void GameStateMachine::popState()
 	{
 		if (m_gameStates.back()->onExit())
 		{
-			delete m_gameStates.back().get();
 			m_gameStates.pop_back();
 		}
 	}
@@ -30,7 +29,6 @@ void GameStateMachine::changeState(std::shared_ptr<GameState> pState)
 
 		if (m_gameStates.back()->onExit())
 		{
-			delete m_gameStates.back().get();
 			m_gameStates.pop_back();
 		}
 	}

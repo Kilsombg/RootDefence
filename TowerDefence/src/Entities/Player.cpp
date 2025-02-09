@@ -35,7 +35,7 @@ void Player::handleInput()
 {
 	if (TheInputHandler::Instance()->getMouseButtonState(LEFT))
 	{
-		Vector2D* target = TheInputHandler::Instance()->getMousePosition();
+		std::shared_ptr<Vector2D> target = TheInputHandler::Instance()->getMousePosition();
 
 		m_velocity = (*target - m_position) / 50;
 	}

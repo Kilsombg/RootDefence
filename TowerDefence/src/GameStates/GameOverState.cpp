@@ -10,6 +10,7 @@
 #include "../../include/Game.h"
 
 #include<iostream>
+#include<memory>
 
 GameOverState::GameOverState()
 {
@@ -38,12 +39,12 @@ std::string GameOverState::getStateID() const
 
 void GameOverState::s_gameOverToMain()
 {
-	TheGame::Instance()->getStateMachine()->changeState(new MainMenuState());
+	TheGame::Instance()->getStateMachine()->changeState(std::make_shared<MainMenuState>());
 }
 
 void GameOverState::s_restartPlay()
 {
-	TheGame::Instance()->getStateMachine()->changeState(new PlayState());
+	TheGame::Instance()->getStateMachine()->changeState(std::make_shared<PlayState>());
 }
 
 bool GameOverState::onEnter()

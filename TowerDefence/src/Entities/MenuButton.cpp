@@ -32,7 +32,7 @@ void MenuButton::draw()
 
 void MenuButton::update()
 {
-	Vector2D* pMousePos = TheInputHandler::Instance()->getMousePosition();
+	std::shared_ptr<Vector2D> pMousePos = TheInputHandler::Instance()->getMousePosition();
 
 	if (pMousePos->getX() < (m_position.getX() + m_width)
 		&& pMousePos->getX() > m_position.getX()

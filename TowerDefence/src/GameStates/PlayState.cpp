@@ -19,7 +19,7 @@ void PlayState::update()
 {
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
-		TheGame::Instance()->getStateMachine()->pushState(new PauseState());
+		TheGame::Instance()->getStateMachine()->pushState(std::make_shared<PauseState>());
 	}
 	for (std::vector<GameObject*>::size_type  i = 0; i < m_gameObjects.size(); i++)
 	{
@@ -28,7 +28,7 @@ void PlayState::update()
 
 	if (checkCollision(dynamic_cast<SDLGameObject*> (m_gameObjects[0].get()), dynamic_cast<SDLGameObject*> (m_gameObjects[1].get())))
 	{
-		TheGame::Instance()->getStateMachine()->pushState(new GameOverState());
+		TheGame::Instance()->getStateMachine()->pushState(std::make_shared<GameOverState>());
 	}
 }
 

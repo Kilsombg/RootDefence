@@ -17,7 +17,7 @@ enum mouse_buttons
 class InputHandler
 {
 public:
-	static std::shared_ptr<InputHandler> Instance();
+	static InputHandler* Instance();
 	void update();
 	void clean();
 	void reset();
@@ -30,6 +30,8 @@ public:
 private:
 	InputHandler();
 	~InputHandler();
+
+	static InputHandler* s_pInstance;
 	
 	// handle keyboard events
 	void onKeyDown();
@@ -40,7 +42,6 @@ private:
 	void onMouseButtonDown(SDL_Event& event);
 	void onMouseButtonUp(SDL_Event& event);
 
-	static std::shared_ptr<InputHandler> s_pInstance;
 	std::vector<bool> m_mouseButtonStates;
 	std::shared_ptr<Vector2D> m_mousePosition;
 	const Uint8* m_keystates;

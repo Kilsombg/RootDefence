@@ -9,6 +9,7 @@
 #include "../../include/Game.h"
 
 #include<iostream>
+#include<memory>
 
 MainMenuState::MainMenuState()
 {
@@ -83,7 +84,7 @@ std::string MainMenuState::getStateID() const
 
 void MainMenuState::s_menuToPlay()
 {
-	TheGame::Instance()->getStateMachine()->changeState(new PlayState());
+	TheGame::Instance()->getStateMachine()->changeState(std::make_shared<PlayState>());
 }
 
 void MainMenuState::s_exitFromMenu()
