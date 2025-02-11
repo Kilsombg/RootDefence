@@ -69,6 +69,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	}
 
 	m_bRunning = true;
+	m_gameWidth = width;
+	m_gameHeight = height;
 
 	TheGameObjectFactory::Instance()->registerType("Player", std::make_shared<PlayerCreator>());
 	TheGameObjectFactory::Instance()->registerType("Enemy", std::make_shared<EnemyCreator>());
@@ -114,6 +116,16 @@ SDL_Renderer* Game::getRenderer() const
 std::shared_ptr<GameStateMachine> Game::getStateMachine()
 {
 	return m_pGameStateMachine;
+}
+
+int Game::getGameWidth() const
+{
+	return m_gameWidth;
+}
+
+int Game::getGameHeight() const
+{
+	return m_gameHeight;
 }
 
 bool Game::running()

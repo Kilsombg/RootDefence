@@ -18,14 +18,14 @@ MainMenuState::MainMenuState()
 
 void MainMenuState::update()
 {
-	for (std::vector<GameObject*>::size_type i = 0; i < m_gameObjects.size(); i++)
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->update();
 	}
 }
 void MainMenuState::render()
 {
-	for (std::vector<GameObject*>::size_type i = 0; i < m_gameObjects.size(); i++)
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->draw();
 	}

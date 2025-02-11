@@ -2,6 +2,8 @@
 #include "../../include/GameStateHeaders/PauseState.h"
 #include "../../include/GameStateHeaders/GameOverState.h"
 
+#include "../../include/MapHeaders/LevelParser.h"
+
 #include "../../include/UtilsHeaders/TextureManager.h"
 #include "../../include/UtilsHeaders/InputHandler.h"
 #include "../../include/UtilsHeaders/StateParser.h"
@@ -21,29 +23,43 @@ void PlayState::update()
 	{
 		TheGame::Instance()->getStateMachine()->pushState(std::make_shared<PauseState>());
 	}
-	for (std::vector<GameObject*>::size_type  i = 0; i < m_gameObjects.size(); i++)
+	/*
+	for (std::vector<std::unique_ptr<GameObject>>::size_type  i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->update();
+	}*/
+
+	if (m_gameObjects.size() >= 2)
+	{
+		if (checkCollision(dynamic_cast<SDLGameObject*> (m_gameObjects[0].get()), dynamic_cast<SDLGameObject*> (m_gameObjects[1].get())))
+		{
+			TheGame::Instance()->getStateMachine()->pushState(std::make_shared<GameOverState>());
+		}
 	}
 
-	if (checkCollision(dynamic_cast<SDLGameObject*> (m_gameObjects[0].get()), dynamic_cast<SDLGameObject*> (m_gameObjects[1].get())))
-	{
-		TheGame::Instance()->getStateMachine()->pushState(std::make_shared<GameOverState>());
-	}
+	pLevel->update();
 }
 
 void PlayState::render()
 {
-	for (std::vector<GameObject*>::size_type  i = 0; i < m_gameObjects.size(); i++)
+	/*
+	for (std::vector<std::unique_ptr<GameObject>>::size_type  i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->draw();
-	}
+	}*/
+
+	pLevel->render();
 }
 
 bool PlayState::onEnter()
 {
+	/*
 	StateParser stateParser;
 	stateParser.parseState("./src/test.xml", s_stateID, &m_gameObjects, &m_textureIDList);
+	*/
+
+	LevelParser levelParser;
+	pLevel = levelParser.parseLevel("./src/assets/map1.tmx");
 
 	std::cout << "entering PlayState\n";
 	return true;
@@ -51,7 +67,7 @@ bool PlayState::onEnter()
 
 bool PlayState::onExit()
 {
-	for (std::vector<GameObject*>::size_type i = 0; i < m_gameObjects.size(); i++)
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->clean();
 		m_gameObjects[i] = nullptr;
@@ -84,18 +100,18 @@ bool PlayState::checkCollision(SDLGameObject* p1, SDLGameObject* p2)
 	rightA = p1->getPosition().getX() + p1->getWidth();
 	topA = p1->getPosition().getY();
 	bottomA = p1->getPosition().getY() + p1->getHeight();
-	
+
 	//Calculate the sides of rect B
 	leftB = p2->getPosition().getX();
 	rightB = p2->getPosition().getX() + p2->getWidth();
 	topB = p2->getPosition().getY();
 	bottomB = p2->getPosition().getY() + p2->getHeight();
-	
+
 	//If any of the sides from A are outside of B
 	if (bottomA <= topB) { return false; }
 	if (topA >= bottomB) { return false; }
 	if (rightA <= leftB) { return false; }
 	if (leftA >= rightB) { return false; }
-	
+
 	return true;
 }

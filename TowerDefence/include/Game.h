@@ -27,11 +27,15 @@ public:
 	
 	SDL_Renderer* getRenderer() const;
 	std::shared_ptr<GameStateMachine> getStateMachine();
+	int getGameWidth() const;
+	int getGameHeight() const;
 	
 	bool running();
 
 private:
 	bool m_bRunning;
+	int m_gameWidth;
+	int m_gameHeight;
 
 	Game();
 	static Game* s_pInstance;

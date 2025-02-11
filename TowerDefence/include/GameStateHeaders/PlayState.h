@@ -6,7 +6,10 @@
 #include "../EntitiesHeaders/GameObject.h"
 #include "../EntitiesHeaders/SDLGameObject.h"
 
+#include "../MapHeaders/Level.h"
+
 #include<vector>
+#include<memory>
 
 class PlayState : public GameState
 {
@@ -22,6 +25,8 @@ public:
 	virtual std::string getStateID() const;
 
 	bool checkCollision(SDLGameObject* p1, SDLGameObject* p2);
+
+	std::shared_ptr<Level> pLevel;
 };
 
 #endif // !__PlayState__
