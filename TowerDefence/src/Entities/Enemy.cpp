@@ -2,6 +2,8 @@
 
 #include<SDL.h>
 
+#include<iostream>
+
 Enemy::Enemy() : SDLGameObject()
 {
 }
@@ -9,14 +11,12 @@ Enemy::Enemy() : SDLGameObject()
 void Enemy::load(const std::shared_ptr<LoaderParams> pParams)
 {
 	SDLGameObject::load(pParams);
-
-
-	m_velocity.setY(2);
-	m_velocity.setX(0.001);
 	m_isAlive = true;
+	m_moveSpeed = 1.5;
+	m_movePathTileID = 0;
 }
 
-void Enemy::setPath(std::shared_ptr<std::vector<std::shared_ptr<Vector2D>>> pathPoints)
+void Enemy::setPath(std::vector<std::shared_ptr<Vector2D>> pathPoints)
 {
 	m_path = pathPoints;
 }
@@ -42,15 +42,30 @@ void Enemy::update()
 
 void Enemy::move()
 {
-	if (m_path->size() >= 0)
+	if (m_path.size() >= 0 && m_movePathTileID < m_path.size())
 	{
-		std::shared_ptr<Vector2D> pathPoint = m_path.get()[0][0];
+		std::shared_ptr<Vector2D> pathPoint = m_path[m_movePathTileID];
+		m_velocity = (*pathPoint) - m_position;
+
+		if (m_velocity.length() < m_moveSpeed)
+		{
+			m_movePathTileID++;
+			return;
+		}
+
+		m_velocity.normalize();
+		m_velocity *= m_moveSpeed;
+	}
+	else
+	{
+		m_isAlive = false;
 	}
 }
 
 
 void Enemy::clean()
 {
+	m_path.clear();
 	SDLGameObject::clean();
 }
 

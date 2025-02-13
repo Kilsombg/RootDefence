@@ -19,9 +19,21 @@ private:
 	void parseTileLayer(TiXmlElement* pTileElement, std::vector<std::shared_ptr<Layer>>* pLayers, const std::vector<Tileset>* pTilesets);
 	void parseTextures(TiXmlElement* pTextureRoot);
 	void parseObjectLayer(TiXmlElement* pObjectElement, std::vector<std::shared_ptr<Layer>>* pLayers);
-	void parsePathsLayer(TiXmlElement* pPathElement, std::shared_ptr<std::vector<std::shared_ptr<Vector2D>>>& pEnemyPath);
+
+	/**
+	* Parse object layer that cointains polylines intented for objects' paths.
+	*/
+	void parsePathsLayer(TiXmlElement* pPathElement, std::vector<std::shared_ptr<Vector2D>>& pEnemyPath);
 	
-	std::shared_ptr<std::vector<std::shared_ptr<Vector2D>>> parsePolylinePoints(std::string& strPoints, float objectX, float objectY);
+	/**	
+	*  Parse a string of points values into vector of points.
+	* 
+	* @param strPoints contains a string of points values, seperated by space delimiter. Point values x and y are
+	* separated by ',' delimiter.
+	* @param objectX, objectY are coordinates of the polyline object in the tilemap.
+	* @return vector of Vector2D points containing the values
+	*/
+	std::vector<std::shared_ptr<Vector2D>> parsePolylinePoints(std::string& strPoints, float objectX, float objectY);
 
 	int m_tileSize;
 	int m_width;

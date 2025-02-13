@@ -19,14 +19,22 @@ public:
 
 	virtual void load(const std::shared_ptr<LoaderParams> pParams);
 
-	void setPath(std::shared_ptr<std::vector<std::shared_ptr<Vector2D>>> pathPoints);
+	/**
+	* set points for the path that enemies follow
+	*/ 
+	void setPath(std::vector<std::shared_ptr<Vector2D>> pathPoints);
 
 	bool isAlive();
 
 private:
+	/**
+	* move enemy position from its position to the points of m_paath.
+	*/
 	void move();
 
-	std::shared_ptr<std::vector<std::shared_ptr<Vector2D>>> m_path;
+	std::vector<std::shared_ptr<Vector2D>> m_path;
+	float m_moveSpeed;
+	int m_movePathTileID;
 	bool m_isAlive;
 };
 

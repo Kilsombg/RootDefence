@@ -60,10 +60,9 @@ void MainMenuState::setCallbacks(const std::vector<Callback>& callbacks)
 
 bool MainMenuState::onExit()
 {
-	for (std::vector<GameObject*>::size_type i = 0; i < m_gameObjects.size(); i++)
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->clean();
-		m_gameObjects[i] = nullptr;
 	}
 
 	m_gameObjects.clear();

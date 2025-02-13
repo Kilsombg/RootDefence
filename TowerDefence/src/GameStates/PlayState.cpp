@@ -31,7 +31,8 @@ void PlayState::update()
 			if (!enemy->isAlive())
 			{
 				m_gameObjects[i]->clean();
-				m_gameObjects[i] = nullptr;
+				m_gameObjects.erase(m_gameObjects.begin() + i);
+				continue;
 			}
 		}
 		m_gameObjects[i]->update();
@@ -51,13 +52,13 @@ void PlayState::update()
 
 void PlayState::render()
 {
-	/*
+	pLevel->render();
+	
 	for (std::vector<std::unique_ptr<GameObject>>::size_type  i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->draw();
-	}*/
+	}
 
-	pLevel->render();
 }
 
 bool PlayState::onEnter()

@@ -215,7 +215,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<std
 	pLayers->push_back(pObjectLayer);
 }
 
-void LevelParser::parsePathsLayer(TiXmlElement* pPathElement, std::shared_ptr<std::vector<std::shared_ptr<Vector2D>>>& pEnemyPath)
+void LevelParser::parsePathsLayer(TiXmlElement* pPathElement, std::vector<std::shared_ptr<Vector2D>>& pEnemyPath)
 {
 	double x, y;
 	std::string points;
@@ -240,9 +240,9 @@ void LevelParser::parsePathsLayer(TiXmlElement* pPathElement, std::shared_ptr<st
 	pEnemyPath = std::move(parsePolylinePoints(points, static_cast<float>(x), static_cast<float>(y)));
 }
 
-std::shared_ptr<std::vector<std::shared_ptr<Vector2D>>> LevelParser::parsePolylinePoints(std::string & strPoints, float objectX, float objectY)
+std::vector<std::shared_ptr<Vector2D>> LevelParser::parsePolylinePoints(std::string & strPoints, float objectX, float objectY)
 {
-	std::shared_ptr<std::vector<std::shared_ptr<Vector2D>>> points = std::make_shared<std::vector<std::shared_ptr<Vector2D>>>();
+	std::vector<std::shared_ptr<Vector2D>> points = std::vector<std::shared_ptr<Vector2D>>();
 	std::stringstream ss(strPoints);
 	std::string pair;
 
@@ -251,8 +251,10 @@ std::shared_ptr<std::vector<std::shared_ptr<Vector2D>>> LevelParser::parsePolyli
 		std::string strX, strY;
 
 		if (std::getline(pairStream, strX, ',') && std::getline(pairStream, strY, ',')) {
-			std::shared_ptr<Vector2D> point = std::make_shared<Vector2D>(std::stof(strX), std::stof(strY));
-			points->push_back(point);
+			float pointX = objectX + std::stof(strX);
+			float pointY = objectY + std::stof(strY);
+			std::shared_ptr<Vector2D> point = std::make_shared<Vector2D>(pointX, pointY);
+			points.push_back(point);
 		}
 	}
 	
