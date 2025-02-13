@@ -11,6 +11,7 @@
 
 #include<zlib.h>
 #include<iostream>
+#include <sstream>
 
 std::shared_ptr<Level> LevelParser::parseLevel(const char* levelFile)
 {
@@ -41,19 +42,28 @@ std::shared_ptr<Level> LevelParser::parseLevel(const char* levelFile)
 		}
 	}
 
+	/*
 	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
 		if (e->Value() == std::string("properties"))
 		{
 			parseTextures(e);
 		}
-	}
+	}*/
+
 
 	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
 		if (e->Value() == std::string("objectgroup"))
 		{
-			parseObjectLayer(e, pLevel->getLayers());
+			if (e->Attribute("name") == std::string("EntitiesPaths"))
+			{
+				parsePathsLayer(e, pLevel->getEnemyPath());
+			}
+			else if (e->Attribute("name") == std::string("ObjectLayer"))
+			{
+				parseObjectLayer(e, pLevel->getLayers());
+			}
 		}
 	}
 
@@ -62,7 +72,7 @@ std::shared_ptr<Level> LevelParser::parseLevel(const char* levelFile)
 
 void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>* pTilesets)
 {
-	std::string sourcePath = std::string("src/assets/") + pTilesetRoot->FirstChildElement()->Attribute("source");
+	std::string sourcePath = std::string("src/assets/Map/") + pTilesetRoot->FirstChildElement()->Attribute("source");
 	std::cout << "Tile source path:" << sourcePath << "\n";
 	TheTextureManager::Instance()->load(sourcePath, pTilesetRoot->Attribute("name"), TheGame::Instance()->getRenderer());
 
@@ -123,6 +133,7 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement, std::vector<std::sh
 	}
 	pTileLayer->setTileIDs(data);
 
+
 	pLayers->push_back(pTileLayer);
 }
 
@@ -158,14 +169,14 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<std
 			// get the initial node values type, x and y
 			e->Attribute("x", &x);
 			e->Attribute("y", &y);
-			std::shared_ptr<GameObject> pGameObject = std::move(TheGameObjectFactory::Instance()->create(e -> Attribute("type")));
-			
+			std::shared_ptr<GameObject> pGameObject = std::move(TheGameObjectFactory::Instance()->create(e->Attribute("type")));
+
 			// get the property values
-			for (TiXmlElement* properties = e->FirstChildElement(); properties != NULL; properties = properties -> NextSiblingElement())
+			for (TiXmlElement* properties = e->FirstChildElement(); properties != NULL; properties = properties->NextSiblingElement())
 			{
 				if (properties->Value() == std::string("properties"))
 				{
-					for (TiXmlElement* property = properties -> FirstChildElement(); property != NULL; property = property -> NextSiblingElement())
+					for (TiXmlElement* property = properties->FirstChildElement(); property != NULL; property = property->NextSiblingElement())
 					{
 						if (property->Value() == std::string("property"))
 						{
@@ -202,4 +213,48 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<std
 		}
 	}
 	pLayers->push_back(pObjectLayer);
+}
+
+void LevelParser::parsePathsLayer(TiXmlElement* pPathElement, std::shared_ptr<std::vector<std::shared_ptr<Vector2D>>>& pEnemyPath)
+{
+	double x, y;
+	std::string points;
+
+	for (TiXmlElement* e = pPathElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
+	{
+		if (e->Value() == std::string("object"))
+		{
+			e->Attribute("x", &x);
+			e->Attribute("y", &y);
+
+			for (TiXmlElement* polyline = e->FirstChildElement(); polyline != NULL; polyline = polyline->NextSiblingElement())
+			{
+				if (polyline->Value() == std::string("polyline"))
+				{
+					points = polyline->Attribute("points");
+				}
+			}
+		}
+	}
+
+	pEnemyPath = std::move(parsePolylinePoints(points, static_cast<float>(x), static_cast<float>(y)));
+}
+
+std::shared_ptr<std::vector<std::shared_ptr<Vector2D>>> LevelParser::parsePolylinePoints(std::string & strPoints, float objectX, float objectY)
+{
+	std::shared_ptr<std::vector<std::shared_ptr<Vector2D>>> points = std::make_shared<std::vector<std::shared_ptr<Vector2D>>>();
+	std::stringstream ss(strPoints);
+	std::string pair;
+
+	while (std::getline(ss, pair, ' ')) {
+		std::stringstream pairStream(pair);
+		std::string strX, strY;
+
+		if (std::getline(pairStream, strX, ',') && std::getline(pairStream, strY, ',')) {
+			std::shared_ptr<Vector2D> point = std::make_shared<Vector2D>(std::stof(strX), std::stof(strY));
+			points->push_back(point);
+		}
+	}
+	
+	return points;
 }

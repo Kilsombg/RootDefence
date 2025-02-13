@@ -8,6 +8,13 @@
 
 #include<vector>
 
+enum TileType
+{
+	NONE = 0,
+	WALL = 1,
+	PATH = 2
+};
+
 class TileLayer : public Layer
 {
 public:

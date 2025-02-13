@@ -33,3 +33,8 @@ std::vector<std::shared_ptr<Layer>>* Level::getLayers()
 {
 	return &m_layers;
 }
+
+std::shared_ptr<std::vector<std::shared_ptr<Vector2D>>>& Level::getEnemyPath()
+{
+	return m_enemyPath;
+}

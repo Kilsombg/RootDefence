@@ -24,9 +24,14 @@ public:
 
 	virtual std::string getStateID() const;
 
+
 	bool checkCollision(SDLGameObject* p1, SDLGameObject* p2);
 
+
+private:
 	std::shared_ptr<Level> pLevel;
+
+	void handleEvents();
 };
 
 #endif // !__PlayState__

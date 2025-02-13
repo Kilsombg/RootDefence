@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="50">
+ <tileset firstgid="1" name="blocks_1" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198" columns="18" objectalignment="right">
+  <image source="blocks1.png" trans="000000" width="640" height="400"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="20" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBjZYBeRmFTz1hPA5Ji3EQ8m1zxqu289A/XCjxrmoYcTpeZhCytq+Jda6W+4AwDGYj/J
+  </data>
+ </layer>
+ <objectgroup draworder="index" id="2" name="EntitiesPaths">
+  <object id="45" name="enemyPath" x="150.5" y="302.5">
+   <polyline points="-22.5,-14.5 73.5,-14.5 73.5,-142.5 297.5,-142.5"/>
+  </object>
+ </objectgroup>
+</map>

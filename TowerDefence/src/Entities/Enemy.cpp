@@ -13,6 +13,17 @@ void Enemy::load(const std::shared_ptr<LoaderParams> pParams)
 
 	m_velocity.setY(2);
 	m_velocity.setX(0.001);
+	m_isAlive = true;
+}
+
+void Enemy::setPath(std::shared_ptr<std::vector<std::shared_ptr<Vector2D>>> pathPoints)
+{
+	m_path = pathPoints;
+}
+
+bool Enemy::isAlive()
+{
+	return m_isAlive;
 }
 
 void Enemy::draw()
@@ -24,17 +35,19 @@ void Enemy::update()
 {
 	m_currentFrame = int(((SDL_GetTicks() / 100) % m_numFrames));
 
-	if (m_position.getY() < 0)
-	{
-		m_velocity.setY(2);
-	}
-	else if (m_position.getY() > 400)
-	{
-		m_velocity.setY(-2);
-	}
+	move();
 
 	SDLGameObject::update();
 }
+
+void Enemy::move()
+{
+	if (m_path->size() >= 0)
+	{
+		std::shared_ptr<Vector2D> pathPoint = m_path.get()[0][0];
+	}
+}
+
 
 void Enemy::clean()
 {

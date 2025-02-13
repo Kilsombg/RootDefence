@@ -14,8 +14,6 @@ TileLayer::TileLayer(int tileSize, const std::vector<Tileset>& tilesets) : m_til
 
 void TileLayer::update()
 {
-	m_position += m_velocity;
-	m_velocity.setX(1);
 }
 
 void TileLayer::render()
