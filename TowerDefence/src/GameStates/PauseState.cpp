@@ -64,7 +64,7 @@ bool PauseState::onEnter()
 
 void PauseState::setCallbacks(const std::vector<Callback>& callbacks)
 {
-	for (int i = 0; i < m_gameObjects.size(); i++)
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 			if (dynamic_cast<MenuButton*>(m_gameObjects[i].get()))
 			{
@@ -78,7 +78,7 @@ void PauseState::setCallbacks(const std::vector<Callback>& callbacks)
 
 bool PauseState::onExit()
 {
-	for (std::vector<GameObject*>::size_type i = 0; i < m_gameObjects.size(); i++)
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->clean();
 		m_gameObjects[i] = nullptr;

@@ -3,7 +3,7 @@
 
 #include "SDLGameObject.h"
 
-#include "../UtilsHeaders/BaseCreator.h"
+#include "../GameStateHeaders/PlayState.h"
 
 #include<vector>
 #include<memory>
@@ -11,8 +11,6 @@
 class Enemy : public SDLGameObject
 {
 public:
-	Enemy();
-
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
@@ -26,6 +24,9 @@ public:
 
 	bool isAlive();
 
+protected:
+	Enemy();
+
 private:
 	/**
 	* move enemy position from its position to the points of m_paath.
@@ -36,13 +37,6 @@ private:
 	float m_moveSpeed;
 	int m_movePathTileID;
 	bool m_isAlive;
-};
-
-
-class EnemyCreator : public BaseCreator
-{
-public:
-	std::unique_ptr<GameObject> createGameObject() const;
 };
 
 #endif // !__Enemy__

@@ -73,7 +73,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	m_gameHeight = height;
 
 	TheGameObjectFactory::Instance()->registerType("Player", std::make_shared<PlayerCreator>());
-	TheGameObjectFactory::Instance()->registerType("Enemy", std::make_shared<EnemyCreator>());
+	//TheGameObjectFactory::Instance()->registerType("Enemy", std::make_shared<EnemyCreator>());
 	TheGameObjectFactory::Instance()->registerType("MenuButton", std::make_shared<MenuButtonCreator>());
 	TheGameObjectFactory::Instance()->registerType("AnimatedGraphic", std::make_shared<AnimatedGraphicCreator>());
 

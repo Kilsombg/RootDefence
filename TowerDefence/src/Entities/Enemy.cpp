@@ -68,8 +68,3 @@ void Enemy::clean()
 	m_path.clear();
 	SDLGameObject::clean();
 }
-
-std::unique_ptr<GameObject> EnemyCreator::createGameObject() const
-{
-	return std::make_unique<Enemy>();
-}
