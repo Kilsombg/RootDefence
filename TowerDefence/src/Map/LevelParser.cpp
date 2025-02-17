@@ -163,13 +163,16 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<std
 		std::cout << e->Value();
 		if (e->Value() == std::string("object"))
 		{
-			int x, y, width, height, numFrames, callbackID, animSpeed;
-			std::string textureID;
+			double x, y;
 
-			// get the initial node values type, x and y
+			std::shared_ptr<GameObject> pGameObject = std::move(TheGameObjectFactory::Instance()->create(e->Attribute("type")));
+			std::shared_ptr<LoaderParams> pParams = std::make_shared<LoaderParams>();
+
 			e->Attribute("x", &x);
 			e->Attribute("y", &y);
-			std::shared_ptr<GameObject> pGameObject = std::move(TheGameObjectFactory::Instance()->create(e->Attribute("type")));
+
+			pParams->setAttribute<float>("x", static_cast<float>(x));
+			pParams->setAttribute<float>("y", static_cast<float>(y));
 
 			// get the property values
 			for (TiXmlElement* properties = e->FirstChildElement(); properties != NULL; properties = properties->NextSiblingElement())
@@ -180,35 +183,29 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<std
 					{
 						if (property->Value() == std::string("property"))
 						{
-							if (property->Attribute("name") == std::string("numFrames"))
-							{
-								property->Attribute("value", &numFrames);
+							std::string name = property->Attribute("name");
+							const char* value = property->Attribute("value");
+
+							if (name.empty() || value == nullptr) {
+								continue;
 							}
-							else if (property->Attribute("name") == std::string("textureHeight"))
-							{
-								property->Attribute("value", &height);
+
+							if (std::isdigit(value[0]) || (value[0] == '-' && std::isdigit(value[1]))) {
+								if (std::string(value).find('.') != std::string::npos) {
+									pParams->setAttribute(name, std::stof(value));
+								}
+								else {
+									pParams->setAttribute(name, std::stoi(value));
+								}
 							}
-							else if (property->Attribute("name") == std::string("textureID"))
-							{
-								textureID = property->Attribute("value");
-							}
-							else if (property->Attribute("name") == std::string("textureWidth"))
-							{
-								property->Attribute("value", &width);
-							}
-							else if (property->Attribute("name") == std::string("callbackID"))
-							{
-								property->Attribute("value", &callbackID);
-							}
-							else if (e->Attribute("name") == std::string("animSpeed"))
-							{
-								property->Attribute("value", &animSpeed);
+							else {
+								pParams->setAttribute(name, std::string(value));
 							}
 						}
 					}
 				}
 			}
-			pGameObject->load(std::make_shared<LoaderParams>(x, y, width, height, textureID, numFrames, callbackID, animSpeed));
+			pGameObject->load(pParams);
 			pObjectLayer->getGameObjects()->push_back(pGameObject);
 		}
 	}

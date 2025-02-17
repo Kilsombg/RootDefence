@@ -1,6 +1,7 @@
 #include "../../include/EntitiesHeaders/MenuButton.h"
 
 #include "../../include/UtilsHeaders/InputHandler.h"
+#include "../../include/UtilsHeaders/LoaderParamsConsts.h"
 
 MenuButton::MenuButton() : SDLGameObject()
 {
@@ -10,7 +11,7 @@ void MenuButton::load(const std::shared_ptr<LoaderParams> pParams)
 {
 	SDLGameObject::load(pParams);
 
-	m_callbackID = pParams->getCallbackID();
+	m_callbackID = pParams->getAttribute<int>(LoaderParamsConsts::callbackID);
 	m_currentFrame = MOUSE_OUT;
 	m_bReleased = false;
 }

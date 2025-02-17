@@ -1,6 +1,7 @@
 #include "../../include/EntitiesHeaders/AnimatedGraphic.h"
 
 #include "../../include/UtilsHeaders/TextureManager.h"
+#include "../../include/UtilsHeaders/LoaderParamsConsts.h"
 
 #include "../../include/Game.h"
 
@@ -30,7 +31,7 @@ void AnimatedGraphic::load(const std::shared_ptr<LoaderParams> pParams)
 {
 	SDLGameObject::load(pParams);
 
-	m_animSpeed = pParams->getAnimSpeed();
+	m_animSpeed = pParams->getAttribute<int>(LoaderParamsConsts::animSpeed);
 }
 
 std::unique_ptr<GameObject> AnimatedGraphicCreator::createGameObject() const

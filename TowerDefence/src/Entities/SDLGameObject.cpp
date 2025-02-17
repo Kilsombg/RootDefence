@@ -1,7 +1,9 @@
 #include "../../include/EntitiesHeaders/SDLGameObject.h"
 
 #include "../../include/Game.h"
+
 #include "../../include/UtilsHeaders/TextureManager.h"
+#include "../../include/UtilsHeaders/LoaderParamsConsts.h"
 
 SDLGameObject::SDLGameObject() : GameObject()
 {
@@ -9,18 +11,21 @@ SDLGameObject::SDLGameObject() : GameObject()
 
 void SDLGameObject::load(const std::shared_ptr<LoaderParams> pParams)
 {
-	m_position = Vector2D(pParams->getX(), pParams->getY());
+	float x, y;
+	x = pParams->getAttribute<float>(LoaderParamsConsts::x);
+	y = pParams->getAttribute<float>(LoaderParamsConsts::y);
+	m_position = Vector2D(pParams->getAttribute<float>(LoaderParamsConsts::x), pParams->getAttribute<float>(LoaderParamsConsts::y));
 	m_velocity = Vector2D(0, 0);
 	m_acceleration = Vector2D(0, 0);
 	
-	m_width = pParams->getWidth();
-	m_height = pParams->getHeight();
-	m_textureID = pParams->getTextureID();
+	m_width = pParams->getAttribute<int>(LoaderParamsConsts::width);
+	m_height = pParams->getAttribute<int>(LoaderParamsConsts::height);
+	m_textureID = pParams->getAttribute<std::string>(LoaderParamsConsts::textureID);
 	
 	m_currentRow = 1;
 	m_currentFrame = 1;
 	
-	m_numFrames = pParams->getNumFrames();
+	m_numFrames = pParams->getAttribute<int>(LoaderParamsConsts::numFrames);
 }
 
 void SDLGameObject::draw()

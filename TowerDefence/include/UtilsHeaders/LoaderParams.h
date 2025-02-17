@@ -2,34 +2,40 @@
 #define __LoaderParams__
 
 #include<string>
+#include<boost/variant.hpp>
+#include<unordered_map>
+#include<iostream>
 
 class LoaderParams
 {
 public:
-	LoaderParams(int x, int y, int width, int height, std::string textureID, int numFrames, int callbackID = 0, int animSpeed = 0);
-	
-	int getX() const;
-	int getY() const;
-	int getWidth() const;
-	int getHeight() const;
-	int getNumFrames() const;
-	
-	int getCallbackID() const;
-	int getAnimSpeed() const;
-	
-	std::string getTextureID() const;
+	template <typename T>
+	void setAttribute(const std::string& key, T value) {
+		m_attributes[key] = static_cast<T>(value);
+	}
+
+	template <>
+	void setAttribute(const std::string& key, std::string value) {
+		m_attributes[key] = std::string(value);
+	}
+
+	template <typename T>
+	T getAttribute(const std::string& key) const {
+		try
+		{
+			T value = boost::get<T>(m_attributes.at(key));
+			return value;
+		}
+		catch (const boost::bad_get& e) {
+			std::cerr << "Error: " << e.what() << '\n';
+			return NULL;
+		}
+	}
+
 
 private:
-	int m_x;
-	int m_y;
-	int m_width;
-	int m_height;
-	int m_numFrames;
-
-	int m_callbackID;
-	int m_animSpeed;
-	
-	std::string m_textureID;
+	using AttributeVariant = boost::variant<int, float, std::string>;
+	std::unordered_map<std::string, AttributeVariant> m_attributes;
 };
 
 #endif // !__LoaderParams__

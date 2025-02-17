@@ -7,7 +7,7 @@
 bool StateParser::parseState(const char* stateFile, std::string stateID, std::vector<std::unique_ptr<GameObject>>* pObjects, std::vector<std::string>* pTextureIDs)
 {
 	TiXmlDocument xmlDoc;
-	if(!xmlDoc.LoadFile(stateFile))
+	if (!xmlDoc.LoadFile(stateFile))
 	{
 		std::cerr << xmlDoc.ErrorDesc() << "\n";
 		return false;
@@ -15,7 +15,7 @@ bool StateParser::parseState(const char* stateFile, std::string stateID, std::ve
 
 	TiXmlElement* pRoot = xmlDoc.RootElement();
 	TiXmlElement* pStateRoot = 0;
-	
+
 	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
 		if (e->Value() == stateID)
@@ -23,7 +23,7 @@ bool StateParser::parseState(const char* stateFile, std::string stateID, std::ve
 			pStateRoot = e;
 		}
 	}
-	
+
 	TiXmlElement* pTextureRoot = 0;
 	for (TiXmlElement* e = pStateRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
@@ -55,9 +55,9 @@ void StateParser::parseTextures(TiXmlElement* pStateRoot, std::vector<std::strin
 	{
 		std::string filenameAttribute = e->Attribute("filename");
 		std::string idAttribute = e->Attribute("ID");
-		
+
 		pTextureIDs->push_back(idAttribute);
-		
+
 		TheTextureManager::Instance()->load(filenameAttribute, idAttribute, TheGame::Instance()->getRenderer());
 	}
 }
@@ -66,21 +66,29 @@ void StateParser::parseObjects(TiXmlElement* pStateRoot, std::vector<std::unique
 {
 	for (TiXmlElement* e = pStateRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
-		int x, y, width, height, numFrames, callbackID, animSpeed;
-		std::string textureID;
+		std::shared_ptr<LoaderParams> pParams = std::make_shared<LoaderParams>();
 
-		e->Attribute("x", &x);
-		e->Attribute("y", &y);
-		e->Attribute("width", &width);
-		e->Attribute("height", &height);
-		e->Attribute("numFrames", &numFrames);
-		e->Attribute("callbackID", &callbackID);
-		e->Attribute("animSpeed", &animSpeed);
-		textureID = e->Attribute("textureID");
+		for (TiXmlAttribute* attribute = e->FirstAttribute(); attribute != NULL; attribute = attribute->Next())
+		{
+			std::string name = attribute->Name();
+			const char* value = attribute->Value();
 
-		std::unique_ptr<GameObject> pGameObject = TheGameObjectFactory::Instance()->create(e->Attribute("type"));		
-		pGameObject->load(std::make_shared<LoaderParams>(x, y, width, height, textureID, numFrames, callbackID, animSpeed));
-		
+			if (std::isdigit(value[0]) || (value[0] == '-' && std::isdigit(value[1]))) {
+				if (std::string(value).find('.') != std::string::npos) {
+					pParams->setAttribute(name, std::stof(value));
+				}
+				else {
+					pParams->setAttribute(name, std::stoi(value));
+				}
+			}
+			else {
+				pParams->setAttribute(name, std::string(value));
+			}
+		}
+
+		std::unique_ptr<GameObject> pGameObject = TheGameObjectFactory::Instance()->create(e->Attribute("type"));
+		pGameObject->load(pParams);
+
 		pObjects->push_back(std::move(pGameObject));
 	}
 }
