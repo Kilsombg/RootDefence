@@ -1,6 +1,7 @@
 #include "../../include/UtilsHeaders/TextureManager.h"
 
 #include<SDL_image.h>
+#include<iostream>
 
 TextureManager::TextureManager()
 {
@@ -16,6 +17,13 @@ TextureManager* TextureManager::Instance()
 		return s_pInstance;
 	}
 	return s_pInstance;
+}
+
+void TextureManager::clean()
+{
+	std::cout << "Release TextureManager Instance\n";
+	delete s_pInstance;
+	s_pInstance = nullptr;
 }
 
 bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer* pRenderer)

@@ -81,7 +81,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	TheGameObjectFactory::Instance()->registerType("MenuButton", std::make_shared<MenuButtonCreator>());
 	TheGameObjectFactory::Instance()->registerType("AnimatedGraphic", std::make_shared<AnimatedGraphicCreator>());
 
-	m_pGameStateMachine = std::make_shared<GameStateMachine>();
+	m_pGameStateMachine = TheGameStateMachine::Instance();
 	m_pGameStateMachine->changeState(std::make_shared<MainMenuState>());
 
 
@@ -109,6 +109,13 @@ void Game::clean()
 	std::cout << "cleaning game\n";
 	SDL_DestroyWindow(m_pWindow);
 	SDL_DestroyRenderer(m_pRenderer);
+
+	m_pGameStateMachine->clean();
+
+	TheTextureManager::Instance()->clean();
+
+	TheInputHandler::Instance()->clean();
+
 	SDL_Quit();
 }
 
