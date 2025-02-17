@@ -11,9 +11,8 @@ Enemy::Enemy() : SDLGameObject()
 void Enemy::load(const std::shared_ptr<LoaderParams> pParams)
 {
 	SDLGameObject::load(pParams);
-	m_isAlive = true;
-	m_moveSpeed = 1.5;
 	m_movePathTileID = 0;
+	m_health = m_maxHealth;
 }
 
 void Enemy::setPath(std::vector<std::shared_ptr<Vector2D>> pathPoints)
@@ -23,7 +22,7 @@ void Enemy::setPath(std::vector<std::shared_ptr<Vector2D>> pathPoints)
 
 bool Enemy::isAlive()
 {
-	return m_isAlive;
+	return m_health > 0;
 }
 
 void Enemy::draw()
@@ -58,7 +57,7 @@ void Enemy::move()
 	}
 	else
 	{
-		m_isAlive = false;
+		m_health = 0;
 	}
 }
 

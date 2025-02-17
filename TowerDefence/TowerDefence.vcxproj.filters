@@ -99,6 +99,9 @@
     <ClCompile Include="src\Entities\Carrot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Entities\Cabbage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game.h">
@@ -195,6 +198,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\UtilsHeaders\LoaderParamsConsts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EntitiesHeaders\Cabbage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

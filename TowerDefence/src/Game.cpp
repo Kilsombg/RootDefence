@@ -2,6 +2,9 @@
 
 #include "../include/EntitiesHeaders/MenuButton.h"
 #include "../include/EntitiesHeaders/AnimatedGraphic.h"
+#include "../include/EntitiesHeaders/Carrot.h"
+#include "../include/EntitiesHeaders/Cabbage.h"
+#include "../include/EntitiesHeaders/AnimatedGraphic.h"
 
 #include "../include/GameStateHeaders/MainMenuState.h"
 #include "../include/GameStateHeaders/PlayState.h"
@@ -73,7 +76,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	m_gameHeight = height;
 
 	TheGameObjectFactory::Instance()->registerType("Player", std::make_shared<PlayerCreator>());
-	//TheGameObjectFactory::Instance()->registerType("Enemy", std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType("Carrot", std::make_shared<CarrotCreator>());
+	TheGameObjectFactory::Instance()->registerType("Cabbage", std::make_shared<CabbageCreator>());
 	TheGameObjectFactory::Instance()->registerType("MenuButton", std::make_shared<MenuButtonCreator>());
 	TheGameObjectFactory::Instance()->registerType("AnimatedGraphic", std::make_shared<AnimatedGraphicCreator>());
 

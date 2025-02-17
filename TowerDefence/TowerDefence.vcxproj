@@ -138,6 +138,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Entities\AnimatedGraphic.cpp" />
+    <ClCompile Include="src\Entities\Cabbage.cpp" />
     <ClCompile Include="src\Entities\Carrot.cpp" />
     <ClCompile Include="src\Entities\Enemy.cpp" />
     <ClCompile Include="src\Entities\GameObject.cpp" />
@@ -168,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\EntitiesHeaders\AnimatedGraphic.h" />
+    <ClInclude Include="include\EntitiesHeaders\Cabbage.h" />
     <ClInclude Include="include\EntitiesHeaders\Carrot.h" />
     <ClInclude Include="include\EntitiesHeaders\Enemy.h" />
     <ClInclude Include="include\EntitiesHeaders\GameObject.h" />

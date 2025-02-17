@@ -27,6 +27,11 @@ public:
 protected:
 	Enemy();
 
+	float m_moveSpeed;
+	float m_maxHealth;
+	float m_health; // current health points
+	float m_defence;
+
 private:
 	/**
 	* move enemy position from its position to the points of m_paath.
@@ -34,9 +39,7 @@ private:
 	void move();
 
 	std::vector<std::shared_ptr<Vector2D>> m_path;
-	float m_moveSpeed;
-	int m_movePathTileID;
-	bool m_isAlive;
+	int m_movePathTileID; // represent which point from the path the Enemy is heading
 };
 
 #endif // !__Enemy__

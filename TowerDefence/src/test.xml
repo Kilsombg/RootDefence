@@ -16,8 +16,8 @@
 			<texture filename="src/assets/helicopter2.png" ID="helicopter2"/>
 		</TEXTURES>
 		<OBJECTS>
-			<object type="Player" x="500.00" y="100.00" width="128" height="55" textureID="helicopter" numFrames="4"/>
-			<object type="Enemy" x="130.00" y="305.00" width="128" height="55" textureID="helicopter2" numFrames="4"/>
+			<object type="Carrot" x="130.00" y="305.00" width="128" height="55" textureID="helicopter" numFrames="4"/>
+			<object type="Cabbage" x="130.00" y="305.00" width="128" height="55" textureID="helicopter2" numFrames="4"/>
 		</OBJECTS>
 	</PLAY>
 	<PAUSE>

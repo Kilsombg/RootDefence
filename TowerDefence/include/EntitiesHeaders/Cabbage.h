@@ -1,14 +1,14 @@
-#ifndef __Carrot__
-#define __Carrot__
+#ifndef __Cabbage__
+#define __Cabbage__
 
 #include "Enemy.h"
 
 #include "../UtilsHeaders/BaseCreator.h"
 
-class Carrot : public Enemy
+class Cabbage : public Enemy
 {
 public:
-	Carrot();
+	Cabbage();
 
 	void draw();
 	void update();
@@ -17,9 +17,9 @@ public:
 	void load(const std::shared_ptr<LoaderParams> pParams);
 };
 
-class CarrotCreator : public BaseCreator
+class CabbageCreator : public BaseCreator
 {
 	std::unique_ptr<GameObject> createGameObject() const;
 };
 
-#endif // !__Carrot__
+#endif // !__Cabbage__
