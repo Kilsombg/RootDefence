@@ -21,10 +21,6 @@ void Carrot::clean()
 
 void Carrot::load(const std::shared_ptr<LoaderParams> pParams)
 {
-	m_moveSpeed = 1.8;
-	m_maxHealth = 5;
-	m_defence = 1;
-
 	Enemy::load(pParams);
 }
 

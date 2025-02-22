@@ -34,7 +34,17 @@ std::vector<std::shared_ptr<Layer>>* Level::getLayers()
 	return &m_layers;
 }
 
+Vector2D& Level::getSpawnPoint()
+{
+	return m_spawnPoint;
+}
+
 std::vector<std::shared_ptr<Vector2D>>& Level::getEnemyPath()
 {
 	return m_enemyPath;
+}
+
+void Level::setSpawnPoint(const Vector2D spawnPoint)
+{
+	m_spawnPoint = spawnPoint;
 }

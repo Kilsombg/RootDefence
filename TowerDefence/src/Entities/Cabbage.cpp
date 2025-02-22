@@ -21,10 +21,6 @@ void Cabbage::clean()
 
 void Cabbage::load(const std::shared_ptr<LoaderParams> pParams)
 {
-	m_moveSpeed = 1.2;
-	m_maxHealth = 7;
-	m_defence = 2;
-
 	Enemy::load(pParams);
 }
 

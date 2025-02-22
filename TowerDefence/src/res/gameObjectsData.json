@@ -1,0 +1,22 @@
+{
+  "gameObjectData": {
+    "carrot": {
+      "width": 128,
+      "height": 55,
+      "textureID": "helicopter",
+      "numFrames": 4,
+      "moveSpeed": 1.0,
+      "maxHealth": 100.0,
+      "defence": 3.0
+    },
+    "cabbage": {
+      "width": 128,
+      "height": 55,
+      "textureID": "helicopter2",
+      "numFrames": 4,
+      "moveSpeed": 0.7,
+      "maxHealth": 120.0,
+      "defence": 5.0
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "waves": [
+    {
+      "spawnInterval": 1.0,
+      "roundInterval": 3.0,
+      "enemyClusters": [
+        {
+          "enemyType": "carrot",
+          "count": 2
+        },
+        {
+          "enemyType": "cabbage",
+          "count": 3
+        },
+        {
+          "enemyType": "carrot",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "spawnInterval": 1.5,
+      "roundInterval": 5.0,
+      "enemyClusters": [
+        {
+          "enemyType": "cabbage",
+          "count": 3
+        },
+        {
+          "enemyType": "carrot",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}

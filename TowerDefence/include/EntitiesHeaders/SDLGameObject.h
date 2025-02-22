@@ -22,6 +22,7 @@ public:
 
 protected:
 	SDLGameObject();
+	SDLGameObject(const SDLGameObject& gameObject);
 
 	Vector2D m_position;
 	Vector2D m_velocity;

@@ -1,7 +1,8 @@
 #include "../../include/EntitiesHeaders/AnimatedGraphic.h"
 
+#include "../../include/Constants/LoaderParamsConsts.h"
+
 #include "../../include/UtilsHeaders/TextureManager.h"
-#include "../../include/UtilsHeaders/LoaderParamsConsts.h"
 
 #include "../../include/Game.h"
 

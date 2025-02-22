@@ -1,7 +1,8 @@
 #include "../../include/EntitiesHeaders/MenuButton.h"
 
+#include "../../include/Constants/LoaderParamsConsts.h"
+
 #include "../../include/UtilsHeaders/InputHandler.h"
-#include "../../include/UtilsHeaders/LoaderParamsConsts.h"
 
 MenuButton::MenuButton() : SDLGameObject()
 {

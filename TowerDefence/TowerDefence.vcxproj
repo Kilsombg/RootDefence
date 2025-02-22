@@ -71,11 +71,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\Programming\vendoors\zlib-win-x64\include;D:\Programming\vendoors\SDL\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Programming\vendoors\nlohmann-json\json\single_include;D:\Programming\vendoors\zlib-win-x64\include;D:\Programming\vendoors\SDL\include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Programming\vendoors\zlib-win-x64\lib;D:\Programming\vendoors\SDL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>D:\Programming\vendoors\zlib-win-x64\include;D:\Programming\vendoors\SDL\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Programming\vendoors\nlohmann-json\json\single_include;D:\Programming\vendoors\zlib-win-x64\include;D:\Programming\vendoors\SDL\include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Programming\vendoors\zlib-win-x64\lib;D:\Programming\vendoors\SDL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -152,6 +152,7 @@
     <ClCompile Include="src\Map\ObjectLayer.cpp" />
     <ClCompile Include="src\Map\TileLayer.cpp" />
     <ClCompile Include="src\Utils\base64.cpp" />
+    <ClCompile Include="src\Utils\GameObjectData.cpp" />
     <ClCompile Include="src\Utils\GameStateMachine.cpp" />
     <ClCompile Include="src\GameStates\MainMenuState.cpp" />
     <ClCompile Include="src\GameStates\PauseState.cpp" />
@@ -159,15 +160,23 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Utils\GameObjectFactory.cpp" />
     <ClCompile Include="src\Utils\InputHandler.cpp" />
+    <ClCompile Include="src\Utils\LoaderParams.cpp" />
     <ClCompile Include="src\Utils\StateParser.cpp" />
     <ClCompile Include="src\Utils\TextureManager.cpp" />
+    <ClCompile Include="src\Utils\Timer.cpp" />
     <ClCompile Include="src\Utils\tinystr.cpp" />
     <ClCompile Include="src\Utils\tinyxml.cpp" />
     <ClCompile Include="src\Utils\tinyxmlerror.cpp" />
     <ClCompile Include="src\Utils\tinyxmlparser.cpp" />
     <ClCompile Include="src\Utils\Vector2D.cpp" />
+    <ClCompile Include="src\Wave\Wave.cpp" />
+    <ClCompile Include="src\Wave\WaveManager.cpp" />
+    <ClCompile Include="src\Wave\WaveParser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Constants\GameObjectConsts.h" />
+    <ClInclude Include="include\Constants\LoaderParamsConsts.h" />
+    <ClInclude Include="include\Constants\SettingsConsts.h" />
     <ClInclude Include="include\EntitiesHeaders\AnimatedGraphic.h" />
     <ClInclude Include="include\EntitiesHeaders\Cabbage.h" />
     <ClInclude Include="include\EntitiesHeaders\Carrot.h" />
@@ -186,6 +195,7 @@
     <ClInclude Include="include\MapHeaders\TileLayer.h" />
     <ClInclude Include="include\MapHeaders\Tileset.h" />
     <ClInclude Include="include\UtilsHeaders\base64.h" />
+    <ClInclude Include="include\UtilsHeaders\GameObjectData.h" />
     <ClInclude Include="include\UtilsHeaders\GameStateMachine.h" />
     <ClInclude Include="include\GameStateHeaders\MainMenuState.h" />
     <ClInclude Include="include\GameStateHeaders\MenuState.h" />
@@ -195,15 +205,24 @@
     <ClInclude Include="include\UtilsHeaders\GameObjectFactory.h" />
     <ClInclude Include="include\UtilsHeaders\InputHandler.h" />
     <ClInclude Include="include\UtilsHeaders\LoaderParams.h" />
-    <ClInclude Include="include\UtilsHeaders\LoaderParamsConsts.h" />
+    <ClInclude Include="include\UtilsHeaders\NLJsonParser.h" />
     <ClInclude Include="include\UtilsHeaders\StateParser.h" />
     <ClInclude Include="include\UtilsHeaders\TextureManager.h" />
+    <ClInclude Include="include\UtilsHeaders\Timer.h" />
     <ClInclude Include="include\UtilsHeaders\tinystr.h" />
     <ClInclude Include="include\UtilsHeaders\tinyxml.h" />
     <ClInclude Include="include\UtilsHeaders\Vector2D.h" />
+    <ClInclude Include="include\WaveHeaders\Wave.h" />
+    <ClInclude Include="include\Constants\WaveConstans.h" />
+    <ClInclude Include="include\WaveHeaders\WaveManager.h" />
+    <ClInclude Include="include\WaveHeaders\WaveParser.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="src\test.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\res\gameObjectsData.json" />
+    <None Include="src\res\waves.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,5 +1,7 @@
 #include "../include/Game.h"
 
+#include "../include/Constants/GameObjectConsts.h"
+
 #include "../include/EntitiesHeaders/MenuButton.h"
 #include "../include/EntitiesHeaders/AnimatedGraphic.h"
 #include "../include/EntitiesHeaders/Carrot.h"
@@ -75,11 +77,11 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	m_gameWidth = width;
 	m_gameHeight = height;
 
-	TheGameObjectFactory::Instance()->registerType("Player", std::make_shared<PlayerCreator>());
-	TheGameObjectFactory::Instance()->registerType("Carrot", std::make_shared<CarrotCreator>());
-	TheGameObjectFactory::Instance()->registerType("Cabbage", std::make_shared<CabbageCreator>());
-	TheGameObjectFactory::Instance()->registerType("MenuButton", std::make_shared<MenuButtonCreator>());
-	TheGameObjectFactory::Instance()->registerType("AnimatedGraphic", std::make_shared<AnimatedGraphicCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::player, std::make_shared<PlayerCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::carrot, std::make_shared<CarrotCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::cabbage ,std::make_shared<CabbageCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::menuButton, std::make_shared<MenuButtonCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::animatedGraphic, std::make_shared<AnimatedGraphicCreator>());
 
 	m_pGameStateMachine = TheGameStateMachine::Instance();
 	m_pGameStateMachine->changeState(std::make_shared<MainMenuState>());

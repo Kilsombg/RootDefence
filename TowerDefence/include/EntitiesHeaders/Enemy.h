@@ -3,14 +3,14 @@
 
 #include "SDLGameObject.h"
 
-#include "../GameStateHeaders/PlayState.h"
-
 #include<vector>
 #include<memory>
 
 class Enemy : public SDLGameObject
 {
 public:
+	Enemy();
+	Enemy(const Enemy& e);
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
@@ -19,14 +19,12 @@ public:
 
 	/**
 	* set points for the path that enemies follow
-	*/ 
-	void setPath(std::vector<std::shared_ptr<Vector2D>> pathPoints);
+	*/
+	void setPath(const std::vector<std::shared_ptr<Vector2D>>& pathPoints);
 
 	bool isAlive();
 
 protected:
-	Enemy();
-
 	float m_moveSpeed;
 	float m_maxHealth;
 	float m_health; // current health points
@@ -38,7 +36,7 @@ private:
 	*/
 	void move();
 
-	std::vector<std::shared_ptr<Vector2D>> m_path;
+	std::vector < std::shared_ptr<Vector2D>> m_path;
 	int m_movePathTileID; // represent which point from the path the Enemy is heading
 };
 

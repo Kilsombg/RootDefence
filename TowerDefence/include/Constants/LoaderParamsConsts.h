@@ -1,8 +1,5 @@
 #pragma once
 
-#include<string>
-
-
 namespace LoaderParamsConsts {
 #pragma region general load params
 	constexpr char x[] = "x";
@@ -19,6 +16,12 @@ namespace LoaderParamsConsts {
 #pragma region xml states params specific
 	constexpr char callbackID[] = "callbackID";
 	constexpr char animSpeed[] = "animSpeed";
+#pragma endregion
+
+#pragma region enemies params
+	constexpr char moveSpeed[] ="moveSpeed";
+	constexpr char maxHealth[] ="maxHealth";
+	constexpr char defence[] = "defence";
 #pragma endregion
 
 }
