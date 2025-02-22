@@ -6,17 +6,17 @@
 #include<unordered_map>
 #include<iostream>
 
+#include<nlohmann\json.hpp>
+using json = nlohmann::json;
+
 class LoaderParams
 {
 public:
+	using AttributeVariant = boost::variant<int, float, std::string>;
+
 	template <typename T>
 	void setAttribute(const std::string& key, T value) {
-		m_attributes[key] = static_cast<T>(value);
-	}
-
-	template <>
-	void setAttribute(const std::string& key, std::string value) {
-		m_attributes[key] = std::string(value);
+		m_attributes[key] = value;
 	}
 
 	template <typename T>
@@ -32,10 +32,18 @@ public:
 		}
 	}
 
+	const std::unordered_map<std::string, AttributeVariant>& getAttributes() const {
+		return m_attributes;
+	}
 
 private:
-	using AttributeVariant = boost::variant<int, float, std::string>;
 	std::unordered_map<std::string, AttributeVariant> m_attributes;
 };
 
-#endif // !__LoaderParams__
+void to_json(json& j, const LoaderParams& params);
+void from_json(const json& j, LoaderParams& params);
+
+void to_json(json& j, const std::map<std::string, std::shared_ptr<LoaderParams>>& data);
+void from_json(const json & j, std::map<std::string, std::shared_ptr<LoaderParams>>&data);
+
+#endif // !__LoaderParams__"

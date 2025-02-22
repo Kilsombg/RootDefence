@@ -2,7 +2,10 @@
 #include "../../include/GameStateHeaders/PauseState.h"
 #include "../../include/GameStateHeaders/GameOverState.h"
 
+#include "../../include/Constants/SettingsConsts.h"
+
 #include "../../include/EntitiesHeaders/Enemy.h"
+#include "../../include/EntitiesHeaders/Carrot.h"
 
 #include "../../include/MapHeaders/LevelParser.h"
 #include "../../include/MapHeaders/TileLayer.h"
@@ -10,6 +13,9 @@
 #include "../../include/UtilsHeaders/TextureManager.h"
 #include "../../include/UtilsHeaders/InputHandler.h"
 #include "../../include/UtilsHeaders/StateParser.h"
+#include "../../include/UtilsHeaders/GameObjectData.h"
+
+#include "../../include/WaveHeaders/WaveParser.h"
 
 #include "../../include/Game.h"
 
@@ -24,28 +30,27 @@ void PlayState::update()
 {
 	handleEvents();
 
-	for (std::vector<std::unique_ptr<GameObject>>::size_type  i = 0; i < m_gameObjects.size(); i++)
+	if (!m_waveManager)
 	{
-		if (Enemy* enemy = dynamic_cast<Enemy*>(m_gameObjects[i].get()))
-		{
-			if (!enemy->isAlive())
+		std::cerr << "waveManager is not defined.\n";
+	}
+	m_waveManager->spawnWaveEnemies(
+		pLevel->getEnemyPath(),
+		*m_currentWave,
+		std::bind(&PlayState::addEnemy, this, std::placeholders::_1),
+		(DELAY_TIME/1000.));
+
+	for (std::vector<std::unique_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects.size(); i++)
+	{
+			if (!m_enemyObjects[i]->isAlive())
 			{
-				m_gameObjects[i]->clean();
-				m_gameObjects.erase(m_gameObjects.begin() + i);
+				m_enemyObjects[i]->clean();
+				m_enemyObjects.erase(m_enemyObjects.begin() + i);
 				continue;
 			}
-		}
-		m_gameObjects[i]->update();
+		
+			m_enemyObjects[i]->update();
 	}
-
-	/*
-	if (m_gameObjects.size() >= 2)
-	{
-		if (checkCollision(dynamic_cast<SDLGameObject*> (m_gameObjects[0].get()), dynamic_cast<SDLGameObject*> (m_gameObjects[1].get())))
-		{
-			TheGame::Instance()->getStateMachine()->pushState(std::make_shared<GameOverState>());
-		}
-	}*/
 
 	pLevel->update();
 }
@@ -53,34 +58,45 @@ void PlayState::update()
 void PlayState::render()
 {
 	pLevel->render();
-	
-	for (std::vector<std::unique_ptr<GameObject>>::size_type  i = 0; i < m_gameObjects.size(); i++)
+
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->draw();
 	}
 
+	for (std::vector<std::unique_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects.size(); i++)
+	{
+		m_enemyObjects[i]->draw();
+	}
 }
 
 bool PlayState::onEnter()
 {
-	
-	StateParser stateParser;
-	stateParser.parseState("./src/test.xml", s_stateID, &m_gameObjects, &m_textureIDList);
-	
-
-	LevelParser levelParser;
-	pLevel = levelParser.parseLevel("./src/assets/Map/test_map.tmx");
-
-	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
-	{
-		if (Enemy* enemy = dynamic_cast<Enemy*>(m_gameObjects[i].get()))
-		{
-			enemy->setPath(pLevel->getEnemyPath());
-		}
-	}
+	loadData();
 
 	std::cout << "entering PlayState\n";
 	return true;
+}
+
+void PlayState::loadData()
+{
+	StateParser stateParser;
+	stateParser.parseState("./src/test.xml", s_stateID, &m_gameObjects, &m_textureIDList);
+
+	LevelParser levelParser;
+	pLevel = levelParser.parseLevel("./src/assets/Map/test_map.tmx");
+	pLevel->setSpawnPoint(*(pLevel->getEnemyPath()[0].get()));
+
+	WaveParser waveParser;
+	m_waveManager = TheWaveManager::Instance();
+	waveParser.parseWaves("./src/res/waves.json", m_waveManager);
+	if (!m_waveManager->getWaves().empty()) {
+		m_currentWave = &(m_waveManager->getWaves()[0]);
+	}
+
+	GameObjectData gameObjectData;
+	gameObjectData.parseGameOjbectsData("./src/res/gameObjectsData.json");
+	m_waveManager->setGameObjectData(&gameObjectData);
 }
 
 bool PlayState::onExit()
@@ -105,6 +121,11 @@ bool PlayState::onExit()
 std::string PlayState::getStateID() const
 {
 	return s_stateID;
+}
+
+void PlayState::addEnemy(std::unique_ptr<Enemy> enemy)
+{
+	m_enemyObjects.push_back(std::move(enemy));
 }
 
 void PlayState::handleEvents()

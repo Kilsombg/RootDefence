@@ -102,6 +102,24 @@
     <ClCompile Include="src\Entities\Cabbage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Wave\WaveManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Wave\WaveParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\GameObjectData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Wave\Wave.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\LoaderParams.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game.h">
@@ -197,14 +215,45 @@
     <ClInclude Include="include\EntitiesHeaders\Carrot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\UtilsHeaders\LoaderParamsConsts.h">
+    <ClInclude Include="include\EntitiesHeaders\Cabbage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\EntitiesHeaders\Cabbage.h">
+    <ClInclude Include="include\WaveHeaders\WaveManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WaveHeaders\Wave.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UtilsHeaders\Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UtilsHeaders\NLJsonParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\WaveHeaders\WaveParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Constants\WaveConstans.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UtilsHeaders\GameObjectData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Constants\LoaderParamsConsts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Constants\GameObjectConsts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Constants\SettingsConsts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="src\test.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\res\gameObjectsData.json" />
+    <None Include="src\res\waves.json" />
   </ItemGroup>
 </Project>
