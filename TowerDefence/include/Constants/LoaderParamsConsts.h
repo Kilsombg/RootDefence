@@ -15,6 +15,11 @@ namespace LoaderParamsConsts {
 
 #pragma region xml states params specific
 	constexpr char callbackID[] = "callbackID";
+	constexpr char playbuttonCallbackID[] = "playbuttonCallbackID";
+	constexpr char exitbuttonCallbackID[] = "exitbuttonCallbackID";
+	constexpr char mainbuttonCallbackID[] = "mainbuttonCallbackID";
+	constexpr char resumebuttonCallbackID[] = "resumebuttonCallbackID";
+	constexpr char restartbuttonCallbackID[] = "restartbuttonCallbackID";
 	constexpr char animSpeed[] = "animSpeed";
 #pragma endregion
 

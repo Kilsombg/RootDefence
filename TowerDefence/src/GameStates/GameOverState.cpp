@@ -2,6 +2,8 @@
 #include "../../include/GameStateHeaders/MainMenuState.h"
 #include "../../include/GameStateHeaders/PlayState.h"
 
+#include "../../include/Constants/LoaderParamsConsts.h"
+
 #include "../../include/EntitiesHeaders/AnimatedGraphic.h"
 #include "../../include/EntitiesHeaders/MenuButton.h"
 
@@ -10,6 +12,7 @@
 #include "../../include/Game.h"
 
 #include<iostream>
+#include<vector>
 #include<memory>
 
 GameOverState::GameOverState()
@@ -52,26 +55,13 @@ bool GameOverState::onEnter()
 	StateParser stateParser;
 	stateParser.parseState("./src/test.xml", s_stateID, &m_gameObjects, &m_textureIDList);
 
-	m_callbacks.push_back(0);
-	m_callbacks.push_back(s_gameOverToMain);
-	m_callbacks.push_back(s_restartPlay);
+
+	m_callbacks[LoaderParamsConsts::mainbuttonCallbackID] = s_gameOverToMain;
+	m_callbacks[LoaderParamsConsts::restartbuttonCallbackID] = s_restartPlay;
 	
 	setCallbacks(m_callbacks);
 	std::cout << "entering GameOverState\n";
 	return true;
-}
-
-void GameOverState::setCallbacks(const std::vector<Callback>& callbacks)
-{
-	for (int i = 0; i < m_gameObjects.size(); i++)
-	{
-		if (dynamic_cast<MenuButton*>(m_gameObjects[i].get()))
-		{
-			MenuButton* pButton = dynamic_cast<MenuButton*>(m_gameObjects[i].get());
-			pButton->setCallback(callbacks[pButton->getCallbackID()]);
-			pButton = nullptr;
-		}
-	}
 }
 
 bool GameOverState::onExit()

@@ -3,16 +3,17 @@
 
 #include "GameState.h"
 
-#include<vector>
+#include<string>
+#include<map>
 
 class MenuState : public GameState
 {
 protected:
 	typedef void(*Callback)();
 	
-	virtual void setCallbacks(const std::vector<Callback>& callbacks) = 0;
+	virtual void setCallbacks(const std::map<std::string, Callback>& callbacks);
 	
-	std::vector<Callback> m_callbacks;
+	std::map<std::string, Callback> m_callbacks;
 };
 
 #endif // !__MenuState__

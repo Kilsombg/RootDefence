@@ -5,6 +5,7 @@
 
 #include "SDLGameObject.h"
 
+#include<string>
 #include<memory>
 
 class MenuButton : public SDLGameObject
@@ -20,7 +21,7 @@ public:
 	virtual void load(const std::shared_ptr<LoaderParams> pParams);
 
 	void setCallback(void(*callback)());
-	int getCallbackID();
+	std::string getCallbackID();
 
 private:
 	enum button_state
@@ -31,7 +32,7 @@ private:
 	};
 
 	bool m_bReleased;
-	int m_callbackID;
+	std::string m_callbackID;
 	void (*m_callback)();
 };
 

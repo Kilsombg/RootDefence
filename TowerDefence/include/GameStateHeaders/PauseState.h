@@ -5,8 +5,6 @@
 
 #include "../EntitiesHeaders/GameObject.h"
 
-#include<vector>
-
 class PauseState : public MenuState
 {
 public:
@@ -19,7 +17,6 @@ public:
 	virtual bool onExit();
 	
 	virtual std::string getStateID() const;
-	virtual void setCallbacks(const std::vector<Callback>& callbacks);
 
 private:
 	static void s_pauseToMain();

@@ -5,8 +5,6 @@
 
 #include "../EntitiesHeaders/GameObject.h"
 
-#include<vector>
-
 class MainMenuState : public MenuState
 {
 public:
@@ -21,7 +19,6 @@ public:
 	virtual std::string getStateID() const;
 
 private:
-	virtual void setCallbacks(const std::vector<Callback>&	callbacks);
 
 	// call back functions for menu items
 	static void s_menuToPlay();

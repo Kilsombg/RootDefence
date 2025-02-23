@@ -12,7 +12,7 @@ void MenuButton::load(const std::shared_ptr<LoaderParams> pParams)
 {
 	SDLGameObject::load(pParams);
 
-	m_callbackID = pParams->getAttribute<int>(LoaderParamsConsts::callbackID);
+	m_callbackID = pParams->getAttribute<std::string>(LoaderParamsConsts::callbackID);
 	m_currentFrame = MOUSE_OUT;
 	m_bReleased = false;
 }
@@ -22,7 +22,7 @@ void MenuButton::setCallback(void(*callback)())
 	m_callback = callback;
 }
 
-int MenuButton::getCallbackID()
+std::string MenuButton::getCallbackID()
 {
 	return m_callbackID;
 }

@@ -147,6 +147,7 @@
     <ClCompile Include="src\Entities\SDLGameObject.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameStates\GameOverState.cpp" />
+    <ClCompile Include="src\GameStates\MenuState.cpp" />
     <ClCompile Include="src\Map\Level.cpp" />
     <ClCompile Include="src\Map\LevelParser.cpp" />
     <ClCompile Include="src\Map\ObjectLayer.cpp" />
