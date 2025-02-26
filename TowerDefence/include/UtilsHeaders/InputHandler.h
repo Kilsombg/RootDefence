@@ -5,6 +5,7 @@
 #include "Vector2D.h"
 
 #include<vector>
+#include<unordered_map>
 #include<memory>
 
 enum mouse_buttons
@@ -26,6 +27,7 @@ public:
 	std::shared_ptr<Vector2D> getMousePosition();
 	
 	bool isKeyDown(SDL_Scancode key);
+	bool isKeyPressed(SDL_Scancode key);
 
 private:
 	InputHandler();
@@ -34,8 +36,8 @@ private:
 	static InputHandler* s_pInstance;
 	
 	// handle keyboard events
-	void onKeyDown();
-	void onKeyUp();
+	void onKeyDown(SDL_Event& event);
+	void onKeyUp(SDL_Event& event);
 
 	// handle mouse events
 	void onMouseMove(SDL_Event& event);
@@ -45,6 +47,7 @@ private:
 	std::vector<bool> m_mouseButtonStates;
 	std::shared_ptr<Vector2D> m_mousePosition;
 	const Uint8* m_keystates;
+	std::unordered_map<SDL_Scancode, bool> m_keyPressed;
 };
 typedef InputHandler TheInputHandler;
 

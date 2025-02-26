@@ -18,15 +18,20 @@ public:
 	virtual void load(const std::shared_ptr<LoaderParams> pParams);
 
 	virtual void update();
+	void handleEvent();
 
 	void setCallback(TowerButtonCallback callback);
 	std::string getTowerName();
 
 private:
-	void handleEvent();
+	void resetParams();
+	void handleInterruptEvent();
+	void handleOutsideCLick();
+	void handleClickOnButton();
 
 	std::string m_towerName;
 	bool m_selected;
+	bool m_pressed;
 	TowerButtonCallback m_callback;
 };
 

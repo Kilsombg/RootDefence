@@ -21,6 +21,8 @@ public:
 	void setCallback(void(*callback)());
 
 private:
+	void handleOutsideCLick();
+	void handleClickOnButton();
 	void (*m_callback)();
 };
 

@@ -39,22 +39,18 @@ void PlayState::update()
 		pLevel->getEnemyPath(),
 		*m_currentWave,
 		std::bind(&PlayState::addEnemy, this, std::placeholders::_1),
-		(DELAY_TIME/1000.));
-
-	updateObjects();
+		(DELAY_TIME / 1000.));
 
 	handleEvents();
-	if (m_clickToPlaceTowerHandler->getShadowObject())
-	{
-		m_clickToPlaceTowerHandler->getShadowObject()->update();
-	}
+
+	updateObjects();
 
 	pLevel->update();
 }
 
 void PlayState::render()
 {
-	
+
 	pLevel->render();
 
 	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
@@ -62,13 +58,13 @@ void PlayState::render()
 		m_gameObjects[i]->draw();
 	}
 
-	
+
 	for (std::vector<std::unique_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects.size(); i++)
 	{
 		m_enemyObjects[i]->draw();
 	}
 
-	if (m_clickToPlaceTowerHandler->getShadowObject()) 
+	if (m_clickToPlaceTowerHandler->getShadowObject())
 	{
 		m_clickToPlaceTowerHandler->getShadowObject()->draw();
 	}
@@ -79,7 +75,7 @@ bool PlayState::onEnter()
 	loadData();
 
 	m_clickToPlaceTowerHandler = new ClickToPlaceTowerHandler();
-	m_towerButtonCallbacks[LoaderParamsConsts::createTowerCallbackID] =  std::bind(&ClickToPlaceTowerHandler::handleEvent, m_clickToPlaceTowerHandler, std::placeholders::_1);
+	m_towerButtonCallbacks[LoaderParamsConsts::createTowerCallbackID] = std::bind(&ClickToPlaceTowerHandler::handleEvent, m_clickToPlaceTowerHandler, std::placeholders::_1);
 
 	setTowerButtonCallbacks(m_towerButtonCallbacks);
 
@@ -156,13 +152,21 @@ void PlayState::addEnemy(std::unique_ptr<Enemy> enemy)
 }
 
 void PlayState::handleEvents()
-{
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
+{ 
+	m_clickToPlaceTowerHandler->update(m_gameObjects);
+
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
+	{
+		if (TowerButton* towerButton = dynamic_cast<TowerButton*>(m_gameObjects[i].get()))
+		{
+			towerButton->handleEvent();
+		}
+	}
+
+	if (TheInputHandler::Instance()->isKeyPressed(SDL_SCANCODE_ESCAPE))
 	{
 		TheGame::Instance()->getStateMachine()->pushState(std::make_shared<PauseState>());
 	}
-
-	m_clickToPlaceTowerHandler->update(m_gameObjects);
 }
 
 void PlayState::updateObjects()
@@ -181,9 +185,15 @@ void PlayState::updateObjects()
 	}
 
 	// update towers and buttons
-	for (std::vector<std::unique_ptr<Enemy>>::size_type i = 0; i < m_gameObjects.size(); i++)
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->update();
+	}
+
+	// update shadow objects
+	if (m_clickToPlaceTowerHandler->getShadowObject())
+	{
+		m_clickToPlaceTowerHandler->getShadowObject()->update();
 	}
 }
 

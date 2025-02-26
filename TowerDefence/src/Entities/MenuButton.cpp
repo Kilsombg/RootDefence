@@ -17,14 +17,38 @@ void MenuButton::setCallback(void(*callback)())
 {
 	m_callback = callback;
 }
+
 void MenuButton::update()
 {
 	std::shared_ptr<Vector2D> pMousePos = TheInputHandler::Instance()->getMousePosition();
-
-	if (pMousePos->getX() < (m_position.getX() + m_width)
+	m_isMouseOnButton = pMousePos->getX() < (m_position.getX() + m_width)
 		&& pMousePos->getX() > m_position.getX()
 		&& pMousePos->getY() < (m_position.getY() + m_height)
-		&& pMousePos->getY() > m_position.getY())
+		&& pMousePos->getY() > m_position.getY();
+
+	handleOutsideCLick();
+
+	handleClickOnButton();
+}
+
+void MenuButton::handleOutsideCLick()
+{
+	if (!m_isMouseOnButton)
+	{
+		m_pressedOutside = TheInputHandler::Instance()->getMouseButtonState(LEFT);
+	}
+	else
+	{
+		if (!TheInputHandler::Instance()->getMouseButtonState(LEFT))
+		{
+			m_pressedOutside = false;
+		}
+	}
+}
+
+void MenuButton::handleClickOnButton()
+{
+	if (m_isMouseOnButton && !m_pressedOutside)
 	{
 		if (TheInputHandler::Instance()->getMouseButtonState(LEFT) && m_bReleased)
 		{
@@ -46,6 +70,7 @@ void MenuButton::update()
 		m_currentFrame = MOUSE_OUT;
 	}
 }
+
 
 std::unique_ptr<GameObject> MenuButtonCreator::createGameObject() const
 {

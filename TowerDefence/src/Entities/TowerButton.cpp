@@ -5,7 +5,7 @@
 #include "../../include/UtilsHeaders/InputHandler.h"
 
 
-TowerButton::TowerButton() : Button(), m_selected(false)
+TowerButton::TowerButton() : Button(), m_selected(false), m_pressed(false)
 {
 }
 
@@ -17,10 +17,26 @@ void TowerButton::load(const std::shared_ptr<LoaderParams> pParams)
 
 void TowerButton::update()
 {
-	handleEvent();
+	std::shared_ptr<Vector2D> pMousePos = TheInputHandler::Instance()->getMousePosition();
+	m_isMouseOnButton = pMousePos->getX() < (m_position.getX() + m_width)
+		&& pMousePos->getX() > m_position.getX()
+		&& pMousePos->getY() < (m_position.getY() + m_height)
+		&& pMousePos->getY() > m_position.getY();
 }
 
-void TowerButton::setCallback(std::function<void(Button*)> callback)
+void TowerButton::handleEvent()
+{
+	// TO-DO
+	// - check if pos is in UI or on another object
+
+	handleInterruptEvent();
+
+	handleOutsideCLick();
+
+	handleClickOnButton();
+}
+
+void TowerButton::setCallback(TowerButtonCallback callback)
 {
 	m_callback = callback;
 }
@@ -30,49 +46,82 @@ std::string TowerButton::getTowerName()
 	return m_towerName;
 }
 
-void TowerButton::handleEvent()
+void TowerButton::resetParams()
 {
-	// TO-DO
-	// - handle a way to stop the event
-	// - check if pos is in UI or on another object
-	std::shared_ptr<Vector2D> pMousePos = TheInputHandler::Instance()->getMousePosition();
+	m_selected = false;
+	m_pressed = false;
+	m_pressedOutside = false;
+}
 
-	if (pMousePos->getX() < (m_position.getX() + m_width)
-		&& pMousePos->getX() > m_position.getX()
-		&& pMousePos->getY() < (m_position.getY() + m_height)
-		&& pMousePos->getY() > m_position.getY())
+void TowerButton::handleInterruptEvent()
+{
+	if (m_selected)
 	{
-		if (TheInputHandler::Instance()->getMouseButtonState(LEFT) && m_bReleased)
+		if (InputHandler::Instance()->isKeyPressed(SDL_SCANCODE_ESCAPE))
+		{
+			m_callback(nullptr);
+			resetParams();
+		}
+	}
+}
+
+void TowerButton::handleOutsideCLick()
+{
+	if (!m_isMouseOnButton)
+	{
+		m_pressedOutside = TheInputHandler::Instance()->getMouseButtonState(LEFT);
+	}
+	else
+	{
+		// left mouseButton released inside towerButton
+		if (!TheInputHandler::Instance()->getMouseButtonState(LEFT))
+		{
+			m_pressedOutside = false;
+		}
+	}
+}
+
+void TowerButton::handleClickOnButton()
+{
+	if (m_isMouseOnButton && !m_pressedOutside && !m_selected)
+	{
+		if (!TheInputHandler::Instance()->getMouseButtonState(LEFT) && m_pressed)
 		{
 			//m_currentFrame = CLICKED;
 
 			m_callback(this);
 
-			m_bReleased = false;
+			m_pressed = false;
 
 			m_selected = true;
 		}
-		else if (!TheInputHandler::Instance()->getMouseButtonState(LEFT))
+		else if (TheInputHandler::Instance()->getMouseButtonState(LEFT))
 		{
-			m_bReleased = true;
+			m_pressed = true;
 
 			//m_currentFrame = MOUSE_OVER;
 		}
 	}
-	else
+	else if (m_selected)
 	{
 		// handle second click
-		if (TheInputHandler::Instance()->getMouseButtonState(LEFT) && m_selected && m_bReleased)
+		if (!TheInputHandler::Instance()->getMouseButtonState(LEFT) && m_pressed)
 		{
 			m_callback(this);
 
+			m_pressed = false;
+
 			m_selected = false;
-		} 
-		else if (!TheInputHandler::Instance()->getMouseButtonState(LEFT))
+		}
+		else if (TheInputHandler::Instance()->getMouseButtonState(LEFT))
 		{
-			m_bReleased = true;
+			m_pressed = true;
 		}
 		//m_currentFrame = MOUSE_OUT;
+	}
+	else
+	{
+		m_pressed = false;
 	}
 }
 

@@ -157,7 +157,7 @@ void Game::handleEvents()
 {
 	TheInputHandler::Instance()->update();
 
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN))
+	if (TheInputHandler::Instance()->isKeyPressed(SDL_SCANCODE_RETURN))
 	{
 		m_pGameStateMachine->changeState(std::make_shared<PlayState>());
 	}

@@ -21,6 +21,8 @@ protected:
 	};
 
 	bool m_bReleased;
+	bool m_isMouseOnButton;
+	bool m_pressedOutside;
 	std::string m_callbackID;
 };
 

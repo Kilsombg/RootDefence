@@ -43,10 +43,10 @@ void InputHandler::update()
 			onMouseButtonUp(event);
 			break;
 		case SDL_KEYDOWN:
-			onKeyDown();
+			onKeyDown(event);
 			break;
 		case SDL_KEYUP:
-			onKeyUp();
+			onKeyUp(event);
 			break;
 		default:
 			break;
@@ -103,6 +103,7 @@ bool InputHandler::isKeyDown(SDL_Scancode key)
 }
 
 
+
 void InputHandler::onMouseButtonDown(SDL_Event& event)
 {
 	if (event.button.button == SDL_BUTTON_LEFT)
@@ -146,12 +147,26 @@ void InputHandler::onMouseMove(SDL_Event& event)
 	m_mousePosition->setY(event.motion.y);
 }
 
-void InputHandler::onKeyDown()
+bool InputHandler::isKeyPressed(SDL_Scancode key)
 {
-	m_keystates = SDL_GetKeyboardState(NULL);
+	bool pressed = m_keyPressed[key];
+	m_keyPressed[key] = false;
+	return pressed;
 }
 
-void InputHandler::onKeyUp()
+void InputHandler::onKeyDown(SDL_Event& event)
 {
 	m_keystates = SDL_GetKeyboardState(NULL);
+
+	if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
+	{
+		m_keyPressed[event.key.keysym.scancode] = true;
+	}
+}
+
+void InputHandler::onKeyUp(SDL_Event& event)
+{
+	m_keystates = SDL_GetKeyboardState(NULL);
+
+	m_keyPressed[event.key.keysym.scancode] = false;
 }
