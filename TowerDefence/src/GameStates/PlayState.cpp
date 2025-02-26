@@ -3,9 +3,12 @@
 #include "../../include/GameStateHeaders/GameOverState.h"
 
 #include "../../include/Constants/SettingsConsts.h"
+#include "../../include/Constants/GameObjectConsts.h"
+#include "../../include/Constants/LoaderParamsConsts.h"
 
 #include "../../include/EntitiesHeaders/Enemy.h"
 #include "../../include/EntitiesHeaders/Carrot.h"
+#include "../../include/EntitiesHeaders/TowerButton.h"
 
 #include "../../include/MapHeaders/LevelParser.h"
 #include "../../include/MapHeaders/TileLayer.h"
@@ -28,8 +31,6 @@ PlayState::PlayState()
 
 void PlayState::update()
 {
-	handleEvents();
-
 	if (!m_waveManager)
 	{
 		std::cerr << "waveManager is not defined.\n";
@@ -40,16 +41,12 @@ void PlayState::update()
 		std::bind(&PlayState::addEnemy, this, std::placeholders::_1),
 		(DELAY_TIME/1000.));
 
-	for (std::vector<std::unique_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects.size(); i++)
+	updateObjects();
+
+	handleEvents();
+	if (m_clickToPlaceTowerHandler->getShadowObject())
 	{
-			if (!m_enemyObjects[i]->isAlive())
-			{
-				m_enemyObjects[i]->clean();
-				m_enemyObjects.erase(m_enemyObjects.begin() + i);
-				continue;
-			}
-		
-			m_enemyObjects[i]->update();
+		m_clickToPlaceTowerHandler->getShadowObject()->update();
 	}
 
 	pLevel->update();
@@ -57,6 +54,7 @@ void PlayState::update()
 
 void PlayState::render()
 {
+	
 	pLevel->render();
 
 	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
@@ -64,9 +62,15 @@ void PlayState::render()
 		m_gameObjects[i]->draw();
 	}
 
+	
 	for (std::vector<std::unique_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects.size(); i++)
 	{
 		m_enemyObjects[i]->draw();
+	}
+
+	if (m_clickToPlaceTowerHandler->getShadowObject()) 
+	{
+		m_clickToPlaceTowerHandler->getShadowObject()->draw();
 	}
 }
 
@@ -74,29 +78,44 @@ bool PlayState::onEnter()
 {
 	loadData();
 
+	m_clickToPlaceTowerHandler = new ClickToPlaceTowerHandler();
+	m_towerButtonCallbacks[LoaderParamsConsts::createTowerCallbackID] =  std::bind(&ClickToPlaceTowerHandler::handleEvent, m_clickToPlaceTowerHandler, std::placeholders::_1);
+
+	setTowerButtonCallbacks(m_towerButtonCallbacks);
+
 	std::cout << "entering PlayState\n";
 	return true;
 }
 
 void PlayState::loadData()
 {
+	// load state objects and textures
 	StateParser stateParser;
 	stateParser.parseState("./src/test.xml", s_stateID, &m_gameObjects, &m_textureIDList);
 
+	// load level
 	LevelParser levelParser;
 	pLevel = levelParser.parseLevel("./src/assets/Map/test_map.tmx");
 	pLevel->setSpawnPoint(*(pLevel->getEnemyPath()[0].get()));
 
+	// load waves data
 	WaveParser waveParser;
 	m_waveManager = TheWaveManager::Instance();
 	waveParser.parseWaves("./src/res/waves.json", m_waveManager);
 	if (!m_waveManager->getWaves().empty()) {
-		m_currentWave = &(m_waveManager->getWaves()[0]);
+		m_currentWave = m_waveManager->getWaves()[0];
 	}
 
-	GameObjectData gameObjectData;
-	gameObjectData.parseGameOjbectsData("./src/res/gameObjectsData.json");
-	m_waveManager->setGameObjectData(&gameObjectData);
+	// load enemies base data
+	GameObjectData enemyObjectData;
+	enemyObjectData.parseGameOjbectsData("./src/res/enemyObjectData.json", GameObjectConsts::enemyObjectData);
+	m_waveManager->setGameObjectData(&enemyObjectData);
+
+	// load tower base data
+	GameObjectData towerObjectData;
+	m_towerFactory = TheTowerFactory::Instance();
+	towerObjectData.parseGameOjbectsData("./src/res/towerObjectData.json", GameObjectConsts::towerObjectData);
+	m_towerFactory->setGameObjectData(&towerObjectData);
 }
 
 bool PlayState::onExit()
@@ -113,6 +132,14 @@ bool PlayState::onExit()
 	{
 		TheTextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
 	}
+
+	if (m_currentWave != nullptr)
+	{
+		delete m_currentWave;
+	}
+
+	m_waveManager->clean();
+	m_clickToPlaceTowerHandler->clear();
 
 	std::cout << "exiting PlayState\n";
 	return true;
@@ -133,6 +160,43 @@ void PlayState::handleEvents()
 	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_ESCAPE))
 	{
 		TheGame::Instance()->getStateMachine()->pushState(std::make_shared<PauseState>());
+	}
+
+	m_clickToPlaceTowerHandler->update(m_gameObjects);
+}
+
+void PlayState::updateObjects()
+{
+	// udpate enemies
+	for (std::vector<std::unique_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects.size(); i++)
+	{
+		if (!m_enemyObjects[i]->isAlive())
+		{
+			m_enemyObjects[i]->clean();
+			m_enemyObjects.erase(m_enemyObjects.begin() + i);
+			continue;
+		}
+
+		m_enemyObjects[i]->update();
+	}
+
+	// update towers and buttons
+	for (std::vector<std::unique_ptr<Enemy>>::size_type i = 0; i < m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->update();
+	}
+}
+
+void PlayState::setTowerButtonCallbacks(const std::map<std::string, TowerButtonCallback>& towerButtonCallbacks)
+{
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
+	{
+		if (dynamic_cast<TowerButton*>(m_gameObjects[i].get()))
+		{
+			TowerButton* pButton = dynamic_cast<TowerButton*>(m_gameObjects[i].get());
+			pButton->setCallback(towerButtonCallbacks.at(pButton->getCallbackID()));
+			pButton = nullptr;
+		}
 	}
 }
 

@@ -94,7 +94,7 @@ void WaveManager::nextWave(Wave& wave)
 	if (!isFinalWave())
 	{
 		std::cout << "Changing wave.\n";
-		wave = m_waves[++m_currentWaveID];
+		wave = *(m_waves[++m_currentWaveID]);
 	}
 	else
 	{
@@ -114,7 +114,7 @@ void WaveManager::setGameObjectData(GameObjectData* gameObjectdata)
 	m_gameObjectData = std::make_unique<GameObjectData>(*gameObjectdata);
 }
 
-std::vector<Wave>& WaveManager::getWaves()
+std::vector<Wave*>& WaveManager::getWaves()
 {
 	return m_waves;
 }
@@ -125,9 +125,10 @@ void WaveManager::clean()
 	{
 		for (std::vector<Wave>::size_type i = 0; i < m_waves.size(); i++)
 		{
-			m_waves[i].clean();
+			m_waves[i]->clean();
 		}
 		m_waves.clear();
+		m_waves.shrink_to_fit();
 	}
 }
 

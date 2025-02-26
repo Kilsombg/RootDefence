@@ -123,6 +123,18 @@
     <ClCompile Include="src\GameStates\MenuState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Entities\Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entities\TowerButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventHandlers\ClickToPlaceTowerHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\TowerFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game.h">
@@ -251,12 +263,28 @@
     <ClInclude Include="include\Constants\SettingsConsts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\EntitiesHeaders\TowerButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EntitiesHeaders\Button.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EventHandlersHeaders\ClickToPlaceTowerHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EventHandlersHeaders\BaseButtonHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UtilsHeaders\TowerFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="src\test.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\res\gameObjectsData.json" />
+    <None Include="src\res\enemyObjectData.json" />
     <None Include="src\res\waves.json" />
+    <None Include="src\res\towerObjectData.json" />
   </ItemGroup>
 </Project>

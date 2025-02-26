@@ -67,6 +67,11 @@ void SDLGameObject::clean()
 {
 }
 
+void SDLGameObject::setPosition(const Vector2D newPosition)
+{
+	m_position = newPosition;
+}
+
 Vector2D& SDLGameObject::getPosition()
 {
 	return m_position;

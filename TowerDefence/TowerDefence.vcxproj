@@ -138,6 +138,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Entities\AnimatedGraphic.cpp" />
+    <ClCompile Include="src\Entities\Button.cpp" />
     <ClCompile Include="src\Entities\Cabbage.cpp" />
     <ClCompile Include="src\Entities\Carrot.cpp" />
     <ClCompile Include="src\Entities\Enemy.cpp" />
@@ -145,6 +146,8 @@
     <ClCompile Include="src\Entities\MenuButton.cpp" />
     <ClCompile Include="src\Entities\Player.cpp" />
     <ClCompile Include="src\Entities\SDLGameObject.cpp" />
+    <ClCompile Include="src\Entities\TowerButton.cpp" />
+    <ClCompile Include="src\EventHandlers\ClickToPlaceTowerHandler.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameStates\GameOverState.cpp" />
     <ClCompile Include="src\GameStates\MenuState.cpp" />
@@ -169,6 +172,7 @@
     <ClCompile Include="src\Utils\tinyxml.cpp" />
     <ClCompile Include="src\Utils\tinyxmlerror.cpp" />
     <ClCompile Include="src\Utils\tinyxmlparser.cpp" />
+    <ClCompile Include="src\Utils\TowerFactory.cpp" />
     <ClCompile Include="src\Utils\Vector2D.cpp" />
     <ClCompile Include="src\Wave\Wave.cpp" />
     <ClCompile Include="src\Wave\WaveManager.cpp" />
@@ -179,6 +183,7 @@
     <ClInclude Include="include\Constants\LoaderParamsConsts.h" />
     <ClInclude Include="include\Constants\SettingsConsts.h" />
     <ClInclude Include="include\EntitiesHeaders\AnimatedGraphic.h" />
+    <ClInclude Include="include\EntitiesHeaders\Button.h" />
     <ClInclude Include="include\EntitiesHeaders\Cabbage.h" />
     <ClInclude Include="include\EntitiesHeaders\Carrot.h" />
     <ClInclude Include="include\EntitiesHeaders\Enemy.h" />
@@ -186,6 +191,9 @@
     <ClInclude Include="include\EntitiesHeaders\MenuButton.h" />
     <ClInclude Include="include\EntitiesHeaders\Player.h" />
     <ClInclude Include="include\EntitiesHeaders\SDLGameObject.h" />
+    <ClInclude Include="include\EntitiesHeaders\TowerButton.h" />
+    <ClInclude Include="include\EventHandlersHeaders\BaseButtonHandler.h" />
+    <ClInclude Include="include\EventHandlersHeaders\ClickToPlaceTowerHandler.h" />
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\GameStateHeaders\GameOverState.h" />
     <ClInclude Include="include\GameStateHeaders\GameState.h" />
@@ -212,6 +220,7 @@
     <ClInclude Include="include\UtilsHeaders\Timer.h" />
     <ClInclude Include="include\UtilsHeaders\tinystr.h" />
     <ClInclude Include="include\UtilsHeaders\tinyxml.h" />
+    <ClInclude Include="include\UtilsHeaders\TowerFactory.h" />
     <ClInclude Include="include\UtilsHeaders\Vector2D.h" />
     <ClInclude Include="include\WaveHeaders\Wave.h" />
     <ClInclude Include="include\Constants\WaveConstans.h" />
@@ -222,7 +231,8 @@
     <Xml Include="src\test.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\res\gameObjectsData.json" />
+    <None Include="src\res\enemyObjectData.json" />
+    <None Include="src\res\towerObjectData.json" />
     <None Include="src\res\waves.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

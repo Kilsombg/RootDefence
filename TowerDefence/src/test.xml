@@ -14,8 +14,10 @@
 		<TEXTURES>
 			<texture filename="src/assets/helicopter.png" ID="helicopter"/>
 			<texture filename="src/assets/helicopter2.png" ID="helicopter2"/>
+			<texture filename="src/assets/temp_towerButton.png" ID="towerButton"/>
 		</TEXTURES>
 		<OBJECTS>
+			<object type="towerButton" x="100.00" y="300.00" width="147" height="148" textureID="towerButton" numFrames="0" callbackID="createTowerCallbackID" towerName="tower"/>
 		</OBJECTS>
 	</PLAY>
 	<PAUSE>

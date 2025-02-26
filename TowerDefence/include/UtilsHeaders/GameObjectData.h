@@ -4,8 +4,6 @@
 #include "LoaderParams.h"
 #include "NLJsonParser.h"
 
-#include "../Constants/GameObjectConsts.h"
-
 #include<map>
 #include<string>
 #include<memory>
@@ -14,7 +12,7 @@ struct GameObjectData
 {
 public:
 	std::shared_ptr<LoaderParams> getData(std::string gameOjbectType);
-	void parseGameOjbectsData(const char* filePath);
+	void parseGameOjbectsData(const char* filePath, std::string objectKey);
 
 private:
 	std::map<std::string, std::shared_ptr<LoaderParams>> m_gameObjectsData;

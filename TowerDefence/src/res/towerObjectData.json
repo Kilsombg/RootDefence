@@ -1,0 +1,16 @@
+{
+  "towerObjectData": {
+    "tower": {
+      "width": 128,
+      "height": 55,
+      "textureID": "helicopter",
+      "numFrames": 4
+    },
+    "tower2": {
+      "width": 128,
+      "height": 55,
+      "textureID": "helicopter2",
+      "numFrames": 4
+    }
+  }
+}

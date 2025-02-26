@@ -47,4 +47,7 @@ void from_json(const json& j, EnemyCluster& ec);
 void to_json(json& j, const Wave& w);
 void from_json(const json& j, Wave& w);
 
+void to_json(json& j, const std::vector<Wave*>& waves);
+void from_json(const json& j, std::vector<Wave*>& waves);
+
 #endif // !__Wave__

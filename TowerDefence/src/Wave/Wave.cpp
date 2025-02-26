@@ -73,3 +73,21 @@ void from_json(const json& j, Wave& w)
 		}
 	}
 }
+
+void to_json(json& j, const std::vector<Wave*>& waves)
+{
+	j = json::array();
+	for (const auto* wave : waves) {
+		if (wave) {
+			j.push_back(*wave);
+		}
+	}
+}
+
+void from_json(const json& j, std::vector<Wave*>& waves)
+{
+	waves.clear();
+	for (const auto& item : j) {
+		waves.push_back(new Wave(item.get<Wave>()));
+	}
+}

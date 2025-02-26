@@ -3,36 +3,24 @@
 
 #include "../UtilsHeaders/BaseCreator.h"
 
-#include "SDLGameObject.h"
+#include "Button.h"
 
 #include<string>
 #include<memory>
 
-class MenuButton : public SDLGameObject
+class MenuButton : public Button
 {
 public:
 
 	MenuButton();
 
-	virtual void draw();
 	virtual void update();
-	virtual void clean();
 
 	virtual void load(const std::shared_ptr<LoaderParams> pParams);
 
 	void setCallback(void(*callback)());
-	std::string getCallbackID();
 
 private:
-	enum button_state
-	{
-		MOUSE_OUT = 0,
-		MOUSE_OVER = 1,
-		CLICKED = 2
-	};
-
-	bool m_bReleased;
-	std::string m_callbackID;
 	void (*m_callback)();
 };
 

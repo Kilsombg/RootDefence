@@ -16,7 +16,7 @@ bool WaveParser::parseWaves(const char* filePath, std::shared_ptr<WaveManager>& 
 		return false;
 	}
 
-	if (!NLJasonParser<std::vector<Wave>>::parseFromFile(filePath, waveManager->getWaves(), WaveConstans::waves))
+	if (!NLJasonParser<std::vector<Wave*>>::parseFromFile(filePath, waveManager->getWaves(), WaveConstans::waves))
 	{
 		std::cerr << "Couldn't parse waves object.\n";
 		return false;

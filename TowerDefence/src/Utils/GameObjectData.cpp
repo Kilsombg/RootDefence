@@ -14,7 +14,7 @@ std::shared_ptr<LoaderParams> GameObjectData::getData(std::string gameOjbectType
 	return it->second;
 }
 
-void GameObjectData::parseGameOjbectsData(const char* filePath)
+void GameObjectData::parseGameOjbectsData(const char* filePath, std::string objectKey)
 {
-	NLJasonParser<std::map<std::string, std::shared_ptr<LoaderParams>>>::parseFromFile(filePath, m_gameObjectsData, GameObjectConsts::gameObjectData);
+	NLJasonParser<std::map<std::string, std::shared_ptr<LoaderParams>>>::parseFromFile(filePath, m_gameObjectsData, objectKey);
 }

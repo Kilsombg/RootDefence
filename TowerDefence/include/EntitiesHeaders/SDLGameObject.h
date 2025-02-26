@@ -16,6 +16,7 @@ public:
 
 	 virtual void load(const std::shared_ptr<LoaderParams> pParams);
 
+	 void setPosition(const Vector2D newPosition);
 	Vector2D& getPosition();
 	int getWidth();
 	int getHeight();

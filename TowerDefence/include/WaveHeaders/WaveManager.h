@@ -24,7 +24,7 @@ public:
 	void load();
 	void setGameObjectData(GameObjectData* gameObjectdata);
 
-	std::vector<Wave>& getWaves();
+	std::vector<Wave*>& getWaves();
 	void clean();
 
 private:
@@ -33,7 +33,7 @@ private:
 
 	int m_maxWave; // the maximum wave that we define in our data
 	int m_currentWaveID;
-	std::vector<Wave> m_waves;
+	std::vector<Wave*> m_waves;
 
 	std::unique_ptr<GameObjectData> m_gameObjectData; // base enemy stats
 };

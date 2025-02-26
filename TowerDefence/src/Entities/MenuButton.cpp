@@ -4,34 +4,19 @@
 
 #include "../../include/UtilsHeaders/InputHandler.h"
 
-MenuButton::MenuButton() : SDLGameObject()
+MenuButton::MenuButton() : Button()
 {
 }
 
 void MenuButton::load(const std::shared_ptr<LoaderParams> pParams)
 {
-	SDLGameObject::load(pParams);
-
-	m_callbackID = pParams->getAttribute<std::string>(LoaderParamsConsts::callbackID);
-	m_currentFrame = MOUSE_OUT;
-	m_bReleased = false;
+	Button::load(pParams);
 }
 
 void MenuButton::setCallback(void(*callback)())
 {
 	m_callback = callback;
 }
-
-std::string MenuButton::getCallbackID()
-{
-	return m_callbackID;
-}
-
-void MenuButton::draw()
-{
-	SDLGameObject::draw();
-}
-
 void MenuButton::update()
 {
 	std::shared_ptr<Vector2D> pMousePos = TheInputHandler::Instance()->getMousePosition();
@@ -60,11 +45,6 @@ void MenuButton::update()
 	{
 		m_currentFrame = MOUSE_OUT;
 	}
-}
-
-void MenuButton::clean()
-{
-	SDLGameObject::clean();
 }
 
 std::unique_ptr<GameObject> MenuButtonCreator::createGameObject() const

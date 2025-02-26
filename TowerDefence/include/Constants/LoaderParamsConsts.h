@@ -20,13 +20,19 @@ namespace LoaderParamsConsts {
 	constexpr char mainbuttonCallbackID[] = "mainbuttonCallbackID";
 	constexpr char resumebuttonCallbackID[] = "resumebuttonCallbackID";
 	constexpr char restartbuttonCallbackID[] = "restartbuttonCallbackID";
+	constexpr char createTowerCallbackID[] = "createTowerCallbackID";
 	constexpr char animSpeed[] = "animSpeed";
 #pragma endregion
 
 #pragma region enemies params
-	constexpr char moveSpeed[] ="moveSpeed";
-	constexpr char maxHealth[] ="maxHealth";
+	constexpr char moveSpeed[] = "moveSpeed";
+	constexpr char maxHealth[] = "maxHealth";
 	constexpr char defence[] = "defence";
+#pragma endregion
+
+
+#pragma region towers params
+	constexpr char towerName[] = "towerName";
 #pragma endregion
 
 }
