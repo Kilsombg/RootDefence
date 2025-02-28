@@ -3,8 +3,12 @@
 
 #include "BaseButtonHandler.h".h"
 
-#include "../EntitiesHeaders/SDLGameObject.h"
+#include "../../include/Constants/ColorsConsts.h"
+
+#include "../EntitiesHeaders/Tower.h"
 #include "../EntitiesHeaders/TowerButton.h"
+
+#include "../UtilsHeaders/Vector2D.h"
 
 #include<vector>
 #include<memory>
@@ -16,9 +20,10 @@ public:
 
 	void handleEvent(Button* sourceButton);
 	void update(std::vector<std::unique_ptr<GameObject>>& gameObjects);
+	void render();
 	void clear();
 
-	std::unique_ptr<SDLGameObject>& getShadowObject();
+	std::unique_ptr<Tower>& getShadowObject();
 
 private:
 	void handleIdleState(Button* sourceButton);
@@ -38,7 +43,9 @@ private:
 
 	clickToPlaceTowerStates m_state;
 	TowerButton* m_activeButton;
-	std::unique_ptr<SDLGameObject> m_shadowObject;
+	std::unique_ptr<Tower> m_shadowObject;
+	ColorsConsts::Color m_shadowObjectRadiusColor;
+	bool m_canPlace;
 };
 
 #endif // !__ClickToPlaceListener__

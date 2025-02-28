@@ -1,10 +1,10 @@
 #ifndef __TowerFactory__
 #define __TowerFactory__
 
-#include "GameObjectFactory.h"
+//#include "GameObjectFactory.h"
 #include "GameObjectData.h"
 
-#include "../EntitiesHeaders/SDLGameObject.h"
+#include "../EntitiesHeaders/Tower.h"
 
 #include<memory>
 
@@ -14,7 +14,7 @@ public:
 	static std::shared_ptr<TowerFactory> Instance();
 
 	std::unique_ptr<GameObject> createTower(std::string towerTypeID);
-	std::unique_ptr<SDLGameObject> createShadowTower(std::string towerTypeID);
+	std::unique_ptr<Tower> createShadowTower(std::string towerTypeID);
 
 	void setGameObjectData(GameObjectData* gameObjectdata);
 

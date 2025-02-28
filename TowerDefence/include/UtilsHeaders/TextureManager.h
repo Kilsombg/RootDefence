@@ -17,9 +17,14 @@ public:
 	void clearFromTextureMap(std::string id);
 	void drawTile(std::string id, int margin, int spacing, int x, int y, int width, int height, int currentRow, int currentFrame, SDL_Renderer* pRenderer);
 
+	void drawFilledCircle(int centerX, int centerY, int radius, SDL_Color color, SDL_Renderer* renderer, SDL_BlendMode blendMode = SDL_BLENDMODE_BLEND);
+
 private:
 	TextureManager();
 	static TextureManager* s_pInstance;
+
+	void drawCircle(int centerX, int centerY, int radius, SDL_Renderer* renderer);
+	void drawHorizontalLine(int x1, int x2, int y, SDL_Renderer* renderer);
 
 	std::map<std::string, SDL_Texture*> m_textureMap;
 };

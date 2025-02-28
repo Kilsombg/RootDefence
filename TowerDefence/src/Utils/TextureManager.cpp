@@ -97,3 +97,48 @@ void TextureManager::drawTile(std::string id, int margin, int spacing, int x, in
 
 	SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, SDL_FLIP_NONE);
 }
+
+void TextureManager::drawFilledCircle(int centerX, int centerY, int radius, SDL_Color color, SDL_Renderer* renderer, SDL_BlendMode blendMode)
+{
+	SDL_Color oldColor;
+	SDL_GetRenderDrawColor(renderer, &oldColor.r, &oldColor.g, &oldColor.b, &oldColor.a);
+	
+	SDL_SetRenderDrawBlendMode(renderer, blendMode);
+	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+	
+	drawCircle(centerX, centerY, radius, renderer);
+	
+	SDL_SetRenderDrawColor(renderer, oldColor.r, oldColor.g, oldColor.b, oldColor.a);
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
+}
+
+void TextureManager::drawCircle(int centerX, int centerY, int radius, SDL_Renderer* renderer)
+{
+	int x = radius;
+	int y = 0;
+	int decisionOver2 = 1 - x; // Начално условие
+
+	while (x >= y) {
+		// Рисуване на хоризонтални линии вместо отделни пиксели
+		drawHorizontalLine(centerX - x, centerX + x, centerY + y, renderer);
+		drawHorizontalLine(centerX - x, centerX + x, centerY - y, renderer);
+		drawHorizontalLine(centerX - y, centerX + y, centerY + x, renderer);
+		drawHorizontalLine(centerX - y, centerX + y, centerY - x, renderer);
+
+		y++;
+
+		if (decisionOver2 <= 0) {
+			decisionOver2 += 2 * y + 1; // Корекция на грешката
+		}
+		else {
+			x--;
+			decisionOver2 += 2 * (y - x) + 1;
+		}
+	}
+}
+
+void TextureManager::drawHorizontalLine(int x1, int x2, int y, SDL_Renderer* renderer)
+{
+	SDL_RenderDrawLine(renderer, x1, y, x2, y);
+}
+

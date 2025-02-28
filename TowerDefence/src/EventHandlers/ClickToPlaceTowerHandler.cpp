@@ -3,11 +3,14 @@
 #include "../../include/UtilsHeaders/TowerFactory.h"
 #include "../../include/UtilsHeaders/Vector2D.h"
 #include "../../include/UtilsHeaders/InputHandler.h"
+#include "../../include/UtilsHeaders/TextureManager.h"
+
+#include "../../include/Game.h"
 
 #include<memory>
 #include<iostream>
 
-ClickToPlaceTowerHandler::ClickToPlaceTowerHandler() : m_state(IDLE), m_activeButton(nullptr)
+ClickToPlaceTowerHandler::ClickToPlaceTowerHandler() : m_state(IDLE), m_activeButton(nullptr), m_canPlace(true)
 {
 }
 
@@ -40,6 +43,8 @@ void ClickToPlaceTowerHandler::update(std::vector<std::unique_ptr<GameObject>>& 
 {
 	if (m_state == IDLE) return; 
 
+
+
 	if (m_activeButton != nullptr)
 	{
 		if (m_state == MOVING)
@@ -60,11 +65,21 @@ void ClickToPlaceTowerHandler::update(std::vector<std::unique_ptr<GameObject>>& 
 	}
 }
 
+void ClickToPlaceTowerHandler::render()
+{
+	m_shadowObjectRadiusColor = ColorsConsts::red;
+	TheTextureManager::Instance()->drawFilledCircle(
+		m_shadowObject->getPosition().getX(), m_shadowObject->getPosition().getY(), static_cast<int>(m_shadowObject->getRadius()),
+		{m_shadowObjectRadiusColor.r, m_shadowObjectRadiusColor.g, m_shadowObjectRadiusColor.b, m_shadowObjectRadiusColor.a},
+		TheGame::Instance()->getRenderer());
+	m_shadowObject->draw();
+}
+
 void ClickToPlaceTowerHandler::clear()
 {
 }
 
-std::unique_ptr<SDLGameObject>& ClickToPlaceTowerHandler::getShadowObject()
+std::unique_ptr<Tower>& ClickToPlaceTowerHandler::getShadowObject()
 {
 	return m_shadowObject;
 }
@@ -93,8 +108,7 @@ void ClickToPlaceTowerHandler::handleMovingState(Button* sourceButton)
 
 void ClickToPlaceTowerHandler::createShadowObject()
 {
-	m_shadowObject = TheTowerFactory::Instance()->createShadowTower(m_activeButton->getTowerName());
-	
+	m_shadowObject = TheTowerFactory::Instance()->createShadowTower(m_activeButton->getTowerName());	
 }
 
 void ClickToPlaceTowerHandler::setShadowObjectPosition()

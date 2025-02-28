@@ -8,10 +8,13 @@
 #include "../EntitiesHeaders/Enemy.h"
 #include "../EntitiesHeaders/Button.h"
 
-#include "../MapHeaders/Level.h"
+#include "../EventHandlersHeaders/ClickToPlaceTowerHandler.h"
 
-#include "../../include/UtilsHeaders/TowerFactory.h"
-#include "../../include/EventHandlersHeaders/ClickToPlaceTowerHandler.h"
+#include "../MapHeaders/Level.h"
+#include "../MapHeaders/TileType.h"
+
+#include "../UtilsHeaders/TowerFactory.h"
+#include "../UtilsHeaders/Vector2D.h"
 
 #include "../WaveHeaders/WaveManager.h"
 #include "../WaveHeaders/Wave.h"
@@ -19,6 +22,7 @@
 #include<vector>
 #include<memory>
 #include<functional>
+#include<unordered_map>
 
 class PlayState : public GameState
 {
@@ -49,6 +53,8 @@ private:
 	std::map<std::string, TowerButtonCallback> m_towerButtonCallbacks;
 
 	std::shared_ptr<Level> pLevel;
+	std::unordered_map<Vector2D, TileType> m_tileTypeMap;
+
 	std::vector<std::unique_ptr<Enemy>> m_enemyObjects;
 
 	std::shared_ptr<WaveManager> m_waveManager;

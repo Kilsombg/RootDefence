@@ -66,7 +66,7 @@ void PlayState::render()
 
 	if (m_clickToPlaceTowerHandler->getShadowObject())
 	{
-		m_clickToPlaceTowerHandler->getShadowObject()->draw();
+		m_clickToPlaceTowerHandler->render();
 	}
 }
 
