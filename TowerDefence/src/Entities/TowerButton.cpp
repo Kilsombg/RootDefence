@@ -2,10 +2,12 @@
 
 #include "../../include/Constants/LoaderParamsConsts.h"
 
+#include "../../include/MapHeaders/TileType.h"
+
 #include "../../include/UtilsHeaders/InputHandler.h"
 
 
-TowerButton::TowerButton() : Button(), m_selected(false), m_pressed(false)
+TowerButton::TowerButton() : Button(), m_selected(false), m_pressed(false), m_isMouseOnFreeTowerTile(false)
 {
 }
 
@@ -22,6 +24,11 @@ void TowerButton::update()
 		&& pMousePos->getX() > m_position.getX()
 		&& pMousePos->getY() < (m_position.getY() + m_height)
 		&& pMousePos->getY() > m_position.getY();
+
+	if (pLevel != nullptr)
+	{
+		m_isMouseOnFreeTowerTile = TileType::TOWER == pLevel->getTileTypeByPosition(pMousePos->getX(), pMousePos->getY());
+	}
 }
 
 void TowerButton::handleEvent()
@@ -44,6 +51,11 @@ void TowerButton::setCallback(TowerButtonCallback callback)
 std::string TowerButton::getTowerName()
 {
 	return m_towerName;
+}
+
+void TowerButton::setLevel(std::shared_ptr<Level> level)
+{
+	pLevel = level;
 }
 
 void TowerButton::resetParams()
@@ -102,7 +114,7 @@ void TowerButton::handleClickOnButton()
 			//m_currentFrame = MOUSE_OVER;
 		}
 	}
-	else if (m_selected)
+	else if (m_selected && m_isMouseOnFreeTowerTile)
 	{
 		// handle second click
 		if (!TheInputHandler::Instance()->getMouseButtonState(LEFT) && m_pressed)

@@ -11,7 +11,6 @@
 #include "../EventHandlersHeaders/ClickToPlaceTowerHandler.h"
 
 #include "../MapHeaders/Level.h"
-#include "../MapHeaders/TileType.h"
 
 #include "../UtilsHeaders/TowerFactory.h"
 #include "../UtilsHeaders/Vector2D.h"
@@ -22,7 +21,6 @@
 #include<vector>
 #include<memory>
 #include<functional>
-#include<unordered_map>
 
 class PlayState : public GameState
 {
@@ -49,11 +47,14 @@ private:
 
 	typedef std::function<void(Button*)> TowerButtonCallback;
 	void setTowerButtonCallbacks(const std::map<std::string, TowerButtonCallback>& towerButtonCallbacks);
-
+	/**
+	* set a pointer to the level for each tower button.
+	*/
+	void setTowerButtonLevel();
+	
 	std::map<std::string, TowerButtonCallback> m_towerButtonCallbacks;
 
 	std::shared_ptr<Level> pLevel;
-	std::unordered_map<Vector2D, TileType> m_tileTypeMap;
 
 	std::vector<std::unique_ptr<Enemy>> m_enemyObjects;
 

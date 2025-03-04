@@ -75,9 +75,11 @@ bool PlayState::onEnter()
 	loadData();
 
 	m_clickToPlaceTowerHandler = new ClickToPlaceTowerHandler();
+	m_clickToPlaceTowerHandler->setLevel(pLevel);
 	m_towerButtonCallbacks[LoaderParamsConsts::createTowerCallbackID] = std::bind(&ClickToPlaceTowerHandler::handleEvent, m_clickToPlaceTowerHandler, std::placeholders::_1);
 
 	setTowerButtonCallbacks(m_towerButtonCallbacks);
+	setTowerButtonLevel();
 
 	std::cout << "entering PlayState\n";
 	return true;
@@ -92,7 +94,11 @@ void PlayState::loadData()
 	// load level
 	LevelParser levelParser;
 	pLevel = levelParser.parseLevel("./src/assets/Map/test_map.tmx");
-	pLevel->setSpawnPoint(*(pLevel->getEnemyPath()[0].get()));
+	//pLevel = levelParser.parseLevel("./src/assets/map1.tmx");
+	if (!pLevel->getEnemyPath().empty())
+	{
+		pLevel->setSpawnPoint(*(pLevel->getEnemyPath()[0].get()));
+	}
 
 	// load waves data
 	WaveParser waveParser;
@@ -152,7 +158,7 @@ void PlayState::addEnemy(std::unique_ptr<Enemy> enemy)
 }
 
 void PlayState::handleEvents()
-{ 
+{
 	m_clickToPlaceTowerHandler->update(m_gameObjects);
 
 	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
@@ -205,6 +211,19 @@ void PlayState::setTowerButtonCallbacks(const std::map<std::string, TowerButtonC
 		{
 			TowerButton* pButton = dynamic_cast<TowerButton*>(m_gameObjects[i].get());
 			pButton->setCallback(towerButtonCallbacks.at(pButton->getCallbackID()));
+			pButton = nullptr;
+		}
+	}
+}
+
+void PlayState::setTowerButtonLevel()
+{
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
+	{
+		if (dynamic_cast<TowerButton*>(m_gameObjects[i].get()))
+		{
+			TowerButton* pButton = dynamic_cast<TowerButton*>(m_gameObjects[i].get());
+			pButton->setLevel(pLevel);
 			pButton = nullptr;
 		}
 	}

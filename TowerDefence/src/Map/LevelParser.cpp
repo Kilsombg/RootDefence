@@ -2,7 +2,6 @@
 #include "../../include/MapHeaders/TileSet.h"
 #include "../../include/MapHeaders/TileLayer.h"
 #include "../../include/MapHeaders/ObjectLayer.h"
-
 #include "../../include/UtilsHeaders/TextureManager.h"
 #include "../../include/UtilsHeaders/GameObjectFactory.h"
 #include "../../include/UtilsHeaders/base64.h"
@@ -19,18 +18,20 @@ std::shared_ptr<Level> LevelParser::parseLevel(const char* levelFile)
 	levelDocument.LoadFile(levelFile);
 
 
-	std::shared_ptr<Level> pLevel = std::shared_ptr<Level>(new Level);
+	m_pLevel = std::shared_ptr<Level>(new Level);
 	TiXmlElement* pRoot = levelDocument.RootElement();
 
 	pRoot->Attribute("tilewidth", &m_tileSize);
 	pRoot->Attribute("width", &m_width);
 	pRoot->Attribute("height", &m_height);
 
+	m_pLevel->m_tileSize = m_tileSize;
+
 	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
 		if (e->Value() == std::string("tileset"))
 		{
-			parseTilesets(e, pLevel->getTilesets());
+			parseTilesets(e);
 		}
 	}
 
@@ -38,19 +39,9 @@ std::shared_ptr<Level> LevelParser::parseLevel(const char* levelFile)
 	{
 		if (e->Value() == std::string("layer"))
 		{
-			parseTileLayer(e, pLevel->getLayers(), pLevel->getTilesets());
+			parseTileLayer(e);
 		}
 	}
-
-	/*
-	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
-	{
-		if (e->Value() == std::string("properties"))
-		{
-			parseTextures(e);
-		}
-	}*/
-
 
 	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
@@ -58,41 +49,63 @@ std::shared_ptr<Level> LevelParser::parseLevel(const char* levelFile)
 		{
 			if (e->Attribute("name") == std::string("EntitiesPaths"))
 			{
-				parsePathsLayer(e, pLevel->getEnemyPath());
+				parsePathsLayer(e);
 			}
 			else if (e->Attribute("name") == std::string("ObjectLayer"))
 			{
-				parseObjectLayer(e, pLevel->getLayers());
+				parseObjectLayer(e);
 			}
 		}
 	}
 
-	return pLevel;
+	return m_pLevel;
 }
 
-void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>* pTilesets)
+void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot)
 {
-	std::string sourcePath = std::string("src/assets/Map/") + pTilesetRoot->FirstChildElement()->Attribute("source");
-	std::cout << "Tile source path:" << sourcePath << "\n";
-	TheTextureManager::Instance()->load(sourcePath, pTilesetRoot->Attribute("name"), TheGame::Instance()->getRenderer());
-
 	Tileset tileset;
-	pTilesetRoot->FirstChildElement()->Attribute("width", &tileset.width);
-	pTilesetRoot->FirstChildElement()->Attribute("height", &tileset.height);
 	pTilesetRoot->Attribute("firstgid", &tileset.firstGridID);
 	pTilesetRoot->Attribute("tilewidth", &tileset.tileWidth);
 	pTilesetRoot->Attribute("tileheight", &tileset.tileHeight);
 	pTilesetRoot->Attribute("spacing", &tileset.spacing);
 	pTilesetRoot->Attribute("margin", &tileset.margin);
 	tileset.name = pTilesetRoot->Attribute("name");
+
+	for (TiXmlElement* e = pTilesetRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
+	{
+		if (e->Value() == std::string("properties"))
+		{
+			parseTileSetProperties(e, tileset.firstGridID);
+		}
+		else if (e->Value() == std::string("image"))
+		{
+			std::string sourcePath = std::string("src/assets/Map/") + e->Attribute("source");
+			std::cout << "Tile source path:" << sourcePath << "\n";
+			TheTextureManager::Instance()->load(sourcePath, pTilesetRoot->Attribute("name"), TheGame::Instance()->getRenderer());
+
+			e->Attribute("width", &tileset.width);
+			e->Attribute("height", &tileset.height);
+		}
+	}
 	tileset.numColumns = tileset.width / (tileset.tileWidth + tileset.spacing);
 
-	pTilesets->push_back(tileset);
+	m_pLevel->getTilesets()->push_back(tileset);
 }
 
-void LevelParser::parseTileLayer(TiXmlElement* pTileElement, std::vector<std::shared_ptr<Layer>>* pLayers, const std::vector<Tileset>* pTilesets)
+void LevelParser::parseTileSetProperties(TiXmlElement* pPropertiesRoot, int firstGridID)
 {
-	std::shared_ptr<TileLayer> pTileLayer = std::make_shared<TileLayer>(m_tileSize, *pTilesets);
+	for (TiXmlElement* property = pPropertiesRoot->FirstChildElement(); property != NULL; property = property->NextSiblingElement())
+	{
+		if (std::string(property->Attribute("name")).find("TileID") != std::string::npos)
+		{
+			parseTileIDs(property->Attribute("name"), property->Attribute("value"), firstGridID);
+		}
+	}
+}
+
+void LevelParser::parseTileLayer(TiXmlElement* pTileElement)
+{
+	std::shared_ptr<TileLayer> pTileLayer = std::make_shared<TileLayer>(m_tileSize, *m_pLevel->getTilesets());
 
 	std::vector<std::vector<int>> data;
 	std::string decodedIDs;
@@ -131,29 +144,14 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement, std::vector<std::sh
 			data[rows][cols] = gids[rows * m_width + cols];
 		}
 	}
+
+	setMapTileTypes(data);
 	pTileLayer->setTileIDs(data);
 
-
-	pLayers->push_back(pTileLayer);
+	m_pLevel->getLayers()->push_back(pTileLayer);
 }
 
-void LevelParser::parseTextures(TiXmlElement* pTextureRoot)
-{
-	for (TiXmlElement* e = pTextureRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
-	{
-		if (e->Value() == static_cast<std::string>("property"))
-		{
-			std::string filePath = static_cast<std::string>("./src/assets/") + e->Attribute("value");
-			if (!TheTextureManager::Instance()->load(filePath, e->Attribute("name"), TheGame::Instance()->getRenderer()))
-			{
-				std::cout << "failed to load textures";
-			}
-		}
-	}
-}
-
-
-void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<std::shared_ptr<Layer>>* pLayers)
+void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement)
 {
 	// create an object layer
 	std::shared_ptr<ObjectLayer> pObjectLayer = std::make_shared<ObjectLayer>();
@@ -209,10 +207,57 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<std
 			pObjectLayer->getGameObjects()->push_back(pGameObject);
 		}
 	}
-	pLayers->push_back(pObjectLayer);
+	m_pLevel->getLayers()->push_back(pObjectLayer);
 }
 
-void LevelParser::parsePathsLayer(TiXmlElement* pPathElement, std::vector<std::shared_ptr<Vector2D>>& pEnemyPath)
+void LevelParser::setMapTileTypes(std::vector<std::vector<int>> data)
+{
+	if (data.empty())
+	{
+		return;
+	}
+
+	if (data[0].empty())
+	{
+		return;
+	}
+
+	std::vector<std::vector<TileType>>* pTileTypeMap = &(m_pLevel->getTileTypeMap());
+
+	std::vector<TileType> layerRow(m_width);
+	for (int j = 0; j < m_height; j++)
+	{
+		pTileTypeMap->push_back(layerRow);
+	}
+
+	for (std::vector<std::vector<int>>::size_type i = 0; i < data.size(); i++)
+	{
+		for (std::vector<int>::size_type j = 0; j < data[i].size(); j++)
+		{
+			for (auto& it : m_pLevel->getTileTypeIDs())
+			{
+				const std::string& tileType = it.first;
+				const std::set<int>& tileIDs = it.second;
+				if (tileIDs.find(data[i][j]) != tileIDs.end())
+				{
+					(*pTileTypeMap)[i][j] = getTileTypeByString(tileType);
+				}
+			}
+		}
+	}
+}
+
+void LevelParser::parseTileIDs(std::string tileTypeName, std::string strTileIDs, int firstGridID)
+{
+	std::stringstream ss(strTileIDs);
+	std::string strTileID;
+
+	while (std::getline(ss, strTileID, ',')) {
+		m_pLevel->getTileTypeIDs()[tileTypeName].insert(std::stoi(strTileID) + firstGridID);
+	}
+}
+
+void LevelParser::parsePathsLayer(TiXmlElement* pPathElement)
 {
 	double x, y;
 	std::string points;
@@ -234,7 +279,7 @@ void LevelParser::parsePathsLayer(TiXmlElement* pPathElement, std::vector<std::s
 		}
 	}
 
-	pEnemyPath = std::move(parsePolylinePoints(points, static_cast<float>(x), static_cast<float>(y)));
+	m_pLevel->getEnemyPath() = std::move(parsePolylinePoints(points, static_cast<float>(x), static_cast<float>(y)));
 }
 
 std::vector<std::shared_ptr<Vector2D>> LevelParser::parsePolylinePoints(std::string & strPoints, float objectX, float objectY)

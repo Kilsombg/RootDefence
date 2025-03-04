@@ -1,5 +1,5 @@
-#ifndef __TowerObject__
-#define __TowerObject__
+#ifndef __Tower__
+#define __Tower__
 
 #include "SDLGameObject.h"
 #include "../UtilsHeaders/BaseCreator.h"
@@ -7,7 +7,7 @@
 class Tower : public SDLGameObject
 {
 public:
-	enum TowerType { fede };
+	enum TowerType { towerTypes };
 
 	Tower();
 	float getRadius();
@@ -31,4 +31,4 @@ class TowerCreator : public BaseCreator
 	std::unique_ptr<GameObject> createGameObject() const;
 };
 
-#endif // !__TowerObject__
+#endif // !__Tower__

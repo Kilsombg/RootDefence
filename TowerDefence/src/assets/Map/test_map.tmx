@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="50">
  <tileset firstgid="1" name="blocks_1" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198" columns="18" objectalignment="right">
+  <properties>
+   <property name="pathTileID" value="176"/>
+   <property name="towerTileID" value="174"/>
+  </properties>
   <image source="blocks1.png" trans="000000" width="640" height="400"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="20" height="15">

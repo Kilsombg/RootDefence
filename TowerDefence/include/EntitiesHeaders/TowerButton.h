@@ -4,6 +4,8 @@
 #include "Button.h"
 #include "../UtilsHeaders/BaseCreator.h"
 
+#include "../MapHeaders/Level.h"
+
 #include<string>
 #include<memory>
 #include<functional>
@@ -23,6 +25,8 @@ public:
 	void setCallback(TowerButtonCallback callback);
 	std::string getTowerName();
 
+	void setLevel(std::shared_ptr<Level> level);
+
 private:
 	void resetParams();
 	void handleInterruptEvent();
@@ -32,7 +36,9 @@ private:
 	std::string m_towerName;
 	bool m_selected;
 	bool m_pressed;
+	bool m_isMouseOnFreeTowerTile;
 	TowerButtonCallback m_callback;
+	std::shared_ptr<Level> pLevel;
 };
 
 class TowerButtonCreator : public BaseCreator

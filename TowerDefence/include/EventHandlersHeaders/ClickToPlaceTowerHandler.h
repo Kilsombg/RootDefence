@@ -8,6 +8,8 @@
 #include "../EntitiesHeaders/Tower.h"
 #include "../EntitiesHeaders/TowerButton.h"
 
+#include "../MapHeaders/Level.h"
+
 #include "../UtilsHeaders/Vector2D.h"
 
 #include<vector>
@@ -24,6 +26,7 @@ public:
 	void clear();
 
 	std::unique_ptr<Tower>& getShadowObject();
+	void setLevel(std::shared_ptr<Level> level);
 
 private:
 	void handleIdleState(Button* sourceButton);
@@ -46,6 +49,8 @@ private:
 	std::unique_ptr<Tower> m_shadowObject;
 	ColorsConsts::Color m_shadowObjectRadiusColor;
 	bool m_canPlace;
+	bool m_isMouseOnFreeTowerTile;
+	std::shared_ptr<Level> pLevel;
 };
 
 #endif // !__ClickToPlaceListener__

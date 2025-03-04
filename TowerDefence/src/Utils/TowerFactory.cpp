@@ -49,7 +49,7 @@ std::unique_ptr<Tower> TowerFactory::createShadowTower(std::string towerTypeID)
 			towerObject.reset();  // remove object to prevent memory leak
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 void TowerFactory::setGameObjectData(GameObjectData* gameObjectdata)

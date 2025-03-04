@@ -206,6 +206,7 @@
     <ClInclude Include="include\MapHeaders\ObjectLayer.h" />
     <ClInclude Include="include\MapHeaders\TileLayer.h" />
     <ClInclude Include="include\MapHeaders\Tileset.h" />
+    <ClInclude Include="include\MapHeaders\TileType.h" />
     <ClInclude Include="include\UtilsHeaders\base64.h" />
     <ClInclude Include="include\UtilsHeaders\GameObjectData.h" />
     <ClInclude Include="include\UtilsHeaders\GameStateMachine.h" />

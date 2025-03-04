@@ -2,12 +2,16 @@
 #define __Level__
 
 #include "Tileset.h"
+#include "TileType.h"
 #include "Layer.h"
+
 
 #include "../UtilsHeaders/Vector2D.h"
 
 #include<vector>
+#include<set>
 #include<memory>
+#include<unordered_map>
 
 class Level
 {
@@ -19,21 +23,40 @@ public:
 
 	std::vector<Tileset>* getTilesets();
 	std::vector<std::shared_ptr<Layer>>* getLayers();
+	// gets indexes for each tiletype on the tilemap
+	std::unordered_map<std::string, std::set<int>>& getTileTypeIDs();
+	/** get a tiletype of the map at a specific position (Y, X)
+	* 
+	* @param x,y represents the coordinates of the position
+	*/
+	TileType getTileTypeByPosition(float x, float y) const;
+	// gets TileMap's tiles by TileType
+	std::vector<std::vector<TileType>>& getTileTypeMap();
+	// gets tile size of the tilemap
+	int getTileSize();
+	// gets the spawnpoint of the enemies
 	Vector2D& getSpawnPoint();
-	std::vector<std::shared_ptr<Vector2D>>& getEnemyPath();
-
+	// sets the spawnpoint of the enemies
 	void setSpawnPoint(const Vector2D spawnPoint);
+	// gets the path that enemies follow
+	std::vector<std::shared_ptr<Vector2D>>& getEnemyPath();
 
 private:
 	Level();
 
 	std::vector<Tileset> m_tilesets;
 	std::vector<std::shared_ptr<Layer>> m_layers;
+	// contains indexes for each tiletype on the tilemap
+	std::unordered_map<std::string, std::set<int>> m_tileTypeIDs;
+	// represents TileMap's tiles by TileType
+	std::vector<std::vector<TileType>> m_tileTypeMap;
+	int m_tileSize;
+	// spawnpoint of the enemies
 	Vector2D m_spawnPoint;
+	// path that enemies follow
 	std::vector<std::shared_ptr<Vector2D>> m_enemyPath;
 
 	friend class LevelParser;
 };
 
 #endif // !__Level__
-

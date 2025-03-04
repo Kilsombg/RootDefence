@@ -4,7 +4,8 @@
       "width": 128,
       "height": 55,
       "textureID": "helicopter",
-      "numFrames": 4
+      "numFrames": 4,
+      "radius": 32.0
     },
     "tower2": {
       "width": 128,

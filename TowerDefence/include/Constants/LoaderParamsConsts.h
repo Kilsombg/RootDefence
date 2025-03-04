@@ -33,6 +33,7 @@ namespace LoaderParamsConsts {
 
 #pragma region towers params
 	constexpr char towerName[] = "towerName";
+	constexpr char radius[] = "radius";
 #pragma endregion
 
 }

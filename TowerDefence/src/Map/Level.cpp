@@ -34,6 +34,29 @@ std::vector<std::shared_ptr<Layer>>* Level::getLayers()
 	return &m_layers;
 }
 
+std::unordered_map<std::string, std::set<int>>& Level::getTileTypeIDs()
+{
+	return m_tileTypeIDs;
+}
+
+TileType Level::getTileTypeByPosition(float x, float y) const
+{
+	int r, c;
+	r = y / m_tileSize;
+	c = x / m_tileSize;
+	return m_tileTypeMap[r][c];
+}
+
+std::vector<std::vector<TileType>>& Level::getTileTypeMap()
+{
+	return m_tileTypeMap;
+}
+
+int Level::getTileSize()
+{
+	return m_tileSize;
+}
+
 Vector2D& Level::getSpawnPoint()
 {
 	return m_spawnPoint;

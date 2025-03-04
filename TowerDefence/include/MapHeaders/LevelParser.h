@@ -6,8 +6,10 @@
 #include "../UtilsHeaders/tinyxml.h"
 #include "../UtilsHeaders/Vector2D.h"
 
+#include<string>
 #include<vector>
 #include<memory>
+#include<set>
 
 class LevelParser
 {
@@ -15,15 +17,25 @@ public:
 	std::shared_ptr<Level> parseLevel(const char* levelFile);
 
 private:
-	void parseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>* pTilesets);
-	void parseTileLayer(TiXmlElement* pTileElement, std::vector<std::shared_ptr<Layer>>* pLayers, const std::vector<Tileset>* pTilesets);
-	void parseTextures(TiXmlElement* pTextureRoot);
-	void parseObjectLayer(TiXmlElement* pObjectElement, std::vector<std::shared_ptr<Layer>>* pLayers);
+	void parseTilesets(TiXmlElement* pTilesetRoot);
+	void parseTileSetProperties(TiXmlElement* pPropertiesRoot, int firstGridID);
+	void parseTileLayer(TiXmlElement* pTileElement);
+	void parseObjectLayer(TiXmlElement* pObjectElement);
+
+	void setMapTileTypes(std::vector<std::vector<int>> data);
 
 	/**
-	* Parse object layer that cointains polylines intented for objects' paths.
+	*  Parse a string of tileID values into set of integers.
+	* 
+	* @param strTileIDs contains a string of tileID values, seperated by comma delimiter.
+	* @return a set of these integers.
 	*/
-	void parsePathsLayer(TiXmlElement* pPathElement, std::vector<std::shared_ptr<Vector2D>>& pEnemyPath);
+	void parseTileIDs(std::string tileTypeName, std::string strTileIDs, int firstGridID);
+
+	/**
+	* Parse object layer that contains polylines intented for objects' paths.
+	*/
+	void parsePathsLayer(TiXmlElement* pPathElement);
 	
 	/**	
 	*  Parse a string of points values into vector of points.
@@ -38,6 +50,7 @@ private:
 	int m_tileSize;
 	int m_width;
 	int m_height;
+	std::shared_ptr<Level> m_pLevel;
 };
 
 #endif // !__LevelParser__
