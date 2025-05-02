@@ -56,7 +56,7 @@ private:
 
 	std::shared_ptr<Level> pLevel;
 
-	std::vector<std::unique_ptr<Enemy>> m_enemyObjects;
+	std::vector<std::shared_ptr<Enemy>> m_enemyObjects;
 
 	std::shared_ptr<WaveManager> m_waveManager;
 	Wave* m_currentWave;

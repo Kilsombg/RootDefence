@@ -1,6 +1,6 @@
 #include "../../include/UtilsHeaders/Vector2D.h"
 
-Vector2D::Vector2D(float x, float y) : m_x(x), m_y(y) 
+Vector2D::Vector2D(float x, float y) : m_x(x), m_y(y)
 {
 }
 
@@ -28,6 +28,16 @@ float Vector2D::length()
 {
 	return sqrt(m_x * m_x + m_y * m_y);
 };
+
+float Vector2D::distance(const Vector2D& v1, const Vector2D& v2)
+{
+	return sqrt(pow(v1.m_x - v2.m_x, 2) + pow(v1.m_y - v2.m_y, 2));
+}
+
+float Vector2D::distanceTo(const Vector2D& v2)
+{
+	return sqrt(pow(m_x - v2.m_x, 2) + pow(m_y - v2.m_y, 2));
+}
 
 Vector2D Vector2D::operator+(const Vector2D& v2) const
 {

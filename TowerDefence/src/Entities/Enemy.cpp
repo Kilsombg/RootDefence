@@ -6,7 +6,7 @@
 
 #include<iostream>
 
-Enemy::Enemy()
+Enemy::Enemy() : SDLGameObject()
 {
 }
 
@@ -27,12 +27,30 @@ void Enemy::load(const std::shared_ptr<LoaderParams> pParams)
 	m_health = m_maxHealth;
 	m_defence = pParams->getAttribute<float>(LoaderParamsConsts::defence) ? pParams->getAttribute<float>(LoaderParamsConsts::defence) : 0;
 	m_movePathTileID = 0;
+	m_distFromWaypoint = 0;
+	m_distanceToWaypoint = 0;
+	m_distance = 0;
 	SDLGameObject::load(pParams);
+}
+
+float Enemy::getHealth()
+{
+	return m_health;
 }
 
 void Enemy::setPath(const std::vector<std::shared_ptr<Vector2D>>& pathPoints)
 {
 	m_path = pathPoints;
+}
+
+float Enemy::getDistance()
+{
+	return m_distance;
+}
+
+void Enemy::dealDamage(float damage)
+{
+	m_health -= damage;
 }
 
 bool Enemy::isAlive()
@@ -50,6 +68,7 @@ void Enemy::update()
 	m_currentFrame = int(((SDL_GetTicks() / 100) % m_numFrames));
 
 	move();
+	m_distance = m_distanceToWaypoint + m_distFromWaypoint;
 
 	SDLGameObject::update();
 }
@@ -64,11 +83,15 @@ void Enemy::move()
 		if (m_velocity.length() < m_moveSpeed)
 		{
 			m_movePathTileID++;
+			Vector2D distV = m_movePathTileID < m_path.size() ? *(m_path[m_movePathTileID]) - *(pathPoint) : 0;
+			m_distanceToWaypoint += distV.length();
+			m_distFromWaypoint = 0;
 			return;
 		}
 
 		m_velocity.normalize();
 		m_velocity *= m_moveSpeed;
+		m_distFromWaypoint += m_moveSpeed;
 	}
 	else
 	{

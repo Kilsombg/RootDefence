@@ -18,8 +18,8 @@ public:
 
 	 void setPosition(const Vector2D newPosition);
 	Vector2D& getPosition();
-	int getWidth();
-	int getHeight();
+	int getWidth() const;
+	int getHeight() const;
 
 protected:
 	SDLGameObject();

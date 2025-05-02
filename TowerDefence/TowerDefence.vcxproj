@@ -145,6 +145,7 @@
     <ClCompile Include="src\Entities\GameObject.cpp" />
     <ClCompile Include="src\Entities\MenuButton.cpp" />
     <ClCompile Include="src\Entities\Player.cpp" />
+    <ClCompile Include="src\Entities\Projectile.cpp" />
     <ClCompile Include="src\Entities\SDLGameObject.cpp" />
     <ClCompile Include="src\Entities\TowerButton.cpp" />
     <ClCompile Include="src\Entities\Tower.cpp" />
@@ -166,6 +167,7 @@
     <ClCompile Include="src\Utils\GameObjectFactory.cpp" />
     <ClCompile Include="src\Utils\InputHandler.cpp" />
     <ClCompile Include="src\Utils\LoaderParams.cpp" />
+    <ClCompile Include="src\Utils\ProjectileManager.cpp" />
     <ClCompile Include="src\Utils\StateParser.cpp" />
     <ClCompile Include="src\Utils\TextureManager.cpp" />
     <ClCompile Include="src\Utils\Timer.cpp" />
@@ -192,6 +194,7 @@
     <ClInclude Include="include\EntitiesHeaders\GameObject.h" />
     <ClInclude Include="include\EntitiesHeaders\MenuButton.h" />
     <ClInclude Include="include\EntitiesHeaders\Player.h" />
+    <ClInclude Include="include\EntitiesHeaders\Projectile.h" />
     <ClInclude Include="include\EntitiesHeaders\SDLGameObject.h" />
     <ClInclude Include="include\EntitiesHeaders\TowerButton.h" />
     <ClInclude Include="include\EntitiesHeaders\Tower.h" />
@@ -219,6 +222,7 @@
     <ClInclude Include="include\UtilsHeaders\InputHandler.h" />
     <ClInclude Include="include\UtilsHeaders\LoaderParams.h" />
     <ClInclude Include="include\UtilsHeaders\NLJsonParser.h" />
+    <ClInclude Include="include\UtilsHeaders\ProjectileManager.h" />
     <ClInclude Include="include\UtilsHeaders\StateParser.h" />
     <ClInclude Include="include\UtilsHeaders\TextureManager.h" />
     <ClInclude Include="include\UtilsHeaders\Timer.h" />

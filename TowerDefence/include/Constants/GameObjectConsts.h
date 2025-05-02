@@ -9,6 +9,7 @@ namespace GameObjectConsts {
 	constexpr char carrot[] = "carrot";
 	constexpr char cabbage[] = "cabbage";
 	constexpr char tower[] = "tower";
+	constexpr char projectile[] = "projectile";
 	constexpr char menuButton[] = "menuButton";
 	constexpr char towerButton[] = "towerButton";
 	constexpr char animatedGraphic[] = "animatedGraphic";

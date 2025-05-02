@@ -77,12 +77,12 @@ Vector2D& SDLGameObject::getPosition()
 	return m_position;
 }
 
-int SDLGameObject::getWidth()
+int SDLGameObject::getWidth() const
 {
 	return m_width;
 }
 
-int SDLGameObject::getHeight()
+int SDLGameObject::getHeight() const
 {
 	return m_height;
 }

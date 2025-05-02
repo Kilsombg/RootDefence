@@ -17,6 +17,7 @@
 #include "../../include/UtilsHeaders/InputHandler.h"
 #include "../../include/UtilsHeaders/StateParser.h"
 #include "../../include/UtilsHeaders/GameObjectData.h"
+#include "../../include/UtilsHeaders/ProjectileManager.h"
 
 #include "../../include/WaveHeaders/WaveParser.h"
 
@@ -50,20 +51,25 @@ void PlayState::update()
 
 void PlayState::render()
 {
-
+	// render map
 	pLevel->render();
 
+	// render towers and buttons
 	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->draw();
 	}
 
+	// render projectiles
+	TheProjectileManager::Instance()->render();
 
-	for (std::vector<std::unique_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects.size(); i++)
+	// render enemies
+	for (std::vector<std::shared_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects.size(); i++)
 	{
 		m_enemyObjects[i]->draw();
 	}
 
+	// render shadow tower
 	if (m_clickToPlaceTowerHandler->getShadowObject())
 	{
 		m_clickToPlaceTowerHandler->render();
@@ -129,6 +135,7 @@ bool PlayState::onExit()
 	}
 
 	m_gameObjects.clear();
+	TheProjectileManager::Instance()->clean();
 
 	for (int i = 0; i < m_textureIDList.size(); i++)
 	{
@@ -178,7 +185,7 @@ void PlayState::handleEvents()
 void PlayState::updateObjects()
 {
 	// udpate enemies
-	for (std::vector<std::unique_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects.size(); i++)
+	for (std::vector<std::shared_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects.size(); i++)
 	{
 		if (!m_enemyObjects[i]->isAlive())
 		{
@@ -194,7 +201,16 @@ void PlayState::updateObjects()
 	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->update();
+		
+		if (Tower* tower = dynamic_cast<Tower*>(m_gameObjects[i].get()))
+		{
+			tower->targetEnemy(m_enemyObjects);
+			tower = nullptr;
+		}
 	}
+
+	// update projectiles
+	TheProjectileManager::Instance()->update();
 
 	// update shadow objects
 	if (m_clickToPlaceTowerHandler->getShadowObject())

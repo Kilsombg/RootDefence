@@ -5,6 +5,7 @@
 #include "../include/EntitiesHeaders/MenuButton.h"
 #include "../include/EntitiesHeaders/TowerButton.h"
 #include "../include/EntitiesHeaders/Tower.h"
+#include "../include/EntitiesHeaders/Projectile.h"
 #include "../include/EntitiesHeaders/AnimatedGraphic.h"
 #include "../include/EntitiesHeaders/Carrot.h"
 #include "../include/EntitiesHeaders/Cabbage.h"
@@ -82,6 +83,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::carrot, std::make_shared<CarrotCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::cabbage ,std::make_shared<CabbageCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::tower , std::make_shared<TowerCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::projectile, std::make_shared<ProjectileCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::menuButton, std::make_shared<MenuButtonCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::towerButton, std::make_shared<TowerButtonCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::animatedGraphic, std::make_shared<AnimatedGraphicCreator>());

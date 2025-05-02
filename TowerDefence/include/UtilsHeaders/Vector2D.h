@@ -12,6 +12,10 @@ public:
 	void setY(float y);
 
 	float length();
+	
+	static float distance(const Vector2D& v1, const Vector2D& v2);
+	
+	float distanceTo(const Vector2D& v2);
 
 	Vector2D operator+(const Vector2D& v2) const;
 

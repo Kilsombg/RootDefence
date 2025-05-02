@@ -5,7 +5,10 @@
       "height": 55,
       "textureID": "helicopter",
       "numFrames": 4,
-      "radius": 32.0
+      "damage": 20.0,
+      "radius": 32.0,
+      "attackSpeed": 2.0,
+      "projectileSpeed": 1.0
     },
     "tower2": {
       "width": 128,
