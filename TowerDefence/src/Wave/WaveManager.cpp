@@ -109,9 +109,9 @@ bool WaveManager::isFinalWave()
 	return m_currentWaveID >= m_maxWave;
 }
 
-void WaveManager::setGameObjectData(GameObjectData* gameObjectdata)
+void WaveManager::setGameObjectData(GameObjectData& gameObjectdata)
 {
-	m_gameObjectData = std::make_unique<GameObjectData>(*gameObjectdata);
+	m_gameObjectData = std::make_unique<GameObjectData>(gameObjectdata);
 }
 
 std::vector<Wave*>& WaveManager::getWaves()

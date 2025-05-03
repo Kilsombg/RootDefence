@@ -1,6 +1,8 @@
 #ifndef __ProjectileManager__
 #define __ProjectileManager__
 
+#include "GameObjectData.h"
+
 #include "../EntitiesHeaders/Projectile.h"
 #include "../EntitiesHeaders/Tower.h"
 
@@ -10,7 +12,7 @@
 class ProjectileManager
 {
 public:
-	static ProjectileManager* Instance();
+	static std::shared_ptr<ProjectileManager> Instance();
 	void update();
 	void render();
 	void clean();
@@ -18,10 +20,13 @@ public:
 	void createProjectile(Tower& tower);
 	void addProjectile(std::unique_ptr<Projectile> projectileToAdd);
 
+	void setGameObjectData(GameObjectData& gameObjectdata);
+
 private:
 	ProjectileManager();
-	static ProjectileManager* s_pInstance;
+	static std::shared_ptr<ProjectileManager> s_pInstance;
 	std::vector<std::unique_ptr<Projectile>> m_activeProjectiles;
+	std::unique_ptr<GameObjectData> m_projectilesData;
 };
 
 typedef ProjectileManager TheProjectileManager;

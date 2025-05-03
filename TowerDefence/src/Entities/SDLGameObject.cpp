@@ -34,7 +34,7 @@ void SDLGameObject::load(const std::shared_ptr<LoaderParams> pParams)
 	m_textureID = pParams->getAttribute<std::string>(LoaderParamsConsts::textureID);
 
 	m_currentRow = 1;
-	m_currentFrame = 1;
+	m_currentFrame = 0;
 
 	m_numFrames = pParams->getAttribute<int>(LoaderParamsConsts::numFrames);
 }
@@ -55,7 +55,7 @@ void SDLGameObject::draw()
 			m_width, m_height, m_currentRow, m_currentFrame,
 			TheGame::Instance()->getRenderer());
 	}
-}
+	}
 
 void SDLGameObject::update()
 {

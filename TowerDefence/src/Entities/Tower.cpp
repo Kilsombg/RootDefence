@@ -1,15 +1,21 @@
 #include "../../include/EntitiesHeaders/Tower.h"
 
+#include "../../include/Game.h"
+
 #include "../../include/Constants/LoaderParamsConsts.h"
 #include "../../include/Constants/SettingsConsts.h"
+#include "../../include/Constants/ColorsConsts.h"
+
 
 #include "../../include/UtilsHeaders/Vector2D.h"
 #include "../../include/UtilsHeaders/GameObjectFactory.h"
 #include "../../include/UtilsHeaders/ProjectileManager.h"
+#include "../../include/UtilsHeaders/TextureManager.h"
+
 
 #include<iostream>
 
-Tower::Tower() : SDLGameObject(), m_attackSpeed(0), m_damage(0), m_radius(0), m_baseCost(0), m_attackTimer(0), m_projectileSpeed(0)
+Tower::Tower() : SDLGameObject(), m_projectileID(""), m_attackSpeed(0), m_damage(0), m_radius(0), m_baseCost(0), m_attackTimer(0)
 {
 }
 
@@ -28,9 +34,9 @@ float Tower::getDamage() const
 	return m_damage;
 }
 
-float Tower::getProjectileSpeed() const
+std::string Tower::getProjectileID()
 {
-	return m_projectileSpeed;
+	return m_projectileID;
 }
 
 std::weak_ptr<Enemy> Tower::getTargetEnemy() const
@@ -45,21 +51,35 @@ void Tower::update()
 	aimEnemy();
 }
 
+void Tower::draw()
+{
+	TheTextureManager::Instance()->drawFilledCircle(
+		m_position.getX(), m_position.getY(), static_cast<int>(m_radius),
+		{ ColorsConsts::gray.r, ColorsConsts::gray.g, ColorsConsts::gray.b, ColorsConsts::gray.a },
+		TheGame::Instance()->getRenderer());
+
+	SDLGameObject::draw();
+}
+
 void Tower::load(const std::shared_ptr<LoaderParams> pParams)
 {
 	SDLGameObject::load(pParams);
 
+	m_projectileID = pParams->getAttribute<std::string>(LoaderParamsConsts::projectileID);
 	m_damage = pParams->getAttribute<float>(LoaderParamsConsts::damage);
 	m_radius = pParams->getAttribute<float>(LoaderParamsConsts::radius);
 	m_attackSpeed = pParams->getAttribute<float>(LoaderParamsConsts::attackSpeed);
 	float attackInterval = 1 / m_attackSpeed;
 	m_attackTimer = Timer(attackInterval, attackInterval);
-	m_projectileSpeed = pParams->getAttribute<float>(LoaderParamsConsts::projectileSpeed);
 }
 
 void Tower::targetEnemy(std::vector<std::shared_ptr<Enemy>> enemies)
 {
 	if (enemies.empty()) return;
+
+	// if tower has target in range then skip searching a target, otherwise clear it
+	if (inRadius(m_targetEnemy.lock())) { return; }
+	else { m_targetEnemy.reset(); }
 
 	std::shared_ptr<Enemy> tempEnemy;
 	int index = 0;
@@ -83,8 +103,10 @@ void Tower::targetEnemy(std::vector<std::shared_ptr<Enemy>> enemies)
 		}
 	}
 
+	// if there is none enemies in radius then return
 	if (tempEnemy.get() == nullptr) return;
 
+	// put target enemy to the tower
 	if (m_targetEnemy.lock() != tempEnemy)
 	{
 		m_targetEnemy = tempEnemy;
@@ -93,6 +115,8 @@ void Tower::targetEnemy(std::vector<std::shared_ptr<Enemy>> enemies)
 
 bool Tower::inRadius(std::shared_ptr<Enemy> enemy)
 {
+	if (enemy.get() == nullptr) return false;
+
 	Vector2D topLeft = Vector2D(enemy->getPosition());
 	Vector2D topRight = Vector2D(enemy->getPosition().getX() + enemy->getWidth(), enemy->getPosition().getY());
 	Vector2D bottomLeft = Vector2D(enemy->getPosition().getX(), enemy->getPosition().getY() + enemy->getHeight());

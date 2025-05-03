@@ -1,0 +1,11 @@
+{
+  "projectilesData": {
+    "projectile1": {
+      "width": 16,
+      "height": 16,
+      "textureID": "bullet",
+      "projectileSpeed": 3.0,
+      "numFrames": 0
+    }
+  }
+}

@@ -54,6 +54,12 @@ void PlayState::render()
 	// render map
 	pLevel->render();
 
+	// render enemies
+	for (std::vector<std::shared_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects.size(); i++)
+	{
+		m_enemyObjects[i]->draw();
+	}
+
 	// render towers and buttons
 	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
@@ -62,12 +68,6 @@ void PlayState::render()
 
 	// render projectiles
 	TheProjectileManager::Instance()->render();
-
-	// render enemies
-	for (std::vector<std::shared_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects.size(); i++)
-	{
-		m_enemyObjects[i]->draw();
-	}
 
 	// render shadow tower
 	if (m_clickToPlaceTowerHandler->getShadowObject())
@@ -117,17 +117,24 @@ void PlayState::loadData()
 	// load enemies base data
 	GameObjectData enemyObjectData;
 	enemyObjectData.parseGameOjbectsData("./src/res/enemyObjectData.json", GameObjectConsts::enemyObjectData);
-	m_waveManager->setGameObjectData(&enemyObjectData);
+	m_waveManager->setGameObjectData(enemyObjectData);
 
 	// load tower base data
 	GameObjectData towerObjectData;
 	m_towerFactory = TheTowerFactory::Instance();
 	towerObjectData.parseGameOjbectsData("./src/res/towerObjectData.json", GameObjectConsts::towerObjectData);
-	m_towerFactory->setGameObjectData(&towerObjectData);
+	m_towerFactory->setGameObjectData(towerObjectData);
+
+	// load tower projectiles data
+	GameObjectData projectilesData;
+	m_projectileManager = TheProjectileManager::Instance();
+	projectilesData.parseGameOjbectsData("./src/res/projectilesData.json", GameObjectConsts::projectilesData);
+	m_projectileManager->setGameObjectData(projectilesData);
 }
 
 bool PlayState::onExit()
 {
+	// cleaning buttons and towers
 	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->clean();
@@ -135,20 +142,24 @@ bool PlayState::onExit()
 	}
 
 	m_gameObjects.clear();
-	TheProjectileManager::Instance()->clean();
 
+	// cleaning projectiles
+	m_projectileManager->clean();
+
+	// cleaning textures
 	for (int i = 0; i < m_textureIDList.size(); i++)
 	{
 		TheTextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
 	}
 
+	// cleaning current waves
 	if (m_currentWave != nullptr)
 	{
 		delete m_currentWave;
 	}
-
 	m_waveManager->clean();
 	m_clickToPlaceTowerHandler->clear();
+
 
 	std::cout << "exiting PlayState\n";
 	return true;

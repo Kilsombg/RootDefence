@@ -52,7 +52,7 @@ std::unique_ptr<Tower> TowerFactory::createShadowTower(std::string towerTypeID)
 	return nullptr;
 }
 
-void TowerFactory::setGameObjectData(GameObjectData* gameObjectdata)
+void TowerFactory::setGameObjectData(GameObjectData& gameObjectdata)
 {
-	m_towerObjectData = std::make_unique<GameObjectData>(*gameObjectdata);
+	m_towerObjectData = std::make_unique<GameObjectData>(gameObjectdata);
 }

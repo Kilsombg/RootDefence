@@ -7,6 +7,7 @@
 #include "../UtilsHeaders/BaseCreator.h"
 #include "../UtilsHeaders/Timer.h"
 
+#include<string>
 #include<memory>
 
 class Tower : public SDLGameObject
@@ -19,10 +20,11 @@ public:
 	TowerType getTowerType();
 
 	float getDamage() const;
-	float getProjectileSpeed() const;
+	std::string getProjectileID();
 	std::weak_ptr<Enemy> getTargetEnemy() const;
 
 	virtual void update() override;
+	virtual void draw() override;
 	void load(const std::shared_ptr<LoaderParams> pParams);
 	/**
 	* look for enemy in radius to target
@@ -43,9 +45,9 @@ private:
 
 	enum priceType {};
 
+	std::string m_projectileID;
 	float m_attackSpeed;
 	Timer m_attackTimer;
-	float m_projectileSpeed;
 	float m_damage;
 	float m_radius;
 	int m_baseCost;

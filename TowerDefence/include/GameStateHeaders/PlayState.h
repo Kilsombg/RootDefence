@@ -13,6 +13,7 @@
 #include "../MapHeaders/Level.h"
 
 #include "../UtilsHeaders/TowerFactory.h"
+#include "../UtilsHeaders/ProjectileManager.h"
 #include "../UtilsHeaders/Vector2D.h"
 
 #include "../WaveHeaders/WaveManager.h"
@@ -63,6 +64,8 @@ private:
 
 	std::shared_ptr<TowerFactory> m_towerFactory;
 	ClickToPlaceTowerHandler* m_clickToPlaceTowerHandler;
+
+	std::shared_ptr<ProjectileManager> m_projectileManager;
 };
 
 #endif // !__PlayState__

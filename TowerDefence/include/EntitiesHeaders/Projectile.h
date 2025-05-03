@@ -6,6 +6,7 @@
 #include "Enemy.h"
 
 #include "../UtilsHeaders/BaseCreator.h"
+#include "../UtilsHeaders/LoaderParams.h"
 
 #include<memory>
 
@@ -17,10 +18,9 @@ public:
 
 	void update() override;
 	void draw() override;
+	void load(const std::shared_ptr<LoaderParams> pParams) override;
 
-	void setDamage(float damage);
 	float getDamage();
-	void setSpeed(float speed);
 	void setTargetEnemy(std::weak_ptr<Enemy> targetEnemy);
 	std::weak_ptr<Enemy> getTargetEnemy();
 	bool hitEnemy();

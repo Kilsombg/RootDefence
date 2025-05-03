@@ -22,7 +22,7 @@ public:
 	bool isFinalWave();
 
 	void load();
-	void setGameObjectData(GameObjectData* gameObjectdata);
+	void setGameObjectData(GameObjectData& gameObjectdata);
 
 	std::vector<Wave*>& getWaves();
 	void clean();

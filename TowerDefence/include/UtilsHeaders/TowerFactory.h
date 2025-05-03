@@ -16,7 +16,7 @@ public:
 	std::unique_ptr<GameObject> createTower(std::string towerTypeID);
 	std::unique_ptr<Tower> createShadowTower(std::string towerTypeID);
 
-	void setGameObjectData(GameObjectData* gameObjectdata);
+	void setGameObjectData(GameObjectData& gameObjectdata);
 
 private:
 	TowerFactory();

@@ -310,5 +310,6 @@
     <None Include="src\res\enemyObjectData.json" />
     <None Include="src\res\waves.json" />
     <None Include="src\res\towerObjectData.json" />
+    <None Include="src\res\projectilesData.json" />
   </ItemGroup>
 </Project>

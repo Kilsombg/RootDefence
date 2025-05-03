@@ -1,19 +1,21 @@
 #include "../../include//UtilsHeaders/ProjectileManager.h"
 
 #include "../../include/Constants/GameObjectConsts.h"
+#include "../../include/Constants/LoaderParamsConsts.h"
 
 #include "../../include/UtilsHeaders/GameObjectFactory.h"
+#include "../../include/UtilsHeaders/LoaderParams.h"
 #include "../../include/UtilsHeaders/Vector2D.h"
 
 #include<iostream>
 
-ProjectileManager* ProjectileManager::s_pInstance = nullptr;
+std::shared_ptr<ProjectileManager> ProjectileManager::s_pInstance = nullptr;
 
-ProjectileManager* ProjectileManager::Instance()
+std::shared_ptr<ProjectileManager> ProjectileManager::Instance()
 {
 	if (s_pInstance == nullptr)
 	{
-		s_pInstance = new ProjectileManager();
+		s_pInstance = std::shared_ptr<ProjectileManager>(new ProjectileManager);
 		return s_pInstance;
 	}
 	return s_pInstance;
@@ -49,8 +51,9 @@ void ProjectileManager::render()
 
 void ProjectileManager::clean()
 {
-	delete s_pInstance;
-	s_pInstance = nullptr;
+	m_activeProjectiles.clear();
+	m_projectilesData = nullptr;
+
 }
 
 void ProjectileManager::createProjectile(Tower& tower)
@@ -59,12 +62,13 @@ void ProjectileManager::createProjectile(Tower& tower)
 	{
 		if (std::unique_ptr<Projectile> projectile = std::unique_ptr<Projectile>(dynamic_cast<Projectile*>(projectileObject.release())))
 		{
-			projectile->setDamage(tower.getDamage());
-			projectile->setTargetEnemy(tower.getTargetEnemy());
-			projectile->setSpeed(tower.getProjectileSpeed());
-			Vector2D topCenterPos = Vector2D(tower.getPosition().getX() + tower.getWidth() / 2, tower.getPosition().getY());
-			projectile->setPosition(topCenterPos);
+			std::shared_ptr<LoaderParams> params = m_projectilesData->getData(tower.getProjectileID());
+			params->setAttribute(LoaderParamsConsts::damage, tower.getDamage());
+			params->setAttribute(LoaderParamsConsts::x, tower.getPosition().getX() + tower.getWidth() / 2);
+			params->setAttribute(LoaderParamsConsts::y, tower.getPosition().getY());
 			
+			projectile->load(params);
+			projectile->setTargetEnemy(tower.getTargetEnemy());
 			m_activeProjectiles.push_back(std::move(projectile));
 		}
 		else
@@ -77,4 +81,9 @@ void ProjectileManager::createProjectile(Tower& tower)
 void ProjectileManager::addProjectile(std::unique_ptr<Projectile> projectileToAdd)
 {
 	m_activeProjectiles.push_back(std::move(projectileToAdd));
+}
+
+void ProjectileManager::setGameObjectData(GameObjectData& gameObjectdata)
+{
+	m_projectilesData = std::make_unique<GameObjectData>(gameObjectdata);
 }

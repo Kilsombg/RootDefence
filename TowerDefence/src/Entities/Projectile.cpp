@@ -1,6 +1,8 @@
 #include "../../include/EntitiesHeaders/Projectile.h"
 
-Projectile::Projectile() : SDLGameObject(), m_damage(0), m_speed(0), m_hitEnemy(false)
+#include "../../include/Constants/LoaderParamsConsts.h"
+
+Projectile::Projectile() : SDLGameObject(), m_damage(0), m_speed(0), m_hitEnemy(false), m_targetCenterX(0), m_targetCenterY(0)
 {
 }
 
@@ -24,19 +26,17 @@ void Projectile::draw()
 	SDLGameObject::draw();
 }
 
-void Projectile::setDamage(float damage)
+void Projectile::load(const std::shared_ptr<LoaderParams> pParams)
 {
-	m_damage = damage;
+	SDLGameObject::load(pParams);
+
+	m_damage = pParams->getAttribute<float>(LoaderParamsConsts::damage);
+	m_speed = pParams->getAttribute<float>(LoaderParamsConsts::projectileSpeed);
 }
 
 float Projectile::getDamage()
 {
 	return m_damage;
-}
-
-void Projectile::setSpeed(float speed)
-{
-	m_speed = speed;
 }
 
 void Projectile::setTargetEnemy(std::weak_ptr<Enemy> targetEnemy)
