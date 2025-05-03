@@ -25,7 +25,7 @@ void TowerButton::update()
 		&& pMousePos->getY() < (m_position.getY() + m_height)
 		&& pMousePos->getY() > m_position.getY();
 
-	if (pLevel != nullptr)
+	if (pLevel != nullptr && m_selected)
 	{
 		m_isMouseOnFreeTowerTile = TileType::TOWER == pLevel->getTileTypeByPosition(pMousePos->getX(), pMousePos->getY());
 	}

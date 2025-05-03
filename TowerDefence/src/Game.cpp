@@ -39,8 +39,15 @@ Game* Game::Instance()
 	return s_pInstance;
 }
 
-bool Game::init(const char* title, int xpos, int ypos, int width, int height, int flags)
+bool Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
+	int flags = 0;
+
+	if (fullscreen)
+	{
+		flags = SDL_WINDOW_FULLSCREEN_DESKTOP;
+		//flags = SDL_WINDOW_RESIZABLE;
+	}
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0)
 	{
@@ -56,6 +63,10 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 			{
 				std::cout << "renderer creation success\n";
 				SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
+
+				// stretching window
+				SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
+				SDL_RenderSetLogicalSize(m_pRenderer, 640, 480);
 			}
 			else
 			{
@@ -109,6 +120,17 @@ void Game::render()
 void Game::update()
 {
 	m_pGameStateMachine->update();
+
+	/*
+	int width, height;
+	SDL_GetRendererOutputSize(m_pRenderer, &width, &height);
+
+	if (width != m_gameWidth || height != m_gameHeight)
+	{
+		m_gameWidth = width;
+		m_gameHeight = height;
+	}
+	*/
 }
 
 void Game::clean()
