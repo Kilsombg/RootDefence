@@ -52,6 +52,9 @@ private:
 	float m_distFromWaypoint; // current distance from passed path tile to enemy
 	float m_distanceToWaypoint; // distance from the start to currently passed path tile
 	float m_distance; // total distance moved
+	bool m_hitByTower;
+	int m_healthBarWidth;
+	int m_healthBarHeight;
 };
 
 #endif // !__Enemy__

@@ -112,6 +112,33 @@ void TextureManager::drawFilledCircle(int centerX, int centerY, int radius, SDL_
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
 }
 
+
+void TextureManager::drawProgressBar(int x, int y, int width, int height, SDL_Color bgColor, SDL_Color fillColor, float progress, SDL_Renderer* renderer)
+{
+	SDL_Color oldColor;
+	SDL_GetRenderDrawColor(renderer, &oldColor.r, &oldColor.g, &oldColor.b, &oldColor.a);
+
+	SDL_SetRenderDrawColor(renderer, bgColor.r, bgColor.g, bgColor.b, bgColor.a);
+	drawRectangle(x, y, width, height, renderer);
+
+	SDL_SetRenderDrawColor(renderer, fillColor.r, fillColor.g, fillColor.b, fillColor.a);
+	drawRectangle(x, y, progress*width, height, renderer);
+
+	SDL_SetRenderDrawColor(renderer, oldColor.r, oldColor.g, oldColor.b, oldColor.a);
+}
+
+
+void TextureManager::drawRectangle(int x, int y, int width, int height, SDL_Renderer* renderer)
+{
+	SDL_Rect rect;
+	rect.x = x;
+	rect.y = y;
+	rect.w = width;
+	rect.h = height;
+
+	SDL_RenderFillRect(renderer, &rect);
+}
+
 void TextureManager::drawCircle(int centerX, int centerY, int radius, SDL_Renderer* renderer)
 {
 	int x = radius;
