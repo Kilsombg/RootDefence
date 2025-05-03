@@ -6,10 +6,10 @@
 
 #include<iostream>
 
-TileLayer::TileLayer(int tileSize, const std::vector<Tileset>& tilesets) : m_tileSize(tileSize), m_tilesets(tilesets), m_position(0, 0), m_velocity(0, 0)
+TileLayer::TileLayer(int numColumns, int numRows, int tileSize, const std::vector<Tileset>& tilesets) : m_tileSize(tileSize), m_tilesets(tilesets), m_position(0, 0), m_velocity(0, 0)
 {
-	m_numColumns = (TheGame::Instance()->getGameWidth() / m_tileSize);
-	m_numRows = (TheGame::Instance()->getGameHeight() / m_tileSize);
+	m_numColumns = numColumns;
+	m_numRows = numRows;
 }
 
 void TileLayer::update()

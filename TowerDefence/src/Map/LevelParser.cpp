@@ -105,7 +105,7 @@ void LevelParser::parseTileSetProperties(TiXmlElement* pPropertiesRoot, int firs
 
 void LevelParser::parseTileLayer(TiXmlElement* pTileElement)
 {
-	std::shared_ptr<TileLayer> pTileLayer = std::make_shared<TileLayer>(m_tileSize, *m_pLevel->getTilesets());
+	std::shared_ptr<TileLayer> pTileLayer = std::make_shared<TileLayer>(m_width, m_height ,m_tileSize, *m_pLevel->getTilesets());
 
 	std::vector<std::vector<int>> data;
 	std::string decodedIDs;

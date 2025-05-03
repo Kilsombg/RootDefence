@@ -66,7 +66,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 				// stretching window
 				SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
-				SDL_RenderSetLogicalSize(m_pRenderer, 640, 480);
+				SDL_RenderSetLogicalSize(m_pRenderer, width, height);
 			}
 			else
 			{
