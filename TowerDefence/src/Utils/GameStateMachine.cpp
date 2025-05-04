@@ -94,6 +94,14 @@ void GameStateMachine::changeState(std::shared_ptr<GameState> pState)
 }
 
 
+void GameStateMachine::handleEvents()
+{
+	if (!m_gameStates.empty())
+	{
+		m_gameStates.back()->handleEvents();
+	}
+}
+
 void GameStateMachine::update()
 {
 	if (!m_gameStates.empty())

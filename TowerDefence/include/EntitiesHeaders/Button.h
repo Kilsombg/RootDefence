@@ -9,6 +9,7 @@ public:
 	Button();
 
 	virtual void load(const std::shared_ptr<LoaderParams> pParams);
+	virtual void handleEvent();
 
 	std::string getCallbackID();
 

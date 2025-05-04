@@ -1,7 +1,7 @@
 #ifndef __PlayState__
 #define __PlayState__
 
-#include "GameState.h"
+#include "MenuState.h"
 
 #include "../EntitiesHeaders/GameObject.h"
 #include "../EntitiesHeaders/SDLGameObject.h"
@@ -23,7 +23,7 @@
 #include<memory>
 #include<functional>
 
-class PlayState : public GameState
+class PlayState : public MenuState
 {
 public:
 	PlayState();
@@ -41,10 +41,10 @@ public:
 	void addEnemy(std::unique_ptr<Enemy> enemy);
 	bool checkCollision(SDLGameObject* p1, SDLGameObject* p2);
 
-
+	
 private:
 	void updateObjects();
-	void handleEvents();
+	void handleEvents() override;
 
 	typedef std::function<void(Button*)> TowerButtonCallback;
 	void setTowerButtonCallbacks(const std::map<std::string, TowerButtonCallback>& towerButtonCallbacks);
@@ -54,7 +54,6 @@ private:
 	void setTowerButtonLevel();
 	
 	std::map<std::string, TowerButtonCallback> m_towerButtonCallbacks;
-
 	std::shared_ptr<Level> pLevel;
 
 	std::vector<std::shared_ptr<Enemy>> m_enemyObjects;

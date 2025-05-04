@@ -13,6 +13,13 @@ void MenuButton::load(const std::shared_ptr<LoaderParams> pParams)
 	Button::load(pParams);
 }
 
+void MenuButton::handleEvent()
+{
+	handleOutsideCLick();
+
+	handleClickOnButton();
+}
+
 void MenuButton::setCallback(void(*callback)())
 {
 	m_callback = callback;
@@ -25,10 +32,6 @@ void MenuButton::update()
 		&& pMousePos->getX() > m_position.getX()
 		&& pMousePos->getY() < (m_position.getY() + m_height)
 		&& pMousePos->getY() > m_position.getY();
-
-	handleOutsideCLick();
-
-	handleClickOnButton();
 }
 
 void MenuButton::handleOutsideCLick()

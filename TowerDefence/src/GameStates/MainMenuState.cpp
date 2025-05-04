@@ -26,6 +26,7 @@ void MainMenuState::update()
 		m_gameObjects[i]->update();
 	}
 }
+
 void MainMenuState::render()
 {
 	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
@@ -35,7 +36,7 @@ void MainMenuState::render()
 }
 
 bool MainMenuState::onEnter()
-{	
+{
 	StateParser stateParser;
 	stateParser.parseState("./src/test.xml", s_stateID, &m_gameObjects, &m_textureIDList);
 

@@ -15,6 +15,10 @@ void Button::load(const std::shared_ptr<LoaderParams> pParams)
 	m_bReleased = false;
 }
 
+void Button::handleEvent()
+{
+}
+
 std::string Button::getCallbackID()
 {
 	return m_callbackID;

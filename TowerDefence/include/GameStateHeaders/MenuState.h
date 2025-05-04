@@ -12,6 +12,8 @@ protected:
 	typedef void(*Callback)();
 	
 	virtual void setCallbacks(const std::map<std::string, Callback>& callbacks);
+
+	virtual void handleEvents() override;
 	
 	std::map<std::string, Callback> m_callbacks;
 };

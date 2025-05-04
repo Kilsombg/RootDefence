@@ -120,17 +120,6 @@ void Game::render()
 void Game::update()
 {
 	m_pGameStateMachine->update();
-
-	/*
-	int width, height;
-	SDL_GetRendererOutputSize(m_pRenderer, &width, &height);
-
-	if (width != m_gameWidth || height != m_gameHeight)
-	{
-		m_gameWidth = width;
-		m_gameHeight = height;
-	}
-	*/
 }
 
 void Game::clean()
@@ -180,10 +169,15 @@ void Game::quit()
 
 void Game::handleEvents()
 {
+	// handle input
 	TheInputHandler::Instance()->update();
 
+	// handle keys input
 	if (TheInputHandler::Instance()->isKeyPressed(SDL_SCANCODE_RETURN))
 	{
 		m_pGameStateMachine->changeState(std::make_shared<PlayState>());
 	}
+
+	// handle active state events
+	m_pGameStateMachine->handleEvents();
 }

@@ -14,3 +14,16 @@ void MenuState::setCallbacks(const std::map<std::string, Callback>& callbacks)
 		}
 	}
 }
+
+void MenuState::handleEvents()
+{
+	// handle buttons event
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
+	{
+		if (Button* towerButton = dynamic_cast<Button*>(m_gameObjects[i].get()))
+		{
+			towerButton->handleEvent();
+			towerButton = nullptr;
+		}
+	}
+}

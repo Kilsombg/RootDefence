@@ -144,6 +144,9 @@
     <ClCompile Include="src\Utils\ProjectileManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Entities\TowerUpgradedButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game.h">
@@ -300,6 +303,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\UtilsHeaders\ProjectileManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EntitiesHeaders\TowerUpgradedButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

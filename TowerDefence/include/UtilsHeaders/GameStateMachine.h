@@ -16,6 +16,7 @@ public:
 	void changeState(std::shared_ptr<GameState> pState);
 	void popState();
 
+	void handleEvents();
 	void update();
 	void render();
 	void clean();

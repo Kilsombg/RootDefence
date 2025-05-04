@@ -177,16 +177,10 @@ void PlayState::addEnemy(std::unique_ptr<Enemy> enemy)
 
 void PlayState::handleEvents()
 {
-	m_clickToPlaceTowerHandler->update(m_gameObjects);
+	// handle buttons
+	MenuState::handleEvents();
 
-	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
-	{
-		if (TowerButton* towerButton = dynamic_cast<TowerButton*>(m_gameObjects[i].get()))
-		{
-			towerButton->handleEvent();
-		}
-	}
-
+	// handle input
 	if (TheInputHandler::Instance()->isKeyPressed(SDL_SCANCODE_ESCAPE))
 	{
 		TheGame::Instance()->getStateMachine()->pushState(std::make_shared<PauseState>());
@@ -207,6 +201,9 @@ void PlayState::updateObjects()
 
 		m_enemyObjects[i]->update();
 	}
+
+	// update tower placing button state
+	m_clickToPlaceTowerHandler->update(m_gameObjects);
 
 	// update towers and buttons
 	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)

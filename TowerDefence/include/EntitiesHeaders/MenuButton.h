@@ -16,7 +16,8 @@ public:
 
 	virtual void update();
 
-	virtual void load(const std::shared_ptr<LoaderParams> pParams);
+	virtual void load(const std::shared_ptr<LoaderParams> pParams) override;
+	virtual void handleEvent() override;
 
 	void setCallback(void(*callback)());
 

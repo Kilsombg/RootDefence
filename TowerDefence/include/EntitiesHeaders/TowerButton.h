@@ -17,10 +17,10 @@ public:
 
 	TowerButton();
 
-	virtual void load(const std::shared_ptr<LoaderParams> pParams);
+	virtual void load(const std::shared_ptr<LoaderParams> pParams) override;
+	void handleEvent() override;
 
-	virtual void update();
-	void handleEvent();
+	virtual void update() override;
 
 	void setCallback(TowerButtonCallback callback);
 	std::string getTowerName();
