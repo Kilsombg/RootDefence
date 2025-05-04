@@ -39,7 +39,8 @@ public:
 	* execute attack interval
 	*/
 	void aimEnemy();
-	
+
+	bool isSelected();
 
 private:
 
@@ -51,6 +52,7 @@ private:
 	float m_damage;
 	float m_radius;
 	int m_baseCost;
+	bool m_selected;
 	priceType m_priceType;
 	TowerType m_towerType;
 	std::weak_ptr<Enemy> m_targetEnemy;

@@ -15,7 +15,7 @@
 
 #include<iostream>
 
-Tower::Tower() : SDLGameObject(), m_projectileID(""), m_attackSpeed(0), m_damage(0), m_radius(0), m_baseCost(0), m_attackTimer(0)
+Tower::Tower() : SDLGameObject(), m_projectileID(""), m_attackSpeed(0), m_damage(0), m_radius(0), m_baseCost(0), m_selected(false), m_attackTimer(0)
 {
 }
 
@@ -126,6 +126,11 @@ bool Tower::inRadius(std::shared_ptr<Enemy> enemy)
 		Vector2D::distance(getPosition(), topRight) <= getRadius() ||
 		Vector2D::distance(getPosition(), bottomLeft) <= getRadius() ||
 		Vector2D::distance(getPosition(), bottomRight) <= getRadius();
+}
+
+bool Tower::isSelected()
+{
+	return m_selected;
 }
 
 void Tower::aimEnemy()
