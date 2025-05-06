@@ -151,6 +151,8 @@
     <ClCompile Include="src\Entities\Tower.cpp" />
     <ClCompile Include="src\Entities\TowerUpgradedButton.cpp" />
     <ClCompile Include="src\EventHandlers\ClickToPlaceTowerHandler.cpp" />
+    <ClCompile Include="src\EventHandlers\SelectOnClickEventHandler.cpp" />
+    <ClCompile Include="src\EventHandlers\TowerUpgradeHandlers.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameStates\GameOverState.cpp" />
     <ClCompile Include="src\GameStates\MenuState.cpp" />
@@ -158,6 +160,11 @@
     <ClCompile Include="src\Map\LevelParser.cpp" />
     <ClCompile Include="src\Map\ObjectLayer.cpp" />
     <ClCompile Include="src\Map\TileLayer.cpp" />
+    <ClCompile Include="src\UI\Common\InteractivePanel.cpp" />
+    <ClCompile Include="src\UI\Common\StateUI.cpp" />
+    <ClCompile Include="src\UI\PlayStateUI\PlayStateUI.cpp" />
+    <ClCompile Include="src\UI\PlayStateUI\TowersPanel.cpp" />
+    <ClCompile Include="src\UI\PlayStateUI\TowerUpgradePanel.cpp" />
     <ClCompile Include="src\Utils\base64.cpp" />
     <ClCompile Include="src\Utils\GameObjectData.cpp" />
     <ClCompile Include="src\Utils\GameStateMachine.cpp" />
@@ -202,6 +209,8 @@
     <ClInclude Include="include\EntitiesHeaders\TowerUpgradedButton.h" />
     <ClInclude Include="include\EventHandlersHeaders\BaseButtonHandler.h" />
     <ClInclude Include="include\EventHandlersHeaders\ClickToPlaceTowerHandler.h" />
+    <ClInclude Include="include\EventHandlersHeaders\SelectOnClickEventHandler.h" />
+    <ClInclude Include="include\EventHandlersHeaders\TowerUpgradeHandlers.h" />
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\GameStateHeaders\GameOverState.h" />
     <ClInclude Include="include\GameStateHeaders\GameState.h" />
@@ -212,6 +221,12 @@
     <ClInclude Include="include\MapHeaders\TileLayer.h" />
     <ClInclude Include="include\MapHeaders\Tileset.h" />
     <ClInclude Include="include\MapHeaders\TileType.h" />
+    <ClInclude Include="include\UIHeaders\CommonHeaders\InteractivePanel.h" />
+    <ClInclude Include="include\UIHeaders\CommonHeaders\StateUI.h" />
+    <ClInclude Include="include\UIHeaders\CommonHeaders\Panel.h" />
+    <ClInclude Include="include\UIHeaders\PlayStateUIHeaders\PlayStateUI.h" />
+    <ClInclude Include="include\UIHeaders\PlayStateUIHeaders\TowersPanel.h" />
+    <ClInclude Include="include\UIHeaders\PlayStateUIHeaders\TowerUpgradePanel.h" />
     <ClInclude Include="include\UtilsHeaders\base64.h" />
     <ClInclude Include="include\UtilsHeaders\GameObjectData.h" />
     <ClInclude Include="include\UtilsHeaders\GameStateMachine.h" />

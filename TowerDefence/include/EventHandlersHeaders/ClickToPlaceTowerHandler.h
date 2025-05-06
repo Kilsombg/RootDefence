@@ -20,21 +20,46 @@ class ClickToPlaceTowerHandler : public BaseButtonHandler
 public:
 	ClickToPlaceTowerHandler();
 
-	void handleEvent(Button* sourceButton);
-	void update(std::vector<std::unique_ptr<GameObject>>& gameObjects);
+	/**
+	* handle click event send from TowerButton
+	*/
+	void handleEvent(Button* sourceButton) override;
+	void update(std::shared_ptr<std::vector<std::shared_ptr<Tower>>> gameObjects);
 	void render();
 	void clear();
 
-	std::unique_ptr<Tower>& getShadowObject();
+	std::shared_ptr<Tower>& getShadowObject();
 	void setLevel(std::shared_ptr<Level> level);
 
 private:
+	/**
+	* set active tower when clicked in IDLE state
+	*/
 	void handleIdleState(Button* sourceButton);
+	/**
+	* set state to PLACING when clicked in MOVING state
+	*/
 	void handleMovingState(Button* sourceButton);
+	/**
+	* create shadow object coressponding to active button's towerName
+	*/
 	void createShadowObject();
+	/**
+	* set shadow object position and check whether mouse is over free tower tile
+	*/
+	void updateMovingState();
+	/**
+	* set position of shadow object by tile
+	*/
 	void setShadowObjectPosition();
+	/**
+	* interrupt the event
+	*/
 	void interrupt();
-	bool addObject(std::vector<std::unique_ptr<GameObject>>& gameObjects);
+	/**
+	* add object into playState towers
+	*/
+	bool addObject(std::shared_ptr<std::vector<std::shared_ptr<Tower>>> gameTowers);
 
 	enum clickToPlaceTowerStates
 	{
@@ -46,7 +71,7 @@ private:
 
 	clickToPlaceTowerStates m_state;
 	TowerButton* m_activeButton;
-	std::unique_ptr<Tower> m_shadowObject;
+	std::shared_ptr<Tower> m_shadowObject;
 	ColorsConsts::Color m_shadowObjectRadiusColor;
 	bool m_canPlace;
 	bool m_isMouseOnFreeTowerTile;

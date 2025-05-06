@@ -147,6 +147,27 @@
     <ClCompile Include="src\Entities\TowerUpgradedButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\UI\PlayStateUI\TowerUpgradePanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\Common\InteractivePanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\PlayStateUI\PlayStateUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventHandlers\TowerUpgradeHandlers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\Common\StateUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\PlayStateUI\TowersPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EventHandlers\SelectOnClickEventHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game.h">
@@ -306,6 +327,30 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\EntitiesHeaders\TowerUpgradedButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UIHeaders\PlayStateUIHeaders\TowerUpgradePanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UIHeaders\CommonHeaders\Panel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UIHeaders\CommonHeaders\InteractivePanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UIHeaders\PlayStateUIHeaders\PlayStateUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UIHeaders\CommonHeaders\StateUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EventHandlersHeaders\TowerUpgradeHandlers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UIHeaders\PlayStateUIHeaders\TowersPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\EventHandlersHeaders\SelectOnClickEventHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

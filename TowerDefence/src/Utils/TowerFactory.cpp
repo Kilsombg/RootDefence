@@ -30,11 +30,11 @@ std::unique_ptr<GameObject> TowerFactory::createTower(std::string towerTypeID)
 	return std::unique_ptr<GameObject>();
 }
 
-std::unique_ptr<Tower> TowerFactory::createShadowTower(std::string towerTypeID)
+std::shared_ptr<Tower> TowerFactory::createShadowTower(std::string towerTypeID)
 {
 	if (std::unique_ptr<GameObject>	towerObject = TheGameObjectFactory::Instance()->create(towerTypeID))
 	{
-		if (std::unique_ptr<Tower> shadowObject = std::unique_ptr<Tower>(dynamic_cast<Tower*>(towerObject.release())))
+		if (std::shared_ptr<Tower> shadowObject = std::shared_ptr<Tower>(dynamic_cast<Tower*>(towerObject.release())))
 		{
 			std::shared_ptr<LoaderParams> params = m_towerObjectData->getData(towerTypeID);
 			std::shared_ptr<Vector2D> mousePos = InputHandler::Instance()->getMousePosition();
@@ -43,7 +43,7 @@ std::unique_ptr<Tower> TowerFactory::createShadowTower(std::string towerTypeID)
 
 			shadowObject->load(params);
 
-			return std::move(shadowObject);
+			return shadowObject;
 		}
 		else {
 			towerObject.reset();  // remove object to prevent memory leak

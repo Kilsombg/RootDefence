@@ -8,9 +8,9 @@
 #include "../EntitiesHeaders/Enemy.h"
 #include "../EntitiesHeaders/Button.h"
 
-#include "../EventHandlersHeaders/ClickToPlaceTowerHandler.h"
-
 #include "../MapHeaders/Level.h"
+
+#include "../UIHeaders/PlayStateUIHeaders/PlayStateUI.h"
 
 #include "../UtilsHeaders/TowerFactory.h"
 #include "../UtilsHeaders/ProjectileManager.h"
@@ -21,7 +21,6 @@
 
 #include<vector>
 #include<memory>
-#include<functional>
 
 class PlayState : public MenuState
 {
@@ -34,6 +33,9 @@ public:
 	virtual bool onEnter();
 	virtual bool onExit();
 
+	/**
+	* Load data needed for playstate
+	*/
 	void loadData();
 
 	virtual std::string getStateID() const;
@@ -41,19 +43,12 @@ public:
 	void addEnemy(std::unique_ptr<Enemy> enemy);
 	bool checkCollision(SDLGameObject* p1, SDLGameObject* p2);
 
-	
+	void handleEvents() override;
 private:
 	void updateObjects();
-	void handleEvents() override;
 
-	typedef std::function<void(Button*)> TowerButtonCallback;
-	void setTowerButtonCallbacks(const std::map<std::string, TowerButtonCallback>& towerButtonCallbacks);
-	/**
-	* set a pointer to the level for each tower button.
-	*/
-	void setTowerButtonLevel();
-	
-	std::map<std::string, TowerButtonCallback> m_towerButtonCallbacks;
+	std::shared_ptr<std::vector<std::shared_ptr<Tower>>> m_towersObjects;
+
 	std::shared_ptr<Level> pLevel;
 
 	std::vector<std::shared_ptr<Enemy>> m_enemyObjects;
@@ -62,9 +57,10 @@ private:
 	Wave* m_currentWave;
 
 	std::shared_ptr<TowerFactory> m_towerFactory;
-	ClickToPlaceTowerHandler* m_clickToPlaceTowerHandler;
 
 	std::shared_ptr<ProjectileManager> m_projectileManager;
+
+	std::unique_ptr<PlayStateUI> m_playStateUI;
 };
 
 #endif // !__PlayState__

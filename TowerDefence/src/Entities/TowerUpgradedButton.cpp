@@ -2,13 +2,25 @@
 
 #include "../../include/UtilsHeaders/InputHandler.h"
 
-TowerUpgradedButton::TowerUpgradedButton() : Button()
+TowerUpgradedButton::TowerUpgradedButton() : Button(), m_selected(false), m_pressed(false)
 {
 }
 
 void TowerUpgradedButton::handleEvent()
 {
+	handleOutsideCLick();
+
 	handleClickOnButton();
+}
+
+void TowerUpgradedButton::update()
+{
+	m_isMouseOnButton = TheInputHandler::Instance()->isMouseOnObject(m_position, m_width, m_height);
+}
+
+void TowerUpgradedButton::load(const std::shared_ptr<LoaderParams> pParams)
+{
+	Button::load(pParams);
 }
 
 void TowerUpgradedButton::setCallback(TowerUpgradedCallback callback)
@@ -16,29 +28,59 @@ void TowerUpgradedButton::setCallback(TowerUpgradedCallback callback)
 	m_callback = callback;
 }
 
+void TowerUpgradedButton::setSelectedTower(std::shared_ptr<Tower> selectedTower)
+{
+	m_selectedTower = selectedTower;
+}
+
+void TowerUpgradedButton::handleOutsideCLick()
+{
+	if (!m_isMouseOnButton)
+	{
+		m_pressedOutside = TheInputHandler::Instance()->getMouseButtonState(LEFT);
+	}
+	else
+	{
+		// left mouseButton released inside towerButton
+		if (!TheInputHandler::Instance()->getMouseButtonState(LEFT))
+		{
+			m_pressedOutside = false;
+		}
+	}
+}
+
 void TowerUpgradedButton::handleClickOnButton()
 {
 	if (m_isMouseOnButton && !m_pressedOutside)
 	{
-		if (TheInputHandler::Instance()->getMouseButtonState(LEFT) && m_bReleased)
+		if (!TheInputHandler::Instance()->getMouseButtonState(LEFT) && m_pressed)
 		{
-			m_currentFrame = CLICKED;
+			//m_currentFrame = CLICKED;
 
-			m_callback(*m_selectedTower);
+			m_callback(m_selectedTower);
 
-			m_bReleased = false;
+			m_pressed = false;
+
+			m_selected = true;
 		}
-		else if (!TheInputHandler::Instance()->getMouseButtonState(LEFT))
+		else if (TheInputHandler::Instance()->getMouseButtonState(LEFT))
 		{
-			m_bReleased = true;
+			m_pressed = true;
 
-			m_currentFrame = MOUSE_OVER;
+			//m_currentFrame = MOUSE_OVER;
 		}
 	}
 	else
 	{
-		m_currentFrame = MOUSE_OUT;
+		m_pressed = false;
 	}
+}
+
+void TowerUpgradedButton::resetParams()
+{
+	m_selected = false;
+	m_pressed = false;
+	m_pressedOutside = false;
 }
 
 std::unique_ptr<GameObject> TowerUpgradedButtonCreator::createGameObject() const

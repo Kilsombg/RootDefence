@@ -25,6 +25,7 @@ public:
 
 	bool getMouseButtonState(int buttonNumber);
 	std::shared_ptr<Vector2D> getMousePosition();
+	bool isMouseOnObject(Vector2D pos, int width, int height);
 	
 	bool isKeyDown(SDL_Scancode key);
 	bool isKeyPressed(SDL_Scancode key);

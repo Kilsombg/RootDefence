@@ -7,15 +7,15 @@
 #include "../../include/Constants/LoaderParamsConsts.h"
 
 #include "../../include/EntitiesHeaders/Enemy.h"
-#include "../../include/EntitiesHeaders/Carrot.h"
 #include "../../include/EntitiesHeaders/TowerButton.h"
 
 #include "../../include/MapHeaders/LevelParser.h"
 #include "../../include/MapHeaders/TileLayer.h"
 
-#include "../../include/UtilsHeaders/TextureManager.h"
+#include "../../include/UIHeaders/PlayStateUIHeaders/TowerUpgradePanel.h"
+#include "../../include/UIHeaders/PlayStateUIHeaders/TowersPanel.h"
+
 #include "../../include/UtilsHeaders/InputHandler.h"
-#include "../../include/UtilsHeaders/StateParser.h"
 #include "../../include/UtilsHeaders/GameObjectData.h"
 #include "../../include/UtilsHeaders/ProjectileManager.h"
 
@@ -24,6 +24,7 @@
 #include "../../include/Game.h"
 
 #include<iostream>
+#include<functional>
 
 PlayState::PlayState()
 {
@@ -42,8 +43,6 @@ void PlayState::update()
 		std::bind(&PlayState::addEnemy, this, std::placeholders::_1),
 		(DELAY_TIME / 1000.));
 
-	handleEvents();
-
 	updateObjects();
 
 	pLevel->update();
@@ -60,32 +59,24 @@ void PlayState::render()
 		m_enemyObjects[i]->draw();
 	}
 
-	// render towers and buttons
-	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
+	// render towers
+	for (std::vector<std::shared_ptr<Tower>>::size_type i = 0; i < m_towersObjects->size(); i++)
 	{
-		m_gameObjects[i]->draw();
+		(*m_towersObjects)[i]->draw();
 	}
 
 	// render projectiles
 	TheProjectileManager::Instance()->render();
 
-	// render shadow tower
-	if (m_clickToPlaceTowerHandler->getShadowObject())
-	{
-		m_clickToPlaceTowerHandler->render();
-	}
+	// render UI
+	m_playStateUI->draw();
 }
 
 bool PlayState::onEnter()
 {
+	m_towersObjects = std::make_shared<std::vector<std::shared_ptr<Tower>>>();
+
 	loadData();
-
-	m_clickToPlaceTowerHandler = new ClickToPlaceTowerHandler();
-	m_clickToPlaceTowerHandler->setLevel(pLevel);
-	m_towerButtonCallbacks[LoaderParamsConsts::createTowerCallbackID] = std::bind(&ClickToPlaceTowerHandler::handleEvent, m_clickToPlaceTowerHandler, std::placeholders::_1);
-
-	setTowerButtonCallbacks(m_towerButtonCallbacks);
-	setTowerButtonLevel();
 
 	std::cout << "entering PlayState\n";
 	return true;
@@ -93,10 +84,6 @@ bool PlayState::onEnter()
 
 void PlayState::loadData()
 {
-	// load state objects and textures
-	StateParser stateParser;
-	stateParser.parseState("./src/test.xml", s_stateID, &m_gameObjects, &m_textureIDList);
-
 	// load level
 	LevelParser levelParser;
 	pLevel = levelParser.parseLevel("./src/assets/Map/test_map.tmx");
@@ -105,6 +92,12 @@ void PlayState::loadData()
 	{
 		pLevel->setSpawnPoint(*(pLevel->getEnemyPath()[0].get()));
 	}
+
+	/* load UI */
+	m_playStateUI = std::make_unique<PlayStateUI>(s_stateID);
+	m_playStateUI->setPlayStateTowers(m_towersObjects);
+	m_playStateUI->setLevel(pLevel);
+	m_playStateUI->load();
 
 	// load waves data
 	WaveParser waveParser;
@@ -134,23 +127,23 @@ void PlayState::loadData()
 
 bool PlayState::onExit()
 {
-	// cleaning buttons and towers
-	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
+	// cleaning towers
+	for (std::vector<std::shared_ptr<Tower>>::size_type i = 0; i < m_towersObjects->size(); i++)
 	{
-		m_gameObjects[i]->clean();
-		m_gameObjects[i] = nullptr;
+		(*m_towersObjects)[i]->clean();
+		(*m_towersObjects)[i] = nullptr;
 	}
 
-	m_gameObjects.clear();
+	m_towersObjects->clear();
+
+	// clean level
+	pLevel->clean();
 
 	// cleaning projectiles
 	m_projectileManager->clean();
 
-	// cleaning textures
-	for (int i = 0; i < m_textureIDList.size(); i++)
-	{
-		TheTextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
-	}
+	// cleaning UI
+	m_playStateUI->clean();
 
 	// cleaning current waves
 	if (m_currentWave != nullptr)
@@ -158,8 +151,6 @@ bool PlayState::onExit()
 		delete m_currentWave;
 	}
 	m_waveManager->clean();
-	m_clickToPlaceTowerHandler->clear();
-
 
 	std::cout << "exiting PlayState\n";
 	return true;
@@ -179,6 +170,15 @@ void PlayState::handleEvents()
 {
 	// handle buttons
 	MenuState::handleEvents();
+
+	// handle UI
+	m_playStateUI->handleEvents();
+
+	// handle towers
+	for (std::vector<std::shared_ptr<Tower>>::size_type i = 0; i < m_towersObjects->size(); i++)
+	{
+		(*m_towersObjects)[i]->handleEvent();
+	}
 
 	// handle input
 	if (TheInputHandler::Instance()->isKeyPressed(SDL_SCANCODE_ESCAPE))
@@ -202,55 +202,19 @@ void PlayState::updateObjects()
 		m_enemyObjects[i]->update();
 	}
 
-	// update tower placing button state
-	m_clickToPlaceTowerHandler->update(m_gameObjects);
-
-	// update towers and buttons
-	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
+	// update towers
+	for (std::vector<std::shared_ptr<Tower>>::size_type i = 0; i < m_towersObjects->size(); i++)
 	{
-		m_gameObjects[i]->update();
+		(*m_towersObjects)[i]->update();
 		
-		if (Tower* tower = dynamic_cast<Tower*>(m_gameObjects[i].get()))
-		{
-			tower->targetEnemy(m_enemyObjects);
-			tower = nullptr;
-		}
+		(*m_towersObjects)[i]->targetEnemy(m_enemyObjects);
 	}
+
+	// update UI
+	m_playStateUI->update();
 
 	// update projectiles
 	TheProjectileManager::Instance()->update();
-
-	// update shadow objects
-	if (m_clickToPlaceTowerHandler->getShadowObject())
-	{
-		m_clickToPlaceTowerHandler->getShadowObject()->update();
-	}
-}
-
-void PlayState::setTowerButtonCallbacks(const std::map<std::string, TowerButtonCallback>& towerButtonCallbacks)
-{
-	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
-	{
-		if (dynamic_cast<TowerButton*>(m_gameObjects[i].get()))
-		{
-			TowerButton* pButton = dynamic_cast<TowerButton*>(m_gameObjects[i].get());
-			pButton->setCallback(towerButtonCallbacks.at(pButton->getCallbackID()));
-			pButton = nullptr;
-		}
-	}
-}
-
-void PlayState::setTowerButtonLevel()
-{
-	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
-	{
-		if (dynamic_cast<TowerButton*>(m_gameObjects[i].get()))
-		{
-			TowerButton* pButton = dynamic_cast<TowerButton*>(m_gameObjects[i].get());
-			pButton->setLevel(pLevel);
-			pButton = nullptr;
-		}
-	}
 }
 
 bool PlayState::checkCollision(SDLGameObject* p1, SDLGameObject* p2)

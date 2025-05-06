@@ -39,7 +39,7 @@ void ClickToPlaceTowerHandler::handleEvent(Button* sourceButton)
 	}
 }
 
-void ClickToPlaceTowerHandler::update(std::vector<std::unique_ptr<GameObject>>& gameObjects)
+void ClickToPlaceTowerHandler::update(std::shared_ptr<std::vector<std::shared_ptr<Tower>>> gameObjects)
 {
 	if (m_state == IDLE) return;
 
@@ -49,7 +49,7 @@ void ClickToPlaceTowerHandler::update(std::vector<std::unique_ptr<GameObject>>& 
 	{
 		if (m_state == MOVING)
 		{
-			setShadowObjectPosition();
+			updateMovingState();
 		}
 		else if (m_state == PLACING)
 		{
@@ -79,7 +79,7 @@ void ClickToPlaceTowerHandler::clear()
 {
 }
 
-std::unique_ptr<Tower>& ClickToPlaceTowerHandler::getShadowObject()
+std::shared_ptr<Tower>& ClickToPlaceTowerHandler::getShadowObject()
 {
 	return m_shadowObject;
 }
@@ -116,17 +116,23 @@ void ClickToPlaceTowerHandler::createShadowObject()
 	m_shadowObject = TheTowerFactory::Instance()->createShadowTower(m_activeButton->getTowerName());
 }
 
+void ClickToPlaceTowerHandler::updateMovingState()
+{
+	setShadowObjectPosition();
+
+	// check whether the mouse position is on free tower tile
+	if (pLevel != nullptr)
+	{
+		m_isMouseOnFreeTowerTile = TileType::TOWER == pLevel->getTileTypeByPosition(m_shadowObject->getPosition().getX(), m_shadowObject->getPosition().getY());
+	}
+}
+
 void ClickToPlaceTowerHandler::setShadowObjectPosition()
 {
 	std::shared_ptr<Vector2D> mousePos = InputHandler::Instance()->getMousePosition();
 	mousePos->setX(mousePos->getX() - (static_cast<int>(mousePos->getX()) % pLevel->getTileSize()));
 	mousePos->setY(mousePos->getY() - (static_cast<int>(mousePos->getY()) % pLevel->getTileSize()));
 	m_shadowObject->setPosition(*(mousePos.get()));
-
-	if (pLevel != nullptr)
-	{
-		m_isMouseOnFreeTowerTile = TileType::TOWER == pLevel->getTileTypeByPosition(mousePos->getX(), mousePos->getY());
-	}
 }
 
 void ClickToPlaceTowerHandler::interrupt()
@@ -136,23 +142,34 @@ void ClickToPlaceTowerHandler::interrupt()
 	m_shadowObject = nullptr;
 }
 
-bool ClickToPlaceTowerHandler::addObject(std::vector<std::unique_ptr<GameObject>>& gameObjects)
+bool ClickToPlaceTowerHandler::addObject(std::shared_ptr<std::vector<std::shared_ptr<Tower>>> gameTowers)
 {
+	// if there is no shadow object then interrupt
 	if (m_shadowObject == nullptr)
 	{
 		return false;
 	}
 
+	// if tilesize is not set then interrupt
 	if (pLevel->getTileSize() == 0)
 	{
 		return false;
 	}
 
+	// find indexes of the tile on which the shadowObject will be placed
 	int r, c;
 	r = m_shadowObject->getPosition().getY() / pLevel->getTileSize();
 	c = m_shadowObject->getPosition().getX() / pLevel->getTileSize();
 
-	gameObjects.push_back(std::move(m_shadowObject));
+	gameTowers->push_back(m_shadowObject);
+
+	// invoke post placed events on the tower
+	m_shadowObject->placed();
+
+	// reset ptr, not needed anymore
+	m_shadowObject.reset();
+
+	// set the tile, on which it will be placed, to OCCUPIED
 	pLevel->getTileTypeMap()[r][c] = TileType::OCCUPIED;
 	return true;
 }

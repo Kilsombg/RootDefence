@@ -11,11 +11,13 @@
 #include "../../include/UtilsHeaders/GameObjectFactory.h"
 #include "../../include/UtilsHeaders/ProjectileManager.h"
 #include "../../include/UtilsHeaders/TextureManager.h"
+#include "../../include/UtilsHeaders/InputHandler.h"
 
 
 #include<iostream>
+#include<functional>
 
-Tower::Tower() : SDLGameObject(), m_projectileID(""), m_attackSpeed(0), m_damage(0), m_radius(0), m_baseCost(0), m_selected(false), m_attackTimer(0)
+Tower::Tower() : SDLGameObject(), m_projectileID(""), m_attackSpeed(0), m_damage(0), m_radius(0), m_baseCost(0), m_attackTimer(0)
 {
 }
 
@@ -48,15 +50,22 @@ void Tower::update()
 {
 	SDLGameObject::update();
 
+	// check for mouseOver
+	m_selectOnClickEventHandler.update();
+
 	aimEnemy();
 }
 
 void Tower::draw()
 {
-	TheTextureManager::Instance()->drawFilledCircle(
-		m_position.getX(), m_position.getY(), static_cast<int>(m_radius),
-		{ ColorsConsts::gray.r, ColorsConsts::gray.g, ColorsConsts::gray.b, ColorsConsts::gray.a },
-		TheGame::Instance()->getRenderer());
+	// draw range area when selected
+	if(m_selectOnClickEventHandler.isSelected())
+	{
+		TheTextureManager::Instance()->drawFilledCircle(
+			m_position.getX(), m_position.getY(), static_cast<int>(m_radius),
+			{ ColorsConsts::gray.r, ColorsConsts::gray.g, ColorsConsts::gray.b, ColorsConsts::gray.a },
+			TheGame::Instance()->getRenderer());
+	}
 
 	SDLGameObject::draw();
 }
@@ -71,6 +80,11 @@ void Tower::load(const std::shared_ptr<LoaderParams> pParams)
 	m_attackSpeed = pParams->getAttribute<float>(LoaderParamsConsts::attackSpeed);
 	float attackInterval = 1 / m_attackSpeed;
 	m_attackTimer = Timer(attackInterval, attackInterval);
+}
+
+void Tower::handleEvent()
+{
+	m_selectOnClickEventHandler.handleEvent();
 }
 
 void Tower::targetEnemy(std::vector<std::shared_ptr<Enemy>> enemies)
@@ -130,7 +144,13 @@ bool Tower::inRadius(std::shared_ptr<Enemy> enemy)
 
 bool Tower::isSelected()
 {
-	return m_selected;
+	return m_selectOnClickEventHandler.isSelected();
+}
+
+void Tower::placed()
+{
+	// set clickEventHandler after placing to get the position
+	m_selectOnClickEventHandler = SelectOnClickEventHandler(m_position, m_width, m_height, { 0, 0, 640, 480 }, false); // area of the mapPanel
 }
 
 void Tower::aimEnemy()

@@ -20,6 +20,7 @@ public:
 	
 	void update();
 	void render();
+	void clean();
 
 	std::vector<Tileset>* getTilesets();
 	std::vector<std::shared_ptr<Layer>>* getLayers();

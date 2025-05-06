@@ -19,12 +19,9 @@ void TowerButton::load(const std::shared_ptr<LoaderParams> pParams)
 
 void TowerButton::update()
 {
-	std::shared_ptr<Vector2D> pMousePos = TheInputHandler::Instance()->getMousePosition();
-	m_isMouseOnButton = pMousePos->getX() < (m_position.getX() + m_width)
-		&& pMousePos->getX() > m_position.getX()
-		&& pMousePos->getY() < (m_position.getY() + m_height)
-		&& pMousePos->getY() > m_position.getY();
+	m_isMouseOnButton = TheInputHandler::Instance()->isMouseOnObject(m_position, m_width, m_height);
 
+	std::shared_ptr<Vector2D> pMousePos = TheInputHandler::Instance()->getMousePosition();
 	if (pLevel != nullptr && m_selected)
 	{
 		m_isMouseOnFreeTowerTile = TileType::TOWER == pLevel->getTileTypeByPosition(pMousePos->getX(), pMousePos->getY());

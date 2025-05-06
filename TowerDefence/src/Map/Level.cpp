@@ -1,5 +1,7 @@
 #include "../../include/MapHeaders/Level.h"
 
+#include "../../include/UtilsHeaders/TextureManager.h"
+
 Level::Level()
 {
 }
@@ -14,6 +16,21 @@ void Level::render()
 	{
 		m_layers[i]->render();
 	}
+}
+
+void Level::clean()
+{
+	// clean textures
+	for (std::vector<Tileset>::size_type i = 0; i < m_tilesets.size(); i++)
+	{
+		TheTextureManager::Instance()->clearFromTextureMap(m_tilesets[i].name);
+	}
+
+	// clean layers
+	m_layers.clear();
+
+	// clean path;
+	m_enemyPath.clear();
 }
 
 void Level::update()

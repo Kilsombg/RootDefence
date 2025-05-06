@@ -2,7 +2,7 @@
 
 #include "../../include/Constants/LoaderParamsConsts.h"
 
-Button::Button() : SDLGameObject(), m_bReleased(false), m_pressedOutside(false)
+Button::Button() : SDLGameObject(), m_bReleased(false), m_pressedOutside(false), m_isMouseOnButton(false)
 {
 }
 

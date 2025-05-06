@@ -4,6 +4,8 @@
 #include "SDLGameObject.h"
 #include "Enemy.h"
 
+#include "../EventHandlersHeaders/SelectOnClickEventHandler.h"
+
 #include "../UtilsHeaders/BaseCreator.h"
 #include "../UtilsHeaders/Timer.h"
 
@@ -26,6 +28,9 @@ public:
 	virtual void update() override;
 	virtual void draw() override;
 	void load(const std::shared_ptr<LoaderParams> pParams);
+
+	void handleEvent();
+
 	/**
 	* look for enemy in radius to target
 	* @param enemies is a vector of objects in current state
@@ -42,6 +47,12 @@ public:
 
 	bool isSelected();
 
+	/**
+	* set up tower after placed
+	*/
+	void placed();
+	
+
 private:
 
 	enum priceType {};
@@ -52,10 +63,11 @@ private:
 	float m_damage;
 	float m_radius;
 	int m_baseCost;
-	bool m_selected;
 	priceType m_priceType;
 	TowerType m_towerType;
 	std::weak_ptr<Enemy> m_targetEnemy;
+
+	SelectOnClickEventHandler m_selectOnClickEventHandler;
 };
 
 class TowerCreator : public BaseCreator

@@ -85,6 +85,14 @@ std::shared_ptr<Vector2D> InputHandler::getMousePosition()
 	return m_mousePosition;
 }
 
+bool InputHandler::isMouseOnObject(Vector2D pos, int width, int height)
+{
+	return m_mousePosition->getX() < (pos.getX() + width)
+		&& m_mousePosition->getX() > pos.getX()
+		&& m_mousePosition->getY() < (pos.getY() + height)
+		&& m_mousePosition->getY() > pos.getY();
+}
+
 
 bool InputHandler::isKeyDown(SDL_Scancode key)
 {

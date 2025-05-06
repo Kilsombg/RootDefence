@@ -27,11 +27,7 @@ void MenuButton::setCallback(void(*callback)())
 
 void MenuButton::update()
 {
-	std::shared_ptr<Vector2D> pMousePos = TheInputHandler::Instance()->getMousePosition();
-	m_isMouseOnButton = pMousePos->getX() < (m_position.getX() + m_width)
-		&& pMousePos->getX() > m_position.getX()
-		&& pMousePos->getY() < (m_position.getY() + m_height)
-		&& pMousePos->getY() > m_position.getY();
+	m_isMouseOnButton = TheInputHandler::Instance()->isMouseOnObject(m_position, m_width, m_height);
 }
 
 void MenuButton::handleOutsideCLick()
