@@ -40,7 +40,16 @@ namespace LoaderParamsConsts {
 	constexpr char damage[] = "damage";
 	constexpr char radius[] = "radius";
 	constexpr char attackSpeed[] = "attackSpeed";
+	constexpr char towerUpgradesData[] = "towerUpgradesData";
 #pragma endregion
+
+
+#pragma region towerUpgradesData params
+	constexpr char statName[] = "statName";
+	constexpr char values[] = "values";
+	constexpr char maxLevel[] = "maxLevel";
+#pragma endregion
+
 
 #pragma region projectiles params
 	constexpr char projectileSpeed[] = "projectileSpeed";

@@ -9,16 +9,32 @@
 #include<nlohmann\json.hpp>
 using json = nlohmann::json;
 
+/**
+* Load params into an unordered_map.
+*/
 class LoaderParams
 {
 public:
+	// variant of each param types
 	using AttributeVariant = boost::variant<int, float, std::string>;
 
+	/** 
+	* Set an attribute into unordered_map with <T> type
+	* 
+	* @param key, value is key-value pair of the attribute's map
+	*/
 	template <typename T>
 	void setAttribute(const std::string& key, T value) {
 		m_attributes[key] = value;
 	}
 
+	/**
+	* Get an attribute from the map.
+	* 
+	* <T> is the type of the attribute
+	* 
+	* @param key is the attribute's key from the map
+	*/
 	template <typename T>
 	T getAttribute(const std::string& key) const {
 		try
@@ -42,6 +58,7 @@ public:
 	}
 
 private:
+	// attribute's map with types defined in AttributeVariant
 	std::unordered_map<std::string, AttributeVariant> m_attributes;
 };
 

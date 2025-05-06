@@ -3,6 +3,7 @@
 namespace GameObjectConsts {
 	constexpr char enemyObjectData[] = "enemyObjectData";
 	constexpr char towerObjectData[] = "towerObjectData";
+	constexpr char towerUpgradesData[] = "towerUpgradesData";
 	constexpr char projectilesData[] = "projectilesData";
 
 #pragma region Creator objects

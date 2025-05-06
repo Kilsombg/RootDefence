@@ -20,13 +20,13 @@ public:
 	void createProjectile(Tower& tower);
 	void addProjectile(std::unique_ptr<Projectile> projectileToAdd);
 
-	void setGameObjectData(GameObjectData& gameObjectdata);
+	void setGameObjectData(GameObjectData<LoaderParams>& gameObjectdata);
 
 private:
 	ProjectileManager();
 	static std::shared_ptr<ProjectileManager> s_pInstance;
 	std::vector<std::unique_ptr<Projectile>> m_activeProjectiles;
-	std::unique_ptr<GameObjectData> m_projectilesData;
+	std::unique_ptr<GameObjectData<LoaderParams>> m_projectilesData;
 };
 
 typedef ProjectileManager TheProjectileManager;

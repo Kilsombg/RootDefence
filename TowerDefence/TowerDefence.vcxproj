@@ -166,7 +166,6 @@
     <ClCompile Include="src\UI\PlayStateUI\TowersPanel.cpp" />
     <ClCompile Include="src\UI\PlayStateUI\TowerUpgradePanel.cpp" />
     <ClCompile Include="src\Utils\base64.cpp" />
-    <ClCompile Include="src\Utils\GameObjectData.cpp" />
     <ClCompile Include="src\Utils\GameStateMachine.cpp" />
     <ClCompile Include="src\GameStates\MainMenuState.cpp" />
     <ClCompile Include="src\GameStates\PauseState.cpp" />
@@ -259,6 +258,7 @@
     <None Include="src\res\enemyObjectData.json" />
     <None Include="src\res\projectilesData.json" />
     <None Include="src\res\towerObjectData.json" />
+    <None Include="src\res\towerUpgradesData.json" />
     <None Include="src\res\waves.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

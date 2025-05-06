@@ -1,0 +1,23 @@
+{
+  "towerUpgradesData": {
+    "tower": [
+        {
+          "statName": "damage",
+          "values": [
+            40.0,
+            60.0
+          ],
+          "maxLevel": 2
+        },
+        {
+          "statName": "radius",
+          "values": [
+            32.0,
+            48.0,
+            64.0
+          ],
+          "maxLevel": 3
+        }
+      ]
+  } 
+}

@@ -47,6 +47,8 @@ public:
 private:
 	void updateObjects();
 
+	void loadTowerData();
+
 	std::shared_ptr<std::vector<std::shared_ptr<Tower>>> m_towersObjects;
 
 	std::shared_ptr<Level> pLevel;

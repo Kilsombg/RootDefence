@@ -83,7 +83,7 @@ void ProjectileManager::addProjectile(std::unique_ptr<Projectile> projectileToAd
 	m_activeProjectiles.push_back(std::move(projectileToAdd));
 }
 
-void ProjectileManager::setGameObjectData(GameObjectData& gameObjectdata)
+void ProjectileManager::setGameObjectData(GameObjectData<LoaderParams>& gameObjectdata)
 {
-	m_projectilesData = std::make_unique<GameObjectData>(gameObjectdata);
+	m_projectilesData = std::make_unique<GameObjectData<LoaderParams>>(gameObjectdata);
 }

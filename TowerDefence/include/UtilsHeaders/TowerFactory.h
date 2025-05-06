@@ -15,13 +15,15 @@ public:
 	std::unique_ptr<GameObject> createTower(std::string towerTypeID);
 	std::shared_ptr<Tower> createShadowTower(std::string towerTypeID);
 
-	void setGameObjectData(GameObjectData& gameObjectdata);
+	void setTowerObjectData(GameObjectData<LoaderParams>& gameObjectdata);
+	void setTowerUpgradeObjectData(GameObjectData<ArrayOf2TowerUpgradesData>& towerUpgradeData);
 
 private:
 	TowerFactory();
 	static std::shared_ptr<TowerFactory> s_pInstance;
 
-	std::unique_ptr<GameObjectData> m_towerObjectData; // base tower stats
+	std::unique_ptr<GameObjectData<LoaderParams>> m_towerObjectData; // base tower stats
+	std::unique_ptr<GameObjectData<ArrayOf2TowerUpgradesData>> m_towerUpgradeData; // tower upgrade stats
 };
 
 typedef TowerFactory TheTowerFactory;

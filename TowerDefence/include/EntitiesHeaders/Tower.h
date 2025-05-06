@@ -10,8 +10,40 @@
 #include "../UtilsHeaders/Timer.h"
 
 #include<string>
+#include<array>
 #include<memory>
 
+#include<nlohmann\json.hpp>
+using json = nlohmann::json;
+
+/**
+* Tower upgrades data
+* 
+* contains information about the upgrades for a tower.
+*/
+struct TowerUpgradeData
+{
+	// stat to be changed
+	std::string statName;
+	// vector with each level's values
+	std::vector<float> values;
+	int maxLevel;
+};
+
+typedef std::array<TowerUpgradeData, 2> ArrayOf2TowerUpgradesData;
+
+void to_json(json& j, const TowerUpgradeData& data);
+void from_json(const json& j, TowerUpgradeData& data);
+
+void to_json(json& j, const ArrayOf2TowerUpgradesData& arrayOf3TowerUpgradesData);
+void from_json(const json& j, ArrayOf2TowerUpgradesData& arrayOf3TowerUpgradesData);
+
+void to_json(json& j, const std::map<std::string, std::shared_ptr<ArrayOf2TowerUpgradesData>>& dataMap);
+void from_json(const json& j, std::map<std::string, std::shared_ptr<ArrayOf2TowerUpgradesData>>& dataMap);
+
+/**
+* Base class for towers
+*/
 class Tower : public SDLGameObject
 {
 public:
@@ -24,6 +56,8 @@ public:
 	float getDamage() const;
 	std::string getProjectileID();
 	std::weak_ptr<Enemy> getTargetEnemy() const;
+
+	void setTowerUpgradesData(std::shared_ptr<ArrayOf2TowerUpgradesData> data);
 
 	virtual void update() override;
 	virtual void draw() override;
@@ -61,13 +95,15 @@ private:
 	float m_attackSpeed;
 	Timer m_attackTimer;
 	float m_damage;
-	float m_radius;
+	float m_radius; // range
 	int m_baseCost;
 	priceType m_priceType;
 	TowerType m_towerType;
 	std::weak_ptr<Enemy> m_targetEnemy;
 
 	SelectOnClickEventHandler m_selectOnClickEventHandler;
+
+	std::shared_ptr<ArrayOf2TowerUpgradesData> m_towerUpgradesData;
 };
 
 class TowerCreator : public BaseCreator

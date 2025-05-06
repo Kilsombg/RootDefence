@@ -22,7 +22,7 @@ public:
 	bool isFinalWave();
 
 	void load();
-	void setGameObjectData(GameObjectData& gameObjectdata);
+	void setGameObjectData(GameObjectData<LoaderParams>& gameObjectdata);
 
 	std::vector<Wave*>& getWaves();
 	void clean();
@@ -35,7 +35,7 @@ private:
 	int m_currentWaveID;
 	std::vector<Wave*> m_waves;
 
-	std::unique_ptr<GameObjectData> m_gameObjectData; // base enemy stats
+	std::unique_ptr<GameObjectData<LoaderParams>> m_gameObjectData; // base enemy stats
 };
 
 typedef WaveManager TheWaveManager;

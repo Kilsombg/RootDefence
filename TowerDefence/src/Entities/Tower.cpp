@@ -1,5 +1,7 @@
 #include "../../include/EntitiesHeaders/Tower.h"
 
+
+#include "../../include/Constants/LoaderParamsConsts.h"
 #include "../../include/Game.h"
 
 #include "../../include/Constants/LoaderParamsConsts.h"
@@ -16,6 +18,89 @@
 
 #include<iostream>
 #include<functional>
+
+#pragma region TowerUpgradeData functionality
+
+void to_json(json& j, const TowerUpgradeData& data)
+{
+	j = json{
+		{LoaderParamsConsts::statName, data.statName},
+		{LoaderParamsConsts::values, data.values},
+		{LoaderParamsConsts::maxLevel, data.maxLevel}
+	};
+}
+
+void from_json(const json& j, TowerUpgradeData& data)
+{	
+	if (j.contains(LoaderParamsConsts::statName)) {
+		j.at(LoaderParamsConsts::statName).get_to(data.statName);
+	}
+
+	if (j.contains(LoaderParamsConsts::values)) {
+		j.at(LoaderParamsConsts::values).get_to(data.values);
+	}
+
+	if (j.contains(LoaderParamsConsts::maxLevel))
+	{
+		j.at(LoaderParamsConsts::maxLevel).get_to(data.maxLevel);
+	}
+}
+
+void to_json(json& j, const ArrayOf2TowerUpgradesData& arrayOf2TowerUpgradesData)
+{
+	j = json::array();
+	for (const auto& towerUpgrade : arrayOf2TowerUpgradesData) {
+		j.push_back(towerUpgrade);
+	}
+}
+
+void from_json(const json& j, ArrayOf2TowerUpgradesData& arrayOf2TowerUpgradesData)
+{
+	if (!j.is_array() || j.size() != 2) {
+		if (!j.is_array())
+		{
+			int a = 3;
+		}
+		if (j.size() != 2)
+		{
+			int b = 3;
+		}
+		throw std::runtime_error("Expected array of exactly 2 TowerUpgradeData items");
+	}
+
+	for (size_t i = 0; i < 2; ++i) {
+		arrayOf2TowerUpgradesData[i] = j.at(i).get<TowerUpgradeData>();
+	}
+}
+
+void to_json(json& j, const std::map<std::string, std::shared_ptr<ArrayOf2TowerUpgradesData>>& dataMap)
+{
+	for (const auto& it : dataMap) {
+		if (it.second) {
+			j[it.first] = *(it.second);
+		}
+	}
+}
+
+void from_json(const json& j, std::map<std::string, std::shared_ptr<ArrayOf2TowerUpgradesData>>& dataMap) 
+{
+	dataMap.clear();
+	for (auto it = j.begin(); it != j.end(); ++it) {
+		if (it.value().is_null()) {
+			dataMap[it.key()] = nullptr;
+		}
+		else {
+			auto arrayOf2TowerUpgradesData = std::make_shared<ArrayOf2TowerUpgradesData>();
+			from_json(it.value(), *arrayOf2TowerUpgradesData);
+			dataMap[it.key()] = arrayOf2TowerUpgradesData;
+		}
+	}
+}
+
+#pragma endregion
+
+
+#pragma region Tower functionality
 
 Tower::Tower() : SDLGameObject(), m_projectileID(""), m_attackSpeed(0), m_damage(0), m_radius(0), m_baseCost(0), m_attackTimer(0)
 {
@@ -44,6 +129,11 @@ std::string Tower::getProjectileID()
 std::weak_ptr<Enemy> Tower::getTargetEnemy() const
 {
 	return m_targetEnemy;
+}
+
+void Tower::setTowerUpgradesData(std::shared_ptr<ArrayOf2TowerUpgradesData> data)
+{
+	m_towerUpgradesData = data;
 }
 
 void Tower::update()
@@ -176,3 +266,4 @@ std::unique_ptr<GameObject> TowerCreator::createGameObject() const
 {
 	return std::make_unique<Tower>();
 }
+#pragma endregion

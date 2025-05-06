@@ -108,21 +108,12 @@ void PlayState::loadData()
 	}
 
 	// load enemies base data
-	GameObjectData enemyObjectData;
+	GameObjectData<LoaderParams> enemyObjectData;
 	enemyObjectData.parseGameOjbectsData("./src/res/enemyObjectData.json", GameObjectConsts::enemyObjectData);
 	m_waveManager->setGameObjectData(enemyObjectData);
 
-	// load tower base data
-	GameObjectData towerObjectData;
-	m_towerFactory = TheTowerFactory::Instance();
-	towerObjectData.parseGameOjbectsData("./src/res/towerObjectData.json", GameObjectConsts::towerObjectData);
-	m_towerFactory->setGameObjectData(towerObjectData);
-
-	// load tower projectiles data
-	GameObjectData projectilesData;
-	m_projectileManager = TheProjectileManager::Instance();
-	projectilesData.parseGameOjbectsData("./src/res/projectilesData.json", GameObjectConsts::projectilesData);
-	m_projectileManager->setGameObjectData(projectilesData);
+	// load tower data
+	loadTowerData();
 }
 
 bool PlayState::onExit()
@@ -215,6 +206,26 @@ void PlayState::updateObjects()
 
 	// update projectiles
 	TheProjectileManager::Instance()->update();
+}
+
+void PlayState::loadTowerData()
+{
+	// load tower base data
+	GameObjectData<LoaderParams> towerObjectData;
+	m_towerFactory = TheTowerFactory::Instance();
+	towerObjectData.parseGameOjbectsData("./src/res/towerObjectData.json", GameObjectConsts::towerObjectData);
+	m_towerFactory->setTowerObjectData(towerObjectData);
+
+	// load tower upgrade data
+	GameObjectData<ArrayOf2TowerUpgradesData> towerUpgradeData;
+	towerUpgradeData.parseGameOjbectsData("./src/res/towerUpgradesData.json", GameObjectConsts::towerUpgradesData);
+	m_towerFactory->setTowerUpgradeObjectData(towerUpgradeData);
+
+	// load tower projectiles data
+	GameObjectData<LoaderParams> projectilesData;
+	m_projectileManager = TheProjectileManager::Instance();
+	projectilesData.parseGameOjbectsData("./src/res/projectilesData.json", GameObjectConsts::projectilesData);
+	m_projectileManager->setGameObjectData(projectilesData);
 }
 
 bool PlayState::checkCollision(SDLGameObject* p1, SDLGameObject* p2)

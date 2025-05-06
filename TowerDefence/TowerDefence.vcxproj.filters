@@ -108,9 +108,6 @@
     <ClCompile Include="src\Wave\WaveParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Utils\GameObjectData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Wave\Wave.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -362,5 +359,6 @@
     <None Include="src\res\waves.json" />
     <None Include="src\res\towerObjectData.json" />
     <None Include="src\res\projectilesData.json" />
+    <None Include="src\res\towerUpgradesData.json" />
   </ItemGroup>
 </Project>
