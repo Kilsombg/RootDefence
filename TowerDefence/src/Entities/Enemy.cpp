@@ -1,6 +1,10 @@
 #include "../../include/EntitiesHeaders/Enemy.h"
 
+#include "../../include/Constants/ColorsConsts.h"
 #include "../../include/Constants/LoaderParamsConsts.h"
+
+#include "../../include/Game.h"
+#include "../../include/UtilsHeaders/TextureManager.h"
 
 #include<SDL.h>
 
@@ -30,7 +34,11 @@ void Enemy::load(const std::shared_ptr<LoaderParams> pParams)
 	m_distFromWaypoint = 0;
 	m_distanceToWaypoint = 0;
 	m_distance = 0;
+
 	SDLGameObject::load(pParams);
+
+	m_healthBarWidth = m_width / 2;
+	m_healthBarHeight = 5;
 }
 
 float Enemy::getHealth()
@@ -61,10 +69,20 @@ bool Enemy::isAlive()
 void Enemy::draw()
 {
 	SDLGameObject::draw();
+
+	if (m_health < m_maxHealth)
+	{
+		TheTextureManager::Instance()->drawProgressBar(
+			m_position.getX() + m_width / 4, m_position.getY(), m_healthBarWidth, m_healthBarHeight,
+			{ ColorsConsts::black.r, ColorsConsts::black.g, ColorsConsts::black.b, ColorsConsts::black.a },
+			{ ColorsConsts::green.r, ColorsConsts::green.g, ColorsConsts::green.b, ColorsConsts::green.a },
+			m_health / m_maxHealth,
+			TheGame::Instance()->getRenderer());
+	}
 }
 
 void Enemy::update()
- {
+{
 	m_currentFrame = int(((SDL_GetTicks() / 100) % m_numFrames));
 
 	move();
@@ -78,7 +96,7 @@ void Enemy::move()
 	if (m_path.size() >= 0 && m_movePathTileID < m_path.size())
 	{
 		std::shared_ptr<Vector2D> pathPoint = m_path[m_movePathTileID];
-		m_velocity = *(pathPoint) - m_position;
+		m_velocity = *(pathPoint)-m_position;
 
 		if (m_velocity.length() < m_moveSpeed)
 		{
