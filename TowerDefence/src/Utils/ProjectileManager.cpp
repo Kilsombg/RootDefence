@@ -31,12 +31,17 @@ void ProjectileManager::update()
 	{
 		m_activeProjectiles[i]->update();
 
-		if (m_activeProjectiles[i]->hitEnemy() && m_activeProjectiles[i]->getTargetEnemy().use_count())
+		if (m_activeProjectiles[i]->hitEnemy())
 		{
-			m_activeProjectiles[i]->getTargetEnemy().lock()->dealDamage(m_activeProjectiles[i]->getDamage());
-			std::cout << "target enemy health: " << m_activeProjectiles[i]->getTargetEnemy().lock()->getHealth() << '\n';
-			m_activeProjectiles.erase(m_activeProjectiles.begin() + i--);
+			// if enemy is still alive then deal damage
+			if (m_activeProjectiles[i]->getTargetEnemy().use_count()) 
+			{
+				m_activeProjectiles[i]->getTargetEnemy().lock()->dealDamage(m_activeProjectiles[i]->getDamage());
+				std::cout << "target enemy health: " << m_activeProjectiles[i]->getTargetEnemy().lock()->getHealth() << '\n';
+			}
 
+			// remove projectile from the game
+			m_activeProjectiles.erase(m_activeProjectiles.begin() + i--);
 		}
 	}
 }

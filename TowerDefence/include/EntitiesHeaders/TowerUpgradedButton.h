@@ -18,7 +18,7 @@ public:
 	void update() override;
 	void load(const std::shared_ptr<LoaderParams> pParams) override;
 
-	typedef std::function<void(std::shared_ptr<Tower>)> TowerUpgradedCallback;
+	typedef std::function<void(std::shared_ptr<Tower>, int)> TowerUpgradedCallback;
 
 	void setCallback(TowerUpgradedCallback callback);
 	void setSelectedTower(std::shared_ptr<Tower> selectedTower);
@@ -31,6 +31,8 @@ private:
 
 	bool m_selected;
 	bool m_pressed;
+
+	int m_upgradeID; // 0 - first, 1 - second
 
 	TowerUpgradedCallback m_callback;
 	std::shared_ptr<Tower> m_selectedTower;

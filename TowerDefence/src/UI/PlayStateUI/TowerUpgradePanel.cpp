@@ -47,9 +47,7 @@ void TowerUpgradePanel::loadCallbacks()
 {
 	// load tower upgrade buttons callbacks
 	TowerUpgradeHandlers towerUpgradeHandlers;
-	m_towerUpgradedButtonCallbacks[LoaderParamsConsts::towerUpgradeOneCallbackID] = std::bind(&TowerUpgradeHandlers::handleUpgradeOneEvent, towerUpgradeHandlers, std::placeholders::_1);
-	m_towerUpgradedButtonCallbacks[LoaderParamsConsts::towerUpgradeTwoCallbackID] = std::bind(&TowerUpgradeHandlers::handleUpgradeTwoEvent, towerUpgradeHandlers, std::placeholders::_1);
-	m_towerUpgradedButtonCallbacks[LoaderParamsConsts::towerUpgradeThreeCallbackID] = std::bind(&TowerUpgradeHandlers::handleUpgradeThreeEvent, towerUpgradeHandlers, std::placeholders::_1);
+	m_towerUpgradedButtonCallbacks[LoaderParamsConsts::towerUpgradeCallbackID] = std::bind(&TowerUpgradeHandlers::handleUpgradeEvent, towerUpgradeHandlers, std::placeholders::_1, std::placeholders::_2);
 	setTowerUpgradedButtonCallbacks();
 }
 

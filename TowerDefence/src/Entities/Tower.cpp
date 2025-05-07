@@ -26,23 +26,33 @@ void to_json(json& j, const TowerUpgradeData& data)
 	j = json{
 		{LoaderParamsConsts::statName, data.statName},
 		{LoaderParamsConsts::values, data.values},
-		{LoaderParamsConsts::maxLevel, data.maxLevel}
+		{LoaderParamsConsts::maxLevel, data.maxLevel},
+		{LoaderParamsConsts::nextLevel, data.nextLevel}
 	};
 }
 
 void from_json(const json& j, TowerUpgradeData& data)
 {	
+	// statName
 	if (j.contains(LoaderParamsConsts::statName)) {
 		j.at(LoaderParamsConsts::statName).get_to(data.statName);
 	}
 
+	// value
 	if (j.contains(LoaderParamsConsts::values)) {
 		j.at(LoaderParamsConsts::values).get_to(data.values);
 	}
 
+	// maxLevel
 	if (j.contains(LoaderParamsConsts::maxLevel))
 	{
 		j.at(LoaderParamsConsts::maxLevel).get_to(data.maxLevel);
+	}
+
+	// nextLevel
+	if (j.contains(LoaderParamsConsts::maxLevel))
+	{
+		j.at(LoaderParamsConsts::nextLevel).get_to(data.nextLevel);
 	}
 }
 
@@ -111,14 +121,36 @@ float Tower::getRadius() const
 	return m_radius;
 }
 
+void Tower::setRadius(float radius)
+{
+	m_radius = radius;
+}
+
 Tower::TowerType Tower::getTowerType()
 {
 	return m_towerType;
 }
 
+float Tower::getAttackSpeed() const
+{
+	return m_attackSpeed;
+}
+
+void Tower::setAttackSpeed(float attackSpeed)
+{
+	m_attackSpeed = attackSpeed;
+	float attackInterval = 1 / m_attackSpeed;
+	m_attackTimer = Timer(attackInterval, attackInterval);
+}
+
 float Tower::getDamage() const
 {
 	return m_damage;
+}
+
+void Tower::setDamage(float damage)
+{
+	m_damage = damage;
 }
 
 std::string Tower::getProjectileID()
@@ -131,7 +163,12 @@ std::weak_ptr<Enemy> Tower::getTargetEnemy() const
 	return m_targetEnemy;
 }
 
-void Tower::setTowerUpgradesData(std::shared_ptr<ArrayOf2TowerUpgradesData> data)
+ArrayOf2TowerUpgradesData& Tower::getTowerUpgradesData()
+{
+	return m_towerUpgradesData;
+}
+
+void Tower::setTowerUpgradesData(ArrayOf2TowerUpgradesData data)
 {
 	m_towerUpgradesData = data;
 }
@@ -167,9 +204,7 @@ void Tower::load(const std::shared_ptr<LoaderParams> pParams)
 	m_projectileID = pParams->getAttribute<std::string>(LoaderParamsConsts::projectileID);
 	m_damage = pParams->getAttribute<float>(LoaderParamsConsts::damage);
 	m_radius = pParams->getAttribute<float>(LoaderParamsConsts::radius);
-	m_attackSpeed = pParams->getAttribute<float>(LoaderParamsConsts::attackSpeed);
-	float attackInterval = 1 / m_attackSpeed;
-	m_attackTimer = Timer(attackInterval, attackInterval);
+	setAttackSpeed(pParams->getAttribute<float>(LoaderParamsConsts::attackSpeed));
 }
 
 void Tower::handleEvent()

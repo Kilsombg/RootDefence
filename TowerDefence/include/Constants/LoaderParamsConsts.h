@@ -21,11 +21,14 @@ namespace LoaderParamsConsts {
 	constexpr char resumebuttonCallbackID[] = "resumebuttonCallbackID";
 	constexpr char restartbuttonCallbackID[] = "restartbuttonCallbackID";
 	constexpr char createTowerCallbackID[] = "createTowerCallbackID";
-	constexpr char towerUpgradeOneCallbackID[] = "towerUpgradeOneCallbackID";
-	constexpr char towerUpgradeTwoCallbackID[] = "towerUpgradeTwoCallbackID";
-	constexpr char towerUpgradeThreeCallbackID[] = "towerUpgradeThreeCallbackID";
+	constexpr char towerUpgradeCallbackID[] = "towerUpgradeCallbackID";
 	constexpr char animSpeed[] = "animSpeed";
 #pragma endregion
+
+#pragma region TowerUpgradedButton params
+	constexpr char upgradeID[] = "upgradeID";
+#pragma endregion
+
 
 #pragma region enemies params
 	constexpr char moveSpeed[] = "moveSpeed";
@@ -48,6 +51,7 @@ namespace LoaderParamsConsts {
 	constexpr char statName[] = "statName";
 	constexpr char values[] = "values";
 	constexpr char maxLevel[] = "maxLevel";
+	constexpr char nextLevel[] = "nextLevel";
 #pragma endregion
 
 

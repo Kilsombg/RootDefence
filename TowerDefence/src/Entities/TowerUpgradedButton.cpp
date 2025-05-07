@@ -1,8 +1,10 @@
 #include "../../include/EntitiesHeaders/TowerUpgradedButton.h"
 
+#include "../../include/Constants/LoaderParamsConsts.h"
+
 #include "../../include/UtilsHeaders/InputHandler.h"
 
-TowerUpgradedButton::TowerUpgradedButton() : Button(), m_selected(false), m_pressed(false)
+TowerUpgradedButton::TowerUpgradedButton() : Button(), m_selected(false), m_pressed(false), m_upgradeID(-1)
 {
 }
 
@@ -21,6 +23,8 @@ void TowerUpgradedButton::update()
 void TowerUpgradedButton::load(const std::shared_ptr<LoaderParams> pParams)
 {
 	Button::load(pParams);
+
+	m_upgradeID = pParams->getAttribute<int>(LoaderParamsConsts::upgradeID);
 }
 
 void TowerUpgradedButton::setCallback(TowerUpgradedCallback callback)
@@ -57,7 +61,7 @@ void TowerUpgradedButton::handleClickOnButton()
 		{
 			//m_currentFrame = CLICKED;
 
-			m_callback(m_selectedTower);
+			m_callback(m_selectedTower, m_upgradeID);
 
 			m_pressed = false;
 

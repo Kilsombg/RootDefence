@@ -27,7 +27,10 @@ struct TowerUpgradeData
 	std::string statName;
 	// vector with each level's values
 	std::vector<float> values;
+	// max level upgrade can get
 	int maxLevel;
+	// next upgrade level
+	int nextLevel;
 };
 
 typedef std::array<TowerUpgradeData, 2> ArrayOf2TowerUpgradesData;
@@ -50,18 +53,32 @@ public:
 	enum TowerType { towerTypes };
 
 	Tower();
-	float getRadius() const;
+
+	// getter and setters
 	TowerType getTowerType();
 
+	float getAttackSpeed() const;
+	void setAttackSpeed(float attackSpeed);
+
 	float getDamage() const;
+	void setDamage(float damage);
+
+	float getRadius() const;
+	void setRadius(float radius);
+
 	std::string getProjectileID();
+	
 	std::weak_ptr<Enemy> getTargetEnemy() const;
 
-	void setTowerUpgradesData(std::shared_ptr<ArrayOf2TowerUpgradesData> data);
+	ArrayOf2TowerUpgradesData& getTowerUpgradesData();
+	void setTowerUpgradesData(ArrayOf2TowerUpgradesData data);
 
+	// override methods
 	virtual void update() override;
 	virtual void draw() override;
 	void load(const std::shared_ptr<LoaderParams> pParams);
+
+
 
 	void handleEvent();
 
@@ -103,7 +120,7 @@ private:
 
 	SelectOnClickEventHandler m_selectOnClickEventHandler;
 
-	std::shared_ptr<ArrayOf2TowerUpgradesData> m_towerUpgradesData;
+	ArrayOf2TowerUpgradesData m_towerUpgradesData;
 };
 
 class TowerCreator : public BaseCreator

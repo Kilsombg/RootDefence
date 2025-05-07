@@ -14,7 +14,7 @@ class TowerUpgradePanel : public TowerInteractivePanel
 public:
 	TowerUpgradePanel();
 
-	typedef std::function<void(std::shared_ptr<Tower>)> TowerUpgradedCallback;
+	typedef std::function<void(std::shared_ptr<Tower>, int)> TowerUpgradedCallback;
 
 	void draw() override;
 	void update() override;

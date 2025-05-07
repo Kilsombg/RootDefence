@@ -41,7 +41,7 @@ std::shared_ptr<Tower> TowerFactory::createShadowTower(std::string towerTypeID)
 
 			// set param attributes
 			// set towerUpgrades data
-			shadowObject->setTowerUpgradesData(m_towerUpgradeData->getData(towerTypeID));
+			shadowObject->setTowerUpgradesData(*m_towerUpgradeData->getData(towerTypeID).get());
 
 			// set position
 			std::shared_ptr<Vector2D> mousePos = InputHandler::Instance()->getMousePosition();

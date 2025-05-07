@@ -56,6 +56,7 @@ bool Projectile::hitEnemy()
 
 void Projectile::move()
 {
+	// get target's position
 	if (m_targetEnemy.use_count())
 	{
 		std::shared_ptr<Enemy> targetEnemy = m_targetEnemy.lock();
@@ -63,16 +64,18 @@ void Projectile::move()
 		m_targetCenterY = targetEnemy->getPosition().getY() + targetEnemy->getHeight() / 2;
 	}
 	
+	// point projectile to target
 	Vector2D targetPoint = Vector2D(m_targetCenterX, m_targetCenterY);
-
 	m_velocity = targetPoint - m_position;
 
+	// if projectile get close to target hit enemy and return
 	if (m_velocity.length() < m_speed)
 	{
 		m_hitEnemy = true;
 		return;
 	}
 
+	// if target is far away get the direction to target and change the magnitude to projectile speed
 	m_velocity.normalize();
 	m_velocity *= m_speed;
 }
