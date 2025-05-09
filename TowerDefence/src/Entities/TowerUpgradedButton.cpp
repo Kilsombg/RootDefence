@@ -2,6 +2,8 @@
 
 #include "../../include/Constants/LoaderParamsConsts.h"
 
+#include "../../include/ManagersHeaders/PurchaseManager.h"
+
 #include "../../include/UtilsHeaders/InputHandler.h"
 
 TowerUpgradedButton::TowerUpgradedButton() : Button(), m_selected(false), m_pressed(false), m_upgradeID(-1)
@@ -61,11 +63,16 @@ void TowerUpgradedButton::handleClickOnButton()
 		{
 			//m_currentFrame = CLICKED;
 
-			m_callback(m_selectedTower, m_upgradeID);
+			// invoke callback only if there are enough resources to buy the upgrade.
+			if (PurchaseManager::Instance()->canPurchaseUpgrade(m_selectedTower->getTowerUpgradesData()[m_upgradeID], m_selectedTower->getColor()))
+			{
+				m_callback(m_selectedTower, m_upgradeID);
 
+				m_selected = true;
+			}
+
+			// change m_pressed to false here, so it calls canPurchaseUpgrade() only once when mouse is on button
 			m_pressed = false;
-
-			m_selected = true;
 		}
 		else if (TheInputHandler::Instance()->getMouseButtonState(LEFT))
 		{

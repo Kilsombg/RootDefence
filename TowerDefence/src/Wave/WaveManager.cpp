@@ -66,7 +66,7 @@ void WaveManager::spawnWaveEnemies(std::vector<std::shared_ptr<Vector2D>>& enemy
 					}
 					en->load(pParams);
 
-					std::cout << "adding enemy.\n";
+					//std::cout << "adding enemy.\n";
 					addEnemyCallback(std::move(en));
 				}
 				else

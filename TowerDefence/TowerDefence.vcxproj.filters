@@ -165,6 +165,9 @@
     <ClCompile Include="src\EventHandlers\SelectOnClickEventHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Managers\PurchaseManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game.h">
@@ -348,6 +351,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\EventHandlersHeaders\SelectOnClickEventHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DataHeaders\GameSessionData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ManagersHeaders\PurchaseManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

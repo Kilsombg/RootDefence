@@ -35,6 +35,7 @@ private:
 	int m_upgradeID; // 0 - first, 1 - second
 
 	TowerUpgradedCallback m_callback;
+
 	std::shared_ptr<Tower> m_selectedTower;
 };
 

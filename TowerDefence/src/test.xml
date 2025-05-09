@@ -18,7 +18,7 @@
 			<texture filename="src/assets/UI/buttons/baseButton.png" ID="towerButton"/>
 		</TEXTURES>
 		<OBJECTS>
-			<object type="towerButton" x="650.00" y="150.00" width="64" height="64" textureID="towerButton" numFrames="0" callbackID="createTowerCallbackID" towerName="tower"/>
+			<object type="towerButton" x="650.00" y="150.00" width="64" height="64" textureID="towerButton" numFrames="0" callbackID="createTowerCallbackID" towerName="tower" towerColor="GREEN"/>
 			<object type="towerUpgradedButton" x="200.00" y="500.00" width="64" height="64" textureID="towerButton" numFrames="0" callbackID="towerUpgradeCallbackID" upgradeID="1"/>
 		</OBJECTS>
 	</PLAY>

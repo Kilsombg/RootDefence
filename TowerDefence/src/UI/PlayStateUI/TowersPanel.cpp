@@ -30,11 +30,6 @@ void TowersPanel::update()
 
 	// update m_clickToPlaceTowerHandler state
 	m_clickToPlaceTowerHandler->update(m_playStateTowers);
-
-	if (m_clickToPlaceTowerHandler->getShadowObject())
-	{
-		m_clickToPlaceTowerHandler->getShadowObject()->update();
-	}
 }
 
 void TowersPanel::loadCallbacks()

@@ -3,10 +3,14 @@
 
 #include "MenuState.h"
 
+#include "../DataHeaders/GameSessionData.h"
+
 #include "../EntitiesHeaders/GameObject.h"
 #include "../EntitiesHeaders/SDLGameObject.h"
 #include "../EntitiesHeaders/Enemy.h"
 #include "../EntitiesHeaders/Button.h"
+
+#include "../ManagersHeaders/PurchaseManager.h"
 
 #include "../MapHeaders/Level.h"
 
@@ -45,24 +49,33 @@ public:
 
 	void handleEvents() override;
 private:
+	// update all objects
 	void updateObjects();
-
-	void loadTowerData();
-
-	std::shared_ptr<std::vector<std::shared_ptr<Tower>>> m_towersObjects;
+	// update enemies
+	void updateEnemyObjects();
+	//create a blank session data
+	void loadGameSessionData();
+	// load needed data for towers
+	void loadTowerData();	
 
 	std::shared_ptr<Level> pLevel;
+
+	std::shared_ptr<std::vector<std::shared_ptr<Tower>>> m_towersObjects;
 
 	std::vector<std::shared_ptr<Enemy>> m_enemyObjects;
 
 	std::shared_ptr<WaveManager> m_waveManager;
 	Wave* m_currentWave;
 
+	std::shared_ptr<PurchaseManager> m_purchaseManager;
+
 	std::shared_ptr<TowerFactory> m_towerFactory;
 
 	std::shared_ptr<ProjectileManager> m_projectileManager;
 
 	std::unique_ptr<PlayStateUI> m_playStateUI;
+
+	std::shared_ptr<GameSessionData> m_gameSessionData;
 };
 
 #endif // !__PlayState__

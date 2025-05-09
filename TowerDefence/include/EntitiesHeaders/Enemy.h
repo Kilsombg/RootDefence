@@ -3,8 +3,11 @@
 
 #include "SDLGameObject.h"
 
+#include "../DataHeaders/GameSessionData.h"
+
 #include<vector>
 #include<memory>
+#include<string>
 
 class Enemy : public SDLGameObject
 {
@@ -17,7 +20,11 @@ public:
 
 	virtual void load(const std::shared_ptr<LoaderParams> pParams);
 
+	// setters and getters
+
 	float getHealth();
+
+	Resource getDrop();
 
 	/**
 	* set points for the path that enemies follow
@@ -28,6 +35,13 @@ public:
 	* @return total distance moved
 	*/
 	float getDistance();
+
+
+
+	/**
+	* return true if enemy is crossed to the end of path
+	*/
+	bool isCrossEndOfPath();
 
 	/** reduce health by damage
 	*/
@@ -40,6 +54,7 @@ protected:
 	float m_maxHealth;
 	float m_health; // current health points
 	float m_defence;
+	Resource m_drop;
 
 private:
 	/**
@@ -52,7 +67,7 @@ private:
 	float m_distFromWaypoint; // current distance from passed path tile to enemy
 	float m_distanceToWaypoint; // distance from the start to currently passed path tile
 	float m_distance; // total distance moved
-	bool m_hitByTower;
+	bool m_crossEndOfPath; // flag if enemy is passed the finish line
 	int m_healthBarWidth;
 	int m_healthBarHeight;
 };

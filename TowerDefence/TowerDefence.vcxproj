@@ -156,6 +156,7 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameStates\GameOverState.cpp" />
     <ClCompile Include="src\GameStates\MenuState.cpp" />
+    <ClCompile Include="src\Managers\PurchaseManager.cpp" />
     <ClCompile Include="src\Map\Level.cpp" />
     <ClCompile Include="src\Map\LevelParser.cpp" />
     <ClCompile Include="src\Map\ObjectLayer.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="include\Constants\GameObjectConsts.h" />
     <ClInclude Include="include\Constants\LoaderParamsConsts.h" />
     <ClInclude Include="include\Constants\SettingsConsts.h" />
+    <ClInclude Include="include\DataHeaders\GameSessionData.h" />
     <ClInclude Include="include\EntitiesHeaders\AnimatedGraphic.h" />
     <ClInclude Include="include\EntitiesHeaders\Button.h" />
     <ClInclude Include="include\EntitiesHeaders\Cabbage.h" />
@@ -213,6 +215,7 @@
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\GameStateHeaders\GameOverState.h" />
     <ClInclude Include="include\GameStateHeaders\GameState.h" />
+    <ClInclude Include="include\ManagersHeaders\PurchaseManager.h" />
     <ClInclude Include="include\MapHeaders\Layer.h" />
     <ClInclude Include="include\MapHeaders\Level.h" />
     <ClInclude Include="include\MapHeaders\LevelParser.h" />

@@ -2,6 +2,8 @@
 
 #include "../../include/Constants/LoaderParamsConsts.h"
 
+#include "../../include/ManagersHeaders/PurchaseManager.h"
+
 #include<string>
 
 void TowerUpgradeHandlers::handleUpgradeEvent(std::shared_ptr<Tower> activeTower, int upgradeID)
@@ -18,6 +20,10 @@ void TowerUpgradeHandlers::handleUpgradeEvent(std::shared_ptr<Tower> activeTower
 	// set new value to the attribute
 	if (upgradeTowerAttribute(activeTower, upgradeID))
 	{
+		// purchase upgrade
+		int cost = activeTower->getTowerUpgradesData()[upgradeID].costs[data.nextLevel];
+		PurchaseManager::Instance()->purchaseUpgrade(cost, activeTower->getColor());
+
 		// set next level on success
 		data.nextLevel++;
 	};

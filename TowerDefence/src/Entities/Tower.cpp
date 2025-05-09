@@ -8,6 +8,7 @@
 #include "../../include/Constants/SettingsConsts.h"
 #include "../../include/Constants/ColorsConsts.h"
 
+#include "../../include/ManagersHeaders/PurchaseManager.h"
 
 #include "../../include/UtilsHeaders/Vector2D.h"
 #include "../../include/UtilsHeaders/GameObjectFactory.h"
@@ -26,6 +27,7 @@ void to_json(json& j, const TowerUpgradeData& data)
 	j = json{
 		{LoaderParamsConsts::statName, data.statName},
 		{LoaderParamsConsts::values, data.values},
+		{LoaderParamsConsts::costs, data.costs},
 		{LoaderParamsConsts::maxLevel, data.maxLevel},
 		{LoaderParamsConsts::nextLevel, data.nextLevel}
 	};
@@ -38,9 +40,14 @@ void from_json(const json& j, TowerUpgradeData& data)
 		j.at(LoaderParamsConsts::statName).get_to(data.statName);
 	}
 
-	// value
+	// values
 	if (j.contains(LoaderParamsConsts::values)) {
 		j.at(LoaderParamsConsts::values).get_to(data.values);
+	}
+
+	// costs
+	if (j.contains(LoaderParamsConsts::costs)) {
+		j.at(LoaderParamsConsts::costs).get_to(data.costs);
 	}
 
 	// maxLevel
@@ -50,7 +57,7 @@ void from_json(const json& j, TowerUpgradeData& data)
 	}
 
 	// nextLevel
-	if (j.contains(LoaderParamsConsts::maxLevel))
+	if (j.contains(LoaderParamsConsts::nextLevel))
 	{
 		j.at(LoaderParamsConsts::nextLevel).get_to(data.nextLevel);
 	}
@@ -112,7 +119,7 @@ void from_json(const json& j, std::map<std::string, std::shared_ptr<ArrayOf2Towe
 
 #pragma region Tower functionality
 
-Tower::Tower() : SDLGameObject(), m_projectileID(""), m_attackSpeed(0), m_damage(0), m_radius(0), m_baseCost(0), m_attackTimer(0)
+Tower::Tower() : SDLGameObject(), m_projectileID(""), m_attackSpeed(0), m_damage(0), m_radius(0), m_attackTimer(0)
 {
 }
 
@@ -124,6 +131,11 @@ float Tower::getRadius() const
 void Tower::setRadius(float radius)
 {
 	m_radius = radius;
+}
+
+Resource Tower::getBaseCost() const
+{
+	return m_baseCost;
 }
 
 Tower::TowerType Tower::getTowerType()
@@ -156,6 +168,16 @@ void Tower::setDamage(float damage)
 std::string Tower::getProjectileID()
 {
 	return m_projectileID;
+}
+
+std::string Tower::getColor()
+{
+	return m_color;
+}
+
+void Tower::setColor(std::string color)
+{
+	m_color = color;
 }
 
 std::weak_ptr<Enemy> Tower::getTargetEnemy() const
@@ -204,6 +226,9 @@ void Tower::load(const std::shared_ptr<LoaderParams> pParams)
 	m_projectileID = pParams->getAttribute<std::string>(LoaderParamsConsts::projectileID);
 	m_damage = pParams->getAttribute<float>(LoaderParamsConsts::damage);
 	m_radius = pParams->getAttribute<float>(LoaderParamsConsts::radius);
+	m_baseCost.type = getResourceTypeByString(pParams->getAttribute<std::string>(LoaderParamsConsts::costType));
+	m_baseCost.value = pParams->getAttribute<int>(LoaderParamsConsts::costValue);
+	m_color = pParams->getAttribute<std::string>(LoaderParamsConsts::color);
 	setAttackSpeed(pParams->getAttribute<float>(LoaderParamsConsts::attackSpeed));
 }
 
@@ -276,6 +301,9 @@ void Tower::placed()
 {
 	// set clickEventHandler after placing to get the position
 	m_selectOnClickEventHandler = SelectOnClickEventHandler(m_position, m_width, m_height, { 0, 0, 640, 480 }, false); // area of the mapPanel
+
+	// deduct tower's cost resources from gameSession data.
+	ThePurchaseManager::Instance()->purchaseTower(m_baseCost);
 }
 
 void Tower::aimEnemy()
@@ -288,7 +316,7 @@ void Tower::aimEnemy()
 		{
 			TheProjectileManager::Instance()->createProjectile(*this);
 			m_attackTimer.resetToMax();
-			std::cout << "tower projectile created\n";
+			//std::cout << "tower projectile created\n";
 		}
 	}
 	else

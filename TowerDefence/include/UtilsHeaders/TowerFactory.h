@@ -5,6 +5,7 @@
 
 #include "../EntitiesHeaders/Tower.h"
 
+#include<string>
 #include<memory>
 
 class TowerFactory
@@ -13,9 +14,20 @@ public:
 	static std::shared_ptr<TowerFactory> Instance();
 
 	std::unique_ptr<GameObject> createTower(std::string towerTypeID);
-	std::shared_ptr<Tower> createShadowTower(std::string towerTypeID);
+	std::shared_ptr<Tower> createShadowTower(std::string towerTypeID, std::string color);
 
+
+	/**
+	* Get data for a specific tower.
+	*/
+	std::shared_ptr<LoaderParams> getTowerData(std::string towerTypeID);
+	/**
+	* Set all towerObjects data.
+	*/
 	void setTowerObjectData(GameObjectData<LoaderParams>& gameObjectdata);
+	/**
+	* Set all tower upgrades data.
+	*/
 	void setTowerUpgradeObjectData(GameObjectData<ArrayOf2TowerUpgradesData>& towerUpgradeData);
 
 private:

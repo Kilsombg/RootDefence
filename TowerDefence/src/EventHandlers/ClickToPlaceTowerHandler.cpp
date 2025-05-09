@@ -41,28 +41,9 @@ void ClickToPlaceTowerHandler::handleEvent(Button* sourceButton)
 
 void ClickToPlaceTowerHandler::update(std::shared_ptr<std::vector<std::shared_ptr<Tower>>> gameObjects)
 {
-	if (m_state == IDLE) return;
+	updateState(gameObjects);
 
-
-
-	if (m_activeButton != nullptr)
-	{
-		if (m_state == MOVING)
-		{
-			updateMovingState();
-		}
-		else if (m_state == PLACING)
-		{
-			if (addObject(gameObjects))
-			{
-				m_state = IDLE;
-			}
-		}
-	}
-	else if (m_state == INTERRUPTED)
-	{
-		m_state = IDLE;
-	}
+	updateShadowObject();
 }
 
 void ClickToPlaceTowerHandler::render()
@@ -113,7 +94,41 @@ void ClickToPlaceTowerHandler::handleMovingState(Button* sourceButton)
 
 void ClickToPlaceTowerHandler::createShadowObject()
 {
-	m_shadowObject = TheTowerFactory::Instance()->createShadowTower(m_activeButton->getTowerName());
+	m_shadowObject = TheTowerFactory::Instance()->createShadowTower(m_activeButton->getTowerName(), m_activeButton->getTowerColor());
+}
+
+void ClickToPlaceTowerHandler::updateState(std::shared_ptr<std::vector<std::shared_ptr<Tower>>> gameObjects)
+{
+	if (m_state == IDLE) return;
+
+
+
+	if (m_activeButton != nullptr)
+	{
+		if (m_state == MOVING)
+		{
+			updateMovingState();
+		}
+		else if (m_state == PLACING)
+		{
+			if (addObject(gameObjects))
+			{
+				m_state = IDLE;
+			}
+		}
+	}
+	else if (m_state == INTERRUPTED)
+	{
+		m_state = IDLE;
+	}
+}
+
+void ClickToPlaceTowerHandler::updateShadowObject()
+{
+	if (m_shadowObject)
+	{
+		m_shadowObject->update();
+	}
 }
 
 void ClickToPlaceTowerHandler::updateMovingState()

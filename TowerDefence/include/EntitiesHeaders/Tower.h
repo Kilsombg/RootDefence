@@ -4,6 +4,8 @@
 #include "SDLGameObject.h"
 #include "Enemy.h"
 
+#include "../DataHeaders/GameSessionData.h"
+
 #include "../EventHandlersHeaders/SelectOnClickEventHandler.h"
 
 #include "../UtilsHeaders/BaseCreator.h"
@@ -18,7 +20,7 @@ using json = nlohmann::json;
 
 /**
 * Tower upgrades data
-* 
+*
 * contains information about the upgrades for a tower.
 */
 struct TowerUpgradeData
@@ -27,6 +29,8 @@ struct TowerUpgradeData
 	std::string statName;
 	// vector with each level's values
 	std::vector<float> values;
+	// vector with each level's costs
+	std::vector<int> costs;
 	// max level upgrade can get
 	int maxLevel;
 	// next upgrade level
@@ -50,7 +54,12 @@ void from_json(const json& j, std::map<std::string, std::shared_ptr<ArrayOf2Towe
 class Tower : public SDLGameObject
 {
 public:
-	enum TowerType { towerTypes };
+	enum TowerType
+	{
+		BASIC = 0, ///< balanced tower
+		FAST = 1, ///< fast attack speed, low damage tower
+		SLOW = 2 ///< slow attack speed, high damage tower
+	};
 
 	Tower();
 
@@ -66,8 +75,13 @@ public:
 	float getRadius() const;
 	void setRadius(float radius);
 
+	Resource getBaseCost() const;
+
 	std::string getProjectileID();
-	
+
+	std::string getColor();
+	void setColor(std::string color);
+
 	std::weak_ptr<Enemy> getTargetEnemy() const;
 
 	ArrayOf2TowerUpgradesData& getTowerUpgradesData();
@@ -102,20 +116,18 @@ public:
 	* set up tower after placed
 	*/
 	void placed();
-	
+
 
 private:
-
-	enum priceType {};
-
 	std::string m_projectileID;
-	float m_attackSpeed;
-	Timer m_attackTimer;
 	float m_damage;
 	float m_radius; // range
-	int m_baseCost;
-	priceType m_priceType;
+	Resource m_baseCost;
+	float m_attackSpeed;
+	Timer m_attackTimer;
 	TowerType m_towerType;
+	std::string m_color;
+
 	std::weak_ptr<Enemy> m_targetEnemy;
 
 	SelectOnClickEventHandler m_selectOnClickEventHandler;

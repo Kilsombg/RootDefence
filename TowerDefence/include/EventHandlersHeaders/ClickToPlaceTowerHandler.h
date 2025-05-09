@@ -45,6 +45,11 @@ private:
 	*/
 	void createShadowObject();
 	/**
+	* update state
+	*/
+	void updateState(std::shared_ptr<std::vector<std::shared_ptr<Tower>>> gameObjects);
+	void updateShadowObject();
+	/**
 	* set shadow object position and check whether mouse is over free tower tile
 	*/
 	void updateMovingState();

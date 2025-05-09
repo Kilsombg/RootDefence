@@ -30,7 +30,7 @@ std::unique_ptr<GameObject> TowerFactory::createTower(std::string towerTypeID)
 	return std::unique_ptr<GameObject>();
 }
 
-std::shared_ptr<Tower> TowerFactory::createShadowTower(std::string towerTypeID)
+std::shared_ptr<Tower> TowerFactory::createShadowTower(std::string towerTypeID, std::string color)
 {
 	if (std::unique_ptr<GameObject>	towerObject = TheGameObjectFactory::Instance()->create(towerTypeID))
 	{
@@ -43,10 +43,12 @@ std::shared_ptr<Tower> TowerFactory::createShadowTower(std::string towerTypeID)
 			// set towerUpgrades data
 			shadowObject->setTowerUpgradesData(*m_towerUpgradeData->getData(towerTypeID).get());
 
-			// set position
+			// set additional position
 			std::shared_ptr<Vector2D> mousePos = InputHandler::Instance()->getMousePosition();
 			params->setAttribute(LoaderParamsConsts::x, mousePos->getX());
 			params->setAttribute(LoaderParamsConsts::y, mousePos->getY());
+			params->setAttribute(LoaderParamsConsts::costType, color);
+			params->setAttribute(LoaderParamsConsts::color, color);
 
 			// load params into the shadow object and return it
 			shadowObject->load(params);
@@ -57,6 +59,11 @@ std::shared_ptr<Tower> TowerFactory::createShadowTower(std::string towerTypeID)
 		}
 	}
 	return nullptr;
+}
+
+std::shared_ptr<LoaderParams> TowerFactory::getTowerData(std::string towerTypeID)
+{
+	return m_towerObjectData->getData(towerTypeID);
 }
 
 void TowerFactory::setTowerObjectData(GameObjectData<LoaderParams>& gameObjectdata)

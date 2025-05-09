@@ -7,7 +7,9 @@
       "numFrames": 4,
       "moveSpeed": 1.0,
       "maxHealth": 100.0,
-      "defence": 3.0
+      "defence": 3.0,
+      "dropType": "GREEN",
+      "dropValue": 1
     },
     "cabbage": {
       "width": 128,
@@ -16,7 +18,9 @@
       "numFrames": 4,
       "moveSpeed": 0.7,
       "maxHealth": 120.0,
-      "defence": 5.0
+      "defence": 5.0,
+      "dropType": "YELLOW",
+      "dropValue": 1
     }
   }
 }

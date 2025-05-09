@@ -114,6 +114,13 @@ void PlayState::loadData()
 
 	// load tower data
 	loadTowerData();
+
+	// load gameSession data
+	loadGameSessionData();
+
+	// loading purchase manager
+	m_purchaseManager = PurchaseManager::Instance();
+	m_purchaseManager->setGameSessionData(m_gameSessionData);
 }
 
 bool PlayState::onExit()
@@ -143,6 +150,9 @@ bool PlayState::onExit()
 	}
 	m_waveManager->clean();
 
+	// clean purchase manager
+	m_purchaseManager->clean();
+
 	std::cout << "exiting PlayState\n";
 	return true;
 }
@@ -159,6 +169,12 @@ void PlayState::addEnemy(std::unique_ptr<Enemy> enemy)
 
 void PlayState::handleEvents()
 {
+	// handle game over
+	if (m_gameSessionData->gameHealth <= 0)
+	{
+		TheGame::Instance()->getStateMachine()->pushState(std::make_shared<GameOverState>());
+	}
+
 	// handle buttons
 	MenuState::handleEvents();
 
@@ -181,23 +197,13 @@ void PlayState::handleEvents()
 void PlayState::updateObjects()
 {
 	// udpate enemies
-	for (std::vector<std::shared_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects.size(); i++)
-	{
-		if (!m_enemyObjects[i]->isAlive())
-		{
-			m_enemyObjects[i]->clean();
-			m_enemyObjects.erase(m_enemyObjects.begin() + i);
-			continue;
-		}
-
-		m_enemyObjects[i]->update();
-	}
+	updateEnemyObjects();
 
 	// update towers
 	for (std::vector<std::shared_ptr<Tower>>::size_type i = 0; i < m_towersObjects->size(); i++)
 	{
 		(*m_towersObjects)[i]->update();
-		
+
 		(*m_towersObjects)[i]->targetEnemy(m_enemyObjects);
 	}
 
@@ -206,6 +212,47 @@ void PlayState::updateObjects()
 
 	// update projectiles
 	TheProjectileManager::Instance()->update();
+}
+
+void PlayState::updateEnemyObjects()
+{
+	for (std::vector<std::shared_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects.size(); i++)
+	{
+		// remove defeated enemies or enemy crossed to the end of path
+		if (!m_enemyObjects[i]->isAlive() || m_enemyObjects[i]->isCrossEndOfPath())
+		{
+			// remove health point if enemy crosses to the end of path
+			if (m_enemyObjects[i]->isCrossEndOfPath())
+			{
+				m_gameSessionData->gameHealth--;
+			}
+			else // defeated enemy
+			{
+				// increase gameSession resources
+				Resource drop = m_enemyObjects[i]->getDrop();
+				m_gameSessionData->resources[drop.type].value += drop.value;
+			}
+
+			// remove enemy
+			m_enemyObjects[i]->clean();
+			m_enemyObjects.erase(m_enemyObjects.begin() + i);
+			continue;
+		}
+
+		// update enemy
+		m_enemyObjects[i]->update();
+	}
+}
+
+void PlayState::loadGameSessionData()
+{
+	m_gameSessionData = std::make_shared<GameSessionData>();
+
+	m_gameSessionData->gameHealth= 5;
+	m_gameSessionData->resources = { Resource {ResourceType {GREEN}, 5},
+					Resource {ResourceType {YELLOW}, 0},
+					Resource {ResourceType {RED}, 0} };
+	m_gameSessionData->currentWaveLevel = 0;
 }
 
 void PlayState::loadTowerData()

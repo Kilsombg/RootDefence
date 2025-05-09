@@ -25,6 +25,13 @@ namespace LoaderParamsConsts {
 	constexpr char animSpeed[] = "animSpeed";
 #pragma endregion
 
+
+#pragma region TowerButton params
+	constexpr char towerName[] = "towerName";
+	constexpr char towerColor[] = "towerColor";
+#pragma endregion
+
+
 #pragma region TowerUpgradedButton params
 	constexpr char upgradeID[] = "upgradeID";
 #pragma endregion
@@ -34,15 +41,19 @@ namespace LoaderParamsConsts {
 	constexpr char moveSpeed[] = "moveSpeed";
 	constexpr char maxHealth[] = "maxHealth";
 	constexpr char defence[] = "defence";
+	constexpr char dropType[] = "dropType";
+	constexpr char dropValue[] = "dropValue";
 #pragma endregion
 
 
 #pragma region towers params
-	constexpr char towerName[] = "towerName";
 	constexpr char projectileID[] = "projectileID";
 	constexpr char damage[] = "damage";
 	constexpr char radius[] = "radius";
+	constexpr char costType[] = "costType";
+	constexpr char costValue[] = "costValue";
 	constexpr char attackSpeed[] = "attackSpeed";
+	constexpr char color[] = "color";
 	constexpr char towerUpgradesData[] = "towerUpgradesData";
 #pragma endregion
 
@@ -50,6 +61,7 @@ namespace LoaderParamsConsts {
 #pragma region towerUpgradesData params
 	constexpr char statName[] = "statName";
 	constexpr char values[] = "values";
+	constexpr char costs[] = "costs";
 	constexpr char maxLevel[] = "maxLevel";
 	constexpr char nextLevel[] = "nextLevel";
 #pragma endregion

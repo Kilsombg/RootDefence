@@ -11,7 +11,7 @@ namespace TileTypeConsts
 
 enum TileType
 {
-	NONE = 0,
+	NOT_TILE_TYPE = 0,
 	OCCUPIED = 1,    // tile with tower object
 	TOWER = 2,	// tile that can be placed tower
 	PATH = 3	// enemy path
@@ -29,7 +29,7 @@ inline TileType getTileTypeByString(std::string strTileType)
 	}
 	else
 	{
-		return NONE;
+		return NOT_TILE_TYPE;
 	}
 }
 

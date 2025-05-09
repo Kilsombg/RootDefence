@@ -64,7 +64,7 @@ TileType Level::getTileTypeByPosition(float x, float y) const
 
 	if (r >= m_tileTypeMap.size() || c >= m_tileTypeMap[0].size())
 	{
-		return TileType::NONE;
+		return TileType::NOT_TILE_TYPE;
 	}
 
 	return m_tileTypeMap[r][c];

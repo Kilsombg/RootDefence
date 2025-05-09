@@ -8,6 +8,7 @@
       "numFrames": 4,
       "damage": 20.0,
       "radius": 32.0,
+      "costValue": 2,
       "attackSpeed": 2.0
     },
     "tower2": {

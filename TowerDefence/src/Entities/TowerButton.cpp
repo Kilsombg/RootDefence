@@ -2,6 +2,8 @@
 
 #include "../../include/Constants/LoaderParamsConsts.h"
 
+#include "../../include/ManagersHeaders/PurchaseManager.h"
+
 #include "../../include/MapHeaders/TileType.h"
 
 #include "../../include/UtilsHeaders/InputHandler.h"
@@ -14,6 +16,7 @@ TowerButton::TowerButton() : Button(), m_selected(false), m_pressed(false), m_is
 void TowerButton::load(const std::shared_ptr<LoaderParams> pParams)
 {
 	m_towerName = pParams->getAttribute<std::string>(LoaderParamsConsts::towerName);
+	m_towerColor = pParams->getAttribute<std::string>(LoaderParamsConsts::towerColor);
 	Button::load(pParams);
 }
 
@@ -48,6 +51,11 @@ void TowerButton::setCallback(TowerButtonCallback callback)
 std::string TowerButton::getTowerName()
 {
 	return m_towerName;
+}
+
+std::string TowerButton::getTowerColor()
+{
+	return m_towerColor;
 }
 
 void TowerButton::setLevel(std::shared_ptr<Level> level)
@@ -98,11 +106,15 @@ void TowerButton::handleClickOnButton()
 		{
 			//m_currentFrame = CLICKED;
 
-			m_callback(this);
+			// invoke callback only if there are enough resources to buy the tower.
+			if (ThePurchaseManager::Instance()->canPurchaseTower(m_towerName, m_towerColor))
+			{
+				m_callback(this);
 
+				m_selected = true;
+			}
+			// change m_pressed to false here, so it calls canPurchaseTower() only once when mouse is on button
 			m_pressed = false;
-
-			m_selected = true;
 		}
 		else if (TheInputHandler::Instance()->getMouseButtonState(LEFT))
 		{
