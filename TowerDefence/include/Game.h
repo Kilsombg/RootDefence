@@ -9,6 +9,7 @@
 #include "UtilsHeaders/TextureManager.h"
 
 #include<SDL.h>
+#include<SDL_ttf.h>
 #include<vector>
 #include<memory>
 
@@ -26,6 +27,7 @@ public:
 	void quit();
 	
 	SDL_Renderer* getRenderer() const;
+	TTF_Font* getFont() const;
 	std::shared_ptr<GameStateMachine> getStateMachine();
 	int getGameWidth() const;
 	int getGameHeight() const;
@@ -43,6 +45,8 @@ private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	SDL_Texture* m_pTexture;
+
+	TTF_Font* m_pFont;
 
 	std::shared_ptr<GameStateMachine> m_pGameStateMachine;
 };

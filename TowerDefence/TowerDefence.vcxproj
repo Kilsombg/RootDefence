@@ -71,12 +71,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\Programming\vendoors\nlohmann-json\json\single_include;D:\Programming\vendoors\zlib-win-x64\include;D:\Programming\vendoors\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Programming\vendoors\zlib-win-x64\lib;D:\Programming\vendoors\SDL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\Programming\vendoors\SDL2_ttf-2.24.0\include;D:\Programming\vendoors\nlohmann-json\json\single_include;D:\Programming\vendoors\zlib-win-x64\include;D:\Programming\vendoors\SDL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Programming\vendoors\SDL2_ttf-2.24.0\lib\x64;D:\Programming\vendoors\zlib-win-x64\lib;D:\Programming\vendoors\SDL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>D:\Programming\vendoors\nlohmann-json\json\single_include;D:\Programming\vendoors\zlib-win-x64\include;D:\Programming\vendoors\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Programming\vendoors\zlib-win-x64\lib;D:\Programming\vendoors\SDL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\Programming\vendoors\SDL2_ttf-2.24.0\include;D:\Programming\vendoors\nlohmann-json\json\single_include;D:\Programming\vendoors\zlib-win-x64\include;D:\Programming\vendoors\SDL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Programming\vendoors\SDL2_ttf-2.24.0\lib\x64;D:\Programming\vendoors\zlib-win-x64\lib;D:\Programming\vendoors\SDL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -116,7 +116,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;zlib.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -133,7 +133,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;zlib.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -184,6 +184,7 @@
     <ClCompile Include="src\Utils\tinyxmlerror.cpp" />
     <ClCompile Include="src\Utils\tinyxmlparser.cpp" />
     <ClCompile Include="src\Utils\TowerFactory.cpp" />
+    <ClCompile Include="src\Utils\TrueTypeManager.cpp" />
     <ClCompile Include="src\Utils\Vector2D.cpp" />
     <ClCompile Include="src\Wave\Wave.cpp" />
     <ClCompile Include="src\Wave\WaveManager.cpp" />
@@ -248,6 +249,7 @@
     <ClInclude Include="include\UtilsHeaders\tinystr.h" />
     <ClInclude Include="include\UtilsHeaders\tinyxml.h" />
     <ClInclude Include="include\UtilsHeaders\TowerFactory.h" />
+    <ClInclude Include="include\UtilsHeaders\TrueTypeManager.h" />
     <ClInclude Include="include\UtilsHeaders\Vector2D.h" />
     <ClInclude Include="include\WaveHeaders\Wave.h" />
     <ClInclude Include="include\Constants\WaveConstans.h" />
@@ -263,6 +265,9 @@
     <None Include="src\res\towerObjectData.json" />
     <None Include="src\res\towerUpgradesData.json" />
     <None Include="src\res\waves.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="src\fonts\LuckiestGuy-Regular.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

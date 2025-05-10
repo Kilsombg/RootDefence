@@ -168,6 +168,9 @@
     <ClCompile Include="src\Managers\PurchaseManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Utils\TrueTypeManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game.h">
@@ -359,6 +362,9 @@
     <ClInclude Include="include\ManagersHeaders\PurchaseManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\UtilsHeaders\TrueTypeManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="src\test.xml" />
@@ -369,5 +375,8 @@
     <None Include="src\res\towerObjectData.json" />
     <None Include="src\res\projectilesData.json" />
     <None Include="src\res\towerUpgradesData.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="src\fonts\LuckiestGuy-Regular.ttf" />
   </ItemGroup>
 </Project>

@@ -26,7 +26,7 @@ public:
 	void handleEvent(Button* sourceButton) override;
 	void update(std::shared_ptr<std::vector<std::shared_ptr<Tower>>> gameObjects);
 	void render();
-	void clear();
+	void clean();
 
 	std::shared_ptr<Tower>& getShadowObject();
 	void setLevel(std::shared_ptr<Level> level);

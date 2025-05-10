@@ -14,11 +14,11 @@
 #include "../include/GameStateHeaders/MainMenuState.h"
 #include "../include/GameStateHeaders/PlayState.h"
 
+#include "../include/UtilsHeaders/TrueTypeManager.h"
 #include "../include/UtilsHeaders/InputHandler.h"
 #include "../include/UtilsHeaders/GameObjectFactory.h"
 
 #include<iostream>
-#include<memory>
 
 Game* Game::s_pInstance = nullptr;
 
@@ -63,6 +63,21 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 			if (m_pRenderer != 0)
 			{
 				std::cout << "renderer creation success\n";
+
+				if (TTF_Init() == -1) {
+					std::cout << "Could not initailize SDL2_ttf, error: " << TTF_GetError() << std::endl;
+				}
+				else {
+					std::cout << "SDL2_ttf system ready to go!" << std::endl;
+				}
+
+				// Load font file and set the font size
+				TTF_Font* ourFont = TTF_OpenFont("./fonts/LuckiestGuy-Regular.ttf", 32);
+				// Confirm that it was loaded
+				if (ourFont == nullptr) {
+					std::cout << "Could not load font" << std::endl;
+				}
+
 				SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
 
 				// stretching window
@@ -137,6 +152,10 @@ void Game::clean()
 
 	TheTextureManager::Instance()->clean();
 
+	TheTrueTypeManager::Instance()->clean();
+
+	TTF_CloseFont(m_pFont);
+
 	TheInputHandler::Instance()->clean();
 
 	SDL_Quit();
@@ -145,6 +164,11 @@ void Game::clean()
 SDL_Renderer* Game::getRenderer() const
 {
 	return m_pRenderer;
+}
+
+TTF_Font* Game::getFont() const
+{
+	return m_pFont;
 }
 
 std::shared_ptr<GameStateMachine> Game::getStateMachine()

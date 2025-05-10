@@ -56,7 +56,7 @@ void ClickToPlaceTowerHandler::render()
 	m_shadowObject->draw();
 }
 
-void ClickToPlaceTowerHandler::clear()
+void ClickToPlaceTowerHandler::clean()
 {
 }
 
