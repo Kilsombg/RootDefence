@@ -43,6 +43,10 @@ void TowerUpgradePanel::update()
 	updateSelectedTower();
 }
 
+void TowerUpgradePanel::clean()
+{
+}
+
 void TowerUpgradePanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)
 {
 	// load relevant objects

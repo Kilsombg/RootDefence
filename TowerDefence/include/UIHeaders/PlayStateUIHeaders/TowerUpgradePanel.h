@@ -19,6 +19,7 @@ public:
 
 	void draw() override;
 	void update() override;
+	void clean() override;
 	void load(std::vector<std::unique_ptr<GameObject>> gameObjects) override;
 
 	void loadCallbacks() override;

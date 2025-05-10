@@ -15,6 +15,11 @@ void InteractivePanel::draw()
 
 void InteractivePanel::update()
 {
+	// update buttons
+	for (std::vector<std::unique_ptr<Button>>::size_type i = 0; i < m_buttonObjects.size(); i++)
+	{
+		m_buttonObjects[i]->update();
+	}
 }
 
 void InteractivePanel::handleEvents()

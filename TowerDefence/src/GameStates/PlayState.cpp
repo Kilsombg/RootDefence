@@ -93,11 +93,6 @@ void PlayState::loadData()
 		pLevel->setSpawnPoint(*(pLevel->getEnemyPath()[0].get()));
 	}
 
-	/* load UI */
-	m_playStateUI = std::make_unique<PlayStateUI>(s_stateID);
-	m_playStateUI->setPlayStateTowers(m_towersObjects);
-	m_playStateUI->setLevel(pLevel);
-	m_playStateUI->load();
 
 	// load waves data
 	WaveParser waveParser;
@@ -121,6 +116,13 @@ void PlayState::loadData()
 	// loading purchase manager
 	m_purchaseManager = PurchaseManager::Instance();
 	m_purchaseManager->setGameSessionData(m_gameSessionData);
+
+	/* load UI */
+	m_playStateUI = std::make_unique<PlayStateUI>(s_stateID);
+	m_playStateUI->setPlayStateTowers(m_towersObjects);
+	m_playStateUI->setLevel(pLevel);
+	m_playStateUI->setGameSessionData(m_gameSessionData);
+	m_playStateUI->load();
 }
 
 bool PlayState::onExit()

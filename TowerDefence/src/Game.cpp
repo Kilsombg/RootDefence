@@ -8,6 +8,7 @@
 #include "../include/EntitiesHeaders/Tower.h"
 #include "../include/EntitiesHeaders/Projectile.h"
 #include "../include/EntitiesHeaders/AnimatedGraphic.h"
+#include "../include/EntitiesHeaders/Text.h"
 #include "../include/EntitiesHeaders/Carrot.h"
 #include "../include/EntitiesHeaders/Cabbage.h"
 
@@ -76,9 +77,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 				}
 
 				// Load font file and set the font size
-				TTF_Font* ourFont = TTF_OpenFont("./fonts/LuckiestGuy-Regular.ttf", 32);
+				m_pFont = TTF_OpenFont("src/fonts/LuckiestGuy-Regular.ttf", 32);
 				// Confirm that it was loaded
-				if (ourFont == nullptr) {
+				if (m_pFont == nullptr) {
 					std::cout << "Could not load font" << std::endl;
 				}
 
@@ -122,6 +123,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::towerUpgradedButton, std::make_shared<TowerUpgradedButtonCreator>());
 
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::animatedGraphic, std::make_shared<AnimatedGraphicCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::text, std::make_shared<TextCreator>());
 
 	
 	ThePanelFactory::Instance()->registerType(PanelConsts::towersPanel, std::make_shared<TowersPanelCreator>());

@@ -2,8 +2,10 @@
 #define __GameObject__
 
 #include "../UtilsHeaders/LoaderParams.h"
+#include "../UtilsHeaders/Vector2D.h"
 
 #include<memory>
+#include<string>
 
 class GameObject
 {
@@ -18,6 +20,12 @@ public:
 
 protected:
 	GameObject();
+	
+	int m_width;
+	int m_height;
+	std::string m_textureID;
+
+	Vector2D m_position;
 };
 
 #endif // !__GameObject__

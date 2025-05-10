@@ -1,8 +1,10 @@
 #include "../../../include/UIHeaders/PlayStateUIHeaders/TowersPanel.h"
 
-#include "../../../include/EntitiesHeaders/TowerButton.h"
-
 #include "../../../include/Constants/LoaderParamsConsts.h"
+
+#include "../../../include/EntitiesHeaders/TowerButton.h"
+#include "../../../include/EntitiesHeaders/Text.h"
+
 
 TowersPanel::TowersPanel() : TowerInteractivePanel()
 {
@@ -11,7 +13,15 @@ TowersPanel::TowersPanel() : TowerInteractivePanel()
 
 void TowersPanel::draw()
 {
+	// draw buttons
 	InteractivePanel::draw();
+
+	// draw texts
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->draw();
+	}
+	m_healthText.draw();
 
 	// render shadow tower
 	if (m_clickToPlaceTowerHandler->getShadowObject())
@@ -23,13 +33,28 @@ void TowersPanel::draw()
 void TowersPanel::update()
 {
 	// update tower buttons
-	for (std::vector<std::unique_ptr<Button>>::size_type i = 0; i < m_buttonObjects.size(); i++)
-	{
-		m_buttonObjects[i]->update();
-	}
+	InteractivePanel::update();
 
 	// update m_clickToPlaceTowerHandler state
 	m_clickToPlaceTowerHandler->update(m_playStateTowers);
+
+	// update labels
+	m_healthText.setMessage(std::to_string(m_gameSessionData->gameHealth));
+	m_healthText.update();
+}
+
+void TowersPanel::clean()
+{
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
+	{
+		// Cleaning text textures
+		if (std::unique_ptr<Text> pText = std::unique_ptr<Text>(dynamic_cast<Text*>(m_gameObjects[i].get())))
+		{
+			pText->clean();
+			pText = nullptr;
+		}
+	}
+	m_healthText.clean();
 }
 
 void TowersPanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)
@@ -43,10 +68,28 @@ void TowersPanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)
 			pButton = nullptr;
 			gameObjects[i].release();
 		}
+		else if (std::unique_ptr<Text> pText = std::unique_ptr<Text>(dynamic_cast<Text*>(gameObjects[i].get())))
+		{
+			m_gameObjects.push_back(std::move(pText));
+			pText = nullptr;
+			gameObjects[i].release();
+		}
 	}
-
+	
 	// load callbacks
 	loadCallbacks();
+}
+
+void TowersPanel::loadDependencies(std::shared_ptr<Level> level, std::shared_ptr<GameSessionData> gameSessionData)
+{
+	// load level
+	pLevel = level;
+
+	// load session data
+	m_gameSessionData = gameSessionData;
+
+	// load text labels
+	m_healthText = Text(630, 100, 20, 20, "health", std::to_string(m_gameSessionData->gameHealth));
 }
 
 void TowersPanel::loadCallbacks()
@@ -66,6 +109,11 @@ void TowersPanel::setLevel(std::shared_ptr<Level> level)
 	pLevel = level;
 	m_clickToPlaceTowerHandler->setLevel(pLevel);
 	setTowerButtonLevel();
+}
+
+void TowersPanel::setGameSeesionData(std::shared_ptr<GameSessionData> gameSessionData)
+{
+	m_gameSessionData = gameSessionData;
 }
 
 void TowersPanel::setTowerButtonCallbacks()

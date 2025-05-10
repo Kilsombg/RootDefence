@@ -71,4 +71,9 @@ namespace LoaderParamsConsts {
 	constexpr char projectileSpeed[] = "projectileSpeed";
 #pragma endregion
 
+
+#pragma region Text
+	constexpr char message[] = "message";
+#pragma endregion
+
 }

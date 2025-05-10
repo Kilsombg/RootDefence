@@ -16,6 +16,7 @@ namespace GameObjectConsts {
 	constexpr char towerButton[] = "towerButton";
 	constexpr char towerUpgradedButton[] = "towerUpgradedButton";
 	constexpr char animatedGraphic[] = "animatedGraphic";
+	constexpr char text[] = "text";
 #pragma endregion
 
 }

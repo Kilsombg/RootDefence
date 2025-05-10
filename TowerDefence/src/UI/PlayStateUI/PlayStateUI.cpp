@@ -29,9 +29,9 @@ void PlayStateUI::load()
 	StateParser stateParser;
 	stateParser.parseState("./src/test.xml", s_stateID, &m_textureIDList, &m_panels);
 
-	// set level to TowersPanel
+	// load TowersPanel
 	auto towersPanel = getPanel<TowersPanel>();
-	towersPanel->setLevel(pLevel);
+	towersPanel->loadDependencies(pLevel, m_gameSessionData);
 	towersPanel = nullptr;
 
 	// load panels callbacks and play state towers
@@ -71,6 +71,12 @@ void PlayStateUI::clean()
 	{
 		TheTextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
 	}
+
+	// Cleaning panels
+	for (std::vector<std::unique_ptr<Panel>>::size_type i = 0; i < m_panels.size(); i++)
+	{
+		m_panels[i]->clean();
+	}
 }
 
 void PlayStateUI::setPlayStateTowers(std::shared_ptr<std::vector<std::shared_ptr<Tower>>> playStateTowers)
@@ -81,4 +87,9 @@ void PlayStateUI::setPlayStateTowers(std::shared_ptr<std::vector<std::shared_ptr
 void PlayStateUI::setLevel(std::shared_ptr<Level> level)
 {
 	pLevel = level;
+}
+
+void PlayStateUI::setGameSessionData(std::shared_ptr<GameSessionData> gameSessionData)
+{
+	m_gameSessionData = gameSessionData;
 }
