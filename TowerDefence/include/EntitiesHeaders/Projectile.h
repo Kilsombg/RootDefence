@@ -39,7 +39,7 @@ private:
 class ProjectileCreator : public BaseCreator
 {
 public:
-	virtual std::unique_ptr<GameObject> createGameObject() const;
+	virtual std::unique_ptr<GameObject> create() const override;
 };
 
 #endif // !__Projectile__

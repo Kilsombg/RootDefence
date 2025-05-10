@@ -22,7 +22,7 @@ public:
 
 class PlayerCreator : public BaseCreator
 {
-	std::unique_ptr<GameObject> createGameObject() const;
+	std::unique_ptr<GameObject> create() const override;
 };
 
 #endif // !__Player__

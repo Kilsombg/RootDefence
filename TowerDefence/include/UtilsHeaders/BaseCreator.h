@@ -1,14 +1,15 @@
 #ifndef __BaseCreator__
 #define __BaseCreator__
 
+#include "Creator.h"
+
 #include "../EntitiesHeaders/GameObject.h"
 
 #include<memory>
 
-class BaseCreator
+class BaseCreator : public Creator<GameObject>
 {
 public:
-	virtual std::unique_ptr<GameObject> createGameObject() const = 0;
 	virtual ~BaseCreator() {}
 };
 

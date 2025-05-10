@@ -146,7 +146,7 @@ void TowerButton::handleClickOnButton()
 	}
 }
 
-std::unique_ptr<GameObject> TowerButtonCreator::createGameObject() const
+std::unique_ptr<GameObject> TowerButtonCreator::create() const
 {
 	return std::make_unique<TowerButton>();
 }

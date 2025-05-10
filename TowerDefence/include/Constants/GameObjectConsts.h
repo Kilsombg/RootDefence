@@ -19,3 +19,12 @@ namespace GameObjectConsts {
 #pragma endregion
 
 }
+
+
+namespace PanelConsts {
+#pragma region Creator objects
+	constexpr char towersPanel[] = "towersPanel";
+	constexpr char towerUpgradePanel[] = "towerUpgradePanel";
+#pragma endregion
+
+}

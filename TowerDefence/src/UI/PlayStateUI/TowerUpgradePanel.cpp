@@ -43,6 +43,23 @@ void TowerUpgradePanel::update()
 	updateSelectedTower();
 }
 
+void TowerUpgradePanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)
+{
+	// load relevant objects
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < gameObjects.size(); i++)
+	{
+		if (std::unique_ptr<TowerUpgradedButton> pButton = std::unique_ptr<TowerUpgradedButton>(dynamic_cast<TowerUpgradedButton*>(gameObjects[i].get())))
+		{
+			m_buttonObjects.push_back(std::move(pButton));
+			pButton = nullptr;
+			gameObjects[i].release();
+		}
+	}
+
+	// load callbacks
+	loadCallbacks();
+}
+
 void TowerUpgradePanel::loadCallbacks()
 {
 	// load tower upgrade buttons callbacks
@@ -88,4 +105,9 @@ void TowerUpgradePanel::setTowerUpgradedButtonCallbacks()
 			pButton = nullptr;
 		}
 	}
+}
+
+std::unique_ptr<Panel> TowerUpgradePanelCreator::create() const
+{
+	return std::make_unique<TowerUpgradePanel>();
 }

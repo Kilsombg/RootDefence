@@ -1,10 +1,13 @@
 #include "../../include/UtilsHeaders/StateParser.h"
 #include "../../include/UtilsHeaders/TextureManager.h"
 #include "../../include/UtilsHeaders/GameObjectFactory.h"
+#include "../../include/UtilsHeaders/PanelFactory.h"
+
+#include "../../include/EntitiesHeaders/Button.h"
 
 #include "../../include/Game.h"
 
-bool StateParser::parseState(const char* stateFile, std::string stateID, std::vector<std::unique_ptr<GameObject>>* pObjects, std::vector<std::string>* pTextureIDs)
+bool StateParser::parseState(const char* stateFile, std::string stateID, std::vector<std::string>* pTextureIDs, std::vector<std::unique_ptr<Panel>>* pPanels)
 {
 	TiXmlDocument xmlDoc;
 	if (!xmlDoc.LoadFile(stateFile))
@@ -35,16 +38,16 @@ bool StateParser::parseState(const char* stateFile, std::string stateID, std::ve
 
 	parseTextures(pTextureRoot, pTextureIDs);
 
-	TiXmlElement* pObjectRoot = 0;
+
+	TiXmlElement* pPanelRoot = 0;
 	for (TiXmlElement* e = pStateRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
-		if (e->Value() == std::string("OBJECTS"))
+		if (e->Value() == std::string("PANELS"))
 		{
-			pObjectRoot = e;
+			pPanelRoot = e;
 		}
 	}
-
-	parseObjects(pObjectRoot, pObjects);
+	parsePanels(pPanelRoot, pPanels);
 	return true;
 }
 
@@ -61,6 +64,35 @@ void StateParser::parseTextures(TiXmlElement* pStateRoot, std::vector<std::strin
 		TheTextureManager::Instance()->load(filenameAttribute, idAttribute, TheGame::Instance()->getRenderer());
 	}
 }
+
+void StateParser::parsePanels(TiXmlElement* pPanelsRoot, std::vector<std::unique_ptr<Panel>>* pPanels)
+{
+	for (TiXmlElement* panelElement = pPanelsRoot->FirstChildElement(); panelElement != NULL; panelElement = panelElement->NextSiblingElement())
+	{
+		//auto bg = e->Attribute("backgroundId");
+
+		// get panel's objects root
+		TiXmlElement* pObjectRoot = 0;
+		for (TiXmlElement* e = panelElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
+		{
+			if (e->Value() == std::string("OBJECTS"))
+			{
+				pObjectRoot = e;
+			}
+		}
+
+		// parse panel's objects
+		std::vector<std::unique_ptr<GameObject>> objects;
+		parseObjects(pObjectRoot, &objects);
+
+		// create and load panel
+		std::unique_ptr<Panel> panel = ThePanelFactory::Instance()->create(panelElement->Attribute("type"));
+		panel->load(std::move(objects));
+
+		pPanels->push_back(std::move(panel));
+	}
+}
+
 
 void StateParser::parseObjects(TiXmlElement* pStateRoot, std::vector<std::unique_ptr<GameObject>>* pObjects)
 {

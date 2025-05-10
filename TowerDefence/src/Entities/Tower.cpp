@@ -325,7 +325,7 @@ void Tower::aimEnemy()
 	}
 }
 
-std::unique_ptr<GameObject> TowerCreator::createGameObject() const
+std::unique_ptr<GameObject> TowerCreator::create() const
 {
 	return std::make_unique<Tower>();
 }

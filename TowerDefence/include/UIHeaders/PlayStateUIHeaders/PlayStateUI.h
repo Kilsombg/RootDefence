@@ -44,38 +44,6 @@ public:
 
 private:
 	std::shared_ptr<Level> pLevel;
-	/**
-	* load objects in all panels
-	*/
-	void loadPanels(std::vector<std::unique_ptr<GameObject>> gameObjects);
-	/**
-	* load panel's objects
-	*/
-	template <typename TButton, typename TPanel>
-	void loadPanel(std::vector<std::unique_ptr<GameObject>>& gameObjects)
-	{
-		// declare object vector for each panel
-		std::vector<std::unique_ptr<Button>> panelObjects;
-
-		// load relevant objects to corresponding panel
-		for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < gameObjects.size(); i++)
-		{
-			if (std::unique_ptr<TButton> pButton = std::unique_ptr<TButton>(dynamic_cast<TButton*>(gameObjects[i].get())))
-			{
-				panelObjects.push_back(std::move(pButton));
-				pButton = nullptr;
-				gameObjects[i].release();
-			}
-		}
-
-		// create the panel and load objects into them
-		std::unique_ptr<TPanel> panel = std::make_unique<TPanel>();
-		panel->setButtonObjects(std::move(panelObjects));
-
-
-		// add panels into vector
-		m_panels.push_back(std::move(panel));
-	};
 
 	std::shared_ptr<std::vector<std::shared_ptr<Tower>>> m_playStateTowers;
 };

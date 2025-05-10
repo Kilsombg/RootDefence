@@ -94,7 +94,7 @@ void TowerUpgradedButton::resetParams()
 	m_pressedOutside = false;
 }
 
-std::unique_ptr<GameObject> TowerUpgradedButtonCreator::createGameObject() const
+std::unique_ptr<GameObject> TowerUpgradedButtonCreator::create() const
 {
 	return std::make_unique<TowerUpgradedButton>();
 }

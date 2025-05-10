@@ -24,7 +24,7 @@ void Carrot::load(const std::shared_ptr<LoaderParams> pParams)
 	Enemy::load(pParams);
 }
 
-std::unique_ptr<GameObject> CarrotCreator::createGameObject() const
+std::unique_ptr<GameObject> CarrotCreator::create() const
 {
 	return std::make_unique<Carrot>();
 }

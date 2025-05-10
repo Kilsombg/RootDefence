@@ -56,7 +56,7 @@ private:
 class TowerButtonCreator : public BaseCreator
 {
 public:
-	std::unique_ptr<GameObject> createGameObject() const;
+	std::unique_ptr<GameObject> create() const override;
 };
 
 #endif // !__TowerButton__

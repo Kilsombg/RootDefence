@@ -32,12 +32,28 @@ void TowersPanel::update()
 	m_clickToPlaceTowerHandler->update(m_playStateTowers);
 }
 
+void TowersPanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)
+{
+	// load relevant objects
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < gameObjects.size(); i++)
+	{
+		if (std::unique_ptr<TowerButton> pButton = std::unique_ptr<TowerButton>(dynamic_cast<TowerButton*>(gameObjects[i].get())))
+		{
+			m_buttonObjects.push_back(std::move(pButton));
+			pButton = nullptr;
+			gameObjects[i].release();
+		}
+	}
+
+	// load callbacks
+	loadCallbacks();
+}
+
 void TowersPanel::loadCallbacks()
 {
 	// setting up create tower buttons
 	m_towerButtonCallbacks[LoaderParamsConsts::createTowerCallbackID] = std::bind(&ClickToPlaceTowerHandler::handleEvent, m_clickToPlaceTowerHandler, std::placeholders::_1);
 	setTowerButtonCallbacks();
-	setTowerButtonLevel();
 }
 
 std::shared_ptr<ClickToPlaceTowerHandler> TowersPanel::getClickToPlaceTowerHandler()
@@ -48,6 +64,8 @@ std::shared_ptr<ClickToPlaceTowerHandler> TowersPanel::getClickToPlaceTowerHandl
 void TowersPanel::setLevel(std::shared_ptr<Level> level)
 {
 	pLevel = level;
+	m_clickToPlaceTowerHandler->setLevel(pLevel);
+	setTowerButtonLevel();
 }
 
 void TowersPanel::setTowerButtonCallbacks()
@@ -72,4 +90,9 @@ void TowersPanel::setTowerButtonLevel()
 			pButton = nullptr;
 		}
 	}
+}
+
+std::unique_ptr<Panel> TowersPanelCreator::create() const
+{
+	return std::make_unique<TowersPanel>();
 }

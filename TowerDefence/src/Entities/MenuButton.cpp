@@ -71,7 +71,7 @@ void MenuButton::handleClickOnButton()
 }
 
 
-std::unique_ptr<GameObject> MenuButtonCreator::createGameObject() const
+std::unique_ptr<GameObject> MenuButtonCreator::create() const
 {
 	return std::make_unique<MenuButton>();
 }

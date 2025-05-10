@@ -27,11 +27,12 @@ void PlayStateUI::load()
 {
 	// load state objects and textures
 	StateParser stateParser;
-	std::vector<std::unique_ptr<GameObject>> gameObjects;
-	stateParser.parseState("./src/test.xml", s_stateID, &gameObjects, &m_textureIDList);
+	stateParser.parseState("./src/test.xml", s_stateID, &m_textureIDList, &m_panels);
 
-	// load panels
-	loadPanels(std::move(gameObjects));
+	// set level to TowersPanel
+	auto towersPanel = getPanel<TowersPanel>();
+	towersPanel->setLevel(pLevel);
+	towersPanel = nullptr;
 
 	// load panels callbacks and play state towers
 	for (std::vector<std::unique_ptr<Panel>>::size_type i = 0; i < m_panels.size(); i++)
@@ -39,7 +40,6 @@ void PlayStateUI::load()
 		if (TowerInteractivePanel* towerInteractivePanel = dynamic_cast<TowerInteractivePanel*>(m_panels[i].get()))
 		{
 			towerInteractivePanel->setPlayStateTowers(m_playStateTowers);
-			towerInteractivePanel->loadCallbacks();
 			towerInteractivePanel = nullptr;
 		}
 	}
@@ -81,20 +81,4 @@ void PlayStateUI::setPlayStateTowers(std::shared_ptr<std::vector<std::shared_ptr
 void PlayStateUI::setLevel(std::shared_ptr<Level> level)
 {
 	pLevel = level;
-}
-
-void PlayStateUI::loadPanels(std::vector<std::unique_ptr<GameObject>> gameObjects)
-{
-	// load panels
-	loadPanel<TowerUpgradedButton, TowerUpgradePanel>(gameObjects);
-	loadPanel<TowerButton, TowersPanel>(gameObjects);
-
-	// set level to TowersPanel
-	auto towersPanel = getPanel<TowersPanel>();
-	towersPanel->setLevel(pLevel);
-	towersPanel->getClickToPlaceTowerHandler()->setLevel(pLevel);
-	towersPanel = nullptr;
-
-	// clear objects
-	gameObjects.clear();
 }

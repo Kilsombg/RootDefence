@@ -41,7 +41,7 @@ void Player::handleInput()
 	}
 }
 
-std::unique_ptr<GameObject> PlayerCreator::createGameObject() const
+std::unique_ptr<GameObject> PlayerCreator::create() const
 {
 	return std::make_unique<Player>();
 }

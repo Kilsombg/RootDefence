@@ -137,7 +137,7 @@ private:
 
 class TowerCreator : public BaseCreator
 {
-	std::unique_ptr<GameObject> createGameObject() const;
+	std::unique_ptr<GameObject> create() const override;
 };
 
 #endif // !__Tower__

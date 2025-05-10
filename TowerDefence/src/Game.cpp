@@ -14,9 +14,13 @@
 #include "../include/GameStateHeaders/MainMenuState.h"
 #include "../include/GameStateHeaders/PlayState.h"
 
+#include "../include/UIHeaders/PlayStateUIHeaders/TowersPanel.h"
+#include "../include/UIHeaders/PlayStateUIHeaders/TowerUpgradePanel.h"
+
 #include "../include/UtilsHeaders/TrueTypeManager.h"
 #include "../include/UtilsHeaders/InputHandler.h"
 #include "../include/UtilsHeaders/GameObjectFactory.h"
+#include "../include/UtilsHeaders/PanelFactory.h"
 
 #include<iostream>
 
@@ -119,8 +123,13 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::animatedGraphic, std::make_shared<AnimatedGraphicCreator>());
 
+	
+	ThePanelFactory::Instance()->registerType(PanelConsts::towersPanel, std::make_shared<TowersPanelCreator>());
+	ThePanelFactory::Instance()->registerType(PanelConsts::towerUpgradePanel, std::make_shared<TowerUpgradePanelCreator>());
+
 	m_pGameStateMachine = TheGameStateMachine::Instance();
-	m_pGameStateMachine->changeState(std::make_shared<MainMenuState>());
+	//m_pGameStateMachine->changeState(std::make_shared<MainMenuState>());
+	m_pGameStateMachine->changeState(std::make_shared<PlayState>());
 
 
 	std::cout << "init success\n";

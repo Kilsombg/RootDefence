@@ -81,7 +81,7 @@ void Projectile::move()
 }
 
 
-std::unique_ptr<GameObject> ProjectileCreator::createGameObject() const
+std::unique_ptr<GameObject> ProjectileCreator::create() const
 {
 	return std::make_unique<Projectile>();
 }

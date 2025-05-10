@@ -2,6 +2,7 @@
 #define __TowersPanel__
 
 #include "../CommonHeaders/InteractivePanel.h"
+#include "../CommonHeaders/PanelCreator.h"
 
 #include "../../EntitiesHeaders/Tower.h"
 
@@ -19,6 +20,7 @@ public:
 	TowersPanel();
 	void draw() override;
 	void update() override;
+	void load(std::vector<std::unique_ptr<GameObject>> gameObjects) override;
 
 	void loadCallbacks() override;
 
@@ -38,6 +40,13 @@ private:
 
 	std::shared_ptr<ClickToPlaceTowerHandler> m_clickToPlaceTowerHandler;
 	std::shared_ptr<Level> pLevel;
+};
+
+
+class TowersPanelCreator : public PanelCreator
+{
+	virtual std::unique_ptr<Panel> create() const override;
+
 };
 
 #endif // !__TowersPanel__
