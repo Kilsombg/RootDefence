@@ -38,7 +38,7 @@ class TowerInteractivePanel : public InteractivePanel
 {
 public:
 	TowerInteractivePanel();
-	void setPlayStateTowers(std::shared_ptr<std::vector<std::shared_ptr<Tower>>> playStateTowers);
+	virtual void setPlayStateTowers(std::shared_ptr<std::vector<std::shared_ptr<Tower>>> playStateTowers);
 		
 protected:
 	std::shared_ptr<std::vector<std::shared_ptr<Tower>>> m_playStateTowers;

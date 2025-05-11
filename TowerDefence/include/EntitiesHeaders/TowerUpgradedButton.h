@@ -1,7 +1,7 @@
 #ifndef __TowerUpgradedButton__
 #define __TowerUpgradedButton__
 
-#include "Button.h"
+#include "SelectedTowerButton.h"
 #include "Tower.h"
 
 #include "../UtilsHeaders/BaseCreator.h"
@@ -9,7 +9,7 @@
 #include<functional>
 #include<memory>
 
-class TowerUpgradedButton : public Button
+class TowerUpgradedButton : public SelectedTowerButton
 {
 public:
 	TowerUpgradedButton();
@@ -21,7 +21,6 @@ public:
 	typedef std::function<void(std::shared_ptr<Tower>, int)> TowerUpgradedCallback;
 
 	void setCallback(TowerUpgradedCallback callback);
-	void setSelectedTower(std::shared_ptr<Tower> selectedTower);
 
 private:
 	void handleOutsideCLick();
@@ -35,8 +34,6 @@ private:
 	int m_upgradeID; // 0 - first, 1 - second
 
 	TowerUpgradedCallback m_callback;
-
-	std::shared_ptr<Tower> m_selectedTower;
 };
 
 

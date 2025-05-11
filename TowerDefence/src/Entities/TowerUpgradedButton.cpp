@@ -6,7 +6,7 @@
 
 #include "../../include/UtilsHeaders/InputHandler.h"
 
-TowerUpgradedButton::TowerUpgradedButton() : Button(), m_selected(false), m_pressed(false), m_upgradeID(-1)
+TowerUpgradedButton::TowerUpgradedButton() : SelectedTowerButton(), m_selected(false), m_pressed(false), m_upgradeID(-1)
 {
 }
 
@@ -24,7 +24,7 @@ void TowerUpgradedButton::update()
 
 void TowerUpgradedButton::load(const std::shared_ptr<LoaderParams> pParams)
 {
-	Button::load(pParams);
+	SelectedTowerButton::load(pParams);
 
 	m_upgradeID = pParams->getAttribute<int>(LoaderParamsConsts::upgradeID);
 }
@@ -32,11 +32,6 @@ void TowerUpgradedButton::load(const std::shared_ptr<LoaderParams> pParams)
 void TowerUpgradedButton::setCallback(TowerUpgradedCallback callback)
 {
 	m_callback = callback;
-}
-
-void TowerUpgradedButton::setSelectedTower(std::shared_ptr<Tower> selectedTower)
-{
-	m_selectedTower = selectedTower;
 }
 
 void TowerUpgradedButton::handleOutsideCLick()

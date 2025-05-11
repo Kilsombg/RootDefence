@@ -11,6 +11,7 @@
 #include "../EntitiesHeaders/Button.h"
 
 #include "../ManagersHeaders/PurchaseManager.h"
+#include "../ManagersHeaders/SellManager.h"
 
 #include "../MapHeaders/Level.h"
 
@@ -68,6 +69,8 @@ private:
 	Wave* m_currentWave;
 
 	std::shared_ptr<PurchaseManager> m_purchaseManager;
+
+	std::shared_ptr<SellManager> m_sellManager;
 
 	std::shared_ptr<TowerFactory> m_towerFactory;
 

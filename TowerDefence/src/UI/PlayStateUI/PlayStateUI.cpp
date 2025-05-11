@@ -34,7 +34,12 @@ void PlayStateUI::load()
 	towersPanel->loadDependencies(pLevel, m_gameSessionData);
 	towersPanel = nullptr;
 
-	// load panels callbacks and play state towers
+	// load towerUpgradePanel
+	auto towerUpgradePanel = getPanel<TowerUpgradePanel>();
+	towerUpgradePanel->loadDependencies(pLevel);
+	towerUpgradePanel = nullptr;
+
+	// load play state towers
 	for (std::vector<std::unique_ptr<Panel>>::size_type i = 0; i < m_panels.size(); i++)
 	{
 		if (TowerInteractivePanel* towerInteractivePanel = dynamic_cast<TowerInteractivePanel*>(m_panels[i].get()))

@@ -114,8 +114,12 @@ void PlayState::loadData()
 	loadGameSessionData();
 
 	// loading purchase manager
-	m_purchaseManager = PurchaseManager::Instance();
+	m_purchaseManager = ThePurchaseManager::Instance();
 	m_purchaseManager->setGameSessionData(m_gameSessionData);
+
+	// load sell manager
+	m_sellManager = TheSellManager::Instance();
+	m_sellManager->setGameSessionData(m_gameSessionData);
 
 	/* load UI */
 	m_playStateUI = std::make_unique<PlayStateUI>(s_stateID);
@@ -154,6 +158,9 @@ bool PlayState::onExit()
 
 	// clean purchase manager
 	m_purchaseManager->clean();
+
+	// clean sell manager
+	m_sellManager->clean();
 
 	std::cout << "exiting PlayState\n";
 	return true;

@@ -2,6 +2,8 @@
 
 #include "../../include/Constants/LoaderParamsConsts.h"
 
+#include "../../include/ManagersHeaders/SellManager.h"
+
 #include "../../include/UtilsHeaders/LoaderParams.h"
 #include "../../include/UtilsHeaders/TowerFactory.h"
 
@@ -45,6 +47,7 @@ bool PurchaseManager::canPurchaseTower(std::string towerName, std::string towerC
 void PurchaseManager::purchaseTower(Resource towerCostResource)
 {
 	m_gameSessionData->resources[towerCostResource.type].value -= towerCostResource.value;
+	TheSellManager::Instance()->updateSpentResources(towerCostResource);
 }
 
 int PurchaseManager::getTowerCostByName(std::string towerName)
@@ -81,4 +84,5 @@ void PurchaseManager::purchaseUpgrade(int upgradeCost, std::string towerColor)
 	if (resourceType == NOT_RESOURCE_TYPE) return;
 
 	m_gameSessionData->resources[resourceType].value -= upgradeCost;
+	TheSellManager::Instance()->updateSpentResources(Resource{ getResourceTypeByString(towerColor), upgradeCost });
 }

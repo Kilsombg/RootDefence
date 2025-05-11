@@ -5,6 +5,7 @@
 #include "../include/EntitiesHeaders/MenuButton.h"
 #include "../include/EntitiesHeaders/TowerButton.h"
 #include "../include/EntitiesHeaders/TowerUpgradedButton.h"
+#include "../include/EntitiesHeaders/SellTowerButton.h"
 #include "../include/EntitiesHeaders/Tower.h"
 #include "../include/EntitiesHeaders/Projectile.h"
 #include "../include/EntitiesHeaders/AnimatedGraphic.h"
@@ -121,6 +122,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::menuButton, std::make_shared<MenuButtonCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::towerButton, std::make_shared<TowerButtonCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::towerUpgradedButton, std::make_shared<TowerUpgradedButtonCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::sellTowerButton, std::make_shared<SellTowerButtonCreator>());
 
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::animatedGraphic, std::make_shared<AnimatedGraphicCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::text, std::make_shared<TextCreator>());

@@ -121,6 +121,20 @@ void from_json(const json& j, std::map<std::string, std::shared_ptr<ArrayOf2Towe
 
 Tower::Tower() : SDLGameObject(), m_projectileID(""), m_attackSpeed(0), m_damage(0), m_radius(0), m_attackTimer(0)
 {
+	m_spentResources.value = 0;
+}
+
+Tower::Tower(const Tower& tower) : SDLGameObject(tower)
+{
+	m_projectileID = tower.m_projectileID;
+	m_damage = tower.m_damage;
+	m_radius = tower.m_radius;
+	m_baseCost.type =tower.m_baseCost.type;
+	m_baseCost.value = tower.m_baseCost.value;
+	m_color = tower.m_color;
+	setAttackSpeed(tower.m_attackSpeed);
+
+	m_spentResources = tower.m_spentResources;
 }
 
 float Tower::getRadius() const
@@ -180,6 +194,16 @@ void Tower::setColor(std::string color)
 	m_color = color;
 }
 
+Resource Tower::getSpentResources() const
+{
+	return m_spentResources;
+}
+
+void Tower::setSpentResources(Resource spentResource)
+{
+	m_spentResources = spentResource;
+}
+
 std::weak_ptr<Enemy> Tower::getTargetEnemy() const
 {
 	return m_targetEnemy;
@@ -230,6 +254,8 @@ void Tower::load(const std::shared_ptr<LoaderParams> pParams)
 	m_baseCost.value = pParams->getAttribute<int>(LoaderParamsConsts::costValue);
 	m_color = pParams->getAttribute<std::string>(LoaderParamsConsts::color);
 	setAttackSpeed(pParams->getAttribute<float>(LoaderParamsConsts::attackSpeed));
+
+	m_spentResources.type = m_baseCost.type;
 }
 
 void Tower::handleEvent()

@@ -26,6 +26,7 @@
 			<TOWERUPGRADE type="towerUpgradePanel" backgroundId="bg1">
 				<OBJECTS>
 					<object type="towerUpgradedButton" x="200.00" y="500.00" width="64" height="64" textureID="towerButton" numFrames="0" callbackID="towerUpgradeCallbackID" upgradeID="1"/>
+					<object type="sellTowerButton" x="300.00" y="500.00" width="64" height="64" textureID="towerButton" numFrames="0" callbackID="sellTowerCallbackID"/>
 				</OBJECTS>
 			</TOWERUPGRADE>
 		</PANELS>

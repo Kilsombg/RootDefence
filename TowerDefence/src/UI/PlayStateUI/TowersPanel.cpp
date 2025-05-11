@@ -83,7 +83,7 @@ void TowersPanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)
 void TowersPanel::loadDependencies(std::shared_ptr<Level> level, std::shared_ptr<GameSessionData> gameSessionData)
 {
 	// load level
-	pLevel = level;
+	setLevel(level);
 
 	// load session data
 	m_gameSessionData = gameSessionData;

@@ -62,6 +62,7 @@ public:
 	};
 
 	Tower();
+	Tower(const Tower& tower);
 
 	// getter and setters
 	TowerType getTowerType();
@@ -81,6 +82,9 @@ public:
 
 	std::string getColor();
 	void setColor(std::string color);
+
+	Resource getSpentResources() const;
+	void setSpentResources(Resource spentResource);
 
 	std::weak_ptr<Enemy> getTargetEnemy() const;
 
@@ -127,6 +131,8 @@ private:
 	Timer m_attackTimer;
 	TowerType m_towerType;
 	std::string m_color;
+
+	Resource m_spentResources; /// spent resources on tower.
 
 	std::weak_ptr<Enemy> m_targetEnemy;
 

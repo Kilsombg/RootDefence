@@ -7,6 +7,8 @@
 
 #include "../../include/Game.h"
 
+#include "../../include/ManagersHeaders/SellManager.h"
+
 #include<memory>
 #include<iostream>
 
@@ -177,6 +179,9 @@ bool ClickToPlaceTowerHandler::addObject(std::shared_ptr<std::vector<std::shared
 	c = m_shadowObject->getPosition().getX() / pLevel->getTileSize();
 
 	gameTowers->push_back(m_shadowObject);
+
+	// update active tower in sell manager
+	TheSellManager::Instance()->setSelectedTower(m_shadowObject);
 
 	// invoke post placed events on the tower
 	m_shadowObject->placed();
