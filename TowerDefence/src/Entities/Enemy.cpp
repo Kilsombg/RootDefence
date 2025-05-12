@@ -22,6 +22,9 @@ Enemy::Enemy(const Enemy& e) : SDLGameObject(e)
 	m_defence = e.m_defence;
 	m_path = e.m_path;
 	m_movePathTileID = e.m_movePathTileID;
+	m_speedMultiplier = e.m_speedMultiplier;
+	m_slowAdditive = e.m_slowAdditive;
+	m_maxSlowPercentage = e.m_maxSlowPercentage;
 }
 
 void Enemy::load(const std::shared_ptr<LoaderParams> pParams)
@@ -36,6 +39,9 @@ void Enemy::load(const std::shared_ptr<LoaderParams> pParams)
 	m_distFromWaypoint = 0;
 	m_distanceToWaypoint = 0;
 	m_distance = 0;
+	m_speedMultiplier = 1;
+	m_slowAdditive = 0;
+	m_maxSlowPercentage = 0.8;
 	m_crossEndOfPath = false;
 
 	SDLGameObject::load(pParams);
@@ -62,6 +68,12 @@ void Enemy::setPath(const std::vector<std::shared_ptr<Vector2D>>& pathPoints)
 float Enemy::getDistance()
 {
 	return m_distance;
+}
+
+void Enemy::slow(float slowPercentage)
+{
+	m_slowAdditive += slowPercentage;
+	if (m_slowAdditive > m_maxSlowPercentage) m_slowAdditive = m_maxSlowPercentage;
 }
 
 bool Enemy::isCrossEndOfPath()
@@ -96,16 +108,23 @@ void Enemy::draw()
 
 void Enemy::update()
 {
+	// update animation
 	m_currentFrame = int(((SDL_GetTicks() / 100) % m_numFrames));
 
+	// move
 	move();
 	m_distance = m_distanceToWaypoint + m_distFromWaypoint;
+
+	// reset slow percentage
+	if(m_slowAdditive != 0) m_slowAdditive = 0;
 
 	SDLGameObject::update();
 }
 
 void Enemy::move()
 {
+	float actualSpeed = getActualMovementSpeed();
+
 	// if enemy has path and not in last point
 	if (m_path.size() >= 0 && m_movePathTileID < m_path.size())
 	{
@@ -114,7 +133,7 @@ void Enemy::move()
 		m_velocity = *(pathPoint)-m_position;
 
 		// change pathPoint when enemy is close to current
-		if (m_velocity.length() < m_moveSpeed)
+		if (m_velocity.length() < actualSpeed)
 		{
 			m_movePathTileID++;
 
@@ -127,15 +146,20 @@ void Enemy::move()
 
 		// if target is far away get the direction to target and change the magnitude to enemy speed
 		m_velocity.normalize();
-		m_velocity *= m_moveSpeed;
+		m_velocity *= actualSpeed;
 		// increase the distance from pathPoint to enemy
-		m_distFromWaypoint += m_moveSpeed;
+		m_distFromWaypoint += actualSpeed;
 	}
 	else
 	{
 		// went to END of the path
 		m_crossEndOfPath = true;
 	}
+}
+
+float Enemy::getActualMovementSpeed()
+{
+	return (m_speedMultiplier - m_slowAdditive) * m_moveSpeed;
 }
 
 

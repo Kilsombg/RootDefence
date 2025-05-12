@@ -142,6 +142,7 @@
     <ClCompile Include="src\Entities\Cabbage.cpp" />
     <ClCompile Include="src\Entities\Carrot.cpp" />
     <ClCompile Include="src\Entities\Enemy.cpp" />
+    <ClCompile Include="src\Entities\FreezeTower.cpp" />
     <ClCompile Include="src\Entities\GameObject.cpp" />
     <ClCompile Include="src\Entities\MenuButton.cpp" />
     <ClCompile Include="src\Entities\Player.cpp" />
@@ -207,6 +208,7 @@
     <ClInclude Include="include\EntitiesHeaders\Cabbage.h" />
     <ClInclude Include="include\EntitiesHeaders\Carrot.h" />
     <ClInclude Include="include\EntitiesHeaders\Enemy.h" />
+    <ClInclude Include="include\EntitiesHeaders\FreezeTower.h" />
     <ClInclude Include="include\EntitiesHeaders\GameObject.h" />
     <ClInclude Include="include\EntitiesHeaders\MenuButton.h" />
     <ClInclude Include="include\EntitiesHeaders\Player.h" />

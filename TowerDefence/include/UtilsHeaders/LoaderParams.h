@@ -46,11 +46,11 @@ public:
 			std::cerr << "Error: " << e.what() << '\n';
 			return NULL;
 		}
-		/*catch (const std::out_of_range& e)
+		catch (const std::out_of_range& e)
 		{
 			std::cerr << "Error: " << e.what() << '\n';
 			return NULL;
-		}*/
+		}
 	}
 
 	const std::unordered_map<std::string, AttributeVariant>& getAttributes() const {

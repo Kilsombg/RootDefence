@@ -104,7 +104,7 @@ public:
 	* look for enemy in radius to target
 	* @param enemies is a vector of objects in current state
 	*/
-	void targetEnemy(std::vector<std::shared_ptr<Enemy>> enemies);
+	virtual void targetEnemy(std::vector<std::shared_ptr<Enemy>> enemies);
 	/**
 	* check wheather the enemy is in tower radius
 	*/
@@ -112,7 +112,7 @@ public:
 	/**
 	* execute attack interval
 	*/
-	void aimEnemy();
+	virtual void aimEnemy();
 
 	bool isSelected();
 

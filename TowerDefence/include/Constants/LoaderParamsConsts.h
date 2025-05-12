@@ -59,6 +59,12 @@ namespace LoaderParamsConsts {
 #pragma endregion
 
 
+#pragma region freeze tower
+	constexpr char freezePercentage[] = "freezePercentage";
+#pragma endregion
+
+
+
 #pragma region towerUpgradesData params
 	constexpr char statName[] = "statName";
 	constexpr char values[] = "values";

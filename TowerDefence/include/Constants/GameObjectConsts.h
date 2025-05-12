@@ -11,6 +11,7 @@ namespace GameObjectConsts {
 	constexpr char carrot[] = "carrot";
 	constexpr char cabbage[] = "cabbage";
 	constexpr char tower[] = "tower";
+	constexpr char tower2[] = "tower2";
 	constexpr char projectile[] = "projectile";
 	constexpr char menuButton[] = "menuButton";
 	constexpr char towerButton[] = "towerButton";

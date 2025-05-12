@@ -36,7 +36,10 @@ public:
 	*/
 	float getDistance();
 
-
+	/**
+	* slow enemy with additive percentage
+	*/
+	void slow(float slowPercentage);
 
 	/**
 	* return true if enemy is crossed to the end of path
@@ -61,12 +64,19 @@ private:
 	* move enemy position from its position to the points of m_paath.
 	*/
 	void move();
+	/**
+	* get enemy's movement speed with multipliers applied.
+	*/
+	float getActualMovementSpeed();
 
 	std::vector < std::shared_ptr<Vector2D>> m_path;
 	int m_movePathTileID; // represent which point from the path the Enemy is heading
 	float m_distFromWaypoint; // current distance from passed path tile to enemy
 	float m_distanceToWaypoint; // distance from the start to currently passed path tile
 	float m_distance; // total distance moved
+	float m_speedMultiplier; // multiply directly to moveSpeed
+	float m_slowAdditive; // additive percentage of slowness
+	float m_maxSlowPercentage; // maximum percentage the enemy can be slowed
 	bool m_crossEndOfPath; // flag if enemy is passed the finish line
 	int m_healthBarWidth;
 	int m_healthBarHeight;

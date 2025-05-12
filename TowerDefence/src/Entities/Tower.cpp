@@ -248,12 +248,14 @@ void Tower::load(const std::shared_ptr<LoaderParams> pParams)
 	SDLGameObject::load(pParams);
 
 	m_projectileID = pParams->getAttribute<std::string>(LoaderParamsConsts::projectileID);
-	m_damage = pParams->getAttribute<float>(LoaderParamsConsts::damage);
+	m_damage = pParams->getAttribute<float>(LoaderParamsConsts::damage) ? pParams->getAttribute<float>(LoaderParamsConsts::damage) : 0;
 	m_radius = pParams->getAttribute<float>(LoaderParamsConsts::radius);
 	m_baseCost.type = getResourceTypeByString(pParams->getAttribute<std::string>(LoaderParamsConsts::costType));
 	m_baseCost.value = pParams->getAttribute<int>(LoaderParamsConsts::costValue);
 	m_color = pParams->getAttribute<std::string>(LoaderParamsConsts::color);
-	setAttackSpeed(pParams->getAttribute<float>(LoaderParamsConsts::attackSpeed));
+
+	float attackSpeed = pParams->getAttribute<float>(LoaderParamsConsts::attackSpeed);
+	if (attackSpeed) setAttackSpeed(attackSpeed);
 
 	m_spentResources.type = m_baseCost.type;
 }

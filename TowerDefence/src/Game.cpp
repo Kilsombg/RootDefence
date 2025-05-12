@@ -7,6 +7,7 @@
 #include "../include/EntitiesHeaders/TowerUpgradedButton.h"
 #include "../include/EntitiesHeaders/SellTowerButton.h"
 #include "../include/EntitiesHeaders/Tower.h"
+#include "../include/EntitiesHeaders/FreezeTower.h"
 #include "../include/EntitiesHeaders/Projectile.h"
 #include "../include/EntitiesHeaders/AnimatedGraphic.h"
 #include "../include/EntitiesHeaders/Text.h"
@@ -117,6 +118,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::cabbage ,std::make_shared<CabbageCreator>());
 
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::tower , std::make_shared<TowerCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::tower2 , std::make_shared<FreezeTowerCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::projectile, std::make_shared<ProjectileCreator>());
 
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::menuButton, std::make_shared<MenuButtonCreator>());
