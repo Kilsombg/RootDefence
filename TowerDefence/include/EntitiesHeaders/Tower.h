@@ -54,18 +54,10 @@ void from_json(const json& j, std::map<std::string, std::shared_ptr<ArrayOf2Towe
 class Tower : public SDLGameObject
 {
 public:
-	enum TowerType
-	{
-		BASIC = 0, ///< balanced tower
-		FAST = 1, ///< fast attack speed, low damage tower
-		SLOW = 2 ///< slow attack speed, high damage tower
-	};
-
 	Tower();
 	Tower(const Tower& tower);
 
 	// getter and setters
-	TowerType getTowerType();
 
 	float getAttackSpeed() const;
 	void setAttackSpeed(float attackSpeed);
@@ -101,6 +93,12 @@ public:
 	void handleEvent();
 
 	/**
+	* Get tower type by tower color from xml towerButtons.
+	* 
+	* @return string value with tower type.
+	*/
+	std::string getTowerType(std::string towerColor);
+	/**
 	* look for enemy in radius to target
 	* @param enemies is a vector of objects in current state
 	*/
@@ -114,6 +112,9 @@ public:
 	*/
 	virtual void aimEnemy();
 
+	/**
+	* @return true if selected, otherwise false
+	*/
 	bool isSelected();
 
 	/**
@@ -129,7 +130,6 @@ private:
 	Resource m_baseCost;
 	float m_attackSpeed;
 	Timer m_attackTimer;
-	TowerType m_towerType;
 	std::string m_color;
 
 	Resource m_spentResources; /// spent resources on tower.

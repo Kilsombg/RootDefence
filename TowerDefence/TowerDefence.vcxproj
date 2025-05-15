@@ -151,6 +151,7 @@
     <ClCompile Include="src\Entities\SelectedTowerButton.cpp" />
     <ClCompile Include="src\Entities\SellTowerButton.cpp" />
     <ClCompile Include="src\Entities\Text.cpp" />
+    <ClCompile Include="src\Entities\Texture.cpp" />
     <ClCompile Include="src\Entities\TowerButton.cpp" />
     <ClCompile Include="src\Entities\Tower.cpp" />
     <ClCompile Include="src\Entities\TowerUpgradedButton.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="include\Constants\GameObjectConsts.h" />
     <ClInclude Include="include\Constants\LoaderParamsConsts.h" />
     <ClInclude Include="include\Constants\SettingsConsts.h" />
+    <ClInclude Include="include\Constants\UIConsts.h" />
     <ClInclude Include="include\DataHeaders\GameSessionData.h" />
     <ClInclude Include="include\EntitiesHeaders\AnimatedGraphic.h" />
     <ClInclude Include="include\EntitiesHeaders\Button.h" />
@@ -217,6 +219,7 @@
     <ClInclude Include="include\EntitiesHeaders\SelectedTowerButton.h" />
     <ClInclude Include="include\EntitiesHeaders\SellTowerButton.h" />
     <ClInclude Include="include\EntitiesHeaders\Text.h" />
+    <ClInclude Include="include\EntitiesHeaders\Texture.h" />
     <ClInclude Include="include\EntitiesHeaders\TowerButton.h" />
     <ClInclude Include="include\EntitiesHeaders\Tower.h" />
     <ClInclude Include="include\EntitiesHeaders\TowerUpgradedButton.h" />

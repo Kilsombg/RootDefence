@@ -6,6 +6,7 @@
 #include "../EntitiesHeaders/Tower.h"
 
 #include<string>
+#include<map>
 #include<memory>
 
 class TowerFactory
@@ -21,6 +22,10 @@ public:
 	* Get data for a specific tower.
 	*/
 	std::shared_ptr<LoaderParams> getTowerData(std::string towerTypeID);
+	/**
+	* Get all tower's cost.
+	*/
+	std::map<std::string, int> getTowersCostValue();
 	/**
 	* Set all towerObjects data.
 	*/

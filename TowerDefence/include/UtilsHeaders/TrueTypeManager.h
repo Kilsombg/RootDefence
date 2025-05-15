@@ -53,7 +53,16 @@ public:
 	* @param font, color - are respectively font and color of the text to be displayed.
 	* @param pRenderer - SDL renderer
 	*/
-	bool load(std::string id, std::string textMessage,TTF_Font* font, SDL_Color color, SDL_Renderer* pRenderer);
+	bool loadNoOutline(std::string id, std::string textMessage, TTF_Font* font, SDL_Color color, SDL_Renderer* pRenderer);
+	/**
+	* Load text message with outline as a texture to draw on screen.
+	*
+	* @param id, textMessage - are respectively id and message of the text you want to display on sreen
+	* @param font, fontOutline - are respectively fonts for text and outline.
+	* @param fontOutline, colorOutline - are respectively font colors for text and outline.
+	* @param pRenderer - SDL renderer
+	*/
+	bool load(std::string id, std::string textMessage, TTF_Font* font, TTF_Font* fontOutline, SDL_Color color, SDL_Color colorOutline, SDL_Renderer* pRenderer);
 	/**
 	* Deletes a texture from the map.
 	* 

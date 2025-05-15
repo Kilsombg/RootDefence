@@ -1,10 +1,15 @@
 #include "../../../include/UIHeaders/PlayStateUIHeaders/TowersPanel.h"
 
 #include "../../../include/Constants/LoaderParamsConsts.h"
+#include "../../../include/Constants/GameObjectConsts.h"
+#include "../../../include/Constants/UIConsts.h"
 
 #include "../../../include/EntitiesHeaders/TowerButton.h"
 #include "../../../include/EntitiesHeaders/Text.h"
 
+#include "../../../include/UtilsHeaders/TowerFactory.h"
+
+#include<iostream>
 
 TowersPanel::TowersPanel() : TowerInteractivePanel()
 {
@@ -13,15 +18,17 @@ TowersPanel::TowersPanel() : TowerInteractivePanel()
 
 void TowersPanel::draw()
 {
+	// draw background
+	m_backgroundTexture->draw();
+	
 	// draw buttons
 	InteractivePanel::draw();
 
-	// draw texts
+	// draw text labels
 	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->draw();
 	}
-	m_healthText.draw();
 
 	// render shadow tower
 	if (m_clickToPlaceTowerHandler->getShadowObject())
@@ -39,43 +46,54 @@ void TowersPanel::update()
 	m_clickToPlaceTowerHandler->update(m_playStateTowers);
 
 	// update labels
-	m_healthText.setMessage(std::to_string(m_gameSessionData->gameHealth));
-	m_healthText.update();
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
+	{
+		if (Text* pText = dynamic_cast<Text*>(m_gameObjects[i].get()))
+		{
+			if(pText->getDynamic()) updateLabel(pText);
+		}
+	}
 }
 
 void TowersPanel::clean()
 {
+	// Cleaning background texture
+	m_backgroundTexture->clean();
+
 	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 		// Cleaning text textures
-		if (std::unique_ptr<Text> pText = std::unique_ptr<Text>(dynamic_cast<Text*>(m_gameObjects[i].get())))
-		{
-			pText->clean();
-			pText = nullptr;
-		}
+		m_gameObjects[i]->clean();
 	}
-	m_healthText.clean();
 }
 
 void TowersPanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)
 {
+	// get towers' cost
+	m_towersCosts = TheTowerFactory::Instance()->getTowersCostValue();
+
 	// load relevant objects
 	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < gameObjects.size(); i++)
 	{
+		// load buttons
 		if (std::unique_ptr<TowerButton> pButton = std::unique_ptr<TowerButton>(dynamic_cast<TowerButton*>(gameObjects[i].get())))
 		{
 			m_buttonObjects.push_back(std::move(pButton));
 			pButton = nullptr;
 			gameObjects[i].release();
 		}
-		else if (std::unique_ptr<Text> pText = std::unique_ptr<Text>(dynamic_cast<Text*>(gameObjects[i].get())))
+		else
 		{
-			m_gameObjects.push_back(std::move(pText));
-			pText = nullptr;
-			gameObjects[i].release();
+			// load static texts
+			if (Text* pText = dynamic_cast<Text*>(gameObjects[i].get()))
+			{
+				if (!pText->getDynamic()) updateLabel(pText);
+			}
+
+			m_gameObjects.push_back(std::move(gameObjects[i]));
 		}
 	}
-	
+
 	// load callbacks
 	loadCallbacks();
 }
@@ -87,9 +105,6 @@ void TowersPanel::loadDependencies(std::shared_ptr<Level> level, std::shared_ptr
 
 	// load session data
 	m_gameSessionData = gameSessionData;
-
-	// load text labels
-	m_healthText = Text(630, 100, 20, 20, "health", std::to_string(m_gameSessionData->gameHealth));
 }
 
 void TowersPanel::loadCallbacks()
@@ -138,6 +153,35 @@ void TowersPanel::setTowerButtonLevel()
 			pButton = nullptr;
 		}
 	}
+}
+
+void TowersPanel::updateLabel(Text* pText)
+{
+	std::string labelId =pText->getLabelID();
+
+	if (labelId == "") return;
+
+	if(labelId == UIConsts::healthLabelID) pText->setMessage(std::to_string(m_gameSessionData->gameHealth));
+	else if(labelId == UIConsts::agateResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::GREEN].value));
+	else if(labelId == UIConsts::amberResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::YELLOW].value));
+	else if(labelId == UIConsts::rubyResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::RED].value));
+	else if(labelId == UIConsts::agateStumpCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::stump]));
+	else if(labelId == UIConsts::agatePineCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::pine]));
+	else if(labelId == UIConsts::agateOakCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::oak]));
+	else if (labelId == UIConsts::amberStumpCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::stump]));
+	else if (labelId == UIConsts::amberPineCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::pine]));
+	else if (labelId == UIConsts::amberOakCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::oak]));
+	else if (labelId == UIConsts::rubyStumpCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::stump]));
+	else if (labelId == UIConsts::rubyPineCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::pine]));
+	else if (labelId == UIConsts::rubyOakCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::oak]));
+	else if (labelId == UIConsts::frozenBushCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::frozenBush]));
+	else 
+	{
+		std::cout << "Could not found " << labelId << " labelID.\n";
+	}
+
+	pText->update();
+	pText = nullptr;
 }
 
 std::unique_ptr<Panel> TowersPanelCreator::create() const

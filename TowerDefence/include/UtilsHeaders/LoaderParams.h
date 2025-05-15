@@ -16,7 +16,7 @@ class LoaderParams
 {
 public:
 	// variant of each param types
-	using AttributeVariant = boost::variant<int, float, std::string>;
+	using AttributeVariant = boost::variant<int, float, std::string, bool>;
 
 	/** 
 	* Set an attribute into unordered_map with <T> type

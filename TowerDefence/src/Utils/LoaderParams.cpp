@@ -11,6 +11,9 @@ void to_json(json& j, const LoaderParams& params) {
 		else if (const float* floatVal = boost::get<float>(&value)) {
 			j[key] = *floatVal;
 		}
+		else if (const bool* boolVal = boost::get<bool>(&value)) {
+			j[key] = *boolVal;
+		}
 		else if (const std::string* strVal = boost::get<std::string>(&value)) {
 			j[key] = *strVal;
 		}
@@ -24,6 +27,9 @@ void from_json(const json& j, LoaderParams& params) {
 		}
 		else if (it->is_number_float()) {
 			params.setAttribute(it.key(), it->get<float>());
+		}
+		else if (it->is_boolean()) {
+			params.setAttribute(it.key(), it->get<bool>());
 		}
 		else if (it->is_string()) {
 			params.setAttribute(it.key(), it->get<std::string>());

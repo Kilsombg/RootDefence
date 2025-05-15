@@ -21,6 +21,14 @@ void TowerUpgradePanel::draw()
 {
 	if (isSelected())
 	{
+		//  draw background
+		m_backgroundTexture->draw();
+
+		for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
+		{
+			m_gameObjects[i]->draw();
+		}
+
 		// draw buttons
 		InteractivePanel::draw();
 	}
@@ -68,6 +76,14 @@ void TowerUpgradePanel::update()
 
 void TowerUpgradePanel::clean()
 {
+	// clean background texture
+	m_backgroundTexture->clean();
+
+	// clean objects texture
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->clean();
+	}
 }
 
 void TowerUpgradePanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)
@@ -80,6 +96,10 @@ void TowerUpgradePanel::load(std::vector<std::unique_ptr<GameObject>> gameObject
 			m_buttonObjects.push_back(std::move(pButton));
 			pButton = nullptr;
 			gameObjects[i].release();
+		}
+		else
+		{
+			m_gameObjects.push_back(std::move(gameObjects[i]));
 		}
 	}
 

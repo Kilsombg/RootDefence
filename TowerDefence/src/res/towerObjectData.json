@@ -1,21 +1,50 @@
 {
   "towerObjectData": {
-    "tower": {
-      "width": 128,
-      "height": 55,
-      "textureID": "helicopter",
+    "stump": {
+      "width": 53,
+      "height": 33,
+      "textureID": "stumpTower",
       "projectileID": "projectile1",
       "numFrames": 4,
       "damage": 20.0,
       "radius": 32.0,
-      "costValue": 2,
-      "attackSpeed": 2.0
+      "costValue": 5,
+      "attackSpeed": 2.0,
+      "canBeColored": true
     },
-    "tower2": {
-      "width": 128,
-      "height": 55,
-      "textureID": "helicopter2",
-      "numFrames": 4
+    "pine": {
+      "width": 38,
+      "height": 72,
+      "textureID": "pineTower",
+      "projectileID": "projectile1",
+      "numFrames": 4,
+      "damage": 20.0,
+      "radius": 32.0,
+      "costValue": 15,
+      "attackSpeed": 2.0,
+      "canBeColored": true
+    },
+    "oak": {
+      "width": 58,
+      "height": 64,
+      "textureID": "oakTower",
+      "projectileID": "projectile1",
+      "numFrames": 4,
+      "damage": 20.0,
+      "radius": 32.0,
+      "costValue": 20,
+      "attackSpeed": 2.0,
+      "canBeColored": true
+    },
+    "frozenBush": {
+      "width": 52,
+      "height": 48,
+      "textureID": "frozenBushTower",
+      "projectileID": "projectile1",
+      "numFrames": 4,
+      "radius": 32.0,
+      "costValue": 2,
+      "freezePercentage": 0.2
     }
   }
 }

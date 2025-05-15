@@ -11,6 +11,7 @@
 #include "../include/EntitiesHeaders/Projectile.h"
 #include "../include/EntitiesHeaders/AnimatedGraphic.h"
 #include "../include/EntitiesHeaders/Text.h"
+#include "../include/EntitiesHeaders/Texture.h"
 #include "../include/EntitiesHeaders/Carrot.h"
 #include "../include/EntitiesHeaders/Cabbage.h"
 
@@ -80,6 +81,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 				// Load font file and set the font size
 				m_pFont = TTF_OpenFont("src/fonts/LuckiestGuy-Regular.ttf", 32);
+				m_pFontOutline = TTF_OpenFont("src/fonts/LuckiestGuy-Regular.ttf", 32);
+				TTF_SetFontOutline(m_pFontOutline, OUTLINE_SIZE);
 				// Confirm that it was loaded
 				if (m_pFont == nullptr) {
 					std::cout << "Could not load font" << std::endl;
@@ -90,6 +93,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 				// stretching window
 				SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
 				SDL_RenderSetLogicalSize(m_pRenderer, width, height);
+				SDL_SetWindowMinimumSize(m_pWindow, width, height);
 			}
 			else
 			{
@@ -117,8 +121,10 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::carrot, std::make_shared<CarrotCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::cabbage ,std::make_shared<CabbageCreator>());
 
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::tower , std::make_shared<TowerCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::tower2 , std::make_shared<FreezeTowerCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::stump , std::make_shared<TowerCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::pine, std::make_shared<TowerCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::oak , std::make_shared<TowerCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::frozenBush , std::make_shared<FreezeTowerCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::projectile, std::make_shared<ProjectileCreator>());
 
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::menuButton, std::make_shared<MenuButtonCreator>());
@@ -128,6 +134,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::animatedGraphic, std::make_shared<AnimatedGraphicCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::text, std::make_shared<TextCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::texture, std::make_shared<TextureCreator>());
 
 	
 	ThePanelFactory::Instance()->registerType(PanelConsts::towersPanel, std::make_shared<TowersPanelCreator>());
@@ -184,6 +191,11 @@ SDL_Renderer* Game::getRenderer() const
 TTF_Font* Game::getFont() const
 {
 	return m_pFont;
+}
+
+TTF_Font* Game::getFontOutline() const
+{
+	return m_pFontOutline;
 }
 
 std::shared_ptr<GameStateMachine> Game::getStateMachine()

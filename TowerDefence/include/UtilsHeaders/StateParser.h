@@ -19,6 +19,7 @@ public:
 private:
 	void parseTextures(TiXmlElement* pStateRoot, std::vector<std::string>* pTextureIDs);
 	void parsePanels(TiXmlElement* pPanelsRoot, std::vector<std::unique_ptr<Panel>>* pPanels);
+	void parsePanelBackground(TiXmlElement* panelElement, std::unique_ptr<Panel>& panel);
 	void parseObjects(TiXmlElement* pStateRoot, std::vector<std::unique_ptr<GameObject>>* pObjects);
 };
 

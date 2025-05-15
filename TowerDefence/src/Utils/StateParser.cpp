@@ -3,6 +3,8 @@
 #include "../../include/UtilsHeaders/GameObjectFactory.h"
 #include "../../include/UtilsHeaders/PanelFactory.h"
 
+#include "../../include/Constants/LoaderParamsConsts.h"
+
 #include "../../include/EntitiesHeaders/Button.h"
 
 #include "../../include/Game.h"
@@ -69,8 +71,6 @@ void StateParser::parsePanels(TiXmlElement* pPanelsRoot, std::vector<std::unique
 {
 	for (TiXmlElement* panelElement = pPanelsRoot->FirstChildElement(); panelElement != NULL; panelElement = panelElement->NextSiblingElement())
 	{
-		//auto bg = e->Attribute("backgroundId");
-
 		// get panel's objects root
 		TiXmlElement* pObjectRoot = 0;
 		for (TiXmlElement* e = panelElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
@@ -81,16 +81,43 @@ void StateParser::parsePanels(TiXmlElement* pPanelsRoot, std::vector<std::unique
 			}
 		}
 
-		// parse panel's objects
+		// parse panel's objects		
 		std::vector<std::unique_ptr<GameObject>> objects;
 		parseObjects(pObjectRoot, &objects);
 
 		// create and load panel
 		std::unique_ptr<Panel> panel = ThePanelFactory::Instance()->create(panelElement->Attribute("type"));
+		parsePanelBackground(panelElement, panel);
 		panel->load(std::move(objects));
-
 		pPanels->push_back(std::move(panel));
 	}
+}
+
+void StateParser::parsePanelBackground(TiXmlElement* panelElement, std::unique_ptr<Panel>& panel)
+{
+	// create texture
+	std::unique_ptr<Texture> backgroundTexture = std::make_unique<Texture>();
+	std::shared_ptr<LoaderParams> pParams = std::make_shared<LoaderParams>();
+
+	// load params from xml
+	double x, y;
+	int width, height;
+	std::string textureID;
+	panelElement->Attribute(LoaderParamsConsts::x, &x);
+	panelElement->Attribute(LoaderParamsConsts::y, &y);
+	panelElement->Attribute(LoaderParamsConsts::width, &width);
+	panelElement->Attribute(LoaderParamsConsts::height, &height);
+	textureID = panelElement->Attribute(LoaderParamsConsts::textureID);
+
+	// set attributes
+	pParams->setAttribute(LoaderParamsConsts::x, static_cast<float>(x));
+	pParams->setAttribute(LoaderParamsConsts::y, static_cast<float>(y));
+	pParams->setAttribute(LoaderParamsConsts::width, width);
+	pParams->setAttribute(LoaderParamsConsts::height, height);
+	pParams->setAttribute(LoaderParamsConsts::textureID, textureID);
+
+	backgroundTexture->load(pParams);
+	panel->setBackgroundTexture(std::move(backgroundTexture));
 }
 
 
@@ -103,15 +130,20 @@ void StateParser::parseObjects(TiXmlElement* pStateRoot, std::vector<std::unique
 		for (TiXmlAttribute* attribute = e->FirstAttribute(); attribute != NULL; attribute = attribute->Next())
 		{
 			std::string name = attribute->Name();
-			const char* value = attribute->Value();
+			std::string value = attribute->Value();
 
 			if (std::isdigit(value[0]) || (value[0] == '-' && std::isdigit(value[1]))) {
-				if (std::string(value).find('.') != std::string::npos) {
+				if (value.find('.') != std::string::npos) {
 					pParams->setAttribute(name, std::stof(value));
 				}
 				else {
 					pParams->setAttribute(name, std::stoi(value));
 				}
+			}
+			else if (value == "true" || value == "false")
+			{
+				bool boolValue = value == "true";
+				pParams->setAttribute(name, boolValue);
 			}
 			else {
 				pParams->setAttribute(name, std::string(value));

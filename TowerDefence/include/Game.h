@@ -13,6 +13,8 @@
 #include<vector>
 #include<memory>
 
+#define OUTLINE_SIZE 2
+
 class Game
 {
 public:
@@ -28,6 +30,7 @@ public:
 	
 	SDL_Renderer* getRenderer() const;
 	TTF_Font* getFont() const;
+	TTF_Font* getFontOutline() const;
 	std::shared_ptr<GameStateMachine> getStateMachine();
 	int getGameWidth() const;
 	int getGameHeight() const;
@@ -47,6 +50,7 @@ private:
 	SDL_Texture* m_pTexture;
 
 	TTF_Font* m_pFont;
+	TTF_Font* m_pFontOutline;
 
 	std::shared_ptr<GameStateMachine> m_pGameStateMachine;
 };

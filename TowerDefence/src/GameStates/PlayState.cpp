@@ -87,7 +87,6 @@ void PlayState::loadData()
 	// load level
 	LevelParser levelParser;
 	pLevel = levelParser.parseLevel("./src/assets/Map/test_map.tmx");
-	//pLevel = levelParser.parseLevel("./src/assets/map1.tmx");
 	if (!pLevel->getEnemyPath().empty())
 	{
 		pLevel->setSpawnPoint(*(pLevel->getEnemyPath()[0].get()));
@@ -181,7 +180,7 @@ void PlayState::handleEvents()
 	// handle game over
 	if (m_gameSessionData->gameHealth <= 0)
 	{
-		TheGame::Instance()->getStateMachine()->pushState(std::make_shared<GameOverState>());
+		//TheGame::Instance()->getStateMachine()->pushState(std::make_shared<GameOverState>());
 	}
 
 	// handle buttons
@@ -258,9 +257,9 @@ void PlayState::loadGameSessionData()
 	m_gameSessionData = std::make_shared<GameSessionData>();
 
 	m_gameSessionData->gameHealth= 5;
-	m_gameSessionData->resources = { Resource {ResourceType {GREEN}, 5},
-					Resource {ResourceType {YELLOW}, 0},
-					Resource {ResourceType {RED}, 0} };
+	m_gameSessionData->resources = { Resource {ResourceType {GREEN}, 100},
+					Resource {ResourceType {YELLOW}, 100},
+					Resource {ResourceType {RED}, 100} };
 	m_gameSessionData->currentWaveLevel = 0;
 }
 

@@ -6,6 +6,7 @@
 
 #include "../../EntitiesHeaders/Tower.h"
 #include "../../EntitiesHeaders/Text.h"
+#include "../../EntitiesHeaders/Texture.h"
 
 #include "../../DataHeaders/GameSessionData.h"
 
@@ -45,6 +46,10 @@ private:
 	* set a pointer to the level for each tower button.
 	*/
 	void setTowerButtonLevel();
+	/**
+	* update labels' value.
+	*/
+	void updateLabel(Text* pText);
 
 	typedef std::function<void(Button*)> TowerButtonCallback;
 	std::map<std::string, TowerButtonCallback> m_towerButtonCallbacks;
@@ -53,8 +58,7 @@ private:
 	std::shared_ptr<Level> pLevel;
 
 	std::shared_ptr<GameSessionData> m_gameSessionData;
-
-	Text m_healthText; // label showing health
+	std::map<std::string, int> m_towersCosts; // map of each tower with their cost
 };
 
 

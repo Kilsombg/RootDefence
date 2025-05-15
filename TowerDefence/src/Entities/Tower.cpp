@@ -1,8 +1,11 @@
 #include "../../include/EntitiesHeaders/Tower.h"
 
+#include "../../include/Game.h"
 
 #include "../../include/Constants/LoaderParamsConsts.h"
-#include "../../include/Game.h"
+#include "../../include/Constants/GameObjectConsts.h"
+
+#include "../../include/DataHeaders/GameSessionData.h"
 
 #include "../../include/Constants/LoaderParamsConsts.h"
 #include "../../include/Constants/SettingsConsts.h"
@@ -152,11 +155,6 @@ Resource Tower::getBaseCost() const
 	return m_baseCost;
 }
 
-Tower::TowerType Tower::getTowerType()
-{
-	return m_towerType;
-}
-
 float Tower::getAttackSpeed() const
 {
 	return m_attackSpeed;
@@ -247,13 +245,23 @@ void Tower::load(const std::shared_ptr<LoaderParams> pParams)
 {
 	SDLGameObject::load(pParams);
 
+	// load color specific parameters
+	bool canBeColored = pParams->getAttribute<bool>(LoaderParamsConsts::canBeColored);
+	if (canBeColored)
+	{
+		m_textureID[0] = std::toupper(m_textureID[0]);
+		m_textureID = getTowerType(pParams->getAttribute<std::string>(LoaderParamsConsts::color)) + m_textureID;
+	}
+	m_color = pParams->getAttribute<std::string>(LoaderParamsConsts::color);
+
+	// load other paramters
 	m_projectileID = pParams->getAttribute<std::string>(LoaderParamsConsts::projectileID);
 	m_damage = pParams->getAttribute<float>(LoaderParamsConsts::damage) ? pParams->getAttribute<float>(LoaderParamsConsts::damage) : 0;
 	m_radius = pParams->getAttribute<float>(LoaderParamsConsts::radius);
 	m_baseCost.type = getResourceTypeByString(pParams->getAttribute<std::string>(LoaderParamsConsts::costType));
 	m_baseCost.value = pParams->getAttribute<int>(LoaderParamsConsts::costValue);
-	m_color = pParams->getAttribute<std::string>(LoaderParamsConsts::color);
 
+	// load attack speed
 	float attackSpeed = pParams->getAttribute<float>(LoaderParamsConsts::attackSpeed);
 	if (attackSpeed) setAttackSpeed(attackSpeed);
 
@@ -262,7 +270,19 @@ void Tower::load(const std::shared_ptr<LoaderParams> pParams)
 
 void Tower::handleEvent()
 {
+	// select tower on click
 	m_selectOnClickEventHandler.handleEvent();
+}
+
+std::string Tower::getTowerType(std::string towerColor)
+{
+	if (towerColor == ResourceTypeConst::green) return TowerTypeConsts::green;
+	if (towerColor == ResourceTypeConst::yellow) return TowerTypeConsts::yellow;
+	if (towerColor == ResourceTypeConst::red) return TowerTypeConsts::red;
+
+	std::cout << "Tower color: " << towerColor << " not found.\n";
+
+	return "";
 }
 
 void Tower::targetEnemy(std::vector<std::shared_ptr<Enemy>> enemies)

@@ -36,7 +36,7 @@ void SDLGameObject::load(const std::shared_ptr<LoaderParams> pParams)
 	m_currentRow = 1;
 	m_currentFrame = 0;
 
-	m_numFrames = pParams->getAttribute<int>(LoaderParamsConsts::numFrames);
+	m_numFrames = pParams->getAttribute<int>(LoaderParamsConsts::numFrames) ? pParams->getAttribute<int>(LoaderParamsConsts::numFrames) : 0;
 }
 
 void SDLGameObject::draw()

@@ -9,7 +9,7 @@
  </tileset>
  <layer id="1" name="Tile Layer 1" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJxjYBjZYBeRmFTz1hPA5Ji3EQ8m1zxqu289A/XCjxrmoYcTpeZhCytq+Jda6W+4AwDGYj/J
+   eJzbxcDAsIvKmFqAHuZR4id85q0nE+MzbyMZmJB51Hbfegbiwg+XHKXmEQoPYszDJ4crTCj1L6npj9r5jZbmURMDAETUgcM=
   </data>
  </layer>
  <objectgroup draworder="index" id="2" name="EntitiesPaths">

@@ -7,9 +7,6 @@
 
 #include "../../include/Constants/LoaderParamsConsts.h"
 
-#include<memory>
-
-
 std::shared_ptr<TowerFactory> TowerFactory::s_pInstance = nullptr;
 
 TowerFactory::TowerFactory() {}
@@ -67,6 +64,21 @@ std::shared_ptr<Tower> TowerFactory::createShadowTower(std::string towerTypeID, 
 std::shared_ptr<LoaderParams> TowerFactory::getTowerData(std::string towerTypeID)
 {
 	return m_towerObjectData->getData(towerTypeID);
+}
+
+std::map<std::string, int> TowerFactory::getTowersCostValue()
+{
+	std::map<std::string, int> towersCost;
+	
+	// get all data for towers
+	std::map<std::string, std::shared_ptr<LoaderParams>> towersData = m_towerObjectData->getObjectsData();
+
+	for (std::map<std::string, std::shared_ptr<LoaderParams>>::iterator it = towersData.begin(); it != towersData.end(); it++)
+	{
+		towersCost[it->first] = it->second->getAttribute<int>(LoaderParamsConsts::costValue);
+	}
+
+	return towersCost;
 }
 
 void TowerFactory::setTowerObjectData(GameObjectData<LoaderParams>& gameObjectdata)

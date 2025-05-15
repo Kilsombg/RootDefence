@@ -23,6 +23,12 @@ public:
 	*/
 	std::shared_ptr<T> getData(std::string gameOjbectType);
 	/**
+	* Get all data from the map.
+	* 
+	* @return a map of objects' data.
+	*/
+	std::map<std::string, std::shared_ptr<T>> getObjectsData();
+	/**
 	* Parse map from JSON file.
 	* 
 	* @param filePath is path to the JSON data
@@ -48,6 +54,12 @@ inline std::shared_ptr<T> GameObjectData<T>::getData(std::string gameOjbectType)
 		return NULL;
 	}
 	return it->second;
+}
+
+template<typename T>
+inline std::map<std::string, std::shared_ptr<T>> GameObjectData<T>::getObjectsData()
+{
+	return m_gameObjectsData;
 }
 
 template<typename T>
