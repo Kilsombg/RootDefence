@@ -5,6 +5,7 @@
 #include "../UtilsHeaders/BaseCreator.h"
 
 #include "../MapHeaders/Level.h"
+#include "../MapHeaders/TileType.h"
 
 #include<string>
 #include<memory>
@@ -16,6 +17,7 @@ public:
 	typedef std::function<void(Button*)> TowerButtonCallback;
 
 	TowerButton();
+	TowerButton(const TowerButton* towerButton);
 
 	virtual void load(const std::shared_ptr<LoaderParams> pParams) override;
 	void handleEvent() override;
@@ -28,6 +30,7 @@ public:
 	void setCallback(TowerButtonCallback callback);
 	std::string getTowerName();
 	std::string getTowerColor();
+	bool isSelected();
 
 	void setLevel(std::shared_ptr<Level> level);
 
@@ -47,6 +50,8 @@ private:
 	bool m_pressed;
 	// flag for mouse on free TowerTile. If true you can build tower on click.
 	bool m_isMouseOnFreeTowerTile;
+	// which type of tile the mouse is over
+	TileType m_mouseOnTileType;
 	// button callback.
 	TowerButtonCallback m_callback;
 	// pointer to level to setup m_isMouseOnFreeTowerTile flag.

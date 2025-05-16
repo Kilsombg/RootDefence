@@ -25,6 +25,7 @@ public:
 	void draw() override;
 	void update() override;
 	void clean() override;
+	void handleEvents() override;
 	void load(std::vector<std::unique_ptr<GameObject>> gameObjects) override;
 	/**
 	* Load needed dependencies not included from StateParser.
@@ -53,6 +54,8 @@ private:
 
 	typedef std::function<void(Button*)> TowerButtonCallback;
 	std::map<std::string, TowerButtonCallback> m_towerButtonCallbacks;
+
+	std::shared_ptr<TowerButton> m_selectedTowerButton;
 
 	std::shared_ptr<ClickToPlaceTowerHandler> m_clickToPlaceTowerHandler;
 	std::shared_ptr<Level> pLevel;

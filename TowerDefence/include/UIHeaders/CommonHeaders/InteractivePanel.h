@@ -21,12 +21,12 @@ public:
 	virtual void update() override;
 	virtual void handleEvents();
 
-	void setButtonObjects(std::vector<std::unique_ptr<Button>> buttons);
+	void setButtonObjects(std::vector<std::shared_ptr<Button>> buttons);
 
 	virtual void loadCallbacks();
 
 protected:
-	std::vector<std::unique_ptr<Button>> m_buttonObjects;
+	std::vector<std::shared_ptr<Button>> m_buttonObjects;
 };
 
 

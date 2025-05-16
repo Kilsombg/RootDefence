@@ -7,6 +7,7 @@ class Button : public SDLGameObject
 {
 public:
 	Button();
+	Button(const Button* button);
 
 	virtual void load(const std::shared_ptr<LoaderParams> pParams);
 	virtual void handleEvent();

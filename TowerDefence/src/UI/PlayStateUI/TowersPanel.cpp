@@ -39,6 +39,21 @@ void TowersPanel::draw()
 
 void TowersPanel::update()
 {
+	// get selected button
+	for (std::vector<std::shared_ptr<Button>>::size_type i = 0; i < m_buttonObjects.size(); i++)
+	{
+		if (std::shared_ptr<TowerButton> towerButton = std::dynamic_pointer_cast<TowerButton>(m_buttonObjects[i]))
+		{
+			if (towerButton->isSelected())
+			{
+				m_selectedTowerButton = towerButton;
+				break;
+			}
+		}
+
+		m_selectedTowerButton.reset();
+	}
+
 	// update tower buttons
 	InteractivePanel::update();
 
@@ -67,6 +82,22 @@ void TowersPanel::clean()
 	}
 }
 
+void TowersPanel::handleEvents()
+{
+	// handle selected button if there is, otherwise handle all buttons
+	if (m_selectedTowerButton != nullptr)
+	{
+		if (m_selectedTowerButton->isSelected())
+		{
+			m_selectedTowerButton->handleEvent();
+		}
+	}
+	else
+	{
+		TowerInteractivePanel::handleEvents();
+	}
+}
+
 void TowersPanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)
 {
 	// get towers' cost
@@ -78,8 +109,7 @@ void TowersPanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)
 		// load buttons
 		if (std::unique_ptr<TowerButton> pButton = std::unique_ptr<TowerButton>(dynamic_cast<TowerButton*>(gameObjects[i].get())))
 		{
-			m_buttonObjects.push_back(std::move(pButton));
-			pButton = nullptr;
+			m_buttonObjects.push_back(std::make_shared<TowerButton>(std::move(pButton.get())));
 			gameObjects[i].release();
 		}
 		else

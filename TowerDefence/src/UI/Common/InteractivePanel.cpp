@@ -7,7 +7,7 @@ InteractivePanel::InteractivePanel()
 void InteractivePanel::draw()
 {
 	// draw buttons
-	for (std::vector<std::unique_ptr<Button>>::size_type i = 0; i < m_buttonObjects.size(); i++)
+	for (std::vector<std::shared_ptr<Button>>::size_type i = 0; i < m_buttonObjects.size(); i++)
 	{
 		m_buttonObjects[i]->draw();
 	}
@@ -16,7 +16,7 @@ void InteractivePanel::draw()
 void InteractivePanel::update()
 {
 	// update buttons
-	for (std::vector<std::unique_ptr<Button>>::size_type i = 0; i < m_buttonObjects.size(); i++)
+	for (std::vector<std::shared_ptr<Button>>::size_type i = 0; i < m_buttonObjects.size(); i++)
 	{
 		m_buttonObjects[i]->update();
 	}
@@ -24,13 +24,13 @@ void InteractivePanel::update()
 
 void InteractivePanel::handleEvents()
 {
-	for (std::vector<std::unique_ptr<Button>>::size_type i = 0; i < m_buttonObjects.size(); i++)
+	for (std::vector<std::shared_ptr<Button>>::size_type i = 0; i < m_buttonObjects.size(); i++)
 	{
 		m_buttonObjects[i]->handleEvent();
 	}
 }
 
-void InteractivePanel::setButtonObjects(std::vector<std::unique_ptr<Button>> buttons)
+void InteractivePanel::setButtonObjects(std::vector<std::shared_ptr<Button>> buttons)
 {
 	m_buttonObjects = std::move(buttons);
 }

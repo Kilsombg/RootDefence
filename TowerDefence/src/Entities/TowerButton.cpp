@@ -4,13 +4,23 @@
 
 #include "../../include/ManagersHeaders/PurchaseManager.h"
 
-#include "../../include/MapHeaders/TileType.h"
-
 #include "../../include/UtilsHeaders/InputHandler.h"
 
 
 TowerButton::TowerButton() : Button(), m_selected(false), m_pressed(false), m_isMouseOnFreeTowerTile(false)
 {
+}
+
+TowerButton::TowerButton(const TowerButton* towerButton) : Button(towerButton)
+{
+	m_towerName = towerButton->m_towerName;
+	m_towerColor = towerButton->m_towerColor;
+	m_selected = towerButton->m_selected;
+	m_pressed = towerButton->m_pressed;
+	m_isMouseOnFreeTowerTile = towerButton->m_isMouseOnFreeTowerTile;
+	m_mouseOnTileType = towerButton->m_mouseOnTileType;
+	m_callback = towerButton->m_callback;
+	pLevel = towerButton->pLevel;
 }
 
 void TowerButton::load(const std::shared_ptr<LoaderParams> pParams)
@@ -27,7 +37,8 @@ void TowerButton::update()
 	std::shared_ptr<Vector2D> pMousePos = TheInputHandler::Instance()->getMousePosition();
 	if (pLevel != nullptr && m_selected)
 	{
-		m_isMouseOnFreeTowerTile = TileType::TOWER == pLevel->getTileTypeByPosition(pMousePos->getX(), pMousePos->getY());
+		m_mouseOnTileType = pLevel->getTileTypeByPosition(pMousePos->getX(), pMousePos->getY());
+		m_isMouseOnFreeTowerTile = TileType::TOWER == m_mouseOnTileType;
 	}
 }
 
@@ -58,6 +69,11 @@ std::string TowerButton::getTowerColor()
 	return m_towerColor;
 }
 
+bool TowerButton::isSelected()
+{
+	return m_selected;
+}
+
 void TowerButton::setLevel(std::shared_ptr<Level> level)
 {
 	pLevel = level;
@@ -74,7 +90,13 @@ void TowerButton::handleInterruptEvent()
 {
 	if (m_selected)
 	{
-		if (InputHandler::Instance()->isKeyPressed(SDL_SCANCODE_ESCAPE))
+		if (TheInputHandler::Instance()->isKeyPressed(SDL_SCANCODE_ESCAPE) || TheInputHandler::Instance()->getMouseButtonState(RIGHT))
+		{
+			m_callback(nullptr);
+			resetParams();
+		}
+		// interrupt when button is selected and clicked outside map and button.
+		if (!m_isMouseOnButton && m_mouseOnTileType == TileType::NOT_TILE_TYPE && TheInputHandler::Instance()->getMouseButtonState(LEFT))
 		{
 			m_callback(nullptr);
 			resetParams();
