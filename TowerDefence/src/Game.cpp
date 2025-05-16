@@ -12,8 +12,7 @@
 #include "../include/EntitiesHeaders/AnimatedGraphic.h"
 #include "../include/EntitiesHeaders/Text.h"
 #include "../include/EntitiesHeaders/Texture.h"
-#include "../include/EntitiesHeaders/Carrot.h"
-#include "../include/EntitiesHeaders/Cabbage.h"
+
 
 #include "../include/GameStateHeaders/MainMenuState.h"
 #include "../include/GameStateHeaders/PlayState.h"
@@ -118,8 +117,15 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	m_gameHeight = height;
 
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::player, std::make_shared<PlayerCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::carrot, std::make_shared<CarrotCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::cabbage ,std::make_shared<CabbageCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::greenChoy, std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::greenPlant,std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::greenBroccoli,std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::yellowOrange, std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::yellowCarrot,std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::yellowSquash,std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::redRadish, std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::redPepper ,std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::redTomato ,std::make_shared<EnemyCreator>());
 
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::stump , std::make_shared<TowerCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::pine, std::make_shared<TowerCreator>());

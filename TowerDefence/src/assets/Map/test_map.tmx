@@ -7,9 +7,12 @@
   </properties>
   <image source="blocks1.png" trans="000000" width="640" height="400"/>
  </tileset>
+ <tileset firstgid="199" name="bk" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198" columns="18">
+  <image source="map_tileset1.png" trans="000000" width="640" height="400"/>
+ </tileset>
  <layer id="1" name="Tile Layer 1" width="20" height="15">
   <data encoding="base64" compression="zlib">
-   eJzbxcDAsIvKmFqAHuZR4id85q0nE+MzbyMZmJB51Hbfegbiwg+XHKXmEQoPYszDJ4crTCj1L6npj9r5jZbmURMDAETUgcM=
+   eJyllLEKAjEQRPcqsfb/f8Q/UAmJYqOgIGKljYXYugs5WJaZXNTisSSbm5lbcpdEJDlKWN8m+sYl7KMzRgZ64/NWt8quk6hRgN611qUj+ma3fpPcyenNB67ntc7KZoIX2GPeK0XU+yScGeizWZveuuN9rR6UY62tfF4vA89R7648amWzWQy/5WvN5wkyIT2fz/fRvWP33Ope+L0t0v5OenwQSDPqoTMsy7d+Pf+Bf/gA2/Pw9w==
   </data>
  </layer>
  <objectgroup draworder="index" id="2" name="EntitiesPaths">

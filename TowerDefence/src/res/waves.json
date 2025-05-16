@@ -5,15 +5,15 @@
       "roundInterval": 3.0,
       "enemyClusters": [
         {
-          "enemyType": "carrot",
+          "enemyType": "greenChoy",
           "count": 2
         },
         {
-          "enemyType": "cabbage",
+          "enemyType": "greenPlant",
           "count": 3
         },
         {
-          "enemyType": "carrot",
+          "enemyType": "greenBroccoli",
           "count": 1
         }
       ]
@@ -23,11 +23,11 @@
       "roundInterval": 5.0,
       "enemyClusters": [
         {
-          "enemyType": "cabbage",
+          "enemyType": "redPepper",
           "count": 3
         },
         {
-          "enemyType": "carrot",
+          "enemyType": "redPepper",
           "count": 1
         }
       ]

@@ -7,7 +7,7 @@
       "projectileID": "projectile1",
       "numFrames": 4,
       "damage": 20.0,
-      "radius": 32.0,
+      "radius": 70.0,
       "costValue": 5,
       "attackSpeed": 2.0,
       "canBeColored": true
@@ -19,7 +19,7 @@
       "projectileID": "projectile1",
       "numFrames": 4,
       "damage": 20.0,
-      "radius": 32.0,
+      "radius": 45.0,
       "costValue": 15,
       "attackSpeed": 2.0,
       "canBeColored": true
@@ -31,7 +31,7 @@
       "projectileID": "projectile1",
       "numFrames": 4,
       "damage": 20.0,
-      "radius": 32.0,
+      "radius": 82.0,
       "costValue": 20,
       "attackSpeed": 2.0,
       "canBeColored": true

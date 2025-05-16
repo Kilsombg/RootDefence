@@ -1,26 +1,103 @@
 {
   "enemyObjectData": {
-    "carrot": {
+    "greenChoy": {
       "width": 32,
       "height": 32,
-      "textureID": "helicopter",
-      "numFrames": 13,
+      "textureID": "greenChoyEnemy",
+      "numFrames": 1,
+      "moveSpeed": 0.7,
+      "maxHealth": 120.0,
+      "defence": 5.0,
+      "dropType": "GREEN",
+      "dropValue": 1
+    },
+    "greenPlant": {
+      "width": 32,
+      "height": 32,
+      "textureID": "greenPlantEnemy",
+      "numFrames": 1,
       "moveSpeed": 1.0,
       "maxHealth": 100.0,
       "defence": 3.0,
       "dropType": "GREEN",
-      "dropValue": 1
+      "dropValue": 2
     },
-    "cabbage": {
-      "width": 128,
-      "height": 55,
-      "textureID": "helicopter2",
-      "numFrames": 4,
+    "greenBroccoli": {
+      "width": 32,
+      "height": 32,
+      "textureID": "greenBroccoliEnemy",
+      "numFrames": 1,
+      "moveSpeed": 1.0,
+      "maxHealth": 100.0,
+      "defence": 3.0,
+      "dropType": "GREEN",
+      "dropValue": 3
+    },
+    "yellowCarrot": {
+      "width": 32,
+      "height": 32,
+      "textureID": "yellowCarrotEnemy",
+      "numFrames": 1,
       "moveSpeed": 0.7,
       "maxHealth": 120.0,
       "defence": 5.0,
       "dropType": "YELLOW",
       "dropValue": 1
+    },
+    "yellowOrange": {
+      "width": 32,
+      "height": 32,
+      "textureID": "yellowOrangeEnemy",
+      "numFrames": 1,
+      "moveSpeed": 1.0,
+      "maxHealth": 100.0,
+      "defence": 3.0,
+      "dropType": "YELLOW",
+      "dropValue": 2
+    },
+    "yellowSquash": {
+      "width": 32,
+      "height": 32,
+      "textureID": "yellowSquashEnemy",
+      "numFrames": 1,
+      "moveSpeed": 1.0,
+      "maxHealth": 100.0,
+      "defence": 3.0,
+      "dropType": "YELLOW",
+      "dropValue": 3
+    },
+    "redRadish": {
+      "width": 32,
+      "height": 32,
+      "textureID": "redRadishEnemy",
+      "numFrames": 1,
+      "moveSpeed": 0.7,
+      "maxHealth": 120.0,
+      "defence": 5.0,
+      "dropType": "RED",
+      "dropValue": 2
+    },
+    "redPepper": {
+      "width": 32,
+      "height": 32,
+      "textureID": "redPepperEnemy",
+      "numFrames": 1,
+      "moveSpeed": 1.0,
+      "maxHealth": 100.0,
+      "defence": 3.0,
+      "dropType": "RED",
+      "dropValue": 1
+    },
+    "redTomato": {
+      "width": 32,
+      "height": 32,
+      "textureID": "redTomatoEnemy",
+      "numFrames": 1,
+      "moveSpeed": 1.0,
+      "maxHealth": 100.0,
+      "defence": 3.0,
+      "dropType": "RED",
+      "dropValue": 3
     }
   }
 }

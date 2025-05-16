@@ -37,7 +37,7 @@ void to_json(json& j, const TowerUpgradeData& data)
 }
 
 void from_json(const json& j, TowerUpgradeData& data)
-{	
+{
 	// statName
 	if (j.contains(LoaderParamsConsts::statName)) {
 		j.at(LoaderParamsConsts::statName).get_to(data.statName);
@@ -102,7 +102,7 @@ void to_json(json& j, const std::map<std::string, std::shared_ptr<ArrayOf2TowerU
 	}
 }
 
-void from_json(const json& j, std::map<std::string, std::shared_ptr<ArrayOf2TowerUpgradesData>>& dataMap) 
+void from_json(const json& j, std::map<std::string, std::shared_ptr<ArrayOf2TowerUpgradesData>>& dataMap)
 {
 	dataMap.clear();
 	for (auto it = j.begin(); it != j.end(); ++it) {
@@ -132,7 +132,7 @@ Tower::Tower(const Tower& tower) : SDLGameObject(tower)
 	m_projectileID = tower.m_projectileID;
 	m_damage = tower.m_damage;
 	m_radius = tower.m_radius;
-	m_baseCost.type =tower.m_baseCost.type;
+	m_baseCost.type = tower.m_baseCost.type;
 	m_baseCost.value = tower.m_baseCost.value;
 	m_color = tower.m_color;
 	setAttackSpeed(tower.m_attackSpeed);
@@ -230,7 +230,7 @@ void Tower::update()
 void Tower::draw()
 {
 	// draw range area when selected
-	if(m_selectOnClickEventHandler.isSelected())
+	if (m_selectOnClickEventHandler.isSelected())
 	{
 		TheTextureManager::Instance()->drawFilledCircle(
 			m_position.getX(), m_position.getY(), static_cast<int>(m_radius),
@@ -238,7 +238,7 @@ void Tower::draw()
 			TheGame::Instance()->getRenderer());
 	}
 
-	SDLGameObject::draw();
+	//SDLGameObject::draw();
 }
 
 void Tower::load(const std::shared_ptr<LoaderParams> pParams)

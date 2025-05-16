@@ -86,7 +86,7 @@ void PlayState::loadData()
 {
 	// load level
 	LevelParser levelParser;
-	pLevel = levelParser.parseLevel("./src/assets/Map/test_map.tmx");
+	pLevel = levelParser.parseLevel("./src/assets/Map/test_map2.tmx");
 	if (!pLevel->getEnemyPath().empty())
 	{
 		pLevel->setSpawnPoint(*(pLevel->getEnemyPath()[0].get()));

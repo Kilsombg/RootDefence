@@ -3,6 +3,8 @@
 
 #include "SDLGameObject.h"
 
+#include "../UtilsHeaders/BaseCreator.h"
+
 #include "../DataHeaders/GameSessionData.h"
 
 #include<vector>
@@ -80,6 +82,13 @@ private:
 	bool m_crossEndOfPath; // flag if enemy is passed the finish line
 	int m_healthBarWidth;
 	int m_healthBarHeight;
+};
+
+
+
+class EnemyCreator : public BaseCreator
+{
+	std::unique_ptr<GameObject> create() const override;
 };
 
 #endif // !__Enemy__

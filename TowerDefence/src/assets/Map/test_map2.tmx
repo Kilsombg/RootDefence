@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" infinite="0" nextlayerid="2" nextobjectid="1">
- <tileset firstgid="1" name="blocks_1" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198" columns="18">
-  <image source="blocks1.png" trans="000000" width="640" height="400"/>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="2">
+ <tileset firstgid="1" name="map_tileset1" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198" columns="18">
+  <properties>
+   <property name="pathTileID" value="0,1,2,3,4,10,11,12,13,14,18,19,20,21,22,23,24,28,30,36,37,38,39,41,42,46,47,57,58,64,65,75,76"/>
+   <property name="towerTileID" value="6,8,9,26,48,49"/>
+  </properties>
+  <image source="map_tileset1.png" trans="000000" width="640" height="400"/>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="25" height="14">
   <data encoding="base64" compression="zlib">
-   eJzbxcDAsIsOmJZg1I5RO0btGLWDmnbQGgMAfY01xQ==
+   eJydk08LwjAMxQsqoype5r8hO1ZFD6JHPYlX/f5fZxl0EJ5JGj38WNcueclbWoUQKiLmJyLt495UicWzLTFx0jjzIyPiTmwKPIixkScK2pFp8Nib4gv/zuphRswzPPbt8ARrwR5qYkm0ea9m5yenJ5ZGTyL2TCMV/o/kCWoMde8gvhVyordejaFu9Ix7pc3n50+vsI8U7Dk9Ozy8GhovowbtzmvzJ3Fh61JO1Mb503iytZav92FFrPM7zk2p/0X4voPSjB2I44+5pRntAJKyEDU=
   </data>
  </layer>
+ <objectgroup id="2" name="EntitiesPaths">
+  <object id="1" x="0" y="256">
+   <polyline points="0,0 192,0 192,-128 64,-128 64,-224 416,-224 416,64 800,64"/>
+  </object>
+ </objectgroup>
 </map>

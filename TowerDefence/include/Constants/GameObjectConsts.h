@@ -8,8 +8,15 @@ namespace GameObjectConsts {
 
 #pragma region Creator objects
 	constexpr char player[] = "player";
-	constexpr char carrot[] = "carrot";
-	constexpr char cabbage[] = "cabbage";
+	constexpr char greenChoy[] = "greenChoy";
+	constexpr char greenPlant[] = "greenPlant";
+	constexpr char greenBroccoli[] = "greenBroccoli";
+	constexpr char yellowCarrot[] = "yellowCarrot";
+	constexpr char yellowOrange[] = "yellowOrange";
+	constexpr char yellowSquash[] = "yellowSquash";
+	constexpr char redPepper[] = "redPepper";
+	constexpr char redRadish[] = "redRadish";
+	constexpr char redTomato[] = "redTomato";
 	constexpr char stump[] = "stump";
 	constexpr char pine[] = "pine";
 	constexpr char oak[] = "oak";

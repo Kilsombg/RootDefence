@@ -96,12 +96,6 @@
     <ClCompile Include="src\Map\ObjectLayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Carrot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\Cabbage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Wave\WaveManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -285,12 +279,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\MapHeaders\ObjectLayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\EntitiesHeaders\Carrot.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\EntitiesHeaders\Cabbage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\WaveHeaders\WaveManager.h">
