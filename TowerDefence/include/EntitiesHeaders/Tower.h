@@ -18,6 +18,9 @@
 #include<nlohmann\json.hpp>
 using json = nlohmann::json;
 
+// forward declaration
+enum ClickToPlaceTowerStates;
+
 /**
 * Tower upgrades data
 *
@@ -83,6 +86,8 @@ public:
 	ArrayOf2TowerUpgradesData& getTowerUpgradesData();
 	void setTowerUpgradesData(ArrayOf2TowerUpgradesData data);
 
+	void setClickToPlaceTowersHandlerState(ClickToPlaceTowerStates state);
+
 	// override methods
 	virtual void update() override;
 	virtual void draw() override;
@@ -137,6 +142,9 @@ private:
 	std::weak_ptr<Enemy> m_targetEnemy;
 
 	SelectOnClickEventHandler m_selectOnClickEventHandler;
+
+	// state of clickToPlaceTowersHandler to detect when towerButton is selected, so it stop from selecting the tower.
+	ClickToPlaceTowerStates clickToPlaceTowersHandlerState;
 
 	ArrayOf2TowerUpgradesData m_towerUpgradesData;
 };

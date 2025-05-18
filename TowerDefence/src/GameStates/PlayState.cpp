@@ -86,7 +86,7 @@ void PlayState::loadData()
 {
 	// load level
 	LevelParser levelParser;
-	pLevel = levelParser.parseLevel("./src/assets/Map/test_map2.tmx");
+	pLevel = levelParser.parseLevel("./src/assets/Map/test_map.tmx");
 	if (!pLevel->getEnemyPath().empty())
 	{
 		pLevel->setSpawnPoint(*(pLevel->getEnemyPath()[0].get()));
@@ -119,6 +119,10 @@ void PlayState::loadData()
 	// load sell manager
 	m_sellManager = TheSellManager::Instance();
 	m_sellManager->setGameSessionData(m_gameSessionData);
+
+	// load collision manager
+	m_collisionManager = TheCollisionManager::Instance();
+	m_collisionManager->setTowersObjects(m_towersObjects);
 
 	/* load UI */
 	m_playStateUI = std::make_unique<PlayStateUI>(s_stateID);
@@ -160,6 +164,9 @@ bool PlayState::onExit()
 
 	// clean sell manager
 	m_sellManager->clean();
+
+	// clean collision manager
+	m_collisionManager->clean();
 
 	std::cout << "exiting PlayState\n";
 	return true;
@@ -281,31 +288,4 @@ void PlayState::loadTowerData()
 	m_projectileManager = TheProjectileManager::Instance();
 	projectilesData.parseGameOjbectsData("./src/res/projectilesData.json", GameObjectConsts::projectilesData);
 	m_projectileManager->setGameObjectData(projectilesData);
-}
-
-bool PlayState::checkCollision(SDLGameObject* p1, SDLGameObject* p2)
-{
-	int leftA, leftB;
-	int rightA, rightB;
-	int topA, topB;
-	int bottomA, bottomB;
-
-	leftA = p1->getPosition().getX();
-	rightA = p1->getPosition().getX() + p1->getWidth();
-	topA = p1->getPosition().getY();
-	bottomA = p1->getPosition().getY() + p1->getHeight();
-
-	//Calculate the sides of rect B
-	leftB = p2->getPosition().getX();
-	rightB = p2->getPosition().getX() + p2->getWidth();
-	topB = p2->getPosition().getY();
-	bottomB = p2->getPosition().getY() + p2->getHeight();
-
-	//If any of the sides from A are outside of B
-	if (bottomA <= topB) { return false; }
-	if (topA >= bottomB) { return false; }
-	if (rightA <= leftB) { return false; }
-	if (leftA >= rightB) { return false; }
-
-	return true;
 }

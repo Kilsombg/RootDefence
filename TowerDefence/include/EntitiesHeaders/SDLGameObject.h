@@ -10,6 +10,8 @@
 class SDLGameObject : public GameObject
 {
 public:
+	SDLGameObject();
+
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
@@ -22,7 +24,6 @@ public:
 	int getHeight() const;
 
 protected:
-	SDLGameObject();
 	SDLGameObject(const SDLGameObject& gameObject);
 
 	Vector2D m_velocity;

@@ -59,6 +59,11 @@ void TowersPanel::update()
 
 	// update m_clickToPlaceTowerHandler state
 	m_clickToPlaceTowerHandler->update(m_playStateTowers);
+	//set handler state to towers
+	for (std::vector<std::shared_ptr<Tower>>::size_type i = 0; i < m_playStateTowers->size(); i++)
+	{
+		(*m_playStateTowers)[i]->setClickToPlaceTowersHandlerState(m_clickToPlaceTowerHandler->getState());
+	}
 
 	// update labels
 	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)

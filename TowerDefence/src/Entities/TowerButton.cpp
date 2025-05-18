@@ -3,8 +3,10 @@
 #include "../../include/Constants/LoaderParamsConsts.h"
 
 #include "../../include/ManagersHeaders/PurchaseManager.h"
+#include "../../include/ManagersHeaders/CollisionManager.h"
 
 #include "../../include/UtilsHeaders/InputHandler.h"
+#include "../../include/UtilsHeaders/TowerFactory.h"
 
 
 TowerButton::TowerButton() : Button(), m_selected(false), m_pressed(false), m_isMouseOnFreeTowerTile(false)
@@ -18,28 +20,50 @@ TowerButton::TowerButton(const TowerButton* towerButton) : Button(towerButton)
 	m_selected = towerButton->m_selected;
 	m_pressed = towerButton->m_pressed;
 	m_isMouseOnFreeTowerTile = towerButton->m_isMouseOnFreeTowerTile;
-	m_mouseOnTileType = towerButton->m_mouseOnTileType;
 	m_callback = towerButton->m_callback;
-	pLevel = towerButton->pLevel;
+	m_towerParams = towerButton->m_towerParams;
+	m_dummyObject = towerButton->m_dummyObject;
 }
 
 void TowerButton::load(const std::shared_ptr<LoaderParams> pParams)
 {
 	m_towerName = pParams->getAttribute<std::string>(LoaderParamsConsts::towerName);
 	m_towerColor = pParams->getAttribute<std::string>(LoaderParamsConsts::towerColor);
+	m_towerParams = TheTowerFactory::Instance()->getTowerData(m_towerName);
+	m_towerParams->setAttribute(LoaderParamsConsts::x, 0.0f);
+	m_towerParams->setAttribute(LoaderParamsConsts::y, 0.0f);
+
+	m_dummyObject = std::make_shared<SDLGameObject>();
+	m_dummyObject->load(m_towerParams);
+
 	Button::load(pParams);
 }
 
 void TowerButton::update()
 {
+	// check if mouse is on button
 	m_isMouseOnButton = TheInputHandler::Instance()->isMouseOnObject(m_position, m_width, m_height);
 
-	std::shared_ptr<Vector2D> pMousePos = TheInputHandler::Instance()->getMousePosition();
-	if (pLevel != nullptr && m_selected)
+	// update dummy position
+	setDummyObjectPosition();
+
+	if (m_selected)
 	{
-		m_mouseOnTileType = pLevel->getTileTypeByPosition(pMousePos->getX(), pMousePos->getY());
-		m_isMouseOnFreeTowerTile = TileType::TOWER == m_mouseOnTileType;
+		// check if there is free space to place tower
+		m_isMouseOnFreeTowerTile = !TheCollisionManager::Instance()->collideTowerPlacement(m_dummyObject.get(), pLevel->getPathArea());
+
+		// check if mouse is outside of map
+		std::shared_ptr<Vector2D> mousePos = InputHandler::Instance()->getMousePosition();
+		m_isMouseOutsideMap = (mousePos->getX() > pLevel->getWidth()) || (mousePos->getY() > pLevel->getHeight());
 	}
+}
+
+void TowerButton::setDummyObjectPosition()
+{
+	Vector2D mousePos = *InputHandler::Instance()->getMousePosition().get();
+	mousePos.setX(mousePos.getX() - m_dummyObject->getWidth() / 2);
+	mousePos.setY(mousePos.getY() - m_dummyObject->getHeight() / 2);
+	m_dummyObject->setPosition(mousePos);
 }
 
 void TowerButton::handleEvent()
@@ -96,7 +120,7 @@ void TowerButton::handleInterruptEvent()
 			resetParams();
 		}
 		// interrupt when button is selected and clicked outside map and button.
-		if (!m_isMouseOnButton && m_mouseOnTileType == TileType::NOT_TILE_TYPE && TheInputHandler::Instance()->getMouseButtonState(LEFT))
+		if (!m_isMouseOnButton && m_isMouseOutsideMap && TheInputHandler::Instance()->getMouseButtonState(LEFT))
 		{
 			m_callback(nullptr);
 			resetParams();

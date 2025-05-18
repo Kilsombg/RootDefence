@@ -5,9 +5,10 @@
 #include "TileType.h"
 #include "Layer.h"
 
-
 #include "../UtilsHeaders/Vector2D.h"
 
+
+#include<SDL.h>
 #include<vector>
 #include<set>
 #include<memory>
@@ -35,12 +36,24 @@ public:
 	std::vector<std::vector<TileType>>& getTileTypeMap();
 	// gets tile size of the tilemap
 	int getTileSize();
+	/**
+	* get map's width
+	*/
+	int getWidth();
+	/**
+	* get map's height
+	*/
+	int getHeight();
 	// gets the spawnpoint of the enemies
 	Vector2D& getSpawnPoint();
 	// sets the spawnpoint of the enemies
 	void setSpawnPoint(const Vector2D spawnPoint);
 	// gets the path that enemies follow
 	std::vector<std::shared_ptr<Vector2D>>& getEnemyPath();
+	/**
+	* Get path area.
+	*/
+	std::vector<SDL_Rect>& getPathArea();
 
 private:
 	Level();
@@ -52,10 +65,16 @@ private:
 	// represents TileMap's tiles by TileType
 	std::vector<std::vector<TileType>> m_tileTypeMap;
 	int m_tileSize;
+	// map's width
+	int m_width;
+	// map's height
+	int m_height;
 	// spawnpoint of the enemies
 	Vector2D m_spawnPoint;
 	// path that enemies follow
 	std::vector<std::shared_ptr<Vector2D>> m_enemyPath;
+	// vector of rectangles defining enemy's path
+	std::vector<SDL_Rect> m_pathAreas;
 
 	friend class LevelParser;
 };

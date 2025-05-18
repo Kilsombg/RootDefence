@@ -15,6 +15,15 @@
 #include<vector>
 #include<memory>
 
+
+enum ClickToPlaceTowerStates
+{
+	IDLE = 0,
+	MOVING = 1,
+	PLACING = 2,
+	INTERRUPTED = 3
+};
+
 class ClickToPlaceTowerHandler : public BaseButtonHandler
 {
 public:
@@ -28,8 +37,14 @@ public:
 	void render();
 	void clean();
 
+
+	// getters and setters
+
 	std::shared_ptr<Tower>& getShadowObject();
+	
 	void setLevel(std::shared_ptr<Level> level);
+
+	ClickToPlaceTowerStates getState();
 
 private:
 	/**
@@ -66,15 +81,7 @@ private:
 	*/
 	bool addObject(std::shared_ptr<std::vector<std::shared_ptr<Tower>>> gameTowers);
 
-	enum clickToPlaceTowerStates
-	{
-		IDLE = 0,
-		MOVING = 1,
-		PLACING = 2,
-		INTERRUPTED = 3
-	};
-
-	clickToPlaceTowerStates m_state;
+	ClickToPlaceTowerStates m_state;
 	TowerButton* m_activeButton;
 	std::shared_ptr<Tower> m_shadowObject;
 	ColorsConsts::Color m_shadowObjectRadiusColor;

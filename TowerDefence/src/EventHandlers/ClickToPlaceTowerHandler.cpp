@@ -8,6 +8,7 @@
 #include "../../include/Game.h"
 
 #include "../../include/ManagersHeaders/SellManager.h"
+#include "../../include/ManagersHeaders/CollisionManager.h"
 
 #include<memory>
 #include<iostream>
@@ -70,6 +71,11 @@ std::shared_ptr<Tower>& ClickToPlaceTowerHandler::getShadowObject()
 void ClickToPlaceTowerHandler::setLevel(std::shared_ptr<Level> level)
 {
 	pLevel = level;
+}
+
+ClickToPlaceTowerStates ClickToPlaceTowerHandler::getState()
+{
+	return m_state;
 }
 
 void ClickToPlaceTowerHandler::handleIdleState(Button* sourceButton)
@@ -140,16 +146,17 @@ void ClickToPlaceTowerHandler::updateMovingState()
 	// check whether the mouse position is on free tower tile
 	if (pLevel != nullptr)
 	{
-		m_isMouseOnFreeTowerTile = TileType::TOWER == pLevel->getTileTypeByPosition(m_shadowObject->getPosition().getX(), m_shadowObject->getPosition().getY());
+		Vector2D shadowPosition = m_shadowObject->getPosition();
+		m_isMouseOnFreeTowerTile = !TheCollisionManager::Instance()->collideTowerPlacement(m_shadowObject.get(), pLevel->getPathArea());
 	}
 }
 
 void ClickToPlaceTowerHandler::setShadowObjectPosition()
 {
-	std::shared_ptr<Vector2D> mousePos = InputHandler::Instance()->getMousePosition();
-	mousePos->setX(mousePos->getX() - (static_cast<int>(mousePos->getX()) % pLevel->getTileSize()));
-	mousePos->setY(mousePos->getY() - (static_cast<int>(mousePos->getY()) % pLevel->getTileSize()));
-	m_shadowObject->setPosition(*(mousePos.get()));
+	Vector2D mousePos = *InputHandler::Instance()->getMousePosition().get();
+	mousePos.setX(mousePos.getX() - m_shadowObject->getWidth() / 2);
+	mousePos.setY(mousePos.getY() - m_shadowObject->getHeight() / 2);
+	m_shadowObject->setPosition(mousePos);
 }
 
 void ClickToPlaceTowerHandler::interrupt()
@@ -195,7 +202,5 @@ bool ClickToPlaceTowerHandler::addObject(std::shared_ptr<std::vector<std::shared
 	// reset ptr, not needed anymore
 	m_shadowObject.reset();
 
-	// set the tile, on which it will be placed, to OCCUPIED
-	pLevel->getTileTypeMap()[r][c] = TileType::OCCUPIED;
 	return true;
 }

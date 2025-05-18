@@ -2,10 +2,10 @@
 #define __TowerButton__
 
 #include "Button.h"
+
 #include "../UtilsHeaders/BaseCreator.h"
 
 #include "../MapHeaders/Level.h"
-#include "../MapHeaders/TileType.h"
 
 #include<string>
 #include<memory>
@@ -23,6 +23,11 @@ public:
 	void handleEvent() override;
 
 	virtual void update() override;
+
+	/**
+	* set mouse position to dummy object
+	*/
+	void setDummyObjectPosition();
 
 
 	// setters and getters
@@ -44,17 +49,21 @@ private:
 	std::string m_towerName;
 	// color of the tower
 	std::string m_towerColor;
+	// gets needed tower's position and widht, height.
+	std::shared_ptr<LoaderParams> m_towerParams;
+	// dummy object representing position of the tower
+	std::shared_ptr<SDLGameObject> m_dummyObject;
 	// selected flag used for dragging shadow object.
 	bool m_selected;
 	// flag for pressing button.
 	bool m_pressed;
 	// flag for mouse on free TowerTile. If true you can build tower on click.
 	bool m_isMouseOnFreeTowerTile;
-	// which type of tile the mouse is over
-	TileType m_mouseOnTileType;
+	// flag for checking if outside map to interrupt the button if clicked while selected.
+	bool m_isMouseOutsideMap;
 	// button callback.
 	TowerButtonCallback m_callback;
-	// pointer to level to setup m_isMouseOnFreeTowerTile flag.
+	// pointer to level.
 	std::shared_ptr<Level> pLevel;
 };
 

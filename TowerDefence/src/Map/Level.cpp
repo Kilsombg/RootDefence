@@ -1,5 +1,7 @@
 #include "../../include/MapHeaders/Level.h"
 
+#include "../../include/Game.h"
+
 #include "../../include/UtilsHeaders/TextureManager.h"
 
 Level::Level()
@@ -80,6 +82,16 @@ int Level::getTileSize()
 	return m_tileSize;
 }
 
+int Level::getWidth()
+{
+	return m_width;
+}
+
+int Level::getHeight()
+{
+	return m_height;
+}
+
 Vector2D& Level::getSpawnPoint()
 {
 	return m_spawnPoint;
@@ -93,4 +105,9 @@ std::vector<std::shared_ptr<Vector2D>>& Level::getEnemyPath()
 void Level::setSpawnPoint(const Vector2D spawnPoint)
 {
 	m_spawnPoint = spawnPoint;
+}
+
+std::vector<SDL_Rect>& Level::getPathArea()
+{
+	return m_pathAreas;
 }

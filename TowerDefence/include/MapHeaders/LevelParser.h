@@ -36,6 +36,14 @@ private:
 	* Parse object layer that contains polylines intented for objects' paths.
 	*/
 	void parsePathsLayer(TiXmlElement* pPathElement);
+	/**
+	* Parse enemy's path points to follow.
+	*/
+	void parseEnemyPath(TiXmlElement* pPathElement);
+	/**
+	* Parse enemy's path area, used for placing towers.
+	*/
+	void parseEnemyPathArea(TiXmlElement* pPathElement);
 	
 	/**	
 	*  Parse a string of points values into vector of points.

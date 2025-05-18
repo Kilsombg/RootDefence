@@ -4,12 +4,12 @@
 
 #include "../../include/Constants/LoaderParamsConsts.h"
 #include "../../include/Constants/GameObjectConsts.h"
+#include "../../include/Constants/SettingsConsts.h"
+#include "../../include/Constants/ColorsConsts.h"
 
 #include "../../include/DataHeaders/GameSessionData.h"
 
-#include "../../include/Constants/LoaderParamsConsts.h"
-#include "../../include/Constants/SettingsConsts.h"
-#include "../../include/Constants/ColorsConsts.h"
+#include "../../include/EventHandlersHeaders/ClickToPlaceTowerHandler.h"
 
 #include "../../include/ManagersHeaders/PurchaseManager.h"
 
@@ -217,6 +217,11 @@ void Tower::setTowerUpgradesData(ArrayOf2TowerUpgradesData data)
 	m_towerUpgradesData = data;
 }
 
+void Tower::setClickToPlaceTowersHandlerState(ClickToPlaceTowerStates state)
+{
+	clickToPlaceTowersHandlerState = state;
+}
+
 void Tower::update()
 {
 	SDLGameObject::update();
@@ -238,7 +243,11 @@ void Tower::draw()
 			TheGame::Instance()->getRenderer());
 	}
 
-	//SDLGameObject::draw();
+	TheTextureManager::Instance()->drawProgressBar(m_position.getX(), m_position.getY(), m_width, m_height,
+		{ 255,0,0,125 }, {}, 0,
+		TheGame::Instance()->getRenderer());
+
+	SDLGameObject::draw();
 }
 
 void Tower::load(const std::shared_ptr<LoaderParams> pParams)
@@ -270,8 +279,16 @@ void Tower::load(const std::shared_ptr<LoaderParams> pParams)
 
 void Tower::handleEvent()
 {
-	// select tower on click
-	m_selectOnClickEventHandler.handleEvent();
+	// select tower on click, when not dragging a tower to build
+	if (clickToPlaceTowersHandlerState != ClickToPlaceTowerStates::MOVING)
+	{
+		m_selectOnClickEventHandler.handleEvent();
+	}
+	else
+	{
+		// if dragging tower, deselect this tower
+		m_selectOnClickEventHandler.resetParams();
+	}
 }
 
 std::string Tower::getTowerType(std::string towerColor)

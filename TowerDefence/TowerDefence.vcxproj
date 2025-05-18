@@ -160,6 +160,7 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameStates\GameOverState.cpp" />
     <ClCompile Include="src\GameStates\MenuState.cpp" />
+    <ClCompile Include="src\Managers\CollisionManager.cpp" />
     <ClCompile Include="src\Managers\PurchaseManager.cpp" />
     <ClCompile Include="src\Managers\SellManager.cpp" />
     <ClCompile Include="src\Map\Level.cpp" />
@@ -227,6 +228,7 @@
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\GameStateHeaders\GameOverState.h" />
     <ClInclude Include="include\GameStateHeaders\GameState.h" />
+    <ClInclude Include="include\ManagersHeaders\CollisionManager.h" />
     <ClInclude Include="include\ManagersHeaders\PurchaseManager.h" />
     <ClInclude Include="include\ManagersHeaders\SellManager.h" />
     <ClInclude Include="include\MapHeaders\Layer.h" />

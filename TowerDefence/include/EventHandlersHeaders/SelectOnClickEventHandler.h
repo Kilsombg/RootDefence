@@ -3,6 +3,9 @@
 
 #include "../UtilsHeaders/Vector2D.h"
 
+// forward declaration
+class Tower;
+
 // area for second click to deselect
 struct CloseArea
 {
@@ -62,6 +65,8 @@ private:
 	bool m_pressed;
 	bool m_isMouseOnObject;
 	bool m_pressedOutside;
+
+	friend Tower;
 };
 
 #endif // !__SelectOnClickEventHandler__

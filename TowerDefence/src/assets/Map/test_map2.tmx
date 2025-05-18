@@ -13,7 +13,7 @@
   </data>
  </layer>
  <objectgroup id="2" name="EntitiesPaths">
-  <object id="1" x="0" y="256">
+  <object id="1" name="enemyPath" x="0" y="256">
    <polyline points="0,0 192,0 192,-128 64,-128 64,-224 416,-224 416,64 800,64"/>
   </object>
  </objectgroup>

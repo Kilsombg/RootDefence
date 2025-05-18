@@ -12,6 +12,7 @@
 
 #include "../ManagersHeaders/PurchaseManager.h"
 #include "../ManagersHeaders/SellManager.h"
+#include "../ManagersHeaders/CollisionManager.h"
 
 #include "../MapHeaders/Level.h"
 
@@ -46,7 +47,6 @@ public:
 	virtual std::string getStateID() const;
 
 	void addEnemy(std::unique_ptr<Enemy> enemy);
-	bool checkCollision(SDLGameObject* p1, SDLGameObject* p2);
 
 	void handleEvents() override;
 private:
@@ -71,6 +71,8 @@ private:
 	std::shared_ptr<PurchaseManager> m_purchaseManager;
 
 	std::shared_ptr<SellManager> m_sellManager;
+
+	std::shared_ptr<CollisionManager> m_collisionManager;
 
 	std::shared_ptr<TowerFactory> m_towerFactory;
 

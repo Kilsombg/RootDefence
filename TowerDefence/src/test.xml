@@ -82,7 +82,7 @@
 					<object type="texture" x="829.00" y="456.00" width="16" height="16" textureID="rubyResourceIcon16x16"/>
 				<object type="text" x="846.00" y="457.00" characterWidth="10" height="18" textureID="rubyOakCostLabelID" labelId="rubyOakCostLabelID" message="" dynamic="false"/>
 				<object type="text" x="915.00" y="458.00" characterWidth="10" height="18" textureID="frozenBushCostLabelID" labelId="frozenBushCostLabelID" message="" dynamic="false"/>
-					<object type="towerButton" x="708.00" y="124.00" width="70" height="64" textureID="agateStumpButton" numFrames="0" callbackID="createTowerCallbackID" towerName="stump" towerColor="GREEN"/>
+					<object type="towerButton" x="808.00" y="124.00" width="70" height="64" textureID="agateStumpButton" numFrames="0" callbackID="createTowerCallbackID" towerName="stump" towerColor="GREEN"/>
 					<object type="towerButton" x="888.00" y="116.00" width="64" height="72" textureID="agatePineButton" numFrames="0" callbackID="createTowerCallbackID" towerName="pine" towerColor="GREEN"/>
 					<object type="towerButton" x="810.00" y="194.00" width="64" height="66" textureID="agateOakButton" numFrames="0" callbackID="createTowerCallbackID" towerName="oak" towerColor="GREEN"/>
 					<object type="towerButton" x="886.00" y="196.00" width="70" height="64" textureID="amberStumpButton" numFrames="0" callbackID="createTowerCallbackID" towerName="stump" towerColor="YELLOW"/>
@@ -100,8 +100,8 @@
 			</TOWERS>
 			<TOWERUPGRADE type="towerUpgradePanel" x="0.00" y="448.00" width="800" height="92" textureID="towerUpgradesPanel">
 				<OBJECTS>
-					<object type="towerButton" x="400.00" y="468.00" width="21" height="21" textureID="damageIcon" numFrames="0" callbackID="createTowerCallbackID" towerName="tower" towerColor="GREEN"/>
-					<object type="towerButton" x="400.00" y="499.00" width="29" height="22" textureID="attSpeedIcon" numFrames="0" callbackID="createTowerCallbackID" towerName="tower" towerColor="GREEN"/>
+					<object type="texture" x="400.00" y="468.00" width="21" height="21" textureID="damageIcon"/>
+					<object type="texture" x="400.00" y="499.00" width="29" height="22" textureID="attSpeedIcon"/>
 					<object type="towerUpgradedButton" x="600.00" y="475.00" width="64" height="39" textureID="startButton" numFrames="0" callbackID="towerUpgradeCallbackID" upgradeID="1"/>
 					<object type="sellTowerButton" x="700.00" y="475.00" width="64" height="39" textureID="startButton" numFrames="0" callbackID="sellTowerCallbackID"/>
 				</OBJECTS>

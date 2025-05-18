@@ -8,6 +8,7 @@
 
 #include "../../include/Game.h"
 
+#include<SDL.h>
 #include<zlib.h>
 #include<iostream>
 #include <sstream>
@@ -24,6 +25,8 @@ std::shared_ptr<Level> LevelParser::parseLevel(const char* levelFile)
 	pRoot->Attribute("tilewidth", &m_tileSize);
 	pRoot->Attribute("width", &m_width);
 	pRoot->Attribute("height", &m_height);
+	m_pLevel->m_width = m_width * m_tileSize;
+	m_pLevel->m_height = m_height * m_tileSize;
 
 	m_pLevel->m_tileSize = m_tileSize;
 
@@ -259,27 +262,51 @@ void LevelParser::parseTileIDs(std::string tileTypeName, std::string strTileIDs,
 
 void LevelParser::parsePathsLayer(TiXmlElement* pPathElement)
 {
+	for (TiXmlElement* e = pPathElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
+	{
+		// parse enemy's path points to follow
+		if (e->Attribute("name") == std::string("enemyPath"))
+		{
+			parseEnemyPath(e);
+		}
+		else if (e->Attribute("name") == std::string("enemyPathArea"))
+		{
+			// parse path area
+			parseEnemyPathArea(e);
+		}
+		
+	}
+}
+
+void LevelParser::parseEnemyPath(TiXmlElement* pPathElement)
+{
 	double x, y;
 	std::string points;
 
-	for (TiXmlElement* e = pPathElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
-	{
-		if (e->Value() == std::string("object"))
-		{
-			e->Attribute("x", &x);
-			e->Attribute("y", &y);
+	pPathElement->Attribute("x", &x);
+	pPathElement->Attribute("y", &y);
 
-			for (TiXmlElement* polyline = e->FirstChildElement(); polyline != NULL; polyline = polyline->NextSiblingElement())
-			{
-				if (polyline->Value() == std::string("polyline"))
-				{
-					points = polyline->Attribute("points");
-				}
-			}
+	for (TiXmlElement* polyline = pPathElement->FirstChildElement(); polyline != NULL; polyline = polyline->NextSiblingElement())
+	{
+		if (polyline->Value() == std::string("polyline"))
+		{
+			points = polyline->Attribute("points");
 		}
 	}
 
 	m_pLevel->getEnemyPath() = std::move(parsePolylinePoints(points, static_cast<float>(x), static_cast<float>(y)));
+}
+
+void LevelParser::parseEnemyPathArea(TiXmlElement* pPathElement)
+{
+	SDL_Rect rect;
+
+	pPathElement->Attribute("x", &rect.x);
+	pPathElement->Attribute("y", &rect.y);
+	pPathElement->Attribute("width", &rect.w);
+	pPathElement->Attribute("height", &rect.h);
+
+	m_pLevel->m_pathAreas.push_back(rect);
 }
 
 std::vector<std::shared_ptr<Vector2D>> LevelParser::parsePolylinePoints(std::string & strPoints, float objectX, float objectY)
