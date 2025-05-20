@@ -22,9 +22,14 @@ void CollisionManager::setTowersObjects(std::shared_ptr<std::vector<std::shared_
 	m_towersObjects = towersObjects;
 }
 
-bool CollisionManager::collideTowerPlacement(SDLGameObject* gameObject, std::vector<SDL_Rect>& pathArea)
+bool CollisionManager::collideTowerPlacement(SDLGameObject* gameObject, std::shared_ptr<Level> pLevel)
 {
-	return checkCollisionWithPathArea(gameObject, pathArea) || TheCollisionManager::Instance()->collideWithTowers(gameObject);
+	int rightGameObject, bottomGameObject;
+	rightGameObject = gameObject->getPosition().getX() + gameObject->getWidth();
+	bottomGameObject = gameObject->getPosition().getY() + gameObject->getHeight();
+
+	return checkCollisionWithPathArea(gameObject, pLevel->getPathArea()) || collideWithTowers(gameObject) || 
+		(rightGameObject > pLevel->getWidth()) || (bottomGameObject > pLevel->getHeight());
 }
 
 bool CollisionManager::checkCollisionWithPathArea(SDLGameObject* gameObject, std::vector<SDL_Rect>& pathArea)

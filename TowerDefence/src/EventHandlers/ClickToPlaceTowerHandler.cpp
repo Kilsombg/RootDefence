@@ -147,7 +147,7 @@ void ClickToPlaceTowerHandler::updateMovingState()
 	if (pLevel != nullptr)
 	{
 		Vector2D shadowPosition = m_shadowObject->getPosition();
-		m_isMouseOnFreeTowerTile = !TheCollisionManager::Instance()->collideTowerPlacement(m_shadowObject.get(), pLevel->getPathArea());
+		m_isMouseOnFreeTowerTile = !TheCollisionManager::Instance()->collideTowerPlacement(m_shadowObject.get(), pLevel);
 	}
 }
 

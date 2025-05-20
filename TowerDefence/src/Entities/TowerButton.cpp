@@ -50,7 +50,7 @@ void TowerButton::update()
 	if (m_selected)
 	{
 		// check if there is free space to place tower
-		m_isMouseOnFreeTowerTile = !TheCollisionManager::Instance()->collideTowerPlacement(m_dummyObject.get(), pLevel->getPathArea());
+		m_isMouseOnFreeTowerTile = !TheCollisionManager::Instance()->collideTowerPlacement(m_dummyObject.get(), pLevel);
 
 		// check if mouse is outside of map
 		std::shared_ptr<Vector2D> mousePos = InputHandler::Instance()->getMousePosition();

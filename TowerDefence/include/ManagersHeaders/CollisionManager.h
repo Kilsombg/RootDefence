@@ -4,6 +4,8 @@
 #include "../EntitiesHeaders/SDLGameObject.h"
 #include "../EntitiesHeaders/Tower.h"
 
+#include "../MapHeaders/Level.h"
+
 #include<SDL.h>
 #include<memory>
 #include<vector>
@@ -28,11 +30,11 @@ public:
 	* Check if a tower collides with other towers or path area.
 	* 
 	* @param gameObject - object, that will be checked for collision.
-	* @param pathArea - vector of rectangles that form path area.
+	* @param pLevel - pointer to level.
 	* 
 	* @return false if tower can be placed.
 	*/
-	bool collideTowerPlacement(SDLGameObject* gameObject, std::vector<SDL_Rect>& pathArea);
+	bool collideTowerPlacement(SDLGameObject* gameObject, std::shared_ptr<Level> pLevel);
 	/**
 	* Check if two objects collide.
 	*/
