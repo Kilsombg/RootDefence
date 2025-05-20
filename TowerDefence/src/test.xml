@@ -26,15 +26,15 @@
 			<texture filename="src/assets/UI/States/PlayState/buttons/ruby-pine_64x72.png" ID="rubyPineButton"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/ruby-oak_64x66.png" ID="rubyOakButton"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/frozen-bush_64x64.png" ID="frozenBushButton"/>
-			<texture filename="src/assets/UI/States/PlayState/enemies/green_choy_32x32.png" ID="greenChoyEnemy"/>
-			<texture filename="src/assets/UI/States/PlayState/enemies/green_plant_32x32.png" ID="greenPlantEnemy"/>
-			<texture filename="src/assets/UI/States/PlayState/enemies/green_broccoli_32x32.png" ID="greenBroccoliEnemy"/>
-			<texture filename="src/assets/UI/States/PlayState/enemies/yellow_carrot_32x32.png" ID="yellowCarrotEnemy"/>
-			<texture filename="src/assets/UI/States/PlayState/enemies/yellow_orange_32x32.png" ID="yellowOrangeEnemy"/>
-			<texture filename="src/assets/UI/States/PlayState/enemies/yellow_squash_32x32.png" ID="yellowSquashEnemy"/>
-			<texture filename="src/assets/UI/States/PlayState/enemies/red_pepper_32x32.png" ID="redPepperEnemy"/>
-			<texture filename="src/assets/UI/States/PlayState/enemies/red_radish_32x32.png" ID="redRadishEnemy"/>
-			<texture filename="src/assets/UI/States/PlayState/enemies/red_tomato_32x32.png" ID="redTomatoEnemy"/>
+			<texture filename="src/assets/UI/States/PlayState/enemies/animation/green_choy_32x32_anim.png" ID="greenChoyEnemy"/>
+			<texture filename="src/assets/UI/States/PlayState/enemies/animation/green_plant_32x32_anim.png" ID="greenPlantEnemy"/>
+			<texture filename="src/assets/UI/States/PlayState/enemies/animation/green_broccoli_32x32_anim.png" ID="greenBroccoliEnemy"/>
+			<texture filename="src/assets/UI/States/PlayState/enemies/animation/yellow_carrot_32x32_anim.png" ID="yellowCarrotEnemy"/>
+			<texture filename="src/assets/UI/States/PlayState/enemies/animation/yellow_orange_32x32_anim.png" ID="yellowOrangeEnemy"/>
+			<texture filename="src/assets/UI/States/PlayState/enemies/animation/yellow_squash_32x32_anim.png" ID="yellowSquashEnemy"/>
+			<texture filename="src/assets/UI/States/PlayState/enemies/animation/red_pepper_32x32_anim.png" ID="redPepperEnemy"/>
+			<texture filename="src/assets/UI/States/PlayState/enemies/animation/red_radish_32x32_anim.png" ID="redRadishEnemy"/>
+			<texture filename="src/assets/UI/States/PlayState/enemies/animation/red_tomato_32x32_anim.png" ID="redTomatoEnemy"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/agate_resource16x16.png" ID="agateResourceIcon16x16"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/agate_resource32x32.png" ID="agateResourceIcon32x32"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/amber_resource16x16.png" ID="amberResourceIcon16x16"/>

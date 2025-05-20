@@ -1,16 +1,16 @@
 {
   "waves": [
     {
-      "spawnInterval": 1.0,
-      "roundInterval": 3.0,
+      "spawnInterval": 1.5,
+      "roundInterval": 5.0,
       "enemyClusters": [
         {
           "enemyType": "greenChoy",
-          "count": 2
+          "count": 3
         },
         {
           "enemyType": "greenPlant",
-          "count": 3
+          "count": 1
         },
         {
           "enemyType": "greenBroccoli",
@@ -19,15 +19,37 @@
       ]
     },
     {
-      "spawnInterval": 1.5,
-      "roundInterval": 5.0,
+      "spawnInterval": 1.0,
+      "roundInterval": 3.0,
       "enemyClusters": [
+        {
+          "enemyType": "redRadish",
+          "count": 2
+        },
         {
           "enemyType": "redPepper",
           "count": 3
         },
         {
-          "enemyType": "redPepper",
+          "enemyType": "redTomato",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "spawnInterval": 1.0,
+      "roundInterval": 3.0,
+      "enemyClusters": [
+        {
+          "enemyType": "yellowOrange",
+          "count": 2
+        },
+        {
+          "enemyType": "yellowCarrot",
+          "count": 3
+        },
+        {
+          "enemyType": "yellowSquash",
           "count": 1
         }
       ]

@@ -16,7 +16,7 @@
   </data>
  </layer>
  <objectgroup draworder="index" id="2" name="EntitiesPaths">
-  <object id="45" name="enemyPath" x="150.5" y="302.5">
+  <object id="45" name="enemyPath" x="135.833" y="285.167">
    <polyline points="-22.5,-14.5 73.5,-14.5 73.5,-142.5 297.5,-142.5"/>
   </object>
   <object id="50" name="enemyPathArea" x="2" y="258.667" width="206.667" height="56"/>

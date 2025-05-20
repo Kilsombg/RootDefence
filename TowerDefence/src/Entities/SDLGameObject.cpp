@@ -41,7 +41,7 @@ void SDLGameObject::load(const std::shared_ptr<LoaderParams> pParams)
 
 void SDLGameObject::draw()
 {
-	if (m_velocity.getX() > 0)
+	if (m_velocity.getX() < 0)
 	{
 		TextureManager::Instance()->drawFrame(m_textureID,
 			(Uint32)m_position.getX(), (Uint32)m_position.getY(),
