@@ -129,6 +129,7 @@ Tower::Tower() : SDLGameObject(), m_projectileID(""), m_attackSpeed(0), m_damage
 
 Tower::Tower(const Tower& tower) : SDLGameObject(tower)
 {
+	m_name = tower.m_name;
 	m_projectileID = tower.m_projectileID;
 	m_damage = tower.m_damage;
 	m_radius = tower.m_radius;
@@ -153,6 +154,16 @@ void Tower::setRadius(float radius)
 Resource Tower::getBaseCost() const
 {
 	return m_baseCost;
+}
+
+std::string Tower::getName()
+{
+	return m_name;
+}
+
+std::string Tower::getTexureID()
+{
+	return m_textureID;
 }
 
 float Tower::getAttackSpeed() const
@@ -243,9 +254,9 @@ void Tower::draw()
 			TheGame::Instance()->getRenderer());
 	}
 
-	TheTextureManager::Instance()->drawProgressBar(m_position.getX(), m_position.getY(), m_width, m_height,
+	/*TheTextureManager::Instance()->drawProgressBar(m_position.getX(), m_position.getY(), m_width, m_height,
 		{ 255,0,0,125 }, {}, 0,
-		TheGame::Instance()->getRenderer());
+		TheGame::Instance()->getRenderer());*/
 
 	SDLGameObject::draw();
 }
@@ -256,11 +267,17 @@ void Tower::load(const std::shared_ptr<LoaderParams> pParams)
 
 	// load color specific parameters
 	bool canBeColored = pParams->getAttribute<bool>(LoaderParamsConsts::canBeColored);
+	std::string namePrefix = "";
 	if (canBeColored)
 	{
 		m_textureID[0] = std::toupper(m_textureID[0]);
 		m_textureID = getTowerType(pParams->getAttribute<std::string>(LoaderParamsConsts::color)) + m_textureID;
+
+		namePrefix= getTowerType(pParams->getAttribute<std::string>(LoaderParamsConsts::color));
+		namePrefix[0] = std::toupper(namePrefix[0]);
+		namePrefix.append(" ");
 	}
+	m_name = std::string(namePrefix + pParams->getAttribute<std::string>(LoaderParamsConsts::name));
 	m_color = pParams->getAttribute<std::string>(LoaderParamsConsts::color);
 
 	// load other paramters

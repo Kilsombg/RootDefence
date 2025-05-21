@@ -32,6 +32,11 @@ void SellManager::setGameSessionData(std::shared_ptr<GameSessionData> gameSessio
 	m_gameSessionData = gameSessionData;
 }
 
+float SellManager::getBaseSellPercentage()
+{
+	return m_baseSellPercentage;
+}
+
 void SellManager::sellSelectedTower()
 {
 	// if there is no activeTower, then return

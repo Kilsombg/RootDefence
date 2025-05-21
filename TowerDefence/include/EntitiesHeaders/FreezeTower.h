@@ -21,6 +21,9 @@ public:
 	virtual void targetEnemy(std::vector<std::shared_ptr<Enemy>> enemies);
 	virtual void aimEnemy() {};
 
+	// getter and setter
+	float getFreezePercentage();
+
 private:
 	float m_freezePercentage;
 };

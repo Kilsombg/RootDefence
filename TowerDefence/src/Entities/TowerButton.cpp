@@ -1,5 +1,6 @@
 #include "../../include/EntitiesHeaders/TowerButton.h"
 
+#include "../../include/Constants/UIConsts.h"
 #include "../../include/Constants/LoaderParamsConsts.h"
 
 #include "../../include/ManagersHeaders/PurchaseManager.h"
@@ -9,7 +10,7 @@
 #include "../../include/UtilsHeaders/TowerFactory.h"
 
 
-TowerButton::TowerButton() : Button(), m_selected(false), m_pressed(false), m_isMouseOnFreeTowerTile(false)
+TowerButton::TowerButton() : Button(), m_selected(false), m_pressed(false), m_isMouseOnFreeTowerTile(false), m_disabled(false)
 {
 }
 
@@ -20,6 +21,9 @@ TowerButton::TowerButton(const TowerButton* towerButton) : Button(towerButton)
 	m_selected = towerButton->m_selected;
 	m_pressed = towerButton->m_pressed;
 	m_isMouseOnFreeTowerTile = towerButton->m_isMouseOnFreeTowerTile;
+	m_isMouseOutsideMap = towerButton->m_isMouseOutsideMap;
+	m_disabled = towerButton->m_disabled;
+	m_baseTextureID = towerButton->m_baseTextureID;
 	m_callback = towerButton->m_callback;
 	m_towerParams = towerButton->m_towerParams;
 	m_dummyObject = towerButton->m_dummyObject;
@@ -29,6 +33,8 @@ void TowerButton::load(const std::shared_ptr<LoaderParams> pParams)
 {
 	m_towerName = pParams->getAttribute<std::string>(LoaderParamsConsts::towerName);
 	m_towerColor = pParams->getAttribute<std::string>(LoaderParamsConsts::towerColor);
+	m_baseTextureID = pParams->getAttribute<std::string>(LoaderParamsConsts::textureID);
+
 	m_towerParams = TheTowerFactory::Instance()->getTowerData(m_towerName);
 	m_towerParams->setAttribute(LoaderParamsConsts::x, 0.0f);
 	m_towerParams->setAttribute(LoaderParamsConsts::y, 0.0f);
@@ -46,6 +52,10 @@ void TowerButton::update()
 
 	// update dummy position
 	setDummyObjectPosition();
+
+	// update texture
+	m_disabled = !ThePurchaseManager::Instance()->canPurchaseTower(m_towerName, m_towerColor);
+	m_textureID = m_disabled ? m_baseTextureID + UIConsts::disabledSuffix : m_baseTextureID;
 
 	if (m_selected)
 	{
@@ -159,6 +169,7 @@ void TowerButton::handleClickOnButton()
 
 				m_selected = true;
 			}
+
 			// change m_pressed to false here, so it calls canPurchaseTower() only once when mouse is on button
 			m_pressed = false;
 		}

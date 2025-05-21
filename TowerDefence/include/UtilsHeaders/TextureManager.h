@@ -27,7 +27,6 @@ private:
 
 	void drawCircle(int centerX, int centerY, int radius, SDL_Renderer* renderer);
 	void drawHorizontalLine(int x1, int x2, int y, SDL_Renderer* renderer);
-
 	void drawRectangle(int x, int y, int width, int height, SDL_Renderer* renderer);
 
 	std::map<std::string, SDL_Texture*> m_textureMap;

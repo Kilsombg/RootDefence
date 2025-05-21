@@ -62,6 +62,10 @@ public:
 
 	// getter and setters
 
+	std::string getName();
+
+	std::string getTexureID();
+
 	float getAttackSpeed() const;
 	void setAttackSpeed(float attackSpeed);
 
@@ -129,6 +133,7 @@ public:
 
 
 private:
+	std::string m_name;
 	std::string m_projectileID;
 	float m_damage;
 	float m_radius; // range

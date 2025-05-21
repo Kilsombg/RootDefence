@@ -6,7 +6,7 @@
 #include "../UtilsHeaders/BaseCreator.h"
 
 #include <memory>
-
+#include<string>
 
 /**
 * Class to represent a texture on screen.
@@ -21,6 +21,22 @@ class Texture : public SDLGameObject
 public:
 	Texture();
 	void clean() override;
+	void draw() override;
+
+	void load(const std::shared_ptr<LoaderParams> pParams) override;
+
+	void loadAttributes(std::string textureID, float x, float y, int width, int height);
+
+	void centerTexture();
+
+	// getters and setters
+
+	void setHidden(bool hidden);
+
+	std::string getTextureID();
+
+private:
+	bool m_hidden;
 };
 
 class TextureCreator : public BaseCreator

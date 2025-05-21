@@ -20,7 +20,13 @@ public:
 
 	typedef std::function<void(std::shared_ptr<Tower>, int)> TowerUpgradedCallback;
 
+	// getters and setter
+	
 	void setCallback(TowerUpgradedCallback callback);
+
+	bool isMouseOnButton();
+
+	int getUpgradeID();
 
 private:
 	void handleOutsideCLick();

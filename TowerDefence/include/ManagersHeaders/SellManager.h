@@ -35,6 +35,11 @@ public:
 	void setGameSessionData(std::shared_ptr<GameSessionData> gameSessionData);
 
 	/**
+	* Get base sell percentage
+	*/
+	float getBaseSellPercentage();
+
+	/**
 	* Update spent on active tower.
 	* 
 	* Increases active tower's spent resources. Execute this on each tower specified purchase.

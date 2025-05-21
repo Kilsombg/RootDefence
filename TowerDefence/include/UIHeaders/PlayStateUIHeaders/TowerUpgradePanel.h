@@ -5,6 +5,9 @@
 #include "../CommonHeaders/PanelCreator.h"
 
 #include "../../EntitiesHeaders/Tower.h"
+#include "../../EntitiesHeaders/Texture.h"
+#include "../../EntitiesHeaders/Text.h"
+#include "../../EntitiesHeaders/TowerUpgradedButton.h"
 
 #include "../../EventHandlersHeaders/SellTowerHandler.h"
 
@@ -13,6 +16,7 @@
 #include<memory>
 #include<string>
 #include<map>
+#include<array>
 
 class TowerUpgradePanel : public TowerInteractivePanel
 {
@@ -35,9 +39,9 @@ public:
 	void loadDependencies(std::shared_ptr<Level> level);
 
 	void loadCallbacks() override;
-	
+
 	// getters and setters
-	
+
 	void setPlayStateTowers(std::shared_ptr<std::vector<std::shared_ptr<Tower>>> playStateTowers) override;
 
 	/**
@@ -53,8 +57,38 @@ public:
 	void updateSelectedTower();
 
 private:
+	/**
+	* draw buttons and corresponding objects inside them
+	*/
+	void drawButtons();
+	/**
+	* Set selected tower to coresponding tower dependent objects in panel
+	*/
+	void setSelectedTowerToObjects(std::shared_ptr<Tower> selectedTower);
+	/**
+	* set parameter images to tower upgrade buttons.
+	*/
+	void setTowerUpgradeButtonsImages();
 	void setTowerUpgradedButtonCallbacks();
 	void setSellTowerButtonCallbacks();
+	/**
+	* update static labels' value.
+	*/
+	void updateStaticLabel();
+	/**
+	* update dynamic labels' value.
+	*/
+	void updateDynamicLabel();
+	/**
+	* when mouse is on upgrade button, then update with new value coresponding parameter.
+	*/
+	void updateUpgradeParameterLabels(TowerUpgradedButton* pUpgradeButton);
+	/**
+	* set visibilty of labels and icons.
+	* 
+	* @param mode - if true hide upgrade labels and icons and show max upgrade label and vice versa if false.
+	*/
+	void updateMaxUpgradeButtons(bool mode, int upgradeID);
 
 	std::shared_ptr<Tower> m_selectedTower;
 
@@ -64,6 +98,16 @@ private:
 	std::shared_ptr<SellTowerHandler> m_sellTowerHandler;
 
 	std::shared_ptr<Level> pLevel;
+
+	Texture m_towerImage; // icon of tower
+	Texture m_towerSellResourceImage; // resource image for sell button
+	std::array<Texture, 2> m_towerUpgradeImages; // image of tower's paramater for upgrade tower
+	std::array<Texture, 2> m_towerUpgradeButtonCantAffordImages; // tower upgrade button background image, when can't be afforded
+	std::array<bool, 2> m_cantBuyTowerUpgrade; // flags for affordable tower upgrade buttons
+	std::array<Texture, 2> m_towerUpgradeCostResourceImages; // image of tower upgrade cost resource
+	std::array<float, 2> m_towerUpgradeProgressLevel; // level progress of upgrades
+
+	std::map<std::string, std::unique_ptr<Text>> m_labelsMap;
 };
 
 

@@ -2,7 +2,6 @@
 
 #include "../../include/Game.h"
 
-#include "../../include/Constants/ColorsConsts.h"
 #include "../../include/Constants/LoaderParamsConsts.h"
 
 #include "../../include/UtilsHeaders/TrueTypeManager.h"
@@ -11,7 +10,7 @@ Text::Text() : GameObject()
 {
 }
 
-Text::Text(float x, float y,int characterWidth, int width, int height, std::string textureID, std::string labelID , std::string message, bool dynamic)
+Text::Text(float x, float y, int characterWidth, int width, int height, std::string textureID, std::string labelID, std::string message, bool dynamic)
 {
 	m_position = Vector2D(x, y);
 	m_characterWidth = characterWidth;
@@ -28,17 +27,21 @@ Text::Text(float x, float y,int characterWidth, int width, int height, std::stri
 
 void Text::draw()
 {
-	TheTrueTypeManager::Instance()->drawText(m_textureID, m_position.getX(), m_position.getY(), m_width, m_height, TheGame::Instance()->getRenderer());
+	if (!m_hidden)
+	{
+		TheTrueTypeManager::Instance()->drawText(m_textureID, m_position.getX(), m_position.getY(), m_width, m_height, TheGame::Instance()->getRenderer());
+	}
 }
 
 void Text::update()
 {
 	// if there is some change update texture
-	if (m_message != m_prevMessage)
+	if (m_message != m_prevMessage || m_fontColor != m_prevFontColor)
 	{
 		loadTexture();
 		m_width = m_message.length() * m_characterWidth;
 		m_prevMessage = m_message;
+		m_prevFontColor = m_fontColor;
 	}
 }
 
@@ -58,6 +61,10 @@ void Text::load(const std::shared_ptr<LoaderParams> pParams)
 	m_prevMessage = m_message;
 	m_width = m_message.length() * m_characterWidth;
 	m_dynamic = pParams->getAttribute<bool>(LoaderParamsConsts::dynamic);
+	m_hidden = pParams->getAttribute<bool>(LoaderParamsConsts::hidden);
+	m_fontColor = ColorsConsts::white;
+	m_prevFontColor = m_fontColor;
+	m_fontOutlineColor = ColorsConsts::black;
 
 	loadTexture();
 }
@@ -77,15 +84,27 @@ bool Text::getDynamic()
 	return m_dynamic;
 }
 
+void Text::setHidden(bool hidden)
+{
+	m_hidden = hidden;
+}
+
+ColorsConsts::Color Text::getFontColor()
+{
+	return m_fontColor;
+}
+
+void Text::setFontColor(ColorsConsts::Color fontColor)
+{
+	m_fontColor = fontColor;
+}
+
 void Text::loadTexture()
 {
-	ColorsConsts::Color black = ColorsConsts::black;
-	ColorsConsts::Color white = ColorsConsts::white;
-
-	TheTrueTypeManager::Instance()->load(m_textureID, m_message, 
-		TheGame::Instance()->getFont(), TheGame::Instance()->getFontOutline(), 
-		{white.r, white.b, white.g},
-		{black.r, black.b, black.g},
+	TheTrueTypeManager::Instance()->load(m_textureID, m_message,
+		TheGame::Instance()->getFont(), TheGame::Instance()->getFontOutline(),
+		{ m_fontColor.r, m_fontColor.b, m_fontColor.g },
+		{ m_fontOutlineColor.r, m_fontOutlineColor.b, m_fontOutlineColor.g },
 		TheGame::Instance()->getRenderer());
 }
 

@@ -184,6 +184,7 @@
     <ClCompile Include="src\Utils\PanelFactory.cpp" />
     <ClCompile Include="src\Utils\ProjectileManager.cpp" />
     <ClCompile Include="src\Utils\StateParser.cpp" />
+    <ClCompile Include="src\Utils\TextFormatter.cpp" />
     <ClCompile Include="src\Utils\TextureManager.cpp" />
     <ClCompile Include="src\Utils\Timer.cpp" />
     <ClCompile Include="src\Utils\tinystr.cpp" />
@@ -262,6 +263,7 @@
     <ClInclude Include="include\UtilsHeaders\PanelFactory.h" />
     <ClInclude Include="include\UtilsHeaders\ProjectileManager.h" />
     <ClInclude Include="include\UtilsHeaders\StateParser.h" />
+    <ClInclude Include="include\UtilsHeaders\TextFormatter.h" />
     <ClInclude Include="include\UtilsHeaders\TextureManager.h" />
     <ClInclude Include="include\UtilsHeaders\Timer.h" />
     <ClInclude Include="include\UtilsHeaders\tinystr.h" />

@@ -61,6 +61,10 @@ private:
 	bool m_isMouseOnFreeTowerTile;
 	// flag for checking if outside map to interrupt the button if clicked while selected.
 	bool m_isMouseOutsideMap;
+	// flag for texture.
+	bool m_disabled;
+	// base textureID of button without modification (disabled)
+	std::string m_baseTextureID;
 	// button callback.
 	TowerButtonCallback m_callback;
 	// pointer to level.

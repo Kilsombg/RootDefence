@@ -34,6 +34,16 @@ void TowerUpgradedButton::setCallback(TowerUpgradedCallback callback)
 	m_callback = callback;
 }
 
+bool TowerUpgradedButton::isMouseOnButton()
+{
+	return m_isMouseOnButton;
+}
+
+int TowerUpgradedButton::getUpgradeID()
+{
+	return m_upgradeID;
+}
+
 void TowerUpgradedButton::handleOutsideCLick()
 {
 	if (!m_isMouseOnButton)

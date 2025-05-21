@@ -26,6 +26,11 @@ void FreezeTower::targetEnemy(std::vector<std::shared_ptr<Enemy>> enemies)
 	}
 }
 
+float FreezeTower::getFreezePercentage()
+{
+	return m_freezePercentage;
+}
+
 std::unique_ptr<GameObject> FreezeTowerCreator::create() const
 {
 	return std::make_unique<FreezeTower>();

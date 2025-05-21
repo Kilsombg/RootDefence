@@ -1,5 +1,8 @@
 #include "../../../include/UIHeaders/PlayStateUIHeaders/TowersPanel.h"
 
+#include "../../../include/Game.h"
+
+#include "../../../include/Constants/ColorsConsts.h"
 #include "../../../include/Constants/LoaderParamsConsts.h"
 #include "../../../include/Constants/GameObjectConsts.h"
 #include "../../../include/Constants/UIConsts.h"
@@ -20,9 +23,12 @@ void TowersPanel::draw()
 {
 	// draw background
 	m_backgroundTexture->draw();
-	
+
 	// draw buttons
-	InteractivePanel::draw();
+	for (std::vector<std::shared_ptr<Button>>::size_type i = 0; i < m_buttonObjects.size(); i++)
+	{
+		m_buttonObjects[i]->draw();
+	}
 
 	// draw text labels
 	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
@@ -70,7 +76,7 @@ void TowersPanel::update()
 	{
 		if (Text* pText = dynamic_cast<Text*>(m_gameObjects[i].get()))
 		{
-			if(pText->getDynamic()) updateLabel(pText);
+			if (pText->getDynamic()) updateLabel(pText);
 		}
 	}
 }
@@ -192,17 +198,17 @@ void TowersPanel::setTowerButtonLevel()
 
 void TowersPanel::updateLabel(Text* pText)
 {
-	std::string labelId =pText->getLabelID();
+	std::string labelId = pText->getLabelID();
 
 	if (labelId == "") return;
 
-	if(labelId == UIConsts::healthLabelID) pText->setMessage(std::to_string(m_gameSessionData->gameHealth));
-	else if(labelId == UIConsts::agateResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::GREEN].value));
-	else if(labelId == UIConsts::amberResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::YELLOW].value));
-	else if(labelId == UIConsts::rubyResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::RED].value));
-	else if(labelId == UIConsts::agateStumpCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::stump]));
-	else if(labelId == UIConsts::agatePineCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::pine]));
-	else if(labelId == UIConsts::agateOakCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::oak]));
+	if (labelId == UIConsts::healthLabelID) pText->setMessage(std::to_string(m_gameSessionData->gameHealth));
+	else if (labelId == UIConsts::agateResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::GREEN].value));
+	else if (labelId == UIConsts::amberResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::YELLOW].value));
+	else if (labelId == UIConsts::rubyResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::RED].value));
+	else if (labelId == UIConsts::agateStumpCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::stump]));
+	else if (labelId == UIConsts::agatePineCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::pine]));
+	else if (labelId == UIConsts::agateOakCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::oak]));
 	else if (labelId == UIConsts::amberStumpCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::stump]));
 	else if (labelId == UIConsts::amberPineCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::pine]));
 	else if (labelId == UIConsts::amberOakCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::oak]));
@@ -210,7 +216,7 @@ void TowersPanel::updateLabel(Text* pText)
 	else if (labelId == UIConsts::rubyPineCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::pine]));
 	else if (labelId == UIConsts::rubyOakCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::oak]));
 	else if (labelId == UIConsts::frozenBushCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::frozenBush]));
-	else 
+	else
 	{
 		std::cout << "Could not found " << labelId << " labelID.\n";
 	}

@@ -1,6 +1,6 @@
 {
   "towerUpgradesData": {
-    "tower": [
+    "stump": [
       {
         "statName": "damage",
         "values": [
@@ -9,7 +9,7 @@
         ],
         "costs": [
           1,
-          2
+          87
         ],
         "maxLevel": 2,
         "nextLevel": 0
@@ -24,7 +24,7 @@
         "costs": [
           1,
           5,
-          20
+          120
         ],
         "maxLevel": 3,
         "nextLevel": 0

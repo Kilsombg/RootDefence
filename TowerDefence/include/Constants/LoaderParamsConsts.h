@@ -48,6 +48,7 @@ namespace LoaderParamsConsts {
 
 
 #pragma region towers params
+	constexpr char name[] = "name";
 	constexpr char projectileID[] = "projectileID";
 	constexpr char damage[] = "damage";
 	constexpr char radius[] = "radius";
@@ -77,6 +78,11 @@ namespace LoaderParamsConsts {
 
 #pragma region projectiles params
 	constexpr char projectileSpeed[] = "projectileSpeed";
+#pragma endregion
+
+
+#pragma region Text and Texture
+	constexpr char hidden[] = "hidden";
 #pragma endregion
 
 
