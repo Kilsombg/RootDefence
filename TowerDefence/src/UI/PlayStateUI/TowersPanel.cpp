@@ -16,6 +16,8 @@
 #include "../../../include/UtilsHeaders/TowerFactory.h"
 #include "../../../include/UtilsHeaders/GameStateMachine.h"
 
+#include "../../../include/WaveHeaders/WaveManager.h"
+
 #include<iostream>
 
 TowersPanel::TowersPanel() : TowerInteractivePanel()
@@ -31,6 +33,16 @@ void TowersPanel::draw()
 	// draw buttons
 	for (std::vector<std::shared_ptr<Button>>::size_type i = 0; i < m_buttonObjects.size(); i++)
 	{
+		// disable start wave button, if wave already started
+		if (MenuButton* menuButton = dynamic_cast<MenuButton*>(m_buttonObjects[i].get()))
+		{
+			if (menuButton->getCallbackID() == LoaderParamsConsts::startWaveCallbackID)
+			{
+				menuButton->setCurrentRow(TheWaveManager::Instance()->getPressedPlayButton() ? MenuMode::DISABLED : MenuMode::ACTIVE);
+			}
+			menuButton = nullptr;
+		}
+
 		m_buttonObjects[i]->draw();
 	}
 
@@ -164,7 +176,7 @@ void TowersPanel::loadCallbacks()
 	m_towerButtonCallbacks[LoaderParamsConsts::createTowerCallbackID] = std::bind(&ClickToPlaceTowerHandler::handleEvent, m_clickToPlaceTowerHandler, std::placeholders::_1);
 
 	// setting up start and settings button callbacks
-	m_buttonCallbacks[LoaderParamsConsts::startWaveCallbackID] = {};
+	m_buttonCallbacks[LoaderParamsConsts::startWaveCallbackID] = TheWaveManager::Instance()->s_activateWave;
 	m_buttonCallbacks[LoaderParamsConsts::pauseStateCallbackID] = s_playToPause;
 
 	setTowerButtonCallbacks();
@@ -228,6 +240,7 @@ void TowersPanel::updateLabel(Text* pText)
 	else if (labelId == UIConsts::agateResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::GREEN].value));
 	else if (labelId == UIConsts::amberResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::YELLOW].value));
 	else if (labelId == UIConsts::rubyResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::RED].value));
+	else if (labelId == UIConsts::waveValueLabel) pText->setMessage(std::to_string(m_gameSessionData->currentWaveLevel));
 	else if (labelId == UIConsts::agateStumpCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::stump]));
 	else if (labelId == UIConsts::agatePineCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::pine]));
 	else if (labelId == UIConsts::agateOakCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::oak]));

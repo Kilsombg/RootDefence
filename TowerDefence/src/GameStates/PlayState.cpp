@@ -42,6 +42,7 @@ void PlayState::update()
 		*m_currentWave,
 		std::bind(&PlayState::addEnemy, this, std::placeholders::_1),
 		(DELAY_TIME / 1000.));
+	m_gameSessionData->currentWaveLevel = m_waveManager->getCurrentWaveID() + 1;
 
 	updateObjects();
 

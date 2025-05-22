@@ -13,6 +13,12 @@
 #include<iostream>
 
 std::shared_ptr<WaveManager> WaveManager::s_pInstance = nullptr;
+bool WaveManager::s_pressedPlayButton = false;
+
+int WaveManager::getCurrentWaveID()
+{
+	return m_currentWaveID;
+}
 
 WaveManager::WaveManager()
 {
@@ -30,6 +36,9 @@ std::shared_ptr<WaveManager> WaveManager::Instance()
 
 void WaveManager::spawnWaveEnemies(std::vector<std::shared_ptr<Vector2D>>& enemyPath, Wave& wave, std::function<void(std::unique_ptr<Enemy>)> addEnemyCallback, float dT)
 {
+	// if not pressed play button, then return
+	if (!s_pressedPlayButton) return;
+
 	std::vector<EnemyCluster>* eClusters = &(wave.getEnemyClusters());
 	Timer* spawnTimer = &(wave.getSpawnTimer());
 	Timer* roundTimer = &(wave.getRoundTimer());
@@ -39,23 +48,33 @@ void WaveManager::spawnWaveEnemies(std::vector<std::shared_ptr<Vector2D>>& enemy
 	//Check if the round needs to start.
 	if (eClusters->empty())
 	{
+		// stop wave untill play button is pressed
+		if (s_pressedPlayButton && !m_stoppedWaveAfterEnd)
+		{
+			s_pressedPlayButton = false;
+			m_stoppedWaveAfterEnd = true;
+			return;
+		}
+
+		// activate round timer and start wave if timer finish
 		roundTimer->countDown(dT);
 		if (roundTimer->timeSIsZero()) {
 			nextWave(wave);
 			if (&wave != NULL)
 			{
 				roundTimer->resetToMax();
+				m_stoppedWaveAfterEnd = false;
 			}
 		}
 	}
 	else
 	{
-		
+
 		//Add an enemy if needed.
 		if (eClusters->begin()->count > 0 && spawnTimer->timeSIsZero()) {
 			if (std::unique_ptr<GameObject> e = GameObjectFactory::Instance()->create(eClusters->begin()->enemyType))
 			{
-				if (std::unique_ptr<Enemy> en = std::unique_ptr<Enemy>(dynamic_cast<Enemy*>(e.release()))) 
+				if (std::unique_ptr<Enemy> en = std::unique_ptr<Enemy>(dynamic_cast<Enemy*>(e.release())))
 				{
 					std::shared_ptr<LoaderParams> pParams = m_gameObjectData->getData(eClusters->begin()->enemyType);
 					if (!enemyPath.empty())
@@ -73,7 +92,7 @@ void WaveManager::spawnWaveEnemies(std::vector<std::shared_ptr<Vector2D>>& enemy
 				{
 					e.reset();  // remove object to prevent memory leak
 				}
-			
+
 				eClusters->begin()->count--;
 				spawnTimer->resetToMax();
 			}
@@ -85,7 +104,7 @@ void WaveManager::spawnWaveEnemies(std::vector<std::shared_ptr<Vector2D>>& enemy
 			{
 				eClusters->erase(eClusters->begin());
 			}
-		} 
+		}
 	}
 }
 
@@ -104,6 +123,11 @@ void WaveManager::nextWave(Wave& wave)
 	}
 }
 
+bool WaveManager::getPressedPlayButton()
+{
+	return s_pressedPlayButton;
+}
+
 bool WaveManager::isFinalWave()
 {
 	return m_currentWaveID >= m_maxWave;
@@ -113,6 +137,15 @@ void WaveManager::setGameObjectData(GameObjectData<LoaderParams>& gameObjectdata
 {
 	m_gameObjectData = std::make_unique<GameObjectData<LoaderParams>>(gameObjectdata);
 }
+
+void WaveManager::s_activateWave()
+{
+	if (!s_pressedPlayButton)
+	{
+		s_pressedPlayButton = true;
+	}
+}
+
 
 std::vector<Wave*>& WaveManager::getWaves()
 {

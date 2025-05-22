@@ -2,7 +2,7 @@
   "waves": [
     {
       "spawnInterval": 1.5,
-      "roundInterval": 5.0,
+      "roundInterval": 1.0,
       "enemyClusters": [
         {
           "enemyType": "greenChoy",
@@ -20,7 +20,7 @@
     },
     {
       "spawnInterval": 1.0,
-      "roundInterval": 3.0,
+      "roundInterval": 1.0,
       "enemyClusters": [
         {
           "enemyType": "redRadish",
@@ -38,7 +38,7 @@
     },
     {
       "spawnInterval": 1.0,
-      "roundInterval": 3.0,
+      "roundInterval": 1.0,
       "enemyClusters": [
         {
           "enemyType": "yellowOrange",

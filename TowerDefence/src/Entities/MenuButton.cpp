@@ -30,6 +30,11 @@ void MenuButton::setCallback(void(*callback)())
 	m_callback = callback;
 }
 
+void MenuButton::setCurrentRow(int currentRow)
+{
+	m_currentRow = currentRow;
+}
+
 void MenuButton::update()
 {
 	m_isMouseOnButton = TheInputHandler::Instance()->isMouseOnObject(m_position, m_width, m_height);
@@ -54,7 +59,9 @@ void MenuButton::handleClickOnButton()
 {
 	if (m_isMouseOnButton && !m_pressedOutside)
 	{
-		if (TheInputHandler::Instance()->getMouseButtonState(LEFT) && m_bReleased)
+		m_currentFrame = MOUSE_OVER;
+
+		if (!TheInputHandler::Instance()->getMouseButtonState(LEFT) && m_bReleased)
 		{
 			m_currentFrame = CLICKED;
 
@@ -62,15 +69,15 @@ void MenuButton::handleClickOnButton()
 
 			m_bReleased = false;
 		}
-		else if (!TheInputHandler::Instance()->getMouseButtonState(LEFT))
+		else if (TheInputHandler::Instance()->getMouseButtonState(LEFT))
 		{
 			m_bReleased = true;
-
-			m_currentFrame = MOUSE_OVER;
 		}
 	}
 	else
 	{
+		m_bReleased = false;
+
 		m_currentFrame = MOUSE_OUT;
 	}
 }

@@ -2,7 +2,6 @@
 
 #include "../../../include/Game.h"
 
-#include "../../../include/Constants/ColorsConsts.h"
 #include "../../../include/Constants/LoaderParamsConsts.h"
 #include "../../../include/Constants/GameObjectConsts.h"
 #include "../../../include/Constants/UIConsts.h"
@@ -116,6 +115,9 @@ void TowerUpgradePanel::load(std::vector<std::unique_ptr<GameObject>> gameObject
 			m_gameObjects.push_back(std::move(gameObjects[i]));
 		}
 	}
+
+	// load upgrade font color
+	m_upgradeFontColor = ColorsConsts::green;
 
 	// load callbacks
 	loadCallbacks();
@@ -396,7 +398,7 @@ void TowerUpgradePanel::updateDynamicLabel()
 	// update text on screen
 	for (std::map<std::string, std::unique_ptr<Text>>::iterator it = m_labelsMap.begin(); it != m_labelsMap.end(); it++)
 	{
-		if (it->second->getFontColor() != ColorsConsts::red)
+		if (it->second->getFontColor() != m_upgradeFontColor)
 		{
 			it->second->update();
 		}
@@ -415,7 +417,7 @@ void TowerUpgradePanel::updateUpgradeParameterLabels(TowerUpgradedButton* pUpgra
 	if (pUpgradeButton->isMouseOnButton() && upgradeData.nextLevel < upgradeData.maxLevel)
 	{
 		// change upgrade parameter when mouse on button if there is next level upgrade
-		m_labelsMap[upgradeValueLabelID]->setFontColor(ColorsConsts::red);
+		m_labelsMap[upgradeValueLabelID]->setFontColor(m_upgradeFontColor);
 		if (upgradeValueLabelID == std::string(UIConsts::slowPercentageValueLabel))
 		{
 			m_labelsMap[upgradeValueLabelID]->setMessage(TextFormatter::Instance()->extractPercentage(std::to_string(upgradeData.values[upgradeData.nextLevel])));
@@ -427,7 +429,7 @@ void TowerUpgradePanel::updateUpgradeParameterLabels(TowerUpgradedButton* pUpgra
 		m_labelsMap[upgradeValueLabelID]->update();
 
 	}
-	else if (m_labelsMap[upgradeValueLabelID]->getFontColor() == ColorsConsts::red)
+	else if (m_labelsMap[upgradeValueLabelID]->getFontColor() == m_upgradeFontColor)
 	{
 		// return the normal color of tower parameter
 		m_labelsMap[upgradeValueLabelID]->setFontColor(ColorsConsts::white);

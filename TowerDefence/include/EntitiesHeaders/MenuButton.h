@@ -8,10 +8,15 @@
 #include<string>
 #include<memory>
 
+enum MenuMode
+{
+	ACTIVE = 1,
+	DISABLED = 2
+};
+
 class MenuButton : public Button
 {
 public:
-
 	MenuButton();
 	MenuButton(const MenuButton* menuButton);
 
@@ -20,7 +25,11 @@ public:
 	virtual void load(const std::shared_ptr<LoaderParams> pParams) override;
 	virtual void handleEvent() override;
 
+	// getters and setters
+
 	void setCallback(void(*callback)());
+
+	void setCurrentRow(int currentRow);
 
 private:
 	void handleOutsideCLick();

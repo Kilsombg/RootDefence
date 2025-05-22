@@ -103,8 +103,8 @@ void Text::loadTexture()
 {
 	TheTrueTypeManager::Instance()->load(m_textureID, m_message,
 		TheGame::Instance()->getFont(), TheGame::Instance()->getFontOutline(),
-		{ m_fontColor.r, m_fontColor.b, m_fontColor.g },
-		{ m_fontOutlineColor.r, m_fontOutlineColor.b, m_fontOutlineColor.g },
+		{ m_fontColor.r, m_fontColor.g, m_fontColor.b },
+		{ m_fontOutlineColor.r, m_fontOutlineColor.g, m_fontOutlineColor.b },
 		TheGame::Instance()->getRenderer());
 }
 

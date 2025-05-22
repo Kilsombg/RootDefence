@@ -4,6 +4,8 @@
 #include "../CommonHeaders/InteractivePanel.h"
 #include "../CommonHeaders/PanelCreator.h"
 
+#include "../../../include/Constants/ColorsConsts.h"
+
 #include "../../EntitiesHeaders/Tower.h"
 #include "../../EntitiesHeaders/Texture.h"
 #include "../../EntitiesHeaders/Text.h"
@@ -107,7 +109,9 @@ private:
 	std::array<Texture, 2> m_towerUpgradeCostResourceImages; // image of tower upgrade cost resource
 	std::array<float, 2> m_towerUpgradeProgressLevel; // level progress of upgrades
 
-	std::map<std::string, std::unique_ptr<Text>> m_labelsMap;
+	ColorsConsts::Color m_upgradeFontColor; // font color of parameter, when mouse is on upgrade button.
+
+	std::map<std::string, std::unique_ptr<Text>> m_labelsMap; // map of labels inside towerUpgradePanels
 };
 
 
