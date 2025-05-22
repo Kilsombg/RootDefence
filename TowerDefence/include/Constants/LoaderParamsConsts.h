@@ -21,6 +21,8 @@ namespace LoaderParamsConsts {
 	constexpr char resumebuttonCallbackID[] = "resumebuttonCallbackID";
 	constexpr char restartbuttonCallbackID[] = "restartbuttonCallbackID";
 	constexpr char createTowerCallbackID[] = "createTowerCallbackID";
+	constexpr char startWaveCallbackID[] = "startWaveCallbackID";
+	constexpr char pauseStateCallbackID[] = "pauseStateCallbackID";
 	constexpr char towerUpgradeCallbackID[] = "towerUpgradeCallbackID";
 	constexpr char sellTowerCallbackID[] = "sellTowerCallbackID";
 	constexpr char animSpeed[] = "animSpeed";

@@ -33,11 +33,11 @@ class PlayState : public MenuState
 public:
 	PlayState();
 
-	virtual void update();
-	virtual void render();
+	virtual void update() override;
+	virtual void render() override;
 
-	virtual bool onEnter();
-	virtual bool onExit();
+	virtual bool onEnter() override;
+	virtual bool onExit() override;
 
 	/**
 	* Load data needed for playstate

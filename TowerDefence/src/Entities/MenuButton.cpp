@@ -8,6 +8,11 @@ MenuButton::MenuButton() : Button()
 {
 }
 
+MenuButton::MenuButton(const MenuButton* menuButton) : Button(menuButton)
+{
+	m_callback = menuButton->m_callback;
+}
+
 void MenuButton::load(const std::shared_ptr<LoaderParams> pParams)
 {
 	Button::load(pParams);

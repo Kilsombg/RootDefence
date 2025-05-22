@@ -66,6 +66,7 @@ bool MainMenuState::onExit()
 	return true;
 }
 
+
 std::string MainMenuState::getStateID() const
 {
 	return s_stateID;

@@ -52,8 +52,13 @@ private:
 	*/
 	void updateLabel(Text* pText);
 
+	static void s_playToPause();
+
 	typedef std::function<void(Button*)> TowerButtonCallback;
-	std::map<std::string, TowerButtonCallback> m_towerButtonCallbacks;
+	std::map<std::string, TowerButtonCallback> m_towerButtonCallbacks; // callbacks for creating tower buttons
+
+	typedef void(*ButtonCallback)();
+	std::map<std::string, ButtonCallback> m_buttonCallbacks; // callbacks for start wave and settings button
 
 	std::shared_ptr<TowerButton> m_selectedTowerButton;
 

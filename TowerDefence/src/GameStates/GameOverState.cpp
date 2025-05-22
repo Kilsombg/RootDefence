@@ -82,3 +82,8 @@ bool GameOverState::onExit()
 	std::cout << "exiting GameOverState\n";
 	return true;
 }
+
+bool GameOverState::drawUnderneath()
+{
+	return true;
+}

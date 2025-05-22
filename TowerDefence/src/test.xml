@@ -15,7 +15,7 @@
 			<texture filename="src/assets/helicopter.png" ID="helicopter"/>
 			<texture filename="src/assets/helicopter2.png" ID="helicopter2"/>
 			<texture filename="src/assets/bullet.png" ID="bullet"/>
-			<texture filename="src/assets/UI/States/PlayState/buttons/button_64x39.png" ID="startButton"/>
+			<texture filename="src/assets/UI/States/PlayState/buttons/button_64x39_anim.png" ID="startButton"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/sell-button_55x32.png" ID="sellTowerButton"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/upgrade-button_87x37.png" ID="upgradeButton"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/not-affordable-upgrade-button_87x37.png" ID="upgradeButtonNotAffordable"/>
@@ -107,8 +107,8 @@
 					<object type="towerButton" x="888.00" y="334.00" width="64" height="72" textureID="rubyPineButton" numFrames="0" callbackID="createTowerCallbackID" towerName="pine" towerColor="RED"/>
 					<object type="towerButton" x="810.00" y="410.00" width="64" height="66" textureID="rubyOakButton" numFrames="0" callbackID="createTowerCallbackID" towerName="oak" towerColor="RED"/>
 					<object type="towerButton" x="887.00" y="412.00" width="64" height="64" textureID="frozenBushButton" numFrames="0" callbackID="createTowerCallbackID" towerName="frozenBush" towerColor="GREEN"/>
-					<object type="menuButton" x="815.00" y="490.00" width="64" height="39" textureID="startButton" numFrames="0" callbackID="createTowerCallbackID"/>
-					<object type="menuButton" x="885.00" y="490.00" width="64" height="39" textureID="startButton" numFrames="0" callbackID="createTowerCallbackID"/>
+					<object type="menuButton" x="815.00" y="490.00" width="64" height="39" textureID="startButton" numFrames="0" callbackID="pauseStateCallbackID"/>
+					<object type="menuButton" x="885.00" y="490.00" width="64" height="39" textureID="startButton" numFrames="0" callbackID="pauseStateCallbackID"/>
 					<object type="text" x="822.00" y="500.00" characterWidth="10" height="18" textureID="startWaveLabel" labelId="startWaveLabel" message="START" dynamic="false"/>
 					<object type="text" x="889.00" y="500.00" characterWidth="7" height="18" textureID="settingsLabel" labelId="settingsLabel" message="SETTINGS" dynamic="false"/>
 				</OBJECTS>

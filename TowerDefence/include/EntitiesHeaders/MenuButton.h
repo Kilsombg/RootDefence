@@ -13,6 +13,7 @@ class MenuButton : public Button
 public:
 
 	MenuButton();
+	MenuButton(const MenuButton* menuButton);
 
 	virtual void update();
 

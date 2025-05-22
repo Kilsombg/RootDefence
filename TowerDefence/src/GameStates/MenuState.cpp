@@ -27,3 +27,8 @@ void MenuState::handleEvents()
 		}
 	}
 }
+
+bool MenuState::drawUnderneath()
+{
+	return false;
+}

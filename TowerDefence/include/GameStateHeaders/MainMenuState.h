@@ -10,11 +10,11 @@ class MainMenuState : public MenuState
 public:
 	MainMenuState();
 
-	virtual void update();
-	virtual void render();
+	virtual void update() override;
+	virtual void render() override;
 
-	virtual bool onEnter();
-	virtual bool onExit();
+	virtual bool onEnter() override;
+	virtual bool onExit() override;
 
 	virtual std::string getStateID() const;
 

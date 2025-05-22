@@ -82,3 +82,8 @@ bool PauseState::onExit()
 	std::cout << "exiting PauseState\n";
 	return true;
 }
+
+bool PauseState::drawUnderneath()
+{
+	return true;
+}

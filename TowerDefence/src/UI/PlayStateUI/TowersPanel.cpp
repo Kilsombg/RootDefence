@@ -9,8 +9,12 @@
 
 #include "../../../include/EntitiesHeaders/TowerButton.h"
 #include "../../../include/EntitiesHeaders/Text.h"
+#include "../../../include/EntitiesHeaders/MenuButton.h"
+
+#include "../../../include/GameStateHeaders/PauseState.h"
 
 #include "../../../include/UtilsHeaders/TowerFactory.h"
+#include "../../../include/UtilsHeaders/GameStateMachine.h"
 
 #include<iostream>
 
@@ -123,14 +127,20 @@ void TowersPanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)
 			m_buttonObjects.push_back(std::make_shared<TowerButton>(std::move(pButton.get())));
 			gameObjects[i].release();
 		}
+		else if (std::unique_ptr<MenuButton> pButton = std::unique_ptr<MenuButton>(dynamic_cast<MenuButton*>(gameObjects[i].get())))
+		{
+			m_buttonObjects.push_back(std::make_shared<MenuButton>(std::move(pButton.get())));
+			gameObjects[i].release();
+		}
 		else
 		{
-			// load static texts
+			// load static texts messages
 			if (Text* pText = dynamic_cast<Text*>(gameObjects[i].get()))
 			{
 				if (!pText->getDynamic()) updateLabel(pText);
 			}
 
+			// load texts and textures
 			m_gameObjects.push_back(std::move(gameObjects[i]));
 		}
 	}
@@ -152,6 +162,11 @@ void TowersPanel::loadCallbacks()
 {
 	// setting up create tower buttons
 	m_towerButtonCallbacks[LoaderParamsConsts::createTowerCallbackID] = std::bind(&ClickToPlaceTowerHandler::handleEvent, m_clickToPlaceTowerHandler, std::placeholders::_1);
+
+	// setting up start and settings button callbacks
+	m_buttonCallbacks[LoaderParamsConsts::startWaveCallbackID] = {};
+	m_buttonCallbacks[LoaderParamsConsts::pauseStateCallbackID] = s_playToPause;
+
 	setTowerButtonCallbacks();
 }
 
@@ -176,9 +191,16 @@ void TowersPanel::setTowerButtonCallbacks()
 {
 	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_buttonObjects.size(); i++)
 	{
+		// load tower button callbacks
 		if (TowerButton* pButton = dynamic_cast<TowerButton*>(m_buttonObjects[i].get()))
 		{
 			pButton->setCallback(m_towerButtonCallbacks.at(pButton->getCallbackID()));
+			pButton = nullptr;
+		}
+		// load start wave and settings button callbacks
+		else if (MenuButton* pButton = dynamic_cast<MenuButton*>(m_buttonObjects[i].get()))
+		{
+			pButton->setCallback(m_buttonCallbacks.at(pButton->getCallbackID()));
 			pButton = nullptr;
 		}
 	}
@@ -223,6 +245,11 @@ void TowersPanel::updateLabel(Text* pText)
 
 	pText->update();
 	pText = nullptr;
+}
+
+void TowersPanel::s_playToPause()
+{
+	TheGameStateMachine::Instance()->pushState(std::make_shared<PauseState>());
 }
 
 std::unique_ptr<Panel> TowersPanelCreator::create() const

@@ -205,7 +205,8 @@ void PlayState::handleEvents()
 	// handle input
 	if (TheInputHandler::Instance()->isKeyPressed(SDL_SCANCODE_ESCAPE))
 	{
-		TheGame::Instance()->getStateMachine()->pushState(std::make_shared<PauseState>());
+		std::shared_ptr<PauseState> state = std::make_shared<PauseState>();
+		TheGame::Instance()->getStateMachine()->pushState(state);
 	}
 }
 

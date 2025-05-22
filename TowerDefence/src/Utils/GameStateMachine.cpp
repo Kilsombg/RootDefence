@@ -125,9 +125,17 @@ void GameStateMachine::update()
 
 void GameStateMachine::render()
 {
-	if (!m_gameStates.empty())
-	{
-		m_gameStates.back()->render();
+	// Start from the last state and go backwards
+	int startIndex = m_gameStates.size() - 1;
+
+	// Find the first state that should be rendered
+	while (startIndex > 0 && m_gameStates[startIndex]->drawUnderneath()) {
+		--startIndex;
+	}
+
+	// Render from that state up to the top of the stack
+	for (int i = startIndex; i < m_gameStates.size(); ++i) {
+		m_gameStates[i]->render();
 	}
 }
 

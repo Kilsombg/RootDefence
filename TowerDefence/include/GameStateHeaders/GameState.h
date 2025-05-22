@@ -19,6 +19,13 @@ public:
 	
 	virtual std::string getStateID() const = 0;
 
+	/**
+	* Show if there is state underneath that should be drawn.
+	* 
+	* @return true if there is a state to be drawn underneath.
+	*/
+	virtual bool drawUnderneath() = 0;
+
 protected:
 	std::string s_stateID;
 
