@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
 	freopen_s(&stream, "CON", "w", stdout);
 
 	std::cout << "game init attempt...\n";
-	if (TheGame::Instance()->init("Chapter 1", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 960,540, true))
+	if (TheGame::Instance()->init("Root Defence", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 960,540, true))
 	{
 		std::cout << "game init success!\n";
 		while (TheGame::Instance()->running())

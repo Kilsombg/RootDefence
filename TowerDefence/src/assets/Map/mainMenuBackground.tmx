@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="30" height="17" tilewidth="32" tileheight="32" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" name="map_tileset1" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198" columns="18">
+  <image source="map_tileset1.png" trans="000000" width="640" height="400"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="30" height="17">
+  <data encoding="base64" compression="zlib">
+   eJy9lUsKwkAMhgesiKJLH9BFXYo7t7p0q5fx1QtU6gl8naDaS5qBBEKcODMoLj6mnbb/nz9p6d0Yc3dwA3LgCdRAC+kADSABUrbPqYAHcFa0Y7y4LvlKP3lfxfRkDbni5dJLFV+eu43rUmgche+nmrsC0tXyan23XDy+M1z7QFNhDayUawORgfLTzKnndm+kaM+BYSQTzE3Z5Uo9t+sUWDh8Jkq/OT1HNl//TyJfgs/zeX6amfXJxLnvHadZu/JpXi7dTLlXsgG2wAEozPv7Ggv5aj0O+Y5sTTusyda292jZHo4D6t5gRu5LPjvHtTLAu82y8lmmbF9+uyGUWJPPn89PIvPE+ru8ye8bbR/XgLn9GvuvqtFr/ydPPucCj7/1fAGkGowD
+  </data>
+ </layer>
+</map>

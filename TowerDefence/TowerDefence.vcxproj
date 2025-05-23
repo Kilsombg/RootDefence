@@ -171,6 +171,7 @@
     <ClCompile Include="src\UI\Common\StateUI.cpp" />
     <ClCompile Include="src\UI\GameOverUI\GameOverStatePanel.cpp" />
     <ClCompile Include="src\UI\GameOverUI\GameOverStateUI.cpp" />
+    <ClCompile Include="src\UI\MainMenuUI\MainMenuPanel.cpp" />
     <ClCompile Include="src\UI\PauseStateUI\PauseStatePanel.cpp" />
     <ClCompile Include="src\UI\PauseStateUI\PauseStateUI.cpp" />
     <ClCompile Include="src\UI\PlayStateUI\PlayStateUI.cpp" />
@@ -249,6 +250,8 @@
     <ClInclude Include="include\UIHeaders\CommonHeaders\PanelCreator.h" />
     <ClInclude Include="include\UIHeaders\GameOverUIHeaders\GameOverStatePanel.h" />
     <ClInclude Include="include\UIHeaders\GameOverUIHeaders\GameOverStateUI.h" />
+    <ClInclude Include="include\UIHeaders\MainMenuUIHeaders\MainMenuPanel.h" />
+    <ClInclude Include="include\UIHeaders\MainMenuUIHeaders\MainMenuStateUI.h" />
     <ClInclude Include="include\UIHeaders\PauseStateUIHeaders\PauseStatePanel.h" />
     <ClInclude Include="include\UIHeaders\PauseStateUIHeaders\PauseStateUI.h" />
     <ClInclude Include="include\UIHeaders\PlayStateUIHeaders\PlayStateUI.h" />

@@ -25,6 +25,9 @@ void MainMenuState::update()
 	{
 		m_gameObjects[i]->update();
 	}
+
+	// update UI
+	m_mainMenuStateUI->update();
 }
 
 void MainMenuState::render()
@@ -33,17 +36,17 @@ void MainMenuState::render()
 	{
 		m_gameObjects[i]->draw();
 	}
+
+	// draw UI
+	m_mainMenuStateUI->draw();
 }
 
 bool MainMenuState::onEnter()
 {
-	StateParser stateParser;
-	//stateParser.parseState("./src/test.xml", s_stateID, &m_gameObjects, &m_textureIDList);
-
-	m_callbacks[LoaderParamsConsts::playbuttonCallbackID] = s_menuToPlay;
-	m_callbacks[LoaderParamsConsts::exitbuttonCallbackID] = s_exitFromMenu;
-
-	setCallbacks(m_callbacks);
+	// load UI
+	m_mainMenuStateUI = std::make_unique<MainMenuStateUI>(s_stateID);
+	m_mainMenuStateUI->load();
+	
 	std::cout << "entering MenuState\n";
 	return true;
 }
@@ -62,22 +65,21 @@ bool MainMenuState::onExit()
 		TheTextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
 	}
 
+	// clean UI
+	m_mainMenuStateUI->clean();
+
 	std::cout << "exiting MenuState\n";
 	return true;
+}
+
+void MainMenuState::handleEvents()
+{
+	// handle UI
+	m_mainMenuStateUI->handleEvents();
 }
 
 
 std::string MainMenuState::getStateID() const
 {
 	return s_stateID;
-}
-
-void MainMenuState::s_menuToPlay()
-{
-	TheGame::Instance()->getStateMachine()->changeState(std::make_shared<PlayState>());
-}
-
-void MainMenuState::s_exitFromMenu()
-{
-	TheGame::Instance()->quit();
 }

@@ -1,9 +1,65 @@
 {
   "projectilesData": {
-    "projectile1": {
+    "agateOakApple": {
       "width": 16,
       "height": 16,
-      "textureID": "bullet",
+      "textureID": "agateOakApple",
+      "projectileSpeed": 3.0,
+      "numFrames": 0
+    },
+    "amberOakApple": {
+      "width": 16,
+      "height": 16,
+      "textureID": "amberOakApple",
+      "projectileSpeed": 3.0,
+      "numFrames": 0
+    },
+    "rubyOakApple": {
+      "width": 16,
+      "height": 16,
+      "textureID": "rubyOakApple",
+      "projectileSpeed": 3.0,
+      "numFrames": 0
+    },
+    "agatePineCone": {
+      "width": 16,
+      "height": 16,
+      "textureID": "agatePineCone",
+      "projectileSpeed": 3.0,
+      "numFrames": 0
+    },
+    "amberPineCone": {
+      "width": 16,
+      "height": 16,
+      "textureID": "amberPineCone",
+      "projectileSpeed": 3.0,
+      "numFrames": 0
+    },
+    "rubyPineCone": {
+      "width": 16,
+      "height": 16,
+      "textureID": "rubyPineCone",
+      "projectileSpeed": 3.0,
+      "numFrames": 0
+    },
+    "agateRootStick": {
+      "width": 16,
+      "height": 16,
+      "textureID": "agateRootStick",
+      "projectileSpeed": 3.0,
+      "numFrames": 0
+    },
+    "amberRootStick": {
+      "width": 16,
+      "height": 16,
+      "textureID": "amberRootStick",
+      "projectileSpeed": 3.0,
+      "numFrames": 0
+    },
+    "rubyRootStick": {
+      "width": 16,
+      "height": 16,
+      "textureID": "rubyRootStick",
       "projectileSpeed": 3.0,
       "numFrames": 0
     }

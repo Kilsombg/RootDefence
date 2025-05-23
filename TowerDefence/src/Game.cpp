@@ -19,6 +19,8 @@
 
 #include "../include/UIHeaders/GameOverUIHeaders/GameOverStatePanel.h"
 
+#include "../include/UIHeaders/MainMenuUIHeaders/MainMenuPanel.h"
+
 #include "../include/UIHeaders/PauseStateUIHeaders/PauseStatePanel.h"
 
 #include "../include/UIHeaders/PlayStateUIHeaders/TowersPanel.h"
@@ -149,6 +151,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 
 	ThePanelFactory::Instance()->registerType(PanelConsts::gameOverStatePanel, std::make_shared<GameOverStatePanelCreator>());
+
+	ThePanelFactory::Instance()->registerType(PanelConsts::mainMenuPanel, std::make_shared<MainMenuPanelCreator>());
 	
 	ThePanelFactory::Instance()->registerType(PanelConsts::pauseStatePanel, std::make_shared<PauseStatePanelCreator>());
 
@@ -156,8 +160,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	ThePanelFactory::Instance()->registerType(PanelConsts::towerUpgradePanel, std::make_shared<TowerUpgradePanelCreator>());
 
 	m_pGameStateMachine = TheGameStateMachine::Instance();
-	//m_pGameStateMachine->changeState(std::make_shared<MainMenuState>());
-	m_pGameStateMachine->changeState(std::make_shared<PlayState>());
+	m_pGameStateMachine->changeState(std::make_shared<MainMenuState>());
 
 
 	std::cout << "init success\n";

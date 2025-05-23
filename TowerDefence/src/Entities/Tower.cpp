@@ -276,12 +276,15 @@ void Tower::load(const std::shared_ptr<LoaderParams> pParams)
 		namePrefix= getTowerType(pParams->getAttribute<std::string>(LoaderParamsConsts::color));
 		namePrefix[0] = std::toupper(namePrefix[0]);
 		namePrefix.append(" ");
+
+		m_projectileID = pParams->getAttribute<std::string>(LoaderParamsConsts::projectileID);
+		m_projectileID[0] = std::toupper(m_projectileID[0]);
+		m_projectileID = std::string(getTowerType(pParams->getAttribute<std::string>(LoaderParamsConsts::color)) + m_projectileID);
 	}
 	m_name = std::string(namePrefix + pParams->getAttribute<std::string>(LoaderParamsConsts::name));
 	m_color = pParams->getAttribute<std::string>(LoaderParamsConsts::color);
 
 	// load other paramters
-	m_projectileID = pParams->getAttribute<std::string>(LoaderParamsConsts::projectileID);
 	m_damage = pParams->getAttribute<float>(LoaderParamsConsts::damage) ? pParams->getAttribute<float>(LoaderParamsConsts::damage) : 0;
 	m_radius = pParams->getAttribute<float>(LoaderParamsConsts::radius);
 	m_baseCost.type = getResourceTypeByString(pParams->getAttribute<std::string>(LoaderParamsConsts::costType));

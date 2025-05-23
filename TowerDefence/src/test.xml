@@ -2,21 +2,28 @@
 <STATES>
 	<MENU>
 		<TEXTURES>
-			<texture filename="src/assets/button.png" ID="playbutton"/>
-			<texture filename="src/assets/exit.png" ID="exitbutton"/>
+			<texture filename="src/assets/UI/States/MainMenuState/MainMenuPanel.png" ID="mainMenuPanel"/>
+			<texture filename="src/assets/UI/States/MainMenuState/mainMenuBackground2.png" ID="mainMenuBackground"/>
+			<texture filename="src/assets/UI/States/MainMenuState/pixel_art_small_147x43.png" ID="title2"/>
+			<texture filename="src/assets/UI/States/MainMenuState/buttons/main-button_100x40_anim.png" ID="buttonTexure"/>
 		</TEXTURES>
 		<PANELS>
-			<OBJECTS>
-				<object type="menuButton" x="100.00" y="100.00" width="400" height="100" textureID="playbutton" numFrames="0" callbackID="playbuttonCallbackID"/>
-				<object type="menuButton" x="100.00" y="300.00" width="400" height="100" textureID="exitbutton" numFrames="0" callbackID="exitbuttonCallbackID"/>
-			</OBJECTS>
+			<MAINMENU type="mainMenuPanel" x="380.00" y="150.00" width="200" height="300" textureID="mainMenuPanel">
+				<OBJECTS>
+					<object type="texture" x="0.00" y="0.00" width="960" height="540" textureID="mainMenuBackground"/>
+					<object type="texture" x="260.00" y="30.00" width="441" height="129" textureID="title2"/>
+					<object type="menuButton" x="430.00" y="210.00" width="100" height="40" textureID="buttonTexure" numFrames="0" callbackID="playbuttonCallbackID"/>
+					<object type="text" x="440.00" y="222.00" characterWidth="10" height="18" textureID="newGameLabel" labelId="newGameLabel" message="New Game" dynamic="false"/>
+					<object type="menuButton" x="430.00" y="300.00" width="100" height="40" textureID="buttonTexure" numFrames="0" callbackID="exitbuttonCallbackID"/>
+					<object type="text" x="463.00" y="312.00" characterWidth="9" height="18" textureID="exitLabel" labelId="exitLabel" message="Exit" dynamic="false"/>
+				</OBJECTS>
+			</MAINMENU>
 		</PANELS>
 	</MENU>
 	<PLAY>
 		<TEXTURES>
 			<texture filename="src/assets/helicopter.png" ID="helicopter"/>
 			<texture filename="src/assets/helicopter2.png" ID="helicopter2"/>
-			<texture filename="src/assets/bullet.png" ID="bullet"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/button_64x78_anim.png" ID="startButton"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/sell-button_55x32.png" ID="sellTowerButton"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/upgrade-button_87x37.png" ID="upgradeButton"/>
@@ -41,6 +48,15 @@
 			<texture filename="src/assets/UI/States/PlayState/buttons/ruby-oak_64x66_disabled.png" ID="rubyOakButtonDisabled"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/frozen-bush_64x64.png" ID="frozenBushButton"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/frozen-bush_64x64_disabled.png" ID="frozenBushButtonDisabled"/>
+			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/agate-oak-apple_16x16.png" ID="agateOakApple"/>
+			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/amber-oak-apple_16x16.png" ID="amberOakApple"/>
+			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/ruby-oak-apple_16x16.png" ID="rubyOakApple"/>
+			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/pine-cone_16x16.png" ID="agatePineCone"/>
+			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/pine-cone_16x16.png" ID="amberPineCone"/>
+			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/pine-cone_16x16.png" ID="rubyPineCone"/>
+			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/agate-root-stick_16x16.png" ID="agateRootStick"/>
+			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/amber-root-stick_16x16.png" ID="amberRootStick"/>
+			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/ruby-root-stick_16x16.png" ID="rubyRootStick"/>
 			<texture filename="src/assets/UI/States/PlayState/enemies/animation/green_choy_32x32_anim.png" ID="greenChoyEnemy"/>
 			<texture filename="src/assets/UI/States/PlayState/enemies/animation/green_plant_32x32_anim.png" ID="greenPlantEnemy"/>
 			<texture filename="src/assets/UI/States/PlayState/enemies/animation/green_broccoli_32x32_anim.png" ID="greenBroccoliEnemy"/>

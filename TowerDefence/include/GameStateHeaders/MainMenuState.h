@@ -5,6 +5,10 @@
 
 #include "../EntitiesHeaders/GameObject.h"
 
+#include "../UIHeaders/MainMenuUIHeaders/MainMenuStateUI.h"
+
+#include<memory>
+
 class MainMenuState : public MenuState
 {
 public:
@@ -16,13 +20,12 @@ public:
 	virtual bool onEnter() override;
 	virtual bool onExit() override;
 
+	virtual void handleEvents() override;
+
 	virtual std::string getStateID() const;
 
 private:
-
-	// call back functions for menu items
-	static void s_menuToPlay();
-	static void s_exitFromMenu();
+	std::unique_ptr<MainMenuStateUI> m_mainMenuStateUI;
 };
 
 #endif // !__MainMenuState__

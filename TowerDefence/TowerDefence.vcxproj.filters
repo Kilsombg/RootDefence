@@ -195,6 +195,21 @@
     <ClCompile Include="src\Utils\TextFormatter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\UI\GameOverUI\GameOverStatePanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\GameOverUI\GameOverStateUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\PauseStateUI\PauseStatePanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\PauseStateUI\PauseStateUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\MainMenuUI\MainMenuPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game.h">
@@ -423,6 +438,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\UtilsHeaders\TextFormatter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UIHeaders\GameOverUIHeaders\GameOverStatePanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UIHeaders\GameOverUIHeaders\GameOverStateUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UIHeaders\PauseStateUIHeaders\PauseStatePanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UIHeaders\PauseStateUIHeaders\PauseStateUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UIHeaders\MainMenuUIHeaders\MainMenuStateUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UIHeaders\MainMenuUIHeaders\MainMenuPanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

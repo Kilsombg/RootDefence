@@ -154,6 +154,7 @@ std::vector<Wave*>& WaveManager::getWaves()
 
 void WaveManager::clean()
 {
+	// clean waves
 	if (!m_waves.empty())
 	{
 		for (std::vector<Wave>::size_type i = 0; i < m_waves.size(); i++)
@@ -163,6 +164,12 @@ void WaveManager::clean()
 		m_waves.clear();
 		m_waves.shrink_to_fit();
 	}
+
+	// reset static variables
+	s_pressedPlayButton = false;
+
+	// clean pointer
+	s_pInstance = nullptr;
 }
 
 void WaveManager::load()
