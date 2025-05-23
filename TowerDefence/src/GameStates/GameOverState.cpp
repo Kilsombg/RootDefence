@@ -26,13 +26,23 @@ void GameOverState::update()
 	{
 		m_gameObjects[i]->update();
 	}
+
+	// update UI
+	m_gameOverStateUI->update();
 }
+
 void GameOverState::render()
 {
 	for (int i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->draw();
 	}
+
+	// dimming underneath
+	TheTextureManager::Instance()->dimBackground(TheGame::Instance()->getWindow(), TheGame::Instance()->getRenderer());
+
+	// draw UI
+	m_gameOverStateUI->draw();
 }
 
 std::string GameOverState::getStateID() const
@@ -40,26 +50,18 @@ std::string GameOverState::getStateID() const
 	return s_stateID;
 }
 
-void GameOverState::s_gameOverToMain()
+void GameOverState::setCurrentWaveID(int currentWaveID)
 {
-	TheGame::Instance()->getStateMachine()->changeState(std::make_shared<MainMenuState>());
-}
-
-void GameOverState::s_restartPlay()
-{
-	TheGame::Instance()->getStateMachine()->changeState(std::make_shared<PlayState>());
+	m_currentWaveID = currentWaveID;
 }
 
 bool GameOverState::onEnter()
 {
-	StateParser stateParser;
-	//stateParser.parseState("./src/test.xml", s_stateID, &m_gameObjects, &m_textureIDList);
+	// load UI
+	m_gameOverStateUI = std::make_unique<GameOverStateUI>(s_stateID);
+	m_gameOverStateUI->setCurrentWaveID(m_currentWaveID);
+	m_gameOverStateUI->load();
 
-
-	m_callbacks[LoaderParamsConsts::mainbuttonCallbackID] = s_gameOverToMain;
-	m_callbacks[LoaderParamsConsts::restartbuttonCallbackID] = s_restartPlay;
-	
-	setCallbacks(m_callbacks);
 	std::cout << "entering GameOverState\n";
 	return true;
 }
@@ -79,8 +81,17 @@ bool GameOverState::onExit()
 		TheTextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
 	}
 
+	// clean UI
+	m_gameOverStateUI->clean();
+
 	std::cout << "exiting GameOverState\n";
 	return true;
+}
+
+void GameOverState::handleEvents()
+{
+	// handle UI
+	m_gameOverStateUI->handleEvents();
 }
 
 bool GameOverState::drawUnderneath()

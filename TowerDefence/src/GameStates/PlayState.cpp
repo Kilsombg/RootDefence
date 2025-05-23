@@ -188,7 +188,9 @@ void PlayState::handleEvents()
 	// handle game over
 	if (m_gameSessionData->gameHealth <= 0)
 	{
-		//TheGame::Instance()->getStateMachine()->pushState(std::make_shared<GameOverState>());
+		std::shared_ptr<GameOverState> pGameOverState = std::make_shared<GameOverState>();
+		pGameOverState->setCurrentWaveID(m_gameSessionData->currentWaveLevel);
+		TheGame::Instance()->getStateMachine()->pushState(pGameOverState);
 	}
 
 	// handle buttons

@@ -36,6 +36,8 @@ namespace GameObjectConsts {
 
 namespace PanelConsts {
 #pragma region Creator objects
+	constexpr char gameOverStatePanel[] = "gameOverStatePanel";
+	constexpr char pauseStatePanel[] = "pauseStatePanel";
 	constexpr char towersPanel[] = "towersPanel";
 	constexpr char towerUpgradePanel[] = "towerUpgradePanel";
 #pragma endregion

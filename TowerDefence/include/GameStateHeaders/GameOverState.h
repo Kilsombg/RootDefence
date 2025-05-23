@@ -5,6 +5,8 @@
 
 #include "../EntitiesHeaders/GameObject.h"
 
+#include "../UIHeaders/GameOverUIHeaders/GameOverStateUI.h"
+
 #include<map>
 
 class GameOverState : public MenuState
@@ -18,13 +20,19 @@ public:
 	virtual bool onEnter() override;
 	virtual bool onExit() override;
 
+	void handleEvents() override;
+
 	bool drawUnderneath() override;
 
 	virtual std::string getStateID() const;
 
+
+	void setCurrentWaveID(int currentWaveID);
+
 private:
-	static void s_gameOverToMain();
-	static void s_restartPlay();
+	std::unique_ptr<GameOverStateUI> m_gameOverStateUI;
+
+	int m_currentWaveID;
 };
 
 #endif // !__GameOverState__

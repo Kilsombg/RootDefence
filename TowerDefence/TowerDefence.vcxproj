@@ -169,6 +169,10 @@
     <ClCompile Include="src\Map\TileLayer.cpp" />
     <ClCompile Include="src\UI\Common\InteractivePanel.cpp" />
     <ClCompile Include="src\UI\Common\StateUI.cpp" />
+    <ClCompile Include="src\UI\GameOverUI\GameOverStatePanel.cpp" />
+    <ClCompile Include="src\UI\GameOverUI\GameOverStateUI.cpp" />
+    <ClCompile Include="src\UI\PauseStateUI\PauseStatePanel.cpp" />
+    <ClCompile Include="src\UI\PauseStateUI\PauseStateUI.cpp" />
     <ClCompile Include="src\UI\PlayStateUI\PlayStateUI.cpp" />
     <ClCompile Include="src\UI\PlayStateUI\TowersPanel.cpp" />
     <ClCompile Include="src\UI\PlayStateUI\TowerUpgradePanel.cpp" />
@@ -243,6 +247,10 @@
     <ClInclude Include="include\UIHeaders\CommonHeaders\StateUI.h" />
     <ClInclude Include="include\UIHeaders\CommonHeaders\Panel.h" />
     <ClInclude Include="include\UIHeaders\CommonHeaders\PanelCreator.h" />
+    <ClInclude Include="include\UIHeaders\GameOverUIHeaders\GameOverStatePanel.h" />
+    <ClInclude Include="include\UIHeaders\GameOverUIHeaders\GameOverStateUI.h" />
+    <ClInclude Include="include\UIHeaders\PauseStateUIHeaders\PauseStatePanel.h" />
+    <ClInclude Include="include\UIHeaders\PauseStateUIHeaders\PauseStateUI.h" />
     <ClInclude Include="include\UIHeaders\PlayStateUIHeaders\PlayStateUI.h" />
     <ClInclude Include="include\UIHeaders\PlayStateUIHeaders\TowersPanel.h" />
     <ClInclude Include="include\UIHeaders\PlayStateUIHeaders\TowerUpgradePanel.h" />

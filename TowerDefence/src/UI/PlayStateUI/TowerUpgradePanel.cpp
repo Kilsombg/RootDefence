@@ -79,20 +79,7 @@ void TowerUpgradePanel::update()
 
 void TowerUpgradePanel::clean()
 {
-	// clean background texture
-	m_backgroundTexture->clean();
-
-	// clean objects texture
-	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->clean();
-	}
-
-	// clean labels
-	for (std::map<std::string, std::unique_ptr<Text>>::iterator it = m_labelsMap.begin(); it != m_labelsMap.end(); it++)
-	{
-		it->second->clean();
-	}
+	TowerInteractivePanel::clean();
 }
 
 void TowerUpgradePanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)

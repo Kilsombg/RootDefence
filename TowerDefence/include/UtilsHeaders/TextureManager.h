@@ -21,6 +21,8 @@ public:
 
 	void drawProgressBar(int x, int y, int width, int height, SDL_Color bgColor, SDL_Color fillColor, float progress, SDL_Renderer* renderer);
 
+	void dimBackground(SDL_Window* pWindow , SDL_Renderer* pRenderer);
+
 private:
 	TextureManager();
 	static TextureManager* s_pInstance;

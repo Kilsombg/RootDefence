@@ -17,8 +17,13 @@
 #include "../include/GameStateHeaders/MainMenuState.h"
 #include "../include/GameStateHeaders/PlayState.h"
 
+#include "../include/UIHeaders/GameOverUIHeaders/GameOverStatePanel.h"
+
+#include "../include/UIHeaders/PauseStateUIHeaders/PauseStatePanel.h"
+
 #include "../include/UIHeaders/PlayStateUIHeaders/TowersPanel.h"
 #include "../include/UIHeaders/PlayStateUIHeaders/TowerUpgradePanel.h"
+
 
 #include "../include/UtilsHeaders/TrueTypeManager.h"
 #include "../include/UtilsHeaders/InputHandler.h"
@@ -142,7 +147,11 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::text, std::make_shared<TextCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::texture, std::make_shared<TextureCreator>());
 
+
+	ThePanelFactory::Instance()->registerType(PanelConsts::gameOverStatePanel, std::make_shared<GameOverStatePanelCreator>());
 	
+	ThePanelFactory::Instance()->registerType(PanelConsts::pauseStatePanel, std::make_shared<PauseStatePanelCreator>());
+
 	ThePanelFactory::Instance()->registerType(PanelConsts::towersPanel, std::make_shared<TowersPanelCreator>());
 	ThePanelFactory::Instance()->registerType(PanelConsts::towerUpgradePanel, std::make_shared<TowerUpgradePanelCreator>());
 
@@ -192,6 +201,11 @@ void Game::clean()
 SDL_Renderer* Game::getRenderer() const
 {
 	return m_pRenderer;
+}
+
+SDL_Window* Game::getWindow() const
+{
+	return m_pWindow;
 }
 
 TTF_Font* Game::getFont() const

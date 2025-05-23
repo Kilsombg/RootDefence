@@ -110,8 +110,6 @@ private:
 	std::array<float, 2> m_towerUpgradeProgressLevel; // level progress of upgrades
 
 	ColorsConsts::Color m_upgradeFontColor; // font color of parameter, when mouse is on upgrade button.
-
-	std::map<std::string, std::unique_ptr<Text>> m_labelsMap; // map of labels inside towerUpgradePanels
 };
 
 

@@ -19,6 +19,7 @@ public:
 	InteractivePanel();
 	virtual void draw() override;
 	virtual void update() override;
+	virtual void clean() override;
 	virtual void handleEvents();
 
 	void setButtonObjects(std::vector<std::shared_ptr<Button>> buttons);
@@ -29,6 +30,16 @@ protected:
 	std::vector<std::shared_ptr<Button>> m_buttonObjects;
 };
 
+/**
+* base class for panels including menu buttons
+*/
+class MenuInteractivePanel : public InteractivePanel
+{
+protected:
+	typedef void(*Callback)();
+	virtual void setCallbacks();
+	std::map<std::string, Callback> m_callbacks;
+};
 
 
 /**

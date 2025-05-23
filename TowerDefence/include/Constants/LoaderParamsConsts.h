@@ -17,9 +17,9 @@ namespace LoaderParamsConsts {
 	constexpr char callbackID[] = "callbackID";
 	constexpr char playbuttonCallbackID[] = "playbuttonCallbackID";
 	constexpr char exitbuttonCallbackID[] = "exitbuttonCallbackID";
-	constexpr char mainbuttonCallbackID[] = "mainbuttonCallbackID";
-	constexpr char resumebuttonCallbackID[] = "resumebuttonCallbackID";
-	constexpr char restartbuttonCallbackID[] = "restartbuttonCallbackID";
+	constexpr char mainMenuButtonCallbackID[] = "mainMenuButtonCallbackID";
+	constexpr char restartButtonCallbackID[] = "restartButtonCallbackID";
+	constexpr char resumeButtonCallbackID[] = "resumeButtonCallbackID";
 	constexpr char createTowerCallbackID[] = "createTowerCallbackID";
 	constexpr char startWaveCallbackID[] = "startWaveCallbackID";
 	constexpr char pauseStateCallbackID[] = "pauseStateCallbackID";

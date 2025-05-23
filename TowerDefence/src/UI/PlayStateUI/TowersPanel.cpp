@@ -99,14 +99,7 @@ void TowersPanel::update()
 
 void TowersPanel::clean()
 {
-	// Cleaning background texture
-	m_backgroundTexture->clean();
-
-	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
-	{
-		// Cleaning text textures
-		m_gameObjects[i]->clean();
-	}
+	TowerInteractivePanel::clean();
 }
 
 void TowersPanel::handleEvents()

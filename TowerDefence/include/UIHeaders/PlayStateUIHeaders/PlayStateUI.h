@@ -20,27 +20,11 @@ public:
 	PlayStateUI(std::string stateID);
 
 	void draw() override;
+	void update() override;
 	void load() override;
 	void handleEvents() override;
-	
-	void update();
 
 	void clean() override;
-
-	template <typename T>
-	T* getPanel()
-	{
-		for (std::vector<std::unique_ptr<Panel>>::size_type i = 0; i < m_panels.size();i++)
-		{
-			if (T* panel = dynamic_cast<T*>(m_panels[i].get()))
-			{
-				return panel;
-			}
-		}
-
-		return nullptr;
-	};
-
 
 	// getters and setters
 

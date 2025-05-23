@@ -5,6 +5,10 @@
 
 #include "../EntitiesHeaders/GameObject.h"
 
+#include "../UIHeaders/PauseStateUIHeaders/PauseStateUI.h"
+
+#include<memory>
+
 class PauseState : public MenuState
 {
 public:
@@ -16,13 +20,14 @@ public:
 	virtual bool onEnter() override;
 	virtual bool onExit() override;
 
+	void handleEvents() override;
+
 	bool drawUnderneath() override;
 	
 	virtual std::string getStateID() const;
 
 private:
-	static void s_pauseToMain();
-	static void s_resumePlay();
+	std::unique_ptr<PauseStateUI> m_pauseStateUI;
 };
 
 #endif // !__PauseState__

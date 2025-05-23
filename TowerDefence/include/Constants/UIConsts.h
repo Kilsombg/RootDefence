@@ -35,6 +35,8 @@ namespace UIConsts {
 	constexpr char upgradeButtonTextPrefix[] = "upgrade";
 	constexpr char upgradeButtonTextSufix[] = "Label";
 
+	// game over panel
+	constexpr char gameOverWaveLabel[] = "gameOverWaveLabel";
 #pragma endregion
 
 #pragma region texture iDs

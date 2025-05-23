@@ -5,10 +5,12 @@
 			<texture filename="src/assets/button.png" ID="playbutton"/>
 			<texture filename="src/assets/exit.png" ID="exitbutton"/>
 		</TEXTURES>
-		<OBJECTS>
-			<object type="menuButton" x="100.00" y="100.00" width="400" height="100" textureID="playbutton" numFrames="0" callbackID="playbuttonCallbackID"/>
-			<object type="menuButton" x="100.00" y="300.00" width="400" height="100" textureID="exitbutton" numFrames="0" callbackID="exitbuttonCallbackID"/>
-		</OBJECTS>
+		<PANELS>
+			<OBJECTS>
+				<object type="menuButton" x="100.00" y="100.00" width="400" height="100" textureID="playbutton" numFrames="0" callbackID="playbuttonCallbackID"/>
+				<object type="menuButton" x="100.00" y="300.00" width="400" height="100" textureID="exitbutton" numFrames="0" callbackID="exitbuttonCallbackID"/>
+			</OBJECTS>
+		</PANELS>
 	</MENU>
 	<PLAY>
 		<TEXTURES>
@@ -149,24 +151,60 @@
 	</PLAY>
 	<PAUSE>
 		<TEXTURES>
-			<texture filename="src/assets/resume.png" ID="resumebutton"/>
-			<texture filename="src/assets/main.png" ID="mainbutton"/>
+			<texture filename="src/assets/UI/buttons/continue-button_64x64_anim.png" ID="continueButton"/>
+			<texture filename="src/assets/UI/buttons/restart-button_64x64_anim.png" ID="restartButton"/>
+			<texture filename="src/assets/UI/buttons/main-menu-button_64x64_anim.png" ID="mainMenuButton"/>
+			<texture filename="src/assets/UI/States/PauseState/PauseStatePanel.png" ID="pauseStatePanel" />
 		</TEXTURES>
-		<OBJECTS>
-			<object type="menuButton" x="200.00" y="100.00" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="mainbuttonCallbackID"/>
-			<object type="menuButton" x="200.00" y="300.00" width="200" height="80" textureID="resumebutton" numFrames="0" callbackID="resumebuttonCallbackID"/>
-		</OBJECTS>
+		<PANELS>
+			<PAUSESTATE type="pauseStatePanel" x="180.00" y="100.00" width="500" height="300" textureID="pauseStatePanel">
+				<OBJECTS>
+					<object type="text" x="265.00" y="135.00" characterWidth="9" height="18" textureID="typeLabel" labelId="typeLabel" message="Type" dynamic="false"/>
+					<object type="text" x="380.00" y="135.00" characterWidth="9" height="18" textureID="damageAgainstEnemiesLabel" labelId="damageAgainstEnemiesLabel" message="Damage against enemies" dynamic="false"/>
+					<object type="text" x="235.00" y="187.00" characterWidth="8" height="16" textureID="towerLabel" labelId="towerLabel" message="Towers" dynamic="false"/>
+					<object type="text" x="273.00" y="166.00" characterWidth="8" height="16" textureID="enemiesLabel" labelId="enemiesLabel" message="Enemies" dynamic="false"/>
+					<object type="text" x="365.00" y="176.00" characterWidth="8" height="16" textureID="greenLabel" labelId="greenLabel" message="GREEN" dynamic="false"/>
+					<object type="text" x="460.00" y="176.00" characterWidth="8" height="16" textureID="yellowLabel" labelId="yellowLabel" message="YELLOW" dynamic="false"/>
+					<object type="text" x="568.00" y="176.00" characterWidth="8" height="16" textureID="redLabel" labelId="redLabel" message="RED" dynamic="false"/>
+					<object type="text" x="255.00" y="217.00" characterWidth="8" height="16" textureID="agateLabel" labelId="agateLabel" message="agate" dynamic="false"/>
+					<object type="text" x="365.00" y="217.00" characterWidth="8" height="16" textureID="agateGreenDMGLabel" labelId="agateGreenDMGLabel" message=" 100%" dynamic="false"/>
+					<object type="text" x="465.00" y="217.00" characterWidth="8" height="16" textureID="agateYellowDMGLabel" labelId="agateYellowDMGLabel" message=" 50%" dynamic="false"/>
+					<object type="text" x="565.00" y="217.00" characterWidth="8" height="16" textureID="agateRedDMGLabel" labelId="agateRedDMGLabel" message=" 50%" dynamic="false"/>
+					<object type="text" x="255.00" y="247.00" characterWidth="8" height="16" textureID="amberLabel" labelId="amberLabel" message="amber" dynamic="false"/>
+					<object type="text" x="365.00" y="247.00" characterWidth="8" height="16" textureID="amberGreenDMGLabel" labelId="amberGreenDMGLabel" message=" 50%" dynamic="false"/>
+					<object type="text" x="465.00" y="247.00" characterWidth="8" height="16" textureID="amberYellowDMGLabel" labelId="amberYellowDMGLabel" message=" 100%" dynamic="false"/>
+					<object type="text" x="565.00" y="247.00" characterWidth="8" height="16" textureID="amberRedDMGLabel" labelId="amberRedDMGLabel" message=" 50%" dynamic="false"/>
+					<object type="text" x="255.00" y="277.00" characterWidth="8" height="16" textureID="rubyLabel" labelId="rubyLabel" message="ruby" dynamic="false"/>
+					<object type="text" x="365.00" y="277.00" characterWidth="8" height="16" textureID="rubyGreenDMGLabel" labelId="rubyGreenDMGLabel" message=" 50%" dynamic="false"/>
+					<object type="text" x="465.00" y="277.00" characterWidth="8" height="16" textureID="rubyYellowDMGLabel" labelId="rubyYellowDMGLabel" message=" 50%" dynamic="false"/>
+					<object type="text" x="565.00" y="277.00" characterWidth="8" height="16" textureID="rubyRedDMGLabel" labelId="rubyRedDMGLabel" message=" 100%" dynamic="false"/>
+					<object type="menuButton" x="304.00" y="350.00" width="64" height="64" textureID="mainMenuButton" numFrames="0" callbackID="mainMenuButtonCallbackID"/>
+					<object type="text" x="302.00" y="418.00" characterWidth="8" height="16" textureID="mainMenuLabel" labelId="mainMenuLabel" message="Main menu" dynamic="false"/>
+					<object type="menuButton" x="398.00" y="350.00" width="64" height="64" textureID="restartButton" numFrames="0" callbackID="restartButtonCallbackID"/>
+					<object type="text" x="403.00" y="418.00" characterWidth="8" height="16" textureID="restartLabel" labelId="restartLabel" message="Restart" dynamic="false"/>
+					<object type="menuButton" x="492.00" y="350.00" width="64" height="64" textureID="continueButton" numFrames="0" callbackID="resumeButtonCallbackID"/>
+					<object type="text" x="494.00" y="418.00" characterWidth="8" height="16" textureID="continueLabel" labelId="continueLabel" message="Continue" dynamic="false"/>
+				</OBJECTS>
+			</PAUSESTATE>
+		</PANELS>
 	</PAUSE>
 	<GAMEOVER>
 		<TEXTURES>
-			<texture filename="src/assets/gameover.png" ID="gameovertext"/>
-			<texture filename="src/assets/main.png" ID="mainbutton"/>
-			<texture filename="src/assets/restart.png" ID="restartbutton"/>
+			<texture filename="src/assets/UI/States/GameOverState/GameOverStatePanel.png" ID="gameOverStatePanel"/>
+			<texture filename="src/assets/UI/buttons/restart-button_64x64_anim.png" ID="restartButton"/>
+			<texture filename="src/assets/UI/buttons/main-menu-button_64x64_anim.png" ID="mainMenuButton"/>
 		</TEXTURES>
-		<OBJECTS>
-			<object type="animatedGraphic" x="200.00" y="100.00" width="190" height="30" textureID="gameovertext" numFrames="2" animSpeed="2"/>
-			<object type="menuButton" x="200.00" y="200.00" width="200" height="80" textureID="mainbutton" numFrames="0" callbackID="mainbuttonCallbackID"/>
-			<object type="menuButton" x="200.00" y="300.00" width="200" height="80" textureID="restartbutton" numFrames="0" callbackID="restartbuttonCallbackID"/>
-		</OBJECTS>
+		<PANELS>
+			<GAMEOVERSTATE type="gameOverStatePanel" x="200.00" y="140.00" width="400" height="200" textureID="gameOverStatePanel">
+				<OBJECTS>
+					<object type="text" x="325.00" y="130.00" characterWidth="20" height="40" textureID="defeatedLabel" labelId="defeatedLabel" message="DEFEATED" dynamic="false"/>
+					<object type="text" x="380.00" y="230.00" characterWidth="8" height="16" textureID="gameOverWaveLabel" labelId="gameOverWaveLabel" message="" dynamic="true"/>
+					<object type="menuButton" x="325.00" y="300.00" width="64" height="64" textureID="mainMenuButton" numFrames="0" callbackID="mainMenuButtonCallbackID"/>
+					<object type="text" x="323.00" y="370.00" characterWidth="8" height="16" textureID="mainMenuLabel" labelId="mainMenuLabel" message="Main menu" dynamic="false"/>
+					<object type="menuButton" x="425.00" y="300.00" width="64" height="64" textureID="restartButton" numFrames="0" callbackID="restartButtonCallbackID"/>
+					<object type="text" x="430.00" y="370.00" characterWidth="8" height="16" textureID="restartLabel" labelId="restartLabel" message="Restart" dynamic="false"/>
+				</OBJECTS>	
+			</GAMEOVERSTATE>
+		</PANELS>
 	</GAMEOVER>
 </STATES>

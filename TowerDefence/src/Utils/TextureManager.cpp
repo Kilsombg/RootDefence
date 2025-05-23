@@ -127,6 +127,26 @@ void TextureManager::drawProgressBar(int x, int y, int width, int height, SDL_Co
 	SDL_SetRenderDrawColor(renderer, oldColor.r, oldColor.g, oldColor.b, oldColor.a);
 }
 
+void TextureManager::dimBackground(SDL_Window* pWindow, SDL_Renderer* pRenderer)
+{
+	// get old draw color
+	SDL_Color oldColor;
+	SDL_GetRenderDrawColor(pRenderer, &oldColor.r, &oldColor.g, &oldColor.b, &oldColor.a);
+
+	// get window's width and height
+	int windowWidth, windowHeight;
+	SDL_GetWindowSize(pWindow, &windowWidth, &windowHeight);
+
+	// dim background
+	SDL_SetRenderDrawBlendMode(pRenderer, SDL_BLENDMODE_BLEND);
+	SDL_SetRenderDrawColor(pRenderer, 0, 0, 0, 128);
+	SDL_Rect dimRect = { 0, 0, windowWidth, windowHeight };
+	SDL_RenderFillRect(pRenderer, &dimRect);
+
+	// set the old draw color
+	SDL_SetRenderDrawColor(pRenderer, oldColor.r, oldColor.g, oldColor.b, oldColor.a);
+}
+
 void TextureManager::drawRectangle(int x, int y, int width, int height, SDL_Renderer* renderer)
 {
 	SDL_Rect rect;

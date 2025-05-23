@@ -3,11 +3,11 @@
 
 #include "../../EntitiesHeaders/GameObject.h"
 #include "../../EntitiesHeaders/Texture.h"
+#include "../../EntitiesHeaders/Text.h"
 
 #include<vector>
 #include<string>
 #include<memory>
-
 
 /**
 * base class for panels
@@ -23,9 +23,10 @@ public:
 	void setBackgroundTexture(std::unique_ptr<Texture> backgroundTexture) { m_backgroundTexture = std::move(backgroundTexture); }
 
 protected:
-	std::vector<std::string> m_textureIDList;
-	std::vector<std::unique_ptr<GameObject>> m_gameObjects;
-	std::unique_ptr<Texture> m_backgroundTexture;
+	std::vector<std::string> m_textureIDList; // all texture the panel has
+	std::vector<std::unique_ptr<GameObject>> m_gameObjects; // left game objects in panel
+	std::unique_ptr<Texture> m_backgroundTexture; // background texture
+	std::map<std::string, std::unique_ptr<Text>> m_labelsMap; // map of labels for each panel
 };
 
 #endif // !__Panel__
