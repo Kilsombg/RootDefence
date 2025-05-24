@@ -41,7 +41,7 @@ public:
 	// getters and setters
 
 	std::shared_ptr<Tower>& getShadowObject();
-	
+
 	void setLevel(std::shared_ptr<Level> level);
 
 	ClickToPlaceTowerStates getState();

@@ -51,11 +51,15 @@ void ClickToPlaceTowerHandler::update(std::shared_ptr<std::vector<std::shared_pt
 
 void ClickToPlaceTowerHandler::render()
 {
+	// draw shadow object radius
 	m_shadowObjectRadiusColor = m_isMouseOnFreeTowerTile ? ColorsConsts::gray : ColorsConsts::red;
 	TheTextureManager::Instance()->drawFilledCircle(
-		m_shadowObject->getPosition().getX(), m_shadowObject->getPosition().getY(), static_cast<int>(m_shadowObject->getRadius()),
+		m_shadowObject->getPosition().getX() + m_shadowObject->getWidth() / 2, m_shadowObject->getPosition().getY() + m_shadowObject->getHeight() / 2,
+		static_cast<int>(m_shadowObject->getRadius()),
 		{ m_shadowObjectRadiusColor.r, m_shadowObjectRadiusColor.g, m_shadowObjectRadiusColor.b, m_shadowObjectRadiusColor.a },
 		TheGame::Instance()->getRenderer());
+
+	// draw shadow object
 	m_shadowObject->draw();
 }
 

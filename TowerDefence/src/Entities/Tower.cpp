@@ -249,7 +249,7 @@ void Tower::draw()
 	if (m_selectOnClickEventHandler.isSelected())
 	{
 		TheTextureManager::Instance()->drawFilledCircle(
-			m_position.getX(), m_position.getY(), static_cast<int>(m_radius),
+			m_position.getX() + m_width / 2, m_position.getY() + m_height / 2, static_cast<int>(m_radius),
 			{ ColorsConsts::gray.r, ColorsConsts::gray.g, ColorsConsts::gray.b, ColorsConsts::gray.a },
 			TheGame::Instance()->getRenderer());
 	}
@@ -273,7 +273,7 @@ void Tower::load(const std::shared_ptr<LoaderParams> pParams)
 		m_textureID[0] = std::toupper(m_textureID[0]);
 		m_textureID = getTowerType(pParams->getAttribute<std::string>(LoaderParamsConsts::color)) + m_textureID;
 
-		namePrefix= getTowerType(pParams->getAttribute<std::string>(LoaderParamsConsts::color));
+		namePrefix = getTowerType(pParams->getAttribute<std::string>(LoaderParamsConsts::color));
 		namePrefix[0] = std::toupper(namePrefix[0]);
 		namePrefix.append(" ");
 
@@ -366,15 +366,22 @@ bool Tower::inRadius(std::shared_ptr<Enemy> enemy)
 {
 	if (enemy.get() == nullptr) return false;
 
-	Vector2D topLeft = Vector2D(enemy->getPosition());
-	Vector2D topRight = Vector2D(enemy->getPosition().getX() + enemy->getWidth(), enemy->getPosition().getY());
-	Vector2D bottomLeft = Vector2D(enemy->getPosition().getX(), enemy->getPosition().getY() + enemy->getHeight());
-	Vector2D bottomRight = Vector2D(enemy->getPosition().getX() + enemy->getWidth(), enemy->getPosition().getY() + enemy->getHeight());
+	// get tower's center
+	Vector2D centerPos = m_position;
+	centerPos.setX(centerPos.getX() + m_width / 2);
+	centerPos.setY(centerPos.getY() + m_height / 2);
 
-	return Vector2D::distance(getPosition(), topLeft) <= getRadius() ||
-		Vector2D::distance(getPosition(), topRight) <= getRadius() ||
-		Vector2D::distance(getPosition(), bottomLeft) <= getRadius() ||
-		Vector2D::distance(getPosition(), bottomRight) <= getRadius();
+	// enemy target box
+	int hitboxPadding = 3;
+	Vector2D topLeft = Vector2D(enemy->getPosition()) + hitboxPadding;
+	Vector2D topRight = Vector2D(enemy->getPosition().getX() + enemy->getWidth() - hitboxPadding, enemy->getPosition().getY() + hitboxPadding);
+	Vector2D bottomLeft = Vector2D(enemy->getPosition().getX() + hitboxPadding, enemy->getPosition().getY() + enemy->getHeight() - hitboxPadding);
+	Vector2D bottomRight = Vector2D(enemy->getPosition().getX() + enemy->getWidth(), enemy->getPosition().getY() + enemy->getHeight()) - hitboxPadding;
+
+	return Vector2D::distance(centerPos, topLeft) <= getRadius() ||
+		Vector2D::distance(centerPos, topRight) <= getRadius() ||
+		Vector2D::distance(centerPos, bottomLeft) <= getRadius() ||
+		Vector2D::distance(centerPos, bottomRight) <= getRadius();
 }
 
 bool Tower::isSelected()
