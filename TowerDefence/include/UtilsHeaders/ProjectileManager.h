@@ -24,6 +24,11 @@ public:
 
 private:
 	ProjectileManager();
+	/**
+	* calculates damage dealt to enemy, corresponding to type.
+	*/
+	float damageToEnemy(Projectile* projectile);
+
 	static std::shared_ptr<ProjectileManager> s_pInstance;
 	std::vector<std::unique_ptr<Projectile>> m_activeProjectiles;
 	std::unique_ptr<GameObjectData<LoaderParams>> m_projectilesData;

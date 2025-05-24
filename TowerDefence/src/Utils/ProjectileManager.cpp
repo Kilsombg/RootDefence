@@ -25,6 +25,13 @@ ProjectileManager::ProjectileManager()
 {
 }
 
+float ProjectileManager::damageToEnemy(Projectile* projectile)
+{
+	float damageMultiplier = projectile->getTargetEnemy().lock()->getDrop().type == projectile->getTowersType() ? 1. : 0.5;
+
+	return damageMultiplier * projectile->getDamage();
+}
+
 void ProjectileManager::update()
 {
 	for (std::vector<std::unique_ptr<Projectile>>::size_type i = 0; i < m_activeProjectiles.size(); i++)
@@ -36,7 +43,7 @@ void ProjectileManager::update()
 			// if enemy is still alive then deal damage
 			if (m_activeProjectiles[i]->getTargetEnemy().use_count()) 
 			{
-				m_activeProjectiles[i]->getTargetEnemy().lock()->dealDamage(m_activeProjectiles[i]->getDamage());
+				m_activeProjectiles[i]->getTargetEnemy().lock()->dealDamage(damageToEnemy(m_activeProjectiles[i].get()));
 				//std::cout << "target enemy health: " << m_activeProjectiles[i]->getTargetEnemy().lock()->getHealth() << '\n';
 			}
 
@@ -69,6 +76,7 @@ void ProjectileManager::createProjectile(Tower& tower)
 		{
 			std::shared_ptr<LoaderParams> params = m_projectilesData->getData(tower.getProjectileID());
 			params->setAttribute(LoaderParamsConsts::damage, tower.getDamage());
+			params->setAttribute(LoaderParamsConsts::towerColor, tower.getColor());
 			params->setAttribute(LoaderParamsConsts::x, tower.getPosition().getX() + tower.getWidth() / 2);
 			params->setAttribute(LoaderParamsConsts::y, tower.getPosition().getY());
 			

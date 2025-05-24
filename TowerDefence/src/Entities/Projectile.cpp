@@ -32,6 +32,7 @@ void Projectile::load(const std::shared_ptr<LoaderParams> pParams)
 
 	m_damage = pParams->getAttribute<float>(LoaderParamsConsts::damage);
 	m_speed = pParams->getAttribute<float>(LoaderParamsConsts::projectileSpeed);
+	m_towerType = getResourceTypeByString(pParams->getAttribute<std::string>(LoaderParamsConsts::towerColor));
 }
 
 float Projectile::getDamage()
@@ -47,6 +48,11 @@ void Projectile::setTargetEnemy(std::weak_ptr<Enemy> targetEnemy)
 std::weak_ptr<Enemy> Projectile::getTargetEnemy()
 {
 	return m_targetEnemy;
+}
+
+ResourceType Projectile::getTowersType()
+{
+	return m_towerType;
 }
 
 bool Projectile::hitEnemy()
