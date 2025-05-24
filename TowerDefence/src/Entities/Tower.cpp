@@ -316,6 +316,7 @@ std::string Tower::getTowerType(std::string towerColor)
 	if (towerColor == ResourceTypeConst::green) return TowerTypeConsts::green;
 	if (towerColor == ResourceTypeConst::yellow) return TowerTypeConsts::yellow;
 	if (towerColor == ResourceTypeConst::red) return TowerTypeConsts::red;
+	if (towerColor == ResourceTypeConst::blue) return TowerTypeConsts::blue;
 
 	std::cout << "Tower color: " << towerColor << " not found.\n";
 

@@ -12,6 +12,7 @@ namespace ResourceTypeConst {
 	constexpr char green[] = "GREEN";
 	constexpr char yellow[] = "YELLOW";
 	constexpr char red[] = "RED";
+	constexpr char blue[] = "BLUE";
 }
 
 /**
@@ -23,6 +24,7 @@ enum ResourceType
 	GREEN = 0,
 	YELLOW = 1,
 	RED = 2,
+	BLUE = 3,
 	NOT_RESOURCE_TYPE
 };
 
@@ -32,6 +34,7 @@ inline ResourceType getResourceTypeByString(std::string resourceType)
 	if (resourceType == ResourceTypeConst::green) return ResourceType::GREEN;
 	if (resourceType == ResourceTypeConst::yellow) return ResourceType::YELLOW;
 	if (resourceType == ResourceTypeConst::red) return ResourceType::RED;
+	if (resourceType == ResourceTypeConst::blue) return ResourceType::BLUE;
 
 	std::cout << "ResourceType: " << resourceType << " not found.\n";
 	return NOT_RESOURCE_TYPE;
@@ -51,7 +54,7 @@ struct Resource
 /**
 * ArrayOfResources is a type that can hold all of the ResourceTypes data.
 */
-typedef std::array<Resource, 3> ArrayOfResources;
+typedef std::array<Resource, 4> ArrayOfResources;
 
 
 /**

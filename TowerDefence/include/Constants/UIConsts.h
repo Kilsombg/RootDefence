@@ -7,6 +7,7 @@ namespace UIConsts {
 	constexpr char agateResourceLabelID[] = "agateResourceLabelID";
 	constexpr char amberResourceLabelID[] = "amberResourceLabelID";
 	constexpr char rubyResourceLabelID[] = "rubyResourceLabelID";
+	constexpr char sapphireResourceLabelID[] = "sapphireResourceLabelID";
 	constexpr char waveValueLabel[] = "waveValueLabel";
 
 	// tower cost labels

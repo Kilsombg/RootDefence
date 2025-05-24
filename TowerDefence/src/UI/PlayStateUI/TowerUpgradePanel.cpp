@@ -445,11 +445,11 @@ void TowerUpgradePanel::updateMaxUpgradeButtons(bool mode, int upgradeID)
 {
 	std::string upgradeCostLabelID = UIConsts::upgradeButtonCostPrefix + std::to_string(upgradeID) + UIConsts::upgradeButtonCostSufix;
 	std::string upgradeTextLabelID = UIConsts::upgradeButtonTextPrefix + std::to_string(upgradeID) + UIConsts::upgradeButtonTextSufix;
-	std::string maxUpgrade0Button = "maxUpgrade" + std::to_string(upgradeID) + "Button";
+	std::string maxUpgradeButtonLabelID = "maxUpgrade" + std::to_string(upgradeID) + "Button";
 
 	m_labelsMap[upgradeCostLabelID]->setHidden(mode);
 	m_labelsMap[upgradeTextLabelID]->setHidden(mode);
-	m_labelsMap[maxUpgrade0Button]->setHidden(!mode);
+	m_labelsMap[maxUpgradeButtonLabelID]->setHidden(!mode);
 	m_towerUpgradeCostResourceImages[upgradeID].setHidden(mode);
 }
 

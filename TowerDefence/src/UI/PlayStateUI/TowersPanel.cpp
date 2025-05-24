@@ -233,6 +233,7 @@ void TowersPanel::updateLabel(Text* pText)
 	else if (labelId == UIConsts::agateResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::GREEN].value));
 	else if (labelId == UIConsts::amberResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::YELLOW].value));
 	else if (labelId == UIConsts::rubyResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::RED].value));
+	else if (labelId == UIConsts::sapphireResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::BLUE].value));
 	else if (labelId == UIConsts::waveValueLabel) pText->setMessage(std::to_string(m_gameSessionData->currentWaveLevel));
 	else if (labelId == UIConsts::agateStumpCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::stump]));
 	else if (labelId == UIConsts::agatePineCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::pine]));

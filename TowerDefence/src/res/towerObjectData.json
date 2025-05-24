@@ -47,7 +47,7 @@
       "projectileID": "",
       "numFrames": 4,
       "radius": 32.0,
-      "costValue": 2,
+      "costValue": 10,
       "freezePercentage": 0.2
     }
   }

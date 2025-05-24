@@ -17,6 +17,7 @@ namespace GameObjectConsts {
 	constexpr char redPepper[] = "redPepper";
 	constexpr char redRadish[] = "redRadish";
 	constexpr char redTomato[] = "redTomato";
+	constexpr char blueBean[] = "blueBean";
 	constexpr char stump[] = "stump";
 	constexpr char pine[] = "pine";
 	constexpr char oak[] = "oak";
@@ -51,6 +52,7 @@ namespace TowerTypeConsts {
 	constexpr char green[] = "agate";
 	constexpr char yellow[] = "amber";
 	constexpr char red[] = "ruby";
+	constexpr char blue[] = "sapphire";
 #pragma endregion
 
 }

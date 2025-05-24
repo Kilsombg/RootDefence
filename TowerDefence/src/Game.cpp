@@ -134,6 +134,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::redRadish, std::make_shared<EnemyCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::redPepper ,std::make_shared<EnemyCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::redTomato ,std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::blueBean,std::make_shared<EnemyCreator>());
 
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::stump , std::make_shared<TowerCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::pine, std::make_shared<TowerCreator>());

@@ -98,6 +98,17 @@
       "defence": 3.0,
       "dropType": "RED",
       "dropValue": 3
+    },
+    "blueBean": {
+      "width": 32,
+      "height": 32,
+      "textureID": "blueBeanEnemy",
+      "numFrames": 6,
+      "moveSpeed": 0.6,
+      "maxHealth": 50.0,
+      "defence": 3.0,
+      "dropType": "BLUE",
+      "dropValue": 3
     }
   }
 }

@@ -48,15 +48,15 @@
 			<texture filename="src/assets/UI/States/PlayState/buttons/ruby-oak_64x66_disabled.png" ID="rubyOakButtonDisabled"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/frozen-bush_64x64.png" ID="frozenBushButton"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/frozen-bush_64x64_disabled.png" ID="frozenBushButtonDisabled"/>
-			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/agate-oak-apple_16x16.png" ID="agateOakApple"/>
-			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/amber-oak-apple_16x16.png" ID="amberOakApple"/>
-			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/ruby-oak-apple_16x16.png" ID="rubyOakApple"/>
-			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/pine-cone_16x16.png" ID="agatePineCone"/>
-			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/pine-cone_16x16.png" ID="amberPineCone"/>
-			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/pine-cone_16x16.png" ID="rubyPineCone"/>
-			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/agate-root-stick_16x16.png" ID="agateRootStick"/>
-			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/amber-root-stick_16x16.png" ID="amberRootStick"/>
-			<texture filename="src/assets/UI/States/PlayState//enemies/projectiles/ruby-root-stick_16x16.png" ID="rubyRootStick"/>
+			<texture filename="src/assets/UI/States/PlayState/towers/projectiles/agate-oak-apple_16x16.png" ID="agateOakApple"/>
+			<texture filename="src/assets/UI/States/PlayState/towers/projectiles/amber-oak-apple_16x16.png" ID="amberOakApple"/>
+			<texture filename="src/assets/UI/States/PlayState/towers/projectiles/ruby-oak-apple_16x16.png" ID="rubyOakApple"/>
+			<texture filename="src/assets/UI/States/PlayState/towers/projectiles/pine-cone_16x16.png" ID="agatePineCone"/>
+			<texture filename="src/assets/UI/States/PlayState/towers/projectiles/pine-cone_16x16.png" ID="amberPineCone"/>
+			<texture filename="src/assets/UI/States/PlayState/towers/projectiles/pine-cone_16x16.png" ID="rubyPineCone"/>
+			<texture filename="src/assets/UI/States/PlayState/towers/projectiles/agate-root-stick_16x16.png" ID="agateRootStick"/>
+			<texture filename="src/assets/UI/States/PlayState/towers/projectiles/amber-root-stick_16x16.png" ID="amberRootStick"/>
+			<texture filename="src/assets/UI/States/PlayState/towers/projectiles/ruby-root-stick_16x16.png" ID="rubyRootStick"/>
 			<texture filename="src/assets/UI/States/PlayState/enemies/animation/green_choy_32x32_anim.png" ID="greenChoyEnemy"/>
 			<texture filename="src/assets/UI/States/PlayState/enemies/animation/green_plant_32x32_anim.png" ID="greenPlantEnemy"/>
 			<texture filename="src/assets/UI/States/PlayState/enemies/animation/green_broccoli_32x32_anim.png" ID="greenBroccoliEnemy"/>
@@ -66,12 +66,14 @@
 			<texture filename="src/assets/UI/States/PlayState/enemies/animation/red_pepper_32x32_anim.png" ID="redPepperEnemy"/>
 			<texture filename="src/assets/UI/States/PlayState/enemies/animation/red_radish_32x32_anim.png" ID="redRadishEnemy"/>
 			<texture filename="src/assets/UI/States/PlayState/enemies/animation/red_tomato_32x32_anim.png" ID="redTomatoEnemy"/>
+			<texture filename="src/assets/UI/States/PlayState/enemies/animation/blue_bean_32x32_anim.png" ID="blueBeanEnemy"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/agate_resource16x16.png" ID="agateResourceIcon16x16"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/agate_resource32x32.png" ID="agateResourceIcon32x32"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/amber_resource16x16.png" ID="amberResourceIcon16x16"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/amber_resource32x32.png" ID="amberResourceIcon32x32"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/ruby_resource16x16.png" ID="rubyResourceIcon16x16"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/ruby_resource32x32.png" ID="rubyResourceIcon32x32"/>
+			<texture filename="src/assets/UI/States/PlayState/icons/sapphire_resource16x16.png" ID="sapphireResourceIcon16x16"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/damage_21x21.png" ID="damageIcon"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/attSpeed_29x22.png" ID="attSpeedIcon"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/radius_23x22.png" ID="radiusIcon"/>
@@ -99,6 +101,7 @@
 					<object type="text" x="840.00" y="42.00" characterWidth="8" height="18" textureID="agateResourceLabelID" labelId="agateResourceLabelID" message="" dynamic="true"/>
 				<object type="text" x="840.00" y="70.00" characterWidth="8" height="18" textureID="amberResourceLabelID" labelId="amberResourceLabelID" message="" dynamic="true"/>
 				<object type="text" x="840.00" y="92.00" characterWidth="8" height="18" textureID="rubyResourceLabelID" labelId="rubyResourceLabelID" message="" dynamic="true"/>
+					<object type="text" x="900.00" y="42.00" characterWidth="8" height="18" textureID="sapphireResourceLabelID" labelId="sapphireResourceLabelID" message="" dynamic="true"/>
 				<object type="texture" x="827.00" y="170.00" width="16" height="16" textureID="agateResourceIcon16x16"/>
 				<object type="text" x="843.00" y="171.00" characterWidth="10" height="18" textureID="agateStumpCostLabelID" labelId="agateStumpCostLabelID" message="" dynamic="false"/>
 					<object type="texture" x="904.00" y="170.00" width="16" height="16" textureID="agateResourceIcon16x16"/>
@@ -117,6 +120,7 @@
 				<object type="text" x="921.00" y="388.00" characterWidth="10" height="18" textureID="rubyPineCostLabelID" labelId="rubyPineCostLabelID" message="" dynamic="false"/>
 					<object type="texture" x="829.00" y="456.00" width="16" height="16" textureID="rubyResourceIcon16x16"/>
 				<object type="text" x="846.00" y="457.00" characterWidth="10" height="18" textureID="rubyOakCostLabelID" labelId="rubyOakCostLabelID" message="" dynamic="false"/>
+					<object type="texture" x="898.00" y="457.00" width="16" height="16" textureID="sapphireResourceIcon16x16"/>
 				<object type="text" x="915.00" y="458.00" characterWidth="10" height="18" textureID="frozenBushCostLabelID" labelId="frozenBushCostLabelID" message="" dynamic="false"/>
 					<object type="towerButton" x="808.00" y="124.00" width="70" height="64" textureID="agateStumpButton" numFrames="0" callbackID="createTowerCallbackID" towerName="stump" towerColor="GREEN"/>
 					<object type="towerButton" x="888.00" y="116.00" width="64" height="72" textureID="agatePineButton" numFrames="0" callbackID="createTowerCallbackID" towerName="pine" towerColor="GREEN"/>
@@ -127,7 +131,7 @@
 					<object type="towerButton" x="808.00" y="341.00" width="70" height="64" textureID="rubyStumpButton" numFrames="0" callbackID="createTowerCallbackID" towerName="stump" towerColor="RED"/>
 					<object type="towerButton" x="888.00" y="334.00" width="64" height="72" textureID="rubyPineButton" numFrames="0" callbackID="createTowerCallbackID" towerName="pine" towerColor="RED"/>
 					<object type="towerButton" x="810.00" y="410.00" width="64" height="66" textureID="rubyOakButton" numFrames="0" callbackID="createTowerCallbackID" towerName="oak" towerColor="RED"/>
-					<object type="towerButton" x="887.00" y="412.00" width="64" height="64" textureID="frozenBushButton" numFrames="0" callbackID="createTowerCallbackID" towerName="frozenBush" towerColor="GREEN"/>
+					<object type="towerButton" x="887.00" y="412.00" width="64" height="64" textureID="frozenBushButton" numFrames="0" callbackID="createTowerCallbackID" towerName="frozenBush" towerColor="BLUE"/>
 					<object type="menuButton" x="815.00" y="490.00" width="64" height="39" textureID="startButton" numFrames="0" callbackID="startWaveCallbackID"/>
 					<object type="menuButton" x="885.00" y="490.00" width="64" height="39" textureID="startButton" numFrames="0" callbackID="pauseStateCallbackID"/>
 					<object type="text" x="822.00" y="500.00" characterWidth="10" height="18" textureID="startWaveLabel" labelId="startWaveLabel" message="START" dynamic="false"/>
@@ -164,7 +168,7 @@
 						callbackID="towerUpgradeCallbackID" upgradeID="1"/>
 					<object type="text" x="589.00" y="478.00" characterWidth="6" height="10" textureID="upgrade1Label"  labelId="upgrade1Label" message="upgrade" dynamic="false"/>
 					<object type="text" x="611.00" y="492.00" characterWidth="6" height="10" textureID="towerUpgrade1Button" labelId="towerUpgrade1Label" message="" dynamic="false"/>
-					<object type="text" x="601.00" y="492.00" characterWidth="6" height="10" textureID="maxUpgrade1Button" labelId="maxUpgrade1Button" message="" dynamic="false"/>
+					<object type="text" x="601.00" y="492.00" characterWidth="6" height="10" textureID="maxUpgrade1Button" labelId="maxUpgrade1Button" message="MAX" dynamic="false"/>
 					<object type="sellTowerButton" x="720.00" y="475.00" width="55" height="32" textureID="sellTowerButton" numFrames="0" callbackID="sellTowerCallbackID"/>
 					<object type="text" x="733.00" y="479.00" characterWidth="7" height="11" textureID="sellMessageLabel" labelId="sellMessageLabel" message="SELL" dynamic="false"/>
 					<object type="text" x="746.00" y="491.00" characterWidth="7" height="11" textureID="sellValueLabel" labelId="sellValueLabel" message="" dynamic="true"/>

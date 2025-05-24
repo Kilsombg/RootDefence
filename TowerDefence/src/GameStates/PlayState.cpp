@@ -267,10 +267,11 @@ void PlayState::loadGameSessionData()
 {
 	m_gameSessionData = std::make_shared<GameSessionData>();
 
-	m_gameSessionData->gameHealth= 5;
+	m_gameSessionData->gameHealth = 5;
 	m_gameSessionData->resources = { Resource {ResourceType {GREEN}, 100},
 					Resource {ResourceType {YELLOW}, 100},
-					Resource {ResourceType {RED}, 100} };
+					Resource {ResourceType {RED}, 100},
+					Resource{ ResourceType {BLUE}, 100 } };
 	m_gameSessionData->currentWaveLevel = 0;
 }
 
