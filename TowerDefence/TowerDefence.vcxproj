@@ -175,6 +175,7 @@
     <ClCompile Include="src\UI\PauseStateUI\PauseStatePanel.cpp" />
     <ClCompile Include="src\UI\PauseStateUI\PauseStateUI.cpp" />
     <ClCompile Include="src\UI\PlayStateUI\PlayStateUI.cpp" />
+    <ClCompile Include="src\UI\PlayStateUI\TipsPanel.cpp" />
     <ClCompile Include="src\UI\PlayStateUI\TowersPanel.cpp" />
     <ClCompile Include="src\UI\PlayStateUI\TowerUpgradePanel.cpp" />
     <ClCompile Include="src\Utils\base64.cpp" />
@@ -255,6 +256,7 @@
     <ClInclude Include="include\UIHeaders\PauseStateUIHeaders\PauseStatePanel.h" />
     <ClInclude Include="include\UIHeaders\PauseStateUIHeaders\PauseStateUI.h" />
     <ClInclude Include="include\UIHeaders\PlayStateUIHeaders\PlayStateUI.h" />
+    <ClInclude Include="include\UIHeaders\PlayStateUIHeaders\TipsPanel.h" />
     <ClInclude Include="include\UIHeaders\PlayStateUIHeaders\TowersPanel.h" />
     <ClInclude Include="include\UIHeaders\PlayStateUIHeaders\TowerUpgradePanel.h" />
     <ClInclude Include="include\UtilsHeaders\base64.h" />

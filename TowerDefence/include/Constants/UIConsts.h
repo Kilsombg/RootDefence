@@ -21,6 +21,9 @@ namespace UIConsts {
 	constexpr char rubyOakCostLabelID[] = "rubyOakCostLabelID";
 	constexpr char frozenBushCostLabelID[] = "frozenBushCostLabelID";
 
+	// tips panel
+	constexpr char tipMessageLabel[] = "tipMessageLabel";
+
 	// tower upgrade panel
 	constexpr char towerNameLabel[] = "towerNameLabel";
 	constexpr char slowPercentageLabel[] = "slowPercentageLabel";

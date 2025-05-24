@@ -25,6 +25,7 @@
 
 #include "../include/UIHeaders/PlayStateUIHeaders/TowersPanel.h"
 #include "../include/UIHeaders/PlayStateUIHeaders/TowerUpgradePanel.h"
+#include "../include/UIHeaders/PlayStateUIHeaders/TipsPanel.h"
 
 
 #include "../include/UtilsHeaders/TrueTypeManager.h"
@@ -158,6 +159,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 	ThePanelFactory::Instance()->registerType(PanelConsts::towersPanel, std::make_shared<TowersPanelCreator>());
 	ThePanelFactory::Instance()->registerType(PanelConsts::towerUpgradePanel, std::make_shared<TowerUpgradePanelCreator>());
+	ThePanelFactory::Instance()->registerType(PanelConsts::tipsPanel, std::make_shared<TipsPanelCreator>());
 
 	m_pGameStateMachine = TheGameStateMachine::Instance();
 	m_pGameStateMachine->changeState(std::make_shared<MainMenuState>());

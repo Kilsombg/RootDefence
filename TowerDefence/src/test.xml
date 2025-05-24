@@ -88,6 +88,7 @@
 			<texture filename="src/assets/UI/States/PlayState/towers/frozen-bush_52x48.png" ID="frozenBushTower"/>
 			<texture filename="src/assets/UI/States/PlayState/TowersPanel.png" ID="towersPanel"/>
 			<texture filename="src/assets/UI/States/PlayState/TowerUpgradesPanel.png" ID="towerUpgradesPanel"/>
+			<texture filename="src/assets/UI/States/PlayState/TipsPanel.png" ID="tipsPanel"/>
 		</TEXTURES>
 		<PANELS>
 			<TOWERS type="towersPanel" x="800.00" y="0.00" width="160" height="540" textureID="towersPanel">
@@ -133,6 +134,12 @@
 					<object type="text" x="889.00" y="500.00" characterWidth="7" height="18" textureID="settingsLabel" labelId="settingsLabel" message="SETTINGS" dynamic="false"/>
 				</OBJECTS>
 			</TOWERS>
+			<TIPS type="tipsPanel" x="0.00" y="448.00" width="800" height="92" textureID="tipsPanel">
+				<OBJECTS>
+					<object type="text" x="45.00" y="485.00" characterWidth="7" height="12" textureID="tipLabel" labelId="tipLabel" message="Tip:" dynamic="false"/>
+					<object type="text" x="80.00" y="485.00" characterWidth="7" height="12" textureID="tipMessageLabel" labelId="tipMessageLabel" message="" dynamic="true"/>
+				</OBJECTS>
+			</TIPS>
 			<TOWERUPGRADE type="towerUpgradePanel" x="0.00" y="448.00" width="800" height="92" textureID="towerUpgradesPanel">
 				<OBJECTS>
 					<object type="text" x="100.00" y="465.00" characterWidth="8" height="15" textureID="towerNameLabel" labelId="towerNameLabel" message="" dynamic="false"/>
