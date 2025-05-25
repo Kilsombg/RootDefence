@@ -109,8 +109,8 @@
 		<PANELS>
 			<TIPS type="tipsPanel" x="0.00" y="448.00" width="800" height="92" textureID="tipsPanel">
 				<OBJECTS>
-					<object type="text" x="45.00" y="485.00" characterWidth="7" height="12" textureID="tipLabel" labelId="tipLabel" message="Tip:" dynamic="false"/>
-					<object type="text" x="80.00" y="485.00" characterWidth="7" height="12" textureID="tipMessageLabel" labelId="tipMessageLabel" message="" dynamic="true"/>
+					<object type="text" x="35.00" y="485.00" characterWidth="7" height="12" textureID="tipLabel" labelId="tipLabel" message="Tip:" dynamic="false"/>
+					<object type="text" x="70.00" y="485.00" characterWidth="7" height="12" textureID="tipMessageLabel" labelId="tipMessageLabel" message="" dynamic="true"/>
 				</OBJECTS>
 			</TIPS>
 			<TOWERUPGRADE type="towerUpgradePanel" x="0.00" y="448.00" width="800" height="92" textureID="towerUpgradesPanel">

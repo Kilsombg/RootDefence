@@ -100,13 +100,19 @@ void TipsPanel::updateDynamicLabel()
 void TipsPanel::loadTips()
 {
 	m_tips = {
-		std::string("Press Start button to begin a wave."),
+		std::string("Press Start button or click SPACE to begin a wave."),
 		std::string("There are three types of enemies - green, yellow and red. Each enemy type drops unique resources."),
+		std::string("Blue bean is a special enemy that has damage reduction from any tower."),
 		std::string("Agate, amber and ruby towers deal different damage multiplayer against each enemy type."),
 		std::string("Go to settings to see a table of damage against enemies."),
 		std::string("Stump has standard stats. Pine has high att.speed, but lower damage. Oak is vice versa."),
 		std::string("Frozen bush doesn't do damage, but slows enemies."),
-		std::string("If you placed a tower on unwanted place you can sell it.")
+		std::string("Blue bean drops sapphires, which are used to buy frozen bush"),
+		std::string("If you placed a tower on unwanted place you can sell it."),
+		std::string("Each tower type uses its own resource - easy to gather resources for towers."),
+		std::string("Some towers have large placement area, so plan ahead your placements."),
+		std::string("A wise man once said - upgraded tower is always better than not upgraded."),
+		std::string("Hover tower's upgrade button to preview stat changes.")
 	};
 }
 
