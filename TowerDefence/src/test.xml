@@ -89,7 +89,7 @@
 			<texture filename="src/assets/UI/States/PlayState/icons/ruby_resource32x32.png" ID="rubyResourceIcon32x32"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/sapphire_resource16x16.png" ID="sapphireResourceIcon16x16"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/damage_21x21.png" ID="damageIcon"/>
-			<texture filename="src/assets/UI/States/PlayState/icons/attSpeed_29x22.png" ID="attSpeedIcon"/>
+			<texture filename="src/assets/UI/States/PlayState/icons/attSpeed_29x22.png" ID="attackSpeedIcon"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/radius_23x22.png" ID="radiusIcon"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/slow_percentage_21x20.png" ID="slowPercentageIcon"/>
 			<texture filename="src/assets/UI/States/PlayState/towers/agate-stump_53x33.png" ID="agateStumpTower"/>
@@ -107,51 +107,6 @@
 			<texture filename="src/assets/UI/States/PlayState/TipsPanel.png" ID="tipsPanel"/>
 		</TEXTURES>
 		<PANELS>
-			<TOWERS type="towersPanel" x="800.00" y="0.00" width="160" height="540" textureID="towersPanel">
-				<OBJECTS>
-					<object type="text" x="845.00" y="14.00" characterWidth="15" height="22" textureID="healthLabel" labelId="healthLabel" message="" dynamic="true"/>
-					<object type="text" x="885.00" y="14.00" characterWidth="8" height="15" textureID="waveLabel" labelId="waveLabel" message="Wave:" dynamic="false"/>
-					<object type="text" x="930.00" y="14.00" characterWidth="8" height="15" textureID="waveValueLabel" labelId="waveValueLabel" message="Wave:" dynamic="true"/>
-					<object type="text" x="840.00" y="42.00" characterWidth="8" height="18" textureID="agateResourceLabelID" labelId="agateResourceLabelID" message="" dynamic="true"/>
-				<object type="text" x="840.00" y="70.00" characterWidth="8" height="18" textureID="amberResourceLabelID" labelId="amberResourceLabelID" message="" dynamic="true"/>
-				<object type="text" x="840.00" y="92.00" characterWidth="8" height="18" textureID="rubyResourceLabelID" labelId="rubyResourceLabelID" message="" dynamic="true"/>
-					<object type="text" x="900.00" y="42.00" characterWidth="8" height="18" textureID="sapphireResourceLabelID" labelId="sapphireResourceLabelID" message="" dynamic="true"/>
-				<object type="texture" x="827.00" y="170.00" width="16" height="16" textureID="agateResourceIcon16x16"/>
-				<object type="text" x="843.00" y="171.00" characterWidth="10" height="18" textureID="agateStumpCostLabelID" labelId="agateStumpCostLabelID" message="" dynamic="false"/>
-					<object type="texture" x="904.00" y="170.00" width="16" height="16" textureID="agateResourceIcon16x16"/>
-				<object type="text" x="920.00" y="171.00" characterWidth="10" height="18" textureID="agatePineCostLabelID" labelId="agatePineCostLabelID" message="" dynamic="false"/>
-					<object type="texture" x="830.00" y="241.00" width="16" height="16" textureID="agateResourceIcon16x16"/>
-				<object type="text" x="845.00" y="242.00" characterWidth="10" height="18" textureID="agateOakCostLabelID" labelId="agateOakCostLabelID" message="" dynamic="false"/>
-					<object type="texture" x="905.00" y="241.00" width="16" height="16" textureID="amberResourceIcon16x16"/>
-				<object type="text" x="922.00" y="242.00" characterWidth="10" height="18" textureID="amberStumpCostLabelID" labelId="amberStumpCostLabelID" message="" dynamic="false"/>
-					<object type="texture" x="828.00" y="314.00" width="16" height="16" textureID="amberResourceIcon16x16"/>
-				<object type="text" x="845.00" y="315.00" characterWidth="10" height="18" textureID="amberPineCostLabelID" labelId="amberPineCostLabelID" message="" dynamic="false"/>
-					<object type="texture" x="905.00" y="314.00" width="16" height="16" textureID="amberResourceIcon16x16"/>
-				<object type="text" x="922.00" y="315.00" characterWidth="10" height="18" textureID="amberOakCostLabelID" labelId="amberOakCostLabelID" message="" dynamic="false"/>
-					<object type="texture" x="828.00" y="385.00" width="16" height="16" textureID="rubyResourceIcon16x16"/>
-				<object type="text" x="845.00" y="387.00" characterWidth="10" height="18" textureID="rubyStumpCostLabelID" labelId="rubyStumpCostLabelID" message="" dynamic="false"/>
-					<object type="texture" x="905.00" y="387.00" width="16" height="16" textureID="rubyResourceIcon16x16"/>
-				<object type="text" x="921.00" y="388.00" characterWidth="10" height="18" textureID="rubyPineCostLabelID" labelId="rubyPineCostLabelID" message="" dynamic="false"/>
-					<object type="texture" x="829.00" y="456.00" width="16" height="16" textureID="rubyResourceIcon16x16"/>
-				<object type="text" x="846.00" y="457.00" characterWidth="10" height="18" textureID="rubyOakCostLabelID" labelId="rubyOakCostLabelID" message="" dynamic="false"/>
-					<object type="texture" x="898.00" y="457.00" width="16" height="16" textureID="sapphireResourceIcon16x16"/>
-				<object type="text" x="915.00" y="458.00" characterWidth="10" height="18" textureID="frozenBushCostLabelID" labelId="frozenBushCostLabelID" message="" dynamic="false"/>
-					<object type="towerButton" x="808.00" y="124.00" width="70" height="64" textureID="agateStumpButton" numFrames="0" callbackID="createTowerCallbackID" towerName="stump" towerColor="GREEN"/>
-					<object type="towerButton" x="888.00" y="116.00" width="64" height="72" textureID="agatePineButton" numFrames="0" callbackID="createTowerCallbackID" towerName="pine" towerColor="GREEN"/>
-					<object type="towerButton" x="810.00" y="194.00" width="64" height="66" textureID="agateOakButton" numFrames="0" callbackID="createTowerCallbackID" towerName="oak" towerColor="GREEN"/>
-					<object type="towerButton" x="886.00" y="196.00" width="70" height="64" textureID="amberStumpButton" numFrames="0" callbackID="createTowerCallbackID" towerName="stump" towerColor="YELLOW"/>
-					<object type="towerButton" x="810.00" y="261.00" width="64" height="72" textureID="amberPineButton" numFrames="0" callbackID="createTowerCallbackID" towerName="pine" towerColor="YELLOW"/>
-					<object type="towerButton" x="888.00" y="267.00" width="64" height="66" textureID="amberOakButton" numFrames="0" callbackID="createTowerCallbackID" towerName="oak" towerColor="YELLOW"/>
-					<object type="towerButton" x="808.00" y="341.00" width="70" height="64" textureID="rubyStumpButton" numFrames="0" callbackID="createTowerCallbackID" towerName="stump" towerColor="RED"/>
-					<object type="towerButton" x="888.00" y="334.00" width="64" height="72" textureID="rubyPineButton" numFrames="0" callbackID="createTowerCallbackID" towerName="pine" towerColor="RED"/>
-					<object type="towerButton" x="810.00" y="410.00" width="64" height="66" textureID="rubyOakButton" numFrames="0" callbackID="createTowerCallbackID" towerName="oak" towerColor="RED"/>
-					<object type="towerButton" x="887.00" y="412.00" width="64" height="64" textureID="frozenBushButton" numFrames="0" callbackID="createTowerCallbackID" towerName="frozenBush" towerColor="BLUE"/>
-					<object type="menuButton" x="815.00" y="490.00" width="64" height="39" textureID="startButton" numFrames="0" callbackID="startWaveCallbackID"/>
-					<object type="menuButton" x="885.00" y="490.00" width="64" height="39" textureID="startButton" numFrames="0" callbackID="pauseStateCallbackID"/>
-					<object type="text" x="822.00" y="500.00" characterWidth="10" height="18" textureID="startWaveLabel" labelId="startWaveLabel" message="START" dynamic="false"/>
-					<object type="text" x="889.00" y="500.00" characterWidth="7" height="18" textureID="settingsLabel" labelId="settingsLabel" message="SETTINGS" dynamic="false"/>
-				</OBJECTS>
-			</TOWERS>
 			<TIPS type="tipsPanel" x="0.00" y="448.00" width="800" height="92" textureID="tipsPanel">
 				<OBJECTS>
 					<object type="text" x="45.00" y="485.00" characterWidth="7" height="12" textureID="tipLabel" labelId="tipLabel" message="Tip:" dynamic="false"/>
@@ -164,7 +119,7 @@
 					<object type="texture" x="204.00" y="461.00" width="21" height="21" textureID="damageIcon"/>
 					<object type="text" x="230.00" y="456.00" characterWidth="6" height="10" textureID="damageLabel" labelId="damageLabel" message="damage" dynamic="false"/>
 					<object type="text" x="230.00" y="466.00" characterWidth="6" height="10" textureID="damageValueLabel" labelId="damageValueLabel" message="" dynamic="false"/>
-					<object type="texture" x="200.00" y="497.00" width="29" height="22" textureID="attSpeedIcon"/>
+					<object type="texture" x="200.00" y="497.00" width="29" height="22" textureID="attackSpeedIcon"/>
 					<object type="text" x="234.00" y="496.00" characterWidth="6" height="10" textureID="attackSpeedLabel" labelId="attackSpeedLabel" message="att. speed" dynamic="false"/>
 					<object type="text" x="234.00" y="505.00" characterWidth="6" height="10" textureID="attackSpeedValueLabel" labelId="attackSpeedValueLabel" message="" dynamic="false"/>
 					<object type="texture" x="305.00" y="458.00" width="23" height="22" textureID="radiusIcon"/>
@@ -188,6 +143,51 @@
 					<object type="text" x="746.00" y="491.00" characterWidth="7" height="11" textureID="sellValueLabel" labelId="sellValueLabel" message="" dynamic="true"/>
 				</OBJECTS>
 			</TOWERUPGRADE>
+			<TOWERS type="towersPanel" x="800.00" y="0.00" width="160" height="540" textureID="towersPanel">
+				<OBJECTS>
+					<object type="text" x="845.00" y="14.00" characterWidth="15" height="22" textureID="healthLabel" labelId="healthLabel" message="" dynamic="true"/>
+					<object type="text" x="885.00" y="14.00" characterWidth="8" height="15" textureID="waveLabel" labelId="waveLabel" message="Wave:" dynamic="false"/>
+					<object type="text" x="930.00" y="14.00" characterWidth="8" height="15" textureID="waveValueLabel" labelId="waveValueLabel" message="Wave:" dynamic="true"/>
+					<object type="text" x="840.00" y="42.00" characterWidth="8" height="18" textureID="agateResourceLabelID" labelId="agateResourceLabelID" message="" dynamic="true"/>
+					<object type="text" x="840.00" y="70.00" characterWidth="8" height="18" textureID="amberResourceLabelID" labelId="amberResourceLabelID" message="" dynamic="true"/>
+					<object type="text" x="840.00" y="92.00" characterWidth="8" height="18" textureID="rubyResourceLabelID" labelId="rubyResourceLabelID" message="" dynamic="true"/>
+					<object type="text" x="900.00" y="42.00" characterWidth="8" height="18" textureID="sapphireResourceLabelID" labelId="sapphireResourceLabelID" message="" dynamic="true"/>
+					<object type="texture" x="827.00" y="170.00" width="16" height="16" textureID="agateResourceIcon16x16"/>
+					<object type="text" x="843.00" y="171.00" characterWidth="10" height="18" textureID="agateStumpCostLabelID" labelId="agateStumpCostLabelID" message="" dynamic="false"/>
+					<object type="texture" x="904.00" y="170.00" width="16" height="16" textureID="agateResourceIcon16x16"/>
+					<object type="text" x="920.00" y="171.00" characterWidth="10" height="18" textureID="agatePineCostLabelID" labelId="agatePineCostLabelID" message="" dynamic="false"/>
+					<object type="texture" x="830.00" y="241.00" width="16" height="16" textureID="agateResourceIcon16x16"/>
+					<object type="text" x="845.00" y="242.00" characterWidth="10" height="18" textureID="agateOakCostLabelID" labelId="agateOakCostLabelID" message="" dynamic="false"/>
+					<object type="texture" x="905.00" y="241.00" width="16" height="16" textureID="amberResourceIcon16x16"/>
+					<object type="text" x="922.00" y="242.00" characterWidth="10" height="18" textureID="amberStumpCostLabelID" labelId="amberStumpCostLabelID" message="" dynamic="false"/>
+					<object type="texture" x="828.00" y="314.00" width="16" height="16" textureID="amberResourceIcon16x16"/>
+					<object type="text" x="845.00" y="315.00" characterWidth="10" height="18" textureID="amberPineCostLabelID" labelId="amberPineCostLabelID" message="" dynamic="false"/>
+					<object type="texture" x="905.00" y="314.00" width="16" height="16" textureID="amberResourceIcon16x16"/>
+					<object type="text" x="922.00" y="315.00" characterWidth="10" height="18" textureID="amberOakCostLabelID" labelId="amberOakCostLabelID" message="" dynamic="false"/>
+					<object type="texture" x="828.00" y="385.00" width="16" height="16" textureID="rubyResourceIcon16x16"/>
+					<object type="text" x="845.00" y="387.00" characterWidth="10" height="18" textureID="rubyStumpCostLabelID" labelId="rubyStumpCostLabelID" message="" dynamic="false"/>
+					<object type="texture" x="905.00" y="387.00" width="16" height="16" textureID="rubyResourceIcon16x16"/>
+					<object type="text" x="921.00" y="388.00" characterWidth="10" height="18" textureID="rubyPineCostLabelID" labelId="rubyPineCostLabelID" message="" dynamic="false"/>
+					<object type="texture" x="829.00" y="456.00" width="16" height="16" textureID="rubyResourceIcon16x16"/>
+					<object type="text" x="846.00" y="457.00" characterWidth="10" height="18" textureID="rubyOakCostLabelID" labelId="rubyOakCostLabelID" message="" dynamic="false"/>
+					<object type="texture" x="898.00" y="457.00" width="16" height="16" textureID="sapphireResourceIcon16x16"/>
+					<object type="text" x="915.00" y="458.00" characterWidth="10" height="18" textureID="frozenBushCostLabelID" labelId="frozenBushCostLabelID" message="" dynamic="false"/>
+					<object type="towerButton" x="808.00" y="124.00" width="70" height="64" textureID="agateStumpButton" numFrames="0" callbackID="createTowerCallbackID" towerName="stump" towerColor="GREEN"/>
+					<object type="towerButton" x="888.00" y="116.00" width="64" height="72" textureID="agatePineButton" numFrames="0" callbackID="createTowerCallbackID" towerName="pine" towerColor="GREEN"/>
+					<object type="towerButton" x="810.00" y="194.00" width="64" height="66" textureID="agateOakButton" numFrames="0" callbackID="createTowerCallbackID" towerName="oak" towerColor="GREEN"/>
+					<object type="towerButton" x="886.00" y="196.00" width="70" height="64" textureID="amberStumpButton" numFrames="0" callbackID="createTowerCallbackID" towerName="stump" towerColor="YELLOW"/>
+					<object type="towerButton" x="810.00" y="261.00" width="64" height="72" textureID="amberPineButton" numFrames="0" callbackID="createTowerCallbackID" towerName="pine" towerColor="YELLOW"/>
+					<object type="towerButton" x="888.00" y="267.00" width="64" height="66" textureID="amberOakButton" numFrames="0" callbackID="createTowerCallbackID" towerName="oak" towerColor="YELLOW"/>
+					<object type="towerButton" x="808.00" y="341.00" width="70" height="64" textureID="rubyStumpButton" numFrames="0" callbackID="createTowerCallbackID" towerName="stump" towerColor="RED"/>
+					<object type="towerButton" x="888.00" y="334.00" width="64" height="72" textureID="rubyPineButton" numFrames="0" callbackID="createTowerCallbackID" towerName="pine" towerColor="RED"/>
+					<object type="towerButton" x="810.00" y="410.00" width="64" height="66" textureID="rubyOakButton" numFrames="0" callbackID="createTowerCallbackID" towerName="oak" towerColor="RED"/>
+					<object type="towerButton" x="887.00" y="412.00" width="64" height="64" textureID="frozenBushButton" numFrames="0" callbackID="createTowerCallbackID" towerName="frozenBush" towerColor="BLUE"/>
+					<object type="menuButton" x="815.00" y="490.00" width="64" height="39" textureID="startButton" numFrames="0" callbackID="startWaveCallbackID"/>
+					<object type="menuButton" x="885.00" y="490.00" width="64" height="39" textureID="startButton" numFrames="0" callbackID="pauseStateCallbackID"/>
+					<object type="text" x="822.00" y="500.00" characterWidth="10" height="18" textureID="startWaveLabel" labelId="startWaveLabel" message="START" dynamic="false"/>
+					<object type="text" x="889.00" y="500.00" characterWidth="7" height="18" textureID="settingsLabel" labelId="settingsLabel" message="SETTINGS" dynamic="false"/>
+				</OBJECTS>
+			</TOWERS>
 		</PANELS>
 	</PLAY>
 	<PAUSE>

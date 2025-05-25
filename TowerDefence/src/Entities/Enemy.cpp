@@ -83,7 +83,8 @@ bool Enemy::isCrossEndOfPath()
 
 void Enemy::dealDamage(float damage)
 {
-	m_health -= damage;
+	m_health -= damage * (1 - m_defence);
+	if (m_health < 0) m_health = 0;
 }
 
 bool Enemy::isAlive()

@@ -110,6 +110,9 @@ private:
 	std::array<float, 2> m_towerUpgradeProgressLevel; // level progress of upgrades
 
 	ColorsConsts::Color m_upgradeFontColor; // font color of parameter, when mouse is on upgrade button.
+
+	bool m_mouseOverRadiusUpgrade; // flag for drawing upgrade radius on screen
+	int m_nextRadiusUpgradeValue; // needed radius for drawing on screen
 };
 
 

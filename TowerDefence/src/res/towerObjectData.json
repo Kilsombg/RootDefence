@@ -9,7 +9,7 @@
       "numFrames": 4,
       "damage": 8.0,
       "radius": 65.0,
-      "costValue": 5,
+      "costValue": 10,
       "attackSpeed": 2.0,
       "canBeColored": true
     },
@@ -21,7 +21,7 @@
       "projectileID": "pineCone",
       "numFrames": 4,
       "damage": 5.0,
-      "radius": 57.0,
+      "radius": 70.0,
       "costValue": 15,
       "attackSpeed": 4.0,
       "canBeColored": true
@@ -47,7 +47,7 @@
       "projectileID": "",
       "numFrames": 4,
       "radius": 60.0,
-      "costValue": 10,
+      "costValue": 5,
       "freezePercentage": 0.2
     }
   }

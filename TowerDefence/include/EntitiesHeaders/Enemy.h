@@ -58,7 +58,7 @@ protected:
 	float m_moveSpeed;
 	float m_maxHealth;
 	float m_health; // current health points
-	float m_defence;
+	float m_defence; // percent reduction.
 	Resource m_drop;
 
 private:

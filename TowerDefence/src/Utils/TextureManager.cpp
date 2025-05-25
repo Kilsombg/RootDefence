@@ -145,6 +145,7 @@ void TextureManager::dimBackground(SDL_Window* pWindow, SDL_Renderer* pRenderer)
 
 	// set the old draw color
 	SDL_SetRenderDrawColor(pRenderer, oldColor.r, oldColor.g, oldColor.b, oldColor.a);
+	SDL_SetRenderDrawBlendMode(pRenderer, SDL_BLENDMODE_NONE);
 }
 
 void TextureManager::drawFilledRectangle(int x, int y, int width, int height, SDL_Color fillColor, SDL_Renderer* renderer)
