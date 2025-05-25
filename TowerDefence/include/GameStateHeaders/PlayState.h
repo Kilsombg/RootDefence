@@ -70,7 +70,7 @@ private:
 
 	std::shared_ptr<std::vector<std::shared_ptr<Tower>>> m_towersObjects;
 
-	std::vector<std::shared_ptr<Enemy>> m_enemyObjects;
+	std::shared_ptr<std::vector<std::shared_ptr<Enemy>>> m_enemyObjects;
 
 	std::shared_ptr<WaveManager> m_waveManager;
 	Wave* m_currentWave;

@@ -57,9 +57,9 @@ void PlayState::render()
 	pLevel->render();
 
 	// render enemies
-	for (std::vector<std::shared_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects.size(); i++)
+	for (std::vector<std::shared_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects->size(); i++)
 	{
-		m_enemyObjects[i]->draw();
+		(*m_enemyObjects)[i]->draw();
 	}
 
 	// render towers
@@ -78,6 +78,7 @@ void PlayState::render()
 bool PlayState::onEnter()
 {
 	m_towersObjects = std::make_shared<std::vector<std::shared_ptr<Tower>>>();
+	m_enemyObjects = std::make_shared<std::vector<std::shared_ptr<Enemy>>>();
 
 	loadData();
 
@@ -100,6 +101,8 @@ void PlayState::loadData()
 	WaveParser waveParser;
 	m_waveManager = TheWaveManager::Instance();
 	waveParser.parseWaves("./src/res/waves.json", m_waveManager);
+
+	m_waveManager->setEnemyObjects(m_enemyObjects);
 	if (!m_waveManager->getWaves().empty()) {
 		m_currentWave = m_waveManager->getWaves()[0];
 	}
@@ -187,7 +190,7 @@ void PlayState::setMapLevelPath(std::string mapLevelPath)
 
 void PlayState::addEnemy(std::unique_ptr<Enemy> enemy)
 {
-	m_enemyObjects.push_back(std::move(enemy));
+	m_enemyObjects->push_back(std::move(enemy));
 }
 
 void PlayState::handleEvents()
@@ -242,31 +245,31 @@ void PlayState::updateObjects()
 
 void PlayState::updateEnemyObjects()
 {
-	for (std::vector<std::shared_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects.size(); i++)
+	for (std::vector<std::shared_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects->size(); i++)
 	{
 		// remove defeated enemies or enemy crossed to the end of path
-		if (!m_enemyObjects[i]->isAlive() || m_enemyObjects[i]->isCrossEndOfPath())
+		if (!(*m_enemyObjects)[i]->isAlive() || (*m_enemyObjects)[i]->isCrossEndOfPath())
 		{
 			// remove health point if enemy crosses to the end of path
-			if (m_enemyObjects[i]->isCrossEndOfPath())
+			if ((*m_enemyObjects)[i]->isCrossEndOfPath())
 			{
 				m_gameSessionData->gameHealth--;
 			}
 			else // defeated enemy
 			{
 				// increase gameSession resources
-				Resource drop = m_enemyObjects[i]->getDrop();
+				Resource drop = (*m_enemyObjects)[i]->getDrop();
 				m_gameSessionData->resources[drop.type].value += drop.value;
 			}
 
 			// remove enemy
-			m_enemyObjects[i]->clean();
-			m_enemyObjects.erase(m_enemyObjects.begin() + i);
+			(*m_enemyObjects)[i]->clean();
+			m_enemyObjects->erase(m_enemyObjects->begin() + i);
 			continue;
 		}
 
 		// update enemy
-		m_enemyObjects[i]->update();
+		(*m_enemyObjects)[i]->update();
 	}
 }
 

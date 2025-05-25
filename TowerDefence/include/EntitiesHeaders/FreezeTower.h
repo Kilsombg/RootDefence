@@ -18,7 +18,7 @@ public:
 	/**
 	* Each enemy in radius is effected.
 	*/
-	virtual void targetEnemy(std::vector<std::shared_ptr<Enemy>> enemies);
+	virtual void targetEnemy(std::shared_ptr<std::vector<std::shared_ptr<Enemy>>> enemies);
 	virtual void aimEnemy() {};
 
 	// getter and setter

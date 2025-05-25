@@ -7,8 +7,8 @@
       "name": "Stump",
       "projectileID": "rootStick",
       "numFrames": 4,
-      "damage": 20.0,
-      "radius": 70.0,
+      "damage": 8.0,
+      "radius": 65.0,
       "costValue": 5,
       "attackSpeed": 2.0,
       "canBeColored": true
@@ -20,10 +20,10 @@
       "name": "Pine",
       "projectileID": "pineCone",
       "numFrames": 4,
-      "damage": 20.0,
-      "radius": 45.0,
+      "damage": 5.0,
+      "radius": 57.0,
       "costValue": 15,
-      "attackSpeed": 2.0,
+      "attackSpeed": 4.0,
       "canBeColored": true
     },
     "oak": {
@@ -33,10 +33,10 @@
       "name": "Oak",
       "projectileID": "oakApple",
       "numFrames": 4,
-      "damage": 20.0,
-      "radius": 82.0,
+      "damage": 25.0,
+      "radius": 75.0,
       "costValue": 20,
-      "attackSpeed": 2.0,
+      "attackSpeed": 1.0,
       "canBeColored": true
     },
     "frozenBush": {
@@ -46,7 +46,7 @@
       "name": "Frozen Bush",
       "projectileID": "",
       "numFrames": 4,
-      "radius": 32.0,
+      "radius": 60.0,
       "costValue": 10,
       "freezePercentage": 0.2
     }

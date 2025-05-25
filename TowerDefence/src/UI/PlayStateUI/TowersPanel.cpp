@@ -38,7 +38,7 @@ void TowersPanel::draw()
 		{
 			if (menuButton->getCallbackID() == LoaderParamsConsts::startWaveCallbackID)
 			{
-				menuButton->setCurrentRow(TheWaveManager::Instance()->getPressedPlayButton() ? MenuMode::DISABLED : MenuMode::ACTIVE);
+				menuButton->setCurrentRow(TheWaveManager::isActivePlayButton() ? MenuMode::ACTIVE : MenuMode::DISABLED);
 			}
 			menuButton = nullptr;
 		}

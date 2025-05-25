@@ -323,9 +323,9 @@ std::string Tower::getTowerType(std::string towerColor)
 	return "";
 }
 
-void Tower::targetEnemy(std::vector<std::shared_ptr<Enemy>> enemies)
+void Tower::targetEnemy(std::shared_ptr<std::vector<std::shared_ptr<Enemy>>> enemies)
 {
-	if (enemies.empty()) return;
+	if ((*enemies).empty()) return;
 
 	// if tower has target in range then skip searching a target, otherwise clear it
 	if (inRadius(m_targetEnemy.lock())) { return; }
@@ -335,21 +335,21 @@ void Tower::targetEnemy(std::vector<std::shared_ptr<Enemy>> enemies)
 	int index = 0;
 
 	// get first enemy in radius if any
-	while (tempEnemy.get() == nullptr && index < enemies.size())
+	while (tempEnemy.get() == nullptr && index < enemies->size())
 	{
-		if (inRadius(enemies[index]))
+		if (inRadius((*enemies)[index]))
 		{
-			tempEnemy = enemies[index];
+			tempEnemy = (*enemies)[index];
 		}
 		index++;
 	}
 
 	// get farthest enemy on the map in tower radius
-	for (std::vector<std::shared_ptr<Enemy>>::size_type i = index; i < enemies.size(); i++)
+	for (std::vector<std::shared_ptr<Enemy>>::size_type i = index; i < enemies->size(); i++)
 	{
-		if (tempEnemy->getDistance() < enemies[i]->getDistance() && inRadius(enemies[i]))
+		if (tempEnemy->getDistance() < (*enemies)[i]->getDistance() && inRadius((*enemies)[i]))
 		{
-			tempEnemy = enemies[i];
+			tempEnemy = (*enemies)[i];
 		}
 	}
 

@@ -14,6 +14,7 @@
 
 std::shared_ptr<WaveManager> WaveManager::s_pInstance = nullptr;
 bool WaveManager::s_pressedPlayButton = false;
+bool WaveManager::s_hasEnemiesOnScreen = false;
 
 int WaveManager::getCurrentWaveID()
 {
@@ -36,6 +37,9 @@ std::shared_ptr<WaveManager> WaveManager::Instance()
 
 void WaveManager::spawnWaveEnemies(std::vector<std::shared_ptr<Vector2D>>& enemyPath, Wave& wave, std::function<void(std::unique_ptr<Enemy>)> addEnemyCallback, float dT)
 {
+	// update flag
+	s_hasEnemiesOnScreen = m_enemyObjects->empty();
+
 	// if not pressed play button, then return
 	if (!s_pressedPlayButton) return;
 
@@ -123,9 +127,14 @@ void WaveManager::nextWave(Wave& wave)
 	}
 }
 
-bool WaveManager::getPressedPlayButton()
+void WaveManager::setEnemyObjects(std::shared_ptr<std::vector<std::shared_ptr<Enemy>>> pEnemiesObjects)
 {
-	return s_pressedPlayButton;
+	m_enemyObjects = pEnemiesObjects;
+}
+
+bool WaveManager::isActivePlayButton()
+{
+	return !s_pressedPlayButton && s_hasEnemiesOnScreen;
 }
 
 bool WaveManager::isFinalWave()
@@ -140,7 +149,7 @@ void WaveManager::setGameObjectData(GameObjectData<LoaderParams>& gameObjectdata
 
 void WaveManager::s_activateWave()
 {
-	if (!s_pressedPlayButton)
+	if (isActivePlayButton())
 	{
 		s_pressedPlayButton = true;
 	}
@@ -167,6 +176,7 @@ void WaveManager::clean()
 
 	// reset static variables
 	s_pressedPlayButton = false;
+	s_hasEnemiesOnScreen = false;
 
 	// clean pointer
 	s_pInstance = nullptr;

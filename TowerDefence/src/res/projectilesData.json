@@ -25,21 +25,21 @@
       "width": 16,
       "height": 16,
       "textureID": "agatePineCone",
-      "projectileSpeed": 3.0,
+      "projectileSpeed": 4.0,
       "numFrames": 0
     },
     "amberPineCone": {
       "width": 16,
       "height": 16,
       "textureID": "amberPineCone",
-      "projectileSpeed": 3.0,
+      "projectileSpeed": 4.0,
       "numFrames": 0
     },
     "rubyPineCone": {
       "width": 16,
       "height": 16,
       "textureID": "rubyPineCone",
-      "projectileSpeed": 3.0,
+      "projectileSpeed": 4.0,
       "numFrames": 0
     },
     "agateRootStick": {
