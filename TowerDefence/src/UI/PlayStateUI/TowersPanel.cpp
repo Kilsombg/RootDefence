@@ -15,6 +15,7 @@
 
 #include "../../../include/UtilsHeaders/TowerFactory.h"
 #include "../../../include/UtilsHeaders/GameStateMachine.h"
+#include "../../../include/UtilsHeaders/InputHandler.h"
 
 #include "../../../include/WaveHeaders/WaveManager.h"
 
@@ -115,6 +116,14 @@ void TowersPanel::handleEvents()
 	else
 	{
 		TowerInteractivePanel::handleEvents();
+	}
+
+	// handle input
+	
+	// change wave with SPACE
+	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
+	{
+		TheWaveManager::s_activateWave();
 	}
 }
 
