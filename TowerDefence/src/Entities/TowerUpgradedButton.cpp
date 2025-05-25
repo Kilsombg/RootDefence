@@ -64,9 +64,11 @@ void TowerUpgradedButton::handleClickOnButton()
 {
 	if (m_isMouseOnButton && !m_pressedOutside)
 	{
+		m_currentFrame = MOUSE_OVER;
+
 		if (!TheInputHandler::Instance()->getMouseButtonState(LEFT) && m_pressed)
 		{
-			//m_currentFrame = CLICKED;
+			m_currentFrame = CLICKED;
 
 			// invoke callback only if there are enough resources to buy the upgrade.
 			if (PurchaseManager::Instance()->canPurchaseUpgrade(m_selectedTower->getTowerUpgradesData()[m_upgradeID], m_selectedTower->getColor()))
@@ -82,13 +84,13 @@ void TowerUpgradedButton::handleClickOnButton()
 		else if (TheInputHandler::Instance()->getMouseButtonState(LEFT))
 		{
 			m_pressed = true;
-
-			//m_currentFrame = MOUSE_OVER;
 		}
 	}
 	else
 	{
 		m_pressed = false;
+
+		m_currentFrame = MOUSE_OUT;
 	}
 }
 

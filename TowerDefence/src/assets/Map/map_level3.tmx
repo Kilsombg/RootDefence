@@ -10,7 +10,7 @@
  </layer>
  <objectgroup id="2" name="EntitiesPaths">
   <object id="1" name="enemyPath" x="0.5" y="159.25">
-   <polyline points="0,0 605,-0.25 605,-39.5 732.833,-39.5833 731.5,105.75 -3.16667,104.417"/>
+   <polyline points="-0.363636,8.72727 593.182,13.0227 591.182,-26.2273 719.56,-21.9469 722.045,103.75 -3.16667,104.417"/>
   </object>
   <object id="2" name="enemyPathArea" x="1.16667" y="179.667" width="620.667" height="23.3333"/>
   <object id="3" name="enemyPathArea" x="593.833" y="148.333" width="154" height="23.6667"/>

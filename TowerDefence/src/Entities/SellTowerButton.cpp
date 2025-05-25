@@ -48,9 +48,11 @@ void SellTowerButton::handleClickOnButton()
 {
 	if (m_isMouseOnButton && !m_pressedOutside)
 	{
+		m_currentFrame = MOUSE_OVER;
+
 		if (!TheInputHandler::Instance()->getMouseButtonState(LEFT) && m_pressed)
 		{
-			//m_currentFrame = CLICKED;
+			m_currentFrame = CLICKED;
 
 			m_callback(m_selectedTower);
 
@@ -61,13 +63,13 @@ void SellTowerButton::handleClickOnButton()
 		else if (TheInputHandler::Instance()->getMouseButtonState(LEFT))
 		{
 			m_pressed = true;
-
-			//m_currentFrame = MOUSE_OVER;
 		}
 	}
 	else
 	{
 		m_pressed = false;
+
+		m_currentFrame = MOUSE_OUT;
 	}
 }
 

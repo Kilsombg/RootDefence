@@ -39,8 +39,8 @@
 			<texture filename="src/assets/helicopter.png" ID="helicopter"/>
 			<texture filename="src/assets/helicopter2.png" ID="helicopter2"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/button_64x78_anim.png" ID="startButton"/>
-			<texture filename="src/assets/UI/States/PlayState/buttons/sell-button_55x32.png" ID="sellTowerButton"/>
-			<texture filename="src/assets/UI/States/PlayState/buttons/upgrade-button_87x37.png" ID="upgradeButton"/>
+			<texture filename="src/assets/UI/States/PlayState/buttons/sell-button_55x32_anim.png" ID="sellTowerButton"/>
+			<texture filename="src/assets/UI/States/PlayState/buttons/upgrade-button_87x37_anim.png" ID="upgradeButton"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/not-affordable-upgrade-button_87x37.png" ID="upgradeButtonNotAffordable"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/agate-stump_70x64.png" ID="agateStumpButton"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/agate-stump_70x64_disabled.png" ID="agateStumpButtonDisabled"/>
