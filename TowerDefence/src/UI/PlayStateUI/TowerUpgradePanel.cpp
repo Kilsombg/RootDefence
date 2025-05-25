@@ -413,7 +413,7 @@ void TowerUpgradePanel::updateUpgradeParameterLabels(TowerUpgradedButton* pUpgra
 	if (upgradeData.statName.empty()) return;
 
 	std::string upgradeValueLabelID = upgradeData.statName + UIConsts::valueLabelSuffix;
-	m_mouseOverRadiusUpgrade = false;
+	//m_mouseOverRadiusUpgrade = false;
 
 	if (pUpgradeButton->isMouseOnButton() && upgradeData.nextLevel < upgradeData.maxLevel)
 	{
@@ -437,6 +437,9 @@ void TowerUpgradePanel::updateUpgradeParameterLabels(TowerUpgradedButton* pUpgra
 	{
 		// return the normal color of tower parameter
 		m_labelsMap[upgradeValueLabelID]->setFontColor(ColorsConsts::white);
+		
+		// return hover upgrade radius to falses
+		m_mouseOverRadiusUpgrade = false;
 	}
 
 	// set tower upgrade button background

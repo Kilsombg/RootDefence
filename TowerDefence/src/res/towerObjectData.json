@@ -20,10 +20,10 @@
       "name": "Pine",
       "projectileID": "pineCone",
       "numFrames": 4,
-      "damage": 5.0,
+      "damage": 4.0,
       "radius": 70.0,
       "costValue": 15,
-      "attackSpeed": 4.0,
+      "attackSpeed": 3.0,
       "canBeColored": true
     },
     "oak": {
@@ -48,7 +48,7 @@
       "numFrames": 4,
       "radius": 60.0,
       "costValue": 5,
-      "freezePercentage": 0.2
+      "freezePercentage": 0.15
     }
   }
 }

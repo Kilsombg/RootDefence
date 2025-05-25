@@ -6,7 +6,7 @@
       "textureID": "greenChoyEnemy",
       "numFrames": 7,
       "moveSpeed": 0.9,
-      "maxHealth": 8.0,
+      "maxHealth": 15.0,
       "defence": 0.20,
       "dropType": "GREEN",
       "dropValue": 1
@@ -39,7 +39,7 @@
       "textureID": "yellowCarrotEnemy",
       "numFrames": 6,
       "moveSpeed": 0.9,
-      "maxHealth": 10.0,
+      "maxHealth": 20.0,
       "defence": 0.25,
       "dropType": "YELLOW",
       "dropValue": 1
@@ -50,7 +50,7 @@
       "textureID": "yellowOrangeEnemy",
       "numFrames": 8,
       "moveSpeed": 1.1,
-      "maxHealth": 15.0,
+      "maxHealth": 22.0,
       "defence": 0.10,
       "dropType": "YELLOW",
       "dropValue": 2
@@ -61,7 +61,7 @@
       "textureID": "yellowSquashEnemy",
       "numFrames": 6,
       "moveSpeed": 0.7,
-      "maxHealth": 50.0,
+      "maxHealth": 60.0,
       "defence": 0.60,
       "dropType": "YELLOW",
       "dropValue": 3

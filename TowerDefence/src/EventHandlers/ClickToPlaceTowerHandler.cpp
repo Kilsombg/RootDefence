@@ -25,7 +25,7 @@ void ClickToPlaceTowerHandler::handleEvent(Button* sourceButton)
 		interrupt();
 		return;
 	}
-	std::cout << "ClickToPlaceHandler handleEvent() called.\n";
+	//std::cout << "ClickToPlaceHandler handleEvent() called.\n";
 	switch (m_state) {
 	case IDLE:
 		handleIdleState(sourceButton);

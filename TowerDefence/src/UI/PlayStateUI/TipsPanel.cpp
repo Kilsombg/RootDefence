@@ -102,7 +102,7 @@ void TipsPanel::loadTips()
 	m_tips = {
 		std::string("Press Start button or click SPACE to begin a wave."),
 		std::string("There are three types of enemies - green, yellow and red. Each enemy type drops unique resources."),
-		std::string("Blue bean is a special enemy that has damage reduction from any tower."),
+		std::string("Blue Bean has damage resistance against every tower type."),
 		std::string("Agate, amber and ruby towers deal different damage multiplayer against each enemy type."),
 		std::string("Go to settings to see a table of damage against enemies."),
 		std::string("Stump has standard stats. Pine has high att.speed, but lower damage. Oak is vice versa."),
