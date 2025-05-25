@@ -3,6 +3,7 @@
 #include "../include/Constants/GameObjectConsts.h"
 
 #include "../include/EntitiesHeaders/MenuButton.h"
+#include "../include/EntitiesHeaders/MapMenuButton.h"
 #include "../include/EntitiesHeaders/TowerButton.h"
 #include "../include/EntitiesHeaders/TowerUpgradedButton.h"
 #include "../include/EntitiesHeaders/SellTowerButton.h"
@@ -20,6 +21,7 @@
 #include "../include/UIHeaders/GameOverUIHeaders/GameOverStatePanel.h"
 
 #include "../include/UIHeaders/MainMenuUIHeaders/MainMenuPanel.h"
+#include "../include/UIHeaders/MainMenuUIHeaders/MapsPanel.h"
 
 #include "../include/UIHeaders/PauseStateUIHeaders/PauseStatePanel.h"
 
@@ -143,6 +145,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::projectile, std::make_shared<ProjectileCreator>());
 
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::menuButton, std::make_shared<MenuButtonCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::mapMenuButton, std::make_shared<MapMenuButtonCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::towerButton, std::make_shared<TowerButtonCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::towerUpgradedButton, std::make_shared<TowerUpgradedButtonCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::sellTowerButton, std::make_shared<SellTowerButtonCreator>());
@@ -155,6 +158,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	ThePanelFactory::Instance()->registerType(PanelConsts::gameOverStatePanel, std::make_shared<GameOverStatePanelCreator>());
 
 	ThePanelFactory::Instance()->registerType(PanelConsts::mainMenuPanel, std::make_shared<MainMenuPanelCreator>());
+	ThePanelFactory::Instance()->registerType(PanelConsts::mapsPanel, std::make_shared<MapsPanelCreator>());
 	
 	ThePanelFactory::Instance()->registerType(PanelConsts::pauseStatePanel, std::make_shared<PauseStatePanelCreator>());
 
@@ -253,12 +257,6 @@ void Game::handleEvents()
 {
 	// handle input
 	TheInputHandler::Instance()->update();
-
-	// handle keys input
-	if (TheInputHandler::Instance()->isKeyPressed(SDL_SCANCODE_RETURN))
-	{
-		m_pGameStateMachine->changeState(std::make_shared<PlayState>());
-	}
 
 	// handle active state events
 	m_pGameStateMachine->handleEvents();

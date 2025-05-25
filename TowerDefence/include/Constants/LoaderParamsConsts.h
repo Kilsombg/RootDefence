@@ -15,17 +15,30 @@ namespace LoaderParamsConsts {
 
 #pragma region xml states params specific
 	constexpr char callbackID[] = "callbackID";
+	
 	constexpr char playbuttonCallbackID[] = "playbuttonCallbackID";
 	constexpr char exitbuttonCallbackID[] = "exitbuttonCallbackID";
+	constexpr char mapMenuButtonCallbackID[] = "mapMenuButtonCallbackID";
+	constexpr char closeMapsPanelCallbackID[] = "closeMapsPanelCallbackID";
+
 	constexpr char mainMenuButtonCallbackID[] = "mainMenuButtonCallbackID";
+	
 	constexpr char restartButtonCallbackID[] = "restartButtonCallbackID";
 	constexpr char resumeButtonCallbackID[] = "resumeButtonCallbackID";
+	
 	constexpr char createTowerCallbackID[] = "createTowerCallbackID";
 	constexpr char startWaveCallbackID[] = "startWaveCallbackID";
 	constexpr char pauseStateCallbackID[] = "pauseStateCallbackID";
+	
 	constexpr char towerUpgradeCallbackID[] = "towerUpgradeCallbackID";
 	constexpr char sellTowerCallbackID[] = "sellTowerCallbackID";
+	
 	constexpr char animSpeed[] = "animSpeed";
+#pragma endregion
+
+
+#pragma region MapMenuButton params
+	constexpr char mapLevelFileName[] = "mapLevelFileName";
 #pragma endregion
 
 	

@@ -27,6 +27,7 @@
 
 #include<vector>
 #include<memory>
+#include<string>
 
 class PlayState : public MenuState
 {
@@ -44,11 +45,16 @@ public:
 	*/
 	void loadData();
 
-	virtual std::string getStateID() const;
-
 	void addEnemy(std::unique_ptr<Enemy> enemy);
 
 	void handleEvents() override;
+
+	// getter and setters
+
+	virtual std::string getStateID() const;
+
+	static void setMapLevelPath(std::string mapLevelPath);
+
 private:
 	// update all objects
 	void updateObjects();
@@ -60,6 +66,7 @@ private:
 	void loadTowerData();	
 
 	std::shared_ptr<Level> pLevel;
+	static std::string	s_mapLevelPath; // path to level's map file
 
 	std::shared_ptr<std::vector<std::shared_ptr<Tower>>> m_towersObjects;
 

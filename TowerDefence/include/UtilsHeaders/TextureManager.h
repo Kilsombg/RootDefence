@@ -23,6 +23,8 @@ public:
 
 	void dimBackground(SDL_Window* pWindow , SDL_Renderer* pRenderer);
 
+	void drawFilledRectangle(int x, int y, int width, int height, SDL_Color fillColor, SDL_Renderer* renderer);
+
 private:
 	TextureManager();
 	static TextureManager* s_pInstance;

@@ -24,8 +24,10 @@ public:
 
 	bool drawUnderneath() override;
 
-	virtual std::string getStateID() const;
+	virtual std::string getStateID() const override;
 
+
+	// getters and setters
 
 	void setCurrentWaveID(int currentWaveID);
 

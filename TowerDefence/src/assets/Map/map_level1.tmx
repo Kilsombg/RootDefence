@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="21">
+ <tileset firstgid="1" name="map_tileset1" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198" columns="18">
+  <image source="map_tileset1.png" trans="000000" width="640" height="400"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="25" height="14">
+  <data encoding="base64" compression="zlib">
+   eJydlFsKAjEMRQsqpcP8i3QH/vntFlyEuASfG/CBG/CxAx+bNAMNhHCTqh+HMunk3iYNjSGEhkhEFsQSiw5NWWUOytPfWeTyflKxJbEqbIk1sQHefO62wPFJWVvjDJ3+npgrTsCLaxsYjEB9Un8BfDqOoKdDwJTog3+vhq70PIv6uTe6Vx09w+Ng6EpuIE/3zvN4EBeleSd2hRfxBnloPrVHUj7PiqY398nwkLQCS8e7hyw8ZsGeuV+R+uwxDnje/qX2ZnC9ug9eD7+9E0+vdi4vz5plranfQOSZhd8HRCsnOA==
+  </data>
+ </layer>
+ <objectgroup id="2" name="EntitiesPaths" visible="0">
+  <object id="1" name="enemyPath" x="8.33333" y="89">
+   <polyline points="-9.33333,14.3333 166,10 167.75,209 789.229,211.5"/>
+  </object>
+  <object id="2" name="enemyPathArea" x="-0.5" y="111.75" width="204.75" height="33"/>
+  <object id="6" name="enemyPathArea" x="174.625" y="142.625" width="33.25" height="191.5"/>
+  <object id="7" name="enemyPathArea" x="208.625" y="304.25" width="591.75" height="32.75"/>
+  <object id="8" name="enemyPathArea" x="-0.875" y="166.25" width="67" height="17"/>
+  <object id="9" name="enemyPathArea" x="-0.75" y="70.25" width="67" height="17"/>
+  <object id="10" name="enemyPathArea" x="133.5" y="80.25" width="20.25" height="15.75"/>
+  <object id="11" name="enemyPathArea" x="194.25" y="69.75" width="31" height="17"/>
+  <object id="12" name="enemyPathArea" x="255.5" y="358.25" width="66.5" height="17"/>
+  <object id="13" name="enemyPathArea" x="380.75" y="263.75" width="99" height="17"/>
+  <object id="14" name="enemyPathArea" x="575" y="358.75" width="99" height="17"/>
+  <object id="15" name="enemyPathArea" x="735.75" y="263.75" width="66.75" height="14.5"/>
+  <object id="16" name="enemyPathArea" x="388.5" y="36" width="127" height="212"/>
+  <object id="17" name="enemyPathArea" x="514.5" y="40" width="25.5" height="195"/>
+  <object id="18" name="enemyPathArea" x="352" y="117.5" width="31" height="85"/>
+  <object id="19" name="enemyPathArea" x="538.5" y="70.5" width="132" height="150.5"/>
+  <object id="20" name="enemyPathArea" x="540.682" y="40.5455" width="58.0909" height="37.6364"/>
+ </objectgroup>
+</map>

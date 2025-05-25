@@ -393,7 +393,7 @@ bool Tower::isSelected()
 void Tower::placed()
 {
 	// set clickEventHandler after placing to get the position
-	m_selectOnClickEventHandler = SelectOnClickEventHandler(m_position, m_width, m_height, { 0, 0, 640, 480 }, false); // area of the mapPanel
+	m_selectOnClickEventHandler = SelectOnClickEventHandler(m_position, m_width, m_height, { 0, 0, 800, 448}, false); // area of the mapPanel
 
 	// deduct tower's cost resources from gameSession data.
 	ThePurchaseManager::Instance()->purchaseTower(m_baseCost);

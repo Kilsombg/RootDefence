@@ -17,10 +17,15 @@ public:
 	void load(std::vector<std::unique_ptr<GameObject>> gameObjects) override;
 	void loadCallbacks() override;
 
+	// getters and setters
+
+	static void s_setActivePanel(bool activeFlag);
+
 private:
-	// call back functions for menu items
-	static void s_menuToPlay();
+	// callback functions for menu items
 	static void s_exitFromMenu();
+
+	static bool s_active;
 };
 
 

@@ -45,6 +45,7 @@ void InteractivePanel::clean()
 
 void InteractivePanel::handleEvents()
 {
+	// handle buttons
 	for (std::vector<std::shared_ptr<Button>>::size_type i = 0; i < m_buttonObjects.size(); i++)
 	{
 		m_buttonObjects[i]->handleEvent();

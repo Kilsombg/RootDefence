@@ -26,6 +26,8 @@
 #include<iostream>
 #include<functional>
 
+std::string PlayState::s_mapLevelPath = "";
+
 PlayState::PlayState()
 {
 	s_stateID = "PLAY";
@@ -87,7 +89,7 @@ void PlayState::loadData()
 {
 	// load level
 	LevelParser levelParser;
-	pLevel = levelParser.parseLevel("./src/assets/Map/test_map.tmx");
+	pLevel = levelParser.parseLevel(s_mapLevelPath.c_str());
 	if (!pLevel->getEnemyPath().empty())
 	{
 		pLevel->setSpawnPoint(*(pLevel->getEnemyPath()[0].get()));
@@ -176,6 +178,11 @@ bool PlayState::onExit()
 std::string PlayState::getStateID() const
 {
 	return s_stateID;
+}
+
+void PlayState::setMapLevelPath(std::string mapLevelPath)
+{
+	s_mapLevelPath = mapLevelPath;
 }
 
 void PlayState::addEnemy(std::unique_ptr<Enemy> enemy)

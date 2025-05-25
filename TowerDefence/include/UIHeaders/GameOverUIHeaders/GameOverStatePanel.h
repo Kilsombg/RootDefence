@@ -6,7 +6,6 @@
 
 #include "../../EntitiesHeaders/Text.h"
 
-
 class GameOverStatePanel : public MenuInteractivePanel
 {
 public:
@@ -19,6 +18,8 @@ public:
 
 	void load(std::vector<std::unique_ptr<GameObject>> gameObjects) override;
 	void loadCallbacks() override;
+
+	// getters and setters
 
 	void setCurrentWaveID(int currentWaveID);
 

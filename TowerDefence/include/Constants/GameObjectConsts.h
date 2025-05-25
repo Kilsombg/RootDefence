@@ -24,6 +24,7 @@ namespace GameObjectConsts {
 	constexpr char frozenBush[] = "frozenBush";
 	constexpr char projectile[] = "projectile";
 	constexpr char menuButton[] = "menuButton";
+	constexpr char mapMenuButton[] = "mapMenuButton";
 	constexpr char towerButton[] = "towerButton";
 	constexpr char towerUpgradedButton[] = "towerUpgradedButton";
 	constexpr char sellTowerButton[] = "sellTowerButton";
@@ -39,6 +40,7 @@ namespace PanelConsts {
 #pragma region Creator objects
 	constexpr char gameOverStatePanel[] = "gameOverStatePanel";
 	constexpr char mainMenuPanel[] = "mainMenuPanel";
+	constexpr char mapsPanel[] = "mapsPanel";
 	constexpr char pauseStatePanel[] = "pauseStatePanel";
 	constexpr char towersPanel[] = "towersPanel";
 	constexpr char towerUpgradePanel[] = "towerUpgradePanel";

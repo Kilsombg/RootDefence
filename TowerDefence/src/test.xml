@@ -2,10 +2,15 @@
 <STATES>
 	<MENU>
 		<TEXTURES>
-			<texture filename="src/assets/UI/States/MainMenuState/MainMenuPanel.png" ID="mainMenuPanel"/>
 			<texture filename="src/assets/UI/States/MainMenuState/mainMenuBackground2.png" ID="mainMenuBackground"/>
 			<texture filename="src/assets/UI/States/MainMenuState/pixel_art_small_147x43.png" ID="title2"/>
+			<texture filename="src/assets/UI/States/MainMenuState/MainMenuPanel.png" ID="mainMenuPanel"/>
+			<texture filename="src/assets/UI/States/MainMenuState/MapsPanel.png" ID="mapsPanel"/>
+			<texture filename="src/assets/UI/States/MainMenuState/maps/map_level1_optimized.png" ID="mapLevel1ID"/>
+			<texture filename="src/assets/UI/States/MainMenuState/maps/map_level2_optimized.png" ID="mapLevel2ID"/>
+			<texture filename="src/assets/UI/States/MainMenuState/maps/map_level3_optimized.png" ID="mapLevel3ID"/>
 			<texture filename="src/assets/UI/States/MainMenuState/buttons/main-button_100x40_anim.png" ID="buttonTexure"/>
+			<texture filename="src/assets/UI/States/MainMenuState/buttons/return-button_38x38_anim.png" ID="returnButtonTexure"/>
 		</TEXTURES>
 		<PANELS>
 			<MAINMENU type="mainMenuPanel" x="380.00" y="150.00" width="200" height="300" textureID="mainMenuPanel">
@@ -18,6 +23,15 @@
 					<object type="text" x="463.00" y="312.00" characterWidth="9" height="18" textureID="exitLabel" labelId="exitLabel" message="Exit" dynamic="false"/>
 				</OBJECTS>
 			</MAINMENU>
+			<MAPS type="mapsPanel" x="25.00" y="140.00" width="910" height="300" textureID="mapsPanel">
+				<OBJECTS>
+					<object type="text" x="420.00" y="185.00" characterWidth="12" height="20" textureID="chooseMapLabel" labelId="chooseMapLabel" message="Choose map" dynamic="false"/>
+					<object type="mapMenuButton" x="55.00" y="230.00" width="270" height="151" textureID="mapLevel1ID" numFrames="0" callbackID="mapMenuButtonCallbackID" mapLevelFileName="map_level1.tmx"/>
+					<object type="mapMenuButton" x="345.00" y="230.00" width="270" height="151" textureID="mapLevel2ID" numFrames="0" callbackID="mapMenuButtonCallbackID" mapLevelFileName="map_level2.tmx"/>
+					<object type="mapMenuButton" x="635.00" y="230.00" width="270" height="151" textureID="mapLevel3ID" numFrames="0" callbackID="mapMenuButtonCallbackID" mapLevelFileName="map_level3.tmx"/>
+					<object type="menuButton" x="870.00" y="150.00" width="38" height="38" textureID="returnButtonTexure" numFrames="0" callbackID="closeMapsPanelCallbackID"/>
+				</OBJECTS>
+			</MAPS>
 		</PANELS>
 	</MENU>
 	<PLAY>
@@ -168,7 +182,7 @@
 						callbackID="towerUpgradeCallbackID" upgradeID="1"/>
 					<object type="text" x="589.00" y="478.00" characterWidth="6" height="10" textureID="upgrade1Label"  labelId="upgrade1Label" message="upgrade" dynamic="false"/>
 					<object type="text" x="611.00" y="492.00" characterWidth="6" height="10" textureID="towerUpgrade1Button" labelId="towerUpgrade1Label" message="" dynamic="false"/>
-					<object type="text" x="601.00" y="492.00" characterWidth="6" height="10" textureID="maxUpgrade1Button" labelId="maxUpgrade1Button" message="MAX" dynamic="false"/>
+					<object type="text" x="601.00" y="492.00" characterWidth="6" height="10" textureID="maxUpgrade1Button" labelId="maxUpgrade1Button" message="MAX" dynamic="false" hidden="true"/>
 					<object type="sellTowerButton" x="720.00" y="475.00" width="55" height="32" textureID="sellTowerButton" numFrames="0" callbackID="sellTowerCallbackID"/>
 					<object type="text" x="733.00" y="479.00" characterWidth="7" height="11" textureID="sellMessageLabel" labelId="sellMessageLabel" message="SELL" dynamic="false"/>
 					<object type="text" x="746.00" y="491.00" characterWidth="7" height="11" textureID="sellValueLabel" labelId="sellValueLabel" message="" dynamic="true"/>

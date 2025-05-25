@@ -31,9 +31,13 @@ public:
 
 	void setCurrentRow(int currentRow);
 
+
+protected:
+	virtual void handleClickOnButton();
+
+
 private:
 	void handleOutsideCLick();
-	void handleClickOnButton();
 	void (*m_callback)();
 };
 

@@ -8,6 +8,10 @@
 
 #include "../../../include/GameStateHeaders/PlayState.h"
 
+#include "../../../include/UIHeaders/MainMenuUIHeaders/MapsPanel.h"
+
+bool MainMenuPanel::s_active = true;
+
 MainMenuPanel::MainMenuPanel() : MenuInteractivePanel()
 {
 }
@@ -20,41 +24,48 @@ void MainMenuPanel::draw()
 		m_gameObjects[i]->draw();
 	}
 
-	// draw background
-	m_backgroundTexture->draw();
-
-
-	// draw buttons
-	MenuInteractivePanel::draw();
-
-	// draw labels
-	for (std::map<std::string, std::unique_ptr<Text>>::iterator it = m_labelsMap.begin(); it != m_labelsMap.end(); it++)
+	if (s_active)
 	{
-		it->second->draw();
+		// draw background
+		m_backgroundTexture->draw();
+
+
+		// draw buttons
+		MenuInteractivePanel::draw();
+
+		// draw labels
+		for (std::map<std::string, std::unique_ptr<Text>>::iterator it = m_labelsMap.begin(); it != m_labelsMap.end(); it++)
+		{
+			it->second->draw();
+		}
 	}
 }
 
 void MainMenuPanel::update()
 {
-	// update buttons
-	MenuInteractivePanel::update();
+	if(s_active)
+	{
+		// update buttons
+		MenuInteractivePanel::update();
+	}
 }
 
 void MainMenuPanel::clean()
 {
+	// return static variables to default values
+	s_active = true;
+
 	// clean panel
 	MenuInteractivePanel::clean();
-
-	// clean textures
-	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->clean();
-	}
 }
 
 void MainMenuPanel::handleEvents()
 {
-	MenuInteractivePanel::handleEvents();
+	if (s_active)
+	{
+		// handle buttons
+		MenuInteractivePanel::handleEvents();
+	}
 }
 
 void MainMenuPanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)
@@ -86,15 +97,15 @@ void MainMenuPanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)
 
 void MainMenuPanel::loadCallbacks()
 {
-	m_callbacks[LoaderParamsConsts::playbuttonCallbackID] = s_menuToPlay;
+	m_callbacks[LoaderParamsConsts::playbuttonCallbackID] = MapsPanel::s_activatePanel;
 	m_callbacks[LoaderParamsConsts::exitbuttonCallbackID] = s_exitFromMenu;
 
 	setCallbacks();
 }
 
-void MainMenuPanel::s_menuToPlay()
+void MainMenuPanel::s_setActivePanel(bool activeFlag)
 {
-	TheGame::Instance()->getStateMachine()->changeState(std::make_shared<PlayState>());
+	s_active = activeFlag;
 }
 
 void MainMenuPanel::s_exitFromMenu()
