@@ -64,7 +64,6 @@ void VictoryStatePanel::load(std::vector<std::unique_ptr<GameObject>> gameObject
 			gameObjects[i].release();
 		}
 	}
-
 	// update static labels
 	updateStaticLabel();
 	
@@ -83,6 +82,7 @@ void VictoryStatePanel::loadCallbacks()
 void VictoryStatePanel::setCurrentWaveID(int currentWaveID)
 {
 	m_currentWaveID = currentWaveID;
+	updateStaticLabel();
 }
 
 void VictoryStatePanel::s_victoryToMain()

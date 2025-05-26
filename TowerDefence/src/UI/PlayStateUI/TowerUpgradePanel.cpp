@@ -36,18 +36,6 @@ void TowerUpgradePanel::draw()
 		// draw tower iamge
 		m_towerImage.draw();
 
-		if (m_mouseOverRadiusUpgrade)
-		{
-			// draw tower upgrade radius
-			float centerX, centerY;
-			centerX = m_selectedTower->getPosition().getX() + m_selectedTower->getWidth() / 2;
-			centerY = m_selectedTower->getPosition().getY() + m_selectedTower->getHeight() / 2;
-
-			TheTextureManager::Instance()->drawFilledCircle(centerX, centerY, m_nextRadiusUpgradeValue,
-				{ ColorsConsts::lightGreen.r, ColorsConsts::lightGreen.g, ColorsConsts::lightGreen.b, ColorsConsts::lightGreen.a },
-				TheGame::Instance()->getRenderer());
-		}
-
 		// draw tower parameter textures
 		for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
 		{
@@ -430,16 +418,16 @@ void TowerUpgradePanel::updateUpgradeParameterLabels(TowerUpgradedButton* pUpgra
 		m_labelsMap[upgradeValueLabelID]->update();
 
 		// update upgrade radius if upgrade would increase its radius
-		m_mouseOverRadiusUpgrade = upgradeData.statName == LoaderParamsConsts::radius;
-		if (m_mouseOverRadiusUpgrade) m_nextRadiusUpgradeValue = upgradeData.values[upgradeData.nextLevel];
+		m_selectedTower->setMouseOverRadius(upgradeData.statName == LoaderParamsConsts::radius);
+		if (m_selectedTower->getMouseOverRadius()) m_selectedTower->setNextRadiusUpgradeValue(upgradeData.values[upgradeData.nextLevel]);
 	}
 	else if (m_labelsMap[upgradeValueLabelID]->getFontColor() == m_upgradeFontColor)
 	{
 		// return the normal color of tower parameter
 		m_labelsMap[upgradeValueLabelID]->setFontColor(ColorsConsts::white);
-		
+
 		// return hover upgrade radius to falses
-		m_mouseOverRadiusUpgrade = false;
+		m_selectedTower->setMouseOverRadius(false);
 	}
 
 	// set tower upgrade button background

@@ -137,7 +137,7 @@ void WaveManager::handleEvents()
 	if (isFinalWave() && s_hasNoEnemiesOnScreen && m_eClusters != nullptr && m_eClusters->empty())
 	{
 		std::shared_ptr<VictoryState> victoryState = std::make_shared<VictoryState>();
-		victoryState->setCurrentWaveID(m_currentWaveID);
+		victoryState->setCurrentWaveID(m_currentWaveID + 1);
 		TheGame::Instance()->getStateMachine()->pushState(victoryState);
 	}
 }

@@ -92,6 +92,11 @@ public:
 
 	void setClickToPlaceTowersHandlerState(ClickToPlaceTowerStates state);
 
+	void setMouseOverRadius(bool mouseOverRadiusUpgrade);
+	bool getMouseOverRadius();
+
+	void setNextRadiusUpgradeValue(int nextRadiusUpgradeValue);
+
 	// override methods
 	virtual void update() override;
 	virtual void draw() override;
@@ -152,6 +157,9 @@ private:
 	ClickToPlaceTowerStates clickToPlaceTowersHandlerState;
 
 	ArrayOf2TowerUpgradesData m_towerUpgradesData;
+
+	bool m_mouseOverRadiusUpgrade; // flag for drawing upgrade radius on screen
+	int m_nextRadiusUpgradeValue; // needed radius for drawing on screen
 };
 
 class TowerCreator : public BaseCreator

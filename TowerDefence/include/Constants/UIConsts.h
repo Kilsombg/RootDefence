@@ -43,7 +43,7 @@ namespace UIConsts {
 	constexpr char gameOverWaveLabel[] = "gameOverWaveLabel";
 
 	// victory panel
-	constexpr char victorWaveLabel[] = "gameOverWaveLabel";
+	constexpr char victorWaveLabel[] = "victorWaveLabel";
 #pragma endregion
 
 #pragma region texture iDs

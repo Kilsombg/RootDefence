@@ -11,6 +11,30 @@
       ]
     },
     {
+      "spawnInterval": 1.2,
+      "roundInterval": 1.0,
+      "enemyClusters": [
+        {
+          "enemyType": "greenChoy",
+          "count": 2
+        },
+        {
+          "enemyType": "greenPlant",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "spawnInterval": 1.2,
+      "roundInterval": 1.0,
+      "enemyClusters": [
+        {
+          "enemyType": "greenChoy",
+          "count": 4
+        }
+      ]
+    },
+    {
       "spawnInterval": 0.7,
       "roundInterval": 1.0,
       "enemyClusters": [
@@ -29,7 +53,7 @@
       ]
     },
     {
-      "spawnInterval": 0.8,
+      "spawnInterval": 1.2,
       "roundInterval": 1.0,
       "enemyClusters": [
         {
@@ -47,7 +71,7 @@
       ]
     },
     {
-      "spawnInterval": 1.2,
+      "spawnInterval": 1.5,
       "roundInterval": 1.0,
       "enemyClusters": [
         {
@@ -61,7 +85,7 @@
       ]
     },
     {
-      "spawnInterval": 1.0,
+      "spawnInterval": 1.3,
       "roundInterval": 1.0,
       "enemyClusters": [
         {
@@ -80,7 +104,7 @@
       "enemyClusters": [
         {
           "enemyType": "greenBroccoli",
-          "count": 5
+          "count": 2
         },
         {
           "enemyType": "yellowOrange",
@@ -89,7 +113,7 @@
       ]
     },
     {
-      "spawnInterval": 0.8,
+      "spawnInterval": 1.4,
       "roundInterval": 1.0,
       "enemyClusters": [
         {
@@ -111,7 +135,7 @@
       ]
     },
     {
-      "spawnInterval": 1.0,
+      "spawnInterval": 1.2,
       "roundInterval": 1.0,
       "enemyClusters": [
         {
@@ -151,6 +175,53 @@
       ]
     },
     {
+      "spawnInterval": 1.5,
+      "roundInterval": 1.0,
+      "enemyClusters": [
+        {
+          "enemyType": "redRadish",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "spawnInterval": 1.2,
+      "roundInterval": 1.0,
+      "enemyClusters": [
+        {
+          "enemyType": "redRadish",
+          "count": 2
+        },
+        {
+          "enemyType": "redPepper",
+          "count": 1
+        }
+      ]
+    },
+
+    {
+      "spawnInterval": 1.2,
+      "roundInterval": 1.0,
+      "enemyClusters": [
+        {
+          "enemyType": "redRadish",
+          "count": 2
+        },
+        {
+          "enemyType": "greenBroccoli",
+          "count": 4
+        },
+        {
+          "enemyType": "yellowOrange",
+          "count": 3
+        },
+        {
+          "enemyType": "greenChoy",
+          "count": 10
+        }
+      ]
+    },
+    {
       "spawnInterval": 0.8,
       "roundInterval": 1.0,
       "enemyClusters": [
@@ -169,7 +240,7 @@
       ]
     },
     {
-      "spawnInterval": 0.5,
+      "spawnInterval": 2.5,
       "roundInterval": 1.0,
       "enemyClusters": [
         {

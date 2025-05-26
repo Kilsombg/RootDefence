@@ -56,6 +56,12 @@ void PlayState::render()
 	// render map
 	pLevel->render();
 
+	// render towers
+	for (std::vector<std::shared_ptr<Tower>>::size_type i = 0; i < m_towersObjects->size(); i++)
+	{
+		(*m_towersObjects)[i]->draw();
+	}
+
 	// render enemies
 	for (std::vector<std::shared_ptr<Enemy>>::size_type i = 0; i < m_enemyObjects->size(); i++)
 	{
@@ -65,11 +71,6 @@ void PlayState::render()
 	// render UI
 	m_playStateUI->draw();
 
-	// render towers
-	for (std::vector<std::shared_ptr<Tower>>::size_type i = 0; i < m_towersObjects->size(); i++)
-	{
-		(*m_towersObjects)[i]->draw();
-	}
 
 	// render projectiles
 	TheProjectileManager::Instance()->render();
@@ -281,9 +282,9 @@ void PlayState::loadGameSessionData()
 	m_gameSessionData = std::make_shared<GameSessionData>();
 
 	m_gameSessionData->gameHealth = 5;
-	m_gameSessionData->resources = { Resource {ResourceType {GREEN}, 20},
-					Resource {ResourceType {YELLOW}, 0},
-					Resource {ResourceType {RED}, 0},
+	m_gameSessionData->resources = { Resource {ResourceType {GREEN}, 30},
+					Resource {ResourceType {YELLOW}, 5},
+					Resource {ResourceType {RED}, 5},
 					Resource{ ResourceType {BLUE}, 0 } };
 	m_gameSessionData->currentWaveLevel = 0;
 }

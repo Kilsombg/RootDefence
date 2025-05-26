@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="31">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="25" height="14" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="35">
  <tileset firstgid="1" name="map_tileset1" tilewidth="32" tileheight="32" spacing="2" margin="2" tilecount="198" columns="18">
   <image source="map_tileset1.png" trans="000000" width="640" height="400"/>
  </tileset>
@@ -10,22 +10,22 @@
  </layer>
  <objectgroup id="2" name="EntitiesPaths">
   <object id="1" name="enemyPath" x="0" y="256">
-   <polyline points="0,7 113.667,8.66667 117.667,-81.3333 208,-83 206,-150.667 245.667,-152.667 246,-191 523.333,-188 523,-149.334 597.334,-150.667 594.667,-88.6666 654.667,-89.3333 656.667,188.667"/>
+   <polyline points="0,7 113.667,8.66667 117.667,-81.3333 208,-83 210,-152.334 245.667,-152.667 246,-191 523.333,-188 523,-149.334 597.334,-150.667 594.667,-88.6666 654.667,-89.3333 656.667,188.667"/>
   </object>
   <object id="2" name="enemyPathArea" x="-1.27273" y="273.818" width="117.455" height="28.7273"/>
-  <object id="3" name="enemyPathArea" x="112" y="176.909" width="30.0005" height="124.727"/>
-  <object id="4" name="enemyPathArea" x="128.515" y="130.273" width="111.122" height="76.4546"/>
-  <object id="6" name="enemyPathArea" x="38.9392" y="239.636" width="17.7883" height="16.7273"/>
-  <object id="7" name="enemyPathArea" x="0.5225" y="327.636" width="62.705" height="12.9773"/>
-  <object id="8" name="enemyPathArea" x="351.636" y="135.636" width="65.455" height="13.0909"/>
-  <object id="9" name="enemyPathArea" x="384.772" y="39.6363" width="63.58" height="13.2273"/>
-  <object id="10" name="enemyPathArea" x="479.397" y="39.7613" width="32.955" height="13.8523"/>
-  <object id="11" name="enemyPathArea" x="210" y="112.909" width="63.2732" height="32.5455"/>
-  <object id="12" name="enemyPathArea" x="244.363" y="81.4545" width="315.182" height="35.0606"/>
-  <object id="13" name="enemyPathArea" x="528.022" y="113.886" width="95.955" height="28.4773"/>
-  <object id="14" name="enemyPathArea" x="590.772" y="140.636" width="31.955" height="69.4773"/>
-  <object id="15" name="enemyPathArea" x="594.772" y="177.386" width="92.955" height="29.7273"/>
-  <object id="16" name="enemyPathArea" x="654.272" y="178.303" width="33.7883" height="269.061"/>
+  <object id="3" name="enemyPathArea" x="119" y="176.909" width="18.5005" height="124.727"/>
+  <object id="4" name="enemyPathArea" x="214.515" y="138.023" width="20.122" height="68.7046"/>
+  <object id="6" name="enemyPathArea" x="38.9392" y="239.636" width="18.0383" height="13.2273"/>
+  <object id="7" name="enemyPathArea" x="3.2725" y="328.136" width="61.705" height="6.4773"/>
+  <object id="8" name="enemyPathArea" x="351.636" y="135.636" width="65.955" height="7.8409"/>
+  <object id="9" name="enemyPathArea" x="386.022" y="39.6363" width="62.33" height="7.2273"/>
+  <object id="10" name="enemyPathArea" x="480.397" y="39.7613" width="31.955" height="9.1023"/>
+  <object id="11" name="enemyPathArea" x="219" y="114.409" width="48.0232" height="22.5455"/>
+  <object id="12" name="enemyPathArea" x="247.113" y="83.9545" width="308.182" height="23.3106"/>
+  <object id="13" name="enemyPathArea" x="534.022" y="113.886" width="81.955" height="23.4773"/>
+  <object id="14" name="enemyPathArea" x="598.772" y="140.636" width="18.955" height="56.9773"/>
+  <object id="15" name="enemyPathArea" x="621.772" y="180.636" width="60.955" height="19.9773"/>
+  <object id="16" name="enemyPathArea" x="658.272" y="178.303" width="24.7883" height="269.061"/>
   <object id="17" name="enemyPathArea" x="713.522" y="-1.11365" width="87.705" height="26.2273"/>
   <object id="18" name="enemyPathArea" x="740.272" y="25.1363" width="60.455" height="22.2273"/>
   <object id="19" name="enemyPathArea" x="773.772" y="48.6363" width="25.705" height="98.9773"/>
@@ -34,10 +34,14 @@
   <object id="22" name="enemyPathArea" x="-3.9775" y="49.1363" width="31.0308" height="20"/>
   <object id="23" name="enemyPathArea" x="573.773" y="428.136" width="28.455" height="21.2273"/>
   <object id="24" name="enemyPathArea" x="197.356" y="320.136" width="375.705" height="128.477"/>
-  <object id="25" name="enemyPathArea" x="231.272" y="271.636" width="304.455" height="46.394"/>
-  <object id="26" name="enemyPathArea" x="294.272" y="237.636" width="212.788" height="30.394"/>
+  <object id="25" name="enemyPathArea" x="230.272" y="280.636" width="305.455" height="37.394"/>
+  <object id="26" name="enemyPathArea" x="298.605" y="237.969" width="192.455" height="42.0607"/>
   <object id="27" name="enemyPathArea" x="540.606" y="301.636" width="30.455" height="17.7273"/>
   <object id="28" name="enemyPathArea" x="78.9392" y="363.303" width="125.122" height="87.7273"/>
   <object id="29" name="enemyPathArea" x="-4.7275" y="388.303" width="117.455" height="60.0606"/>
+  <object id="31" name="enemyPathArea" x="143.189" y="179.398" width="66.622" height="25.7046"/>
+  <object id="32" name="enemyPathArea" x="128.189" y="135.898" width="63.622" height="5.2046"/>
+  <object id="33" name="enemyPathArea" x="488.772" y="254.97" width="24.7883" height="25.7274"/>
+  <object id="34" name="enemyPathArea" x="256.606" y="270.47" width="39.7883" height="11.0607"/>
  </objectgroup>
 </map>

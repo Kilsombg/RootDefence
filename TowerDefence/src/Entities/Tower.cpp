@@ -233,6 +233,21 @@ void Tower::setClickToPlaceTowersHandlerState(ClickToPlaceTowerStates state)
 	clickToPlaceTowersHandlerState = state;
 }
 
+void Tower::setMouseOverRadius(bool mouseOverRadiusUpgrade)
+{
+	m_mouseOverRadiusUpgrade = mouseOverRadiusUpgrade;
+}
+
+bool Tower::getMouseOverRadius()
+{
+	return m_mouseOverRadiusUpgrade;
+}
+
+void Tower::setNextRadiusUpgradeValue(int nextRadiusUpgradeValue)
+{
+	m_nextRadiusUpgradeValue = nextRadiusUpgradeValue;
+}
+
 void Tower::update()
 {
 	SDLGameObject::update();
@@ -248,12 +263,26 @@ void Tower::draw()
 	// draw range area when selected
 	if (m_selectOnClickEventHandler.isSelected())
 	{
+		if (m_mouseOverRadiusUpgrade)
+		{
+			// draw tower upgrade radius
+			float centerX, centerY;
+			centerX = m_position.getX() + m_width / 2;
+			centerY = m_position.getY() + m_height / 2;
+
+			TheTextureManager::Instance()->drawFilledCircle(centerX, centerY, m_nextRadiusUpgradeValue,
+				{ ColorsConsts::lightGreen.r, ColorsConsts::lightGreen.g, ColorsConsts::lightGreen.b, ColorsConsts::lightGreen.a },
+				TheGame::Instance()->getRenderer());
+		}
+
+		// draw tower's radius
 		TheTextureManager::Instance()->drawFilledCircle(
 			m_position.getX() + m_width / 2, m_position.getY() + m_height / 2, static_cast<int>(m_radius),
 			{ ColorsConsts::gray.r, ColorsConsts::gray.g, ColorsConsts::gray.b, ColorsConsts::gray.a },
 			TheGame::Instance()->getRenderer());
 	}
 
+	// placement area
 	/*TheTextureManager::Instance()->drawProgressBar(m_position.getX(), m_position.getY(), m_width, m_height,
 		{ 255,0,0,125 }, {}, 0,
 		TheGame::Instance()->getRenderer());*/
