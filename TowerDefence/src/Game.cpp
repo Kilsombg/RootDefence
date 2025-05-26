@@ -20,6 +20,8 @@
 
 #include "../include/UIHeaders/GameOverUIHeaders/GameOverStatePanel.h"
 
+#include "../include/UIHeaders/VictoryStateUIHeaders/VictoryStatePanel.h"
+
 #include "../include/UIHeaders/MainMenuUIHeaders/MainMenuPanel.h"
 #include "../include/UIHeaders/MainMenuUIHeaders/MapsPanel.h"
 
@@ -156,6 +158,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 
 	ThePanelFactory::Instance()->registerType(PanelConsts::gameOverStatePanel, std::make_shared<GameOverStatePanelCreator>());
+
+	ThePanelFactory::Instance()->registerType(PanelConsts::victoryStatePanel, std::make_shared<VictoryStatePanelCreator>());
 
 	ThePanelFactory::Instance()->registerType(PanelConsts::mainMenuPanel, std::make_shared<MainMenuPanelCreator>());
 	ThePanelFactory::Instance()->registerType(PanelConsts::mapsPanel, std::make_shared<MapsPanelCreator>());

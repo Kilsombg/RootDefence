@@ -203,6 +203,9 @@ void PlayState::handleEvents()
 		TheGame::Instance()->getStateMachine()->pushState(pGameOverState);
 	}
 
+	// handle victory
+	m_waveManager->handleEvents();
+
 	// handle buttons
 	MenuState::handleEvents();
 

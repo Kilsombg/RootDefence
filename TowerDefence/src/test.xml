@@ -248,4 +248,23 @@
 			</GAMEOVERSTATE>
 		</PANELS>
 	</GAMEOVER>
+	<VICTORY>
+		<TEXTURES>
+			<texture filename="src/assets/UI/States/GameOverState/GameOverStatePanel.png" ID="victoryStatePanel"/>
+			<texture filename="src/assets/UI/buttons/restart-button_64x64_anim.png" ID="restartButton"/>
+			<texture filename="src/assets/UI/buttons/main-menu-button_64x64_anim.png" ID="mainMenuButton"/>
+		</TEXTURES>
+		<PANELS>
+			<VICTORYSTATE type="victoryStatePanel" x="200.00" y="140.00" width="400" height="200" textureID="victoryStatePanel">
+				<OBJECTS>
+					<object type="text" x="325.00" y="130.00" characterWidth="20" height="40" textureID="victoryLabel" labelId="victoryLabel" message="VICTORY" dynamic="false"/>
+					<object type="text" x="380.00" y="230.00" characterWidth="8" height="16" textureID="gameOverWaveLabel" labelId="gameOverWaveLabel" message="" dynamic="false"/>
+					<object type="menuButton" x="325.00" y="300.00" width="64" height="64" textureID="mainMenuButton" numFrames="0" callbackID="mainMenuButtonCallbackID"/>
+					<object type="text" x="323.00" y="370.00" characterWidth="8" height="16" textureID="mainMenuLabel" labelId="mainMenuLabel" message="Main menu" dynamic="false"/>
+					<object type="menuButton" x="425.00" y="300.00" width="64" height="64" textureID="restartButton" numFrames="0" callbackID="restartButtonCallbackID"/>
+					<object type="text" x="416.00" y="370.00" characterWidth="8" height="16" textureID="restartLabel" labelId="restartLabel" message="Play Again" dynamic="false"/>
+				</OBJECTS>
+			</VICTORYSTATE>
+		</PANELS>
+	</VICTORY>
 </STATES>

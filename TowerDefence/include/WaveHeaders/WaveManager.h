@@ -30,6 +30,8 @@ public:
 	void load();
 	void clean();
 
+	void handleEvents();
+
 	// getters and setters
 
 	void setGameObjectData(GameObjectData<LoaderParams>& gameObjectdata);
@@ -44,12 +46,13 @@ private:
 	WaveManager();
 	static std::shared_ptr<WaveManager> s_pInstance;
 	static bool s_pressedPlayButton; // used to start wave spawning.
-	static bool s_hasEnemiesOnScreen; // flag for checking if there are any enemies in PlayState
+	static bool s_hasNoEnemiesOnScreen; // flag for checking if there are any enemies in PlayState. True if there is enemies, otherwise - false.
 
 	int m_maxWave; // the maximum wave that we define in our data
 	int m_currentWaveID; // which wave is currently played
 	bool m_stoppedWaveAfterEnd; // flag for stopping wave after end. 
 	std::vector<Wave*> m_waves;
+	std::vector<EnemyCluster>* m_eClusters; // waves' enemies clusters
 
 	std::unique_ptr<GameObjectData<LoaderParams>> m_gameObjectData; // base enemy stats
 	std::shared_ptr<std::vector<std::shared_ptr<Enemy>>> m_enemyObjects; // pointer to enemies in playState

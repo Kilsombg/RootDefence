@@ -2,7 +2,7 @@
 
 #include "../../include/Constants/LoaderParamsConsts.h"
 
-#include "../../include/GameStateHeaders/GameOverState.h"
+#include "../../include/GameStateHeaders/VictoryState.h"
 
 #include "../../include/UtilsHeaders/GameObjectFactory.h"
 #include "../../include/UtilsHeaders/LoaderParams.h"
@@ -14,7 +14,7 @@
 
 std::shared_ptr<WaveManager> WaveManager::s_pInstance = nullptr;
 bool WaveManager::s_pressedPlayButton = false;
-bool WaveManager::s_hasEnemiesOnScreen = false;
+bool WaveManager::s_hasNoEnemiesOnScreen = false;
 
 int WaveManager::getCurrentWaveID()
 {
@@ -38,19 +38,19 @@ std::shared_ptr<WaveManager> WaveManager::Instance()
 void WaveManager::spawnWaveEnemies(std::vector<std::shared_ptr<Vector2D>>& enemyPath, Wave& wave, std::function<void(std::unique_ptr<Enemy>)> addEnemyCallback, float dT)
 {
 	// update flag
-	s_hasEnemiesOnScreen = m_enemyObjects->empty();
+	s_hasNoEnemiesOnScreen = m_enemyObjects->empty();
 
 	// if not pressed play button, then return
 	if (!s_pressedPlayButton) return;
 
-	std::vector<EnemyCluster>* eClusters = &(wave.getEnemyClusters());
+	m_eClusters = &(wave.getEnemyClusters());
 	Timer* spawnTimer = &(wave.getSpawnTimer());
 	Timer* roundTimer = &(wave.getRoundTimer());
 
 	spawnTimer->countDown(dT);
 
 	//Check if the round needs to start.
-	if (eClusters->empty())
+	if (m_eClusters->empty())
 	{
 		// stop wave untill play button is pressed
 		if (s_pressedPlayButton && !m_stoppedWaveAfterEnd)
@@ -75,12 +75,12 @@ void WaveManager::spawnWaveEnemies(std::vector<std::shared_ptr<Vector2D>>& enemy
 	{
 
 		//Add an enemy if needed.
-		if (eClusters->begin()->count > 0 && spawnTimer->timeSIsZero()) {
-			if (std::unique_ptr<GameObject> e = GameObjectFactory::Instance()->create(eClusters->begin()->enemyType))
+		if (m_eClusters->begin()->count > 0 && spawnTimer->timeSIsZero()) {
+			if (std::unique_ptr<GameObject> e = GameObjectFactory::Instance()->create(m_eClusters->begin()->enemyType))
 			{
 				if (std::unique_ptr<Enemy> en = std::unique_ptr<Enemy>(dynamic_cast<Enemy*>(e.release())))
 				{
-					std::shared_ptr<LoaderParams> pParams = m_gameObjectData->getData(eClusters->begin()->enemyType);
+					std::shared_ptr<LoaderParams> pParams = m_gameObjectData->getData(m_eClusters->begin()->enemyType);
 					if (!enemyPath.empty())
 					{
 						pParams->setAttribute(LoaderParamsConsts::x, enemyPath[0]->getX());
@@ -97,16 +97,16 @@ void WaveManager::spawnWaveEnemies(std::vector<std::shared_ptr<Vector2D>>& enemy
 					e.reset();  // remove object to prevent memory leak
 				}
 
-				eClusters->begin()->count--;
+				m_eClusters->begin()->count--;
 				spawnTimer->resetToMax();
 			}
 		}
 		else
 		{
 			// check if all of the enemies in the cluster are spawned
-			if (eClusters->begin()->count == 0)
+			if (m_eClusters->begin()->count == 0)
 			{
-				eClusters->erase(eClusters->begin());
+				m_eClusters->erase(m_eClusters->begin());
 			}
 		}
 	}
@@ -123,7 +123,6 @@ void WaveManager::nextWave(Wave& wave)
 	{
 		// implement random generated wave
 		std::cout << "final wave finished!\n";
-		//TheGame::Instance()->getStateMachine()->pushState(std::make_shared<GameOverState>());
 	}
 }
 
@@ -132,9 +131,20 @@ void WaveManager::setEnemyObjects(std::shared_ptr<std::vector<std::shared_ptr<En
 	m_enemyObjects = pEnemiesObjects;
 }
 
+void WaveManager::handleEvents()
+{
+	// handle victory state
+	if (isFinalWave() && s_hasNoEnemiesOnScreen && m_eClusters != nullptr && m_eClusters->empty())
+	{
+		std::shared_ptr<VictoryState> victoryState = std::make_shared<VictoryState>();
+		victoryState->setCurrentWaveID(m_currentWaveID);
+		TheGame::Instance()->getStateMachine()->pushState(victoryState);
+	}
+}
+
 bool WaveManager::isActivePlayButton()
 {
-	return !s_pressedPlayButton && s_hasEnemiesOnScreen;
+	return !s_pressedPlayButton && s_hasNoEnemiesOnScreen;
 }
 
 bool WaveManager::isFinalWave()
@@ -176,7 +186,10 @@ void WaveManager::clean()
 
 	// reset static variables
 	s_pressedPlayButton = false;
-	s_hasEnemiesOnScreen = false;
+	s_hasNoEnemiesOnScreen = false;
+
+	// clean enemies clusters
+	m_eClusters = nullptr;
 
 	// clean pointer
 	s_pInstance = nullptr;

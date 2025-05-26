@@ -1,15 +1,15 @@
-#ifndef __GameOverStateUI__
-#define __GameOverStateUI__
+#ifndef __VictoryStateUI__
+#define __VictoryStateUI__
 
 #include "../CommonHeaders/StateUI.h"
 
 #include<string>
 
 
-class GameOverStateUI : public StateUI
+class VictoryStateUI : public StateUI
 {
 public:
-	GameOverStateUI(std::string stateID);
+	VictoryStateUI(std::string stateID);
 
 	void draw() override;
 	void update() override;
@@ -24,4 +24,5 @@ private:
 	int m_currentWaveID;
 };
 
-#endif // !__GameOverStateUI__
+
+#endif // !__VictoryStateUI__

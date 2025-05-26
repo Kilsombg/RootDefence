@@ -219,6 +219,15 @@
     <ClCompile Include="src\Entities\MapMenuButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameStates\VictoryState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\VictoryStateUI\VictoryStateUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\VictoryStateUI\VictoryStatePanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game.h">
@@ -474,6 +483,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\EntitiesHeaders\MapMenuButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStateHeaders\VictoryState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UIHeaders\VictoryStateUIHeaders\VictoryStateUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UIHeaders\VictoryStateUIHeaders\VictoryStatePanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

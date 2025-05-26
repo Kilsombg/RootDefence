@@ -1,16 +1,20 @@
-#ifndef __GameOverState__
-#define __GameOverState__
+#ifndef __VictoryState__
+#define __VictoryState__
 
 #include "MenuState.h"
 
-#include "../UIHeaders/GameOverUIHeaders/GameOverStateUI.h"
+#include "../EntitiesHeaders/GameObject.h"
 
-#include<map>
+#include "../UIHeaders/VictoryStateUIHeaders/VictoryStateUI.h"
 
-class GameOverState : public MenuState
+#include<memory>
+
+class VictoryState : public MenuState
 {
 public:
-	GameOverState();
+	VictoryState();
+
+	// override methods
 
 	virtual void update() override;
 	virtual void render() override;
@@ -24,15 +28,13 @@ public:
 
 	virtual std::string getStateID() const override;
 
-
-	// getters and setters
-
 	void setCurrentWaveID(int currentWaveID);
 
 private:
-	std::unique_ptr<GameOverStateUI> m_gameOverStateUI;
+	std::unique_ptr<VictoryStateUI> m_victoryStateUI;
 
 	int m_currentWaveID;
 };
 
-#endif // !__GameOverState__
+
+#endif // !__VictoryState__

@@ -1,13 +1,13 @@
-#ifndef __GameOverStatePanel__
-#define __GameOverStatePanel__
+#ifndef __VictoryStatePanel__
+#define __VictoryStatePanel__
 
 #include "../CommonHeaders/InteractivePanel.h"
 #include "../CommonHeaders/PanelCreator.h"
 
-class GameOverStatePanel : public MenuInteractivePanel
+class VictoryStatePanel : public MenuInteractivePanel
 {
 public:
-	GameOverStatePanel();
+	VictoryStatePanel();
 
 	void draw() override;
 	void update() override;
@@ -22,21 +22,21 @@ public:
 	void setCurrentWaveID(int currentWaveID);
 
 private:
-	static void s_gameOverToMain();
+	static void s_victoryToMain();
 	static void s_restartPlay();
 
 	/**
 	* update dynamic labels' value.
 	*/
-	void updateDynamicLabel();
+	void updateStaticLabel();
 
 	int m_currentWaveID;
 };
 
 
-class GameOverStatePanelCreator : public PanelCreator
+class VictoryStatePanelCreator : public PanelCreator
 {
 	std::unique_ptr<Panel> create() const override;
 };
 
-#endif // !__GameOverStatePanel__
+#endif // !__VictoryStatePanel__

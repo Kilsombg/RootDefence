@@ -161,6 +161,7 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameStates\GameOverState.cpp" />
     <ClCompile Include="src\GameStates\MenuState.cpp" />
+    <ClCompile Include="src\GameStates\VictoryState.cpp" />
     <ClCompile Include="src\Managers\CollisionManager.cpp" />
     <ClCompile Include="src\Managers\PurchaseManager.cpp" />
     <ClCompile Include="src\Managers\SellManager.cpp" />
@@ -180,6 +181,8 @@
     <ClCompile Include="src\UI\PlayStateUI\TipsPanel.cpp" />
     <ClCompile Include="src\UI\PlayStateUI\TowersPanel.cpp" />
     <ClCompile Include="src\UI\PlayStateUI\TowerUpgradePanel.cpp" />
+    <ClCompile Include="src\UI\VictoryStateUI\VictoryStatePanel.cpp" />
+    <ClCompile Include="src\UI\VictoryStateUI\VictoryStateUI.cpp" />
     <ClCompile Include="src\Utils\base64.cpp" />
     <ClCompile Include="src\Utils\GameStateMachine.cpp" />
     <ClCompile Include="src\GameStates\MainMenuState.cpp" />
@@ -238,6 +241,7 @@
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\GameStateHeaders\GameOverState.h" />
     <ClInclude Include="include\GameStateHeaders\GameState.h" />
+    <ClInclude Include="include\GameStateHeaders\VictoryState.h" />
     <ClInclude Include="include\ManagersHeaders\CollisionManager.h" />
     <ClInclude Include="include\ManagersHeaders\PurchaseManager.h" />
     <ClInclude Include="include\ManagersHeaders\SellManager.h" />
@@ -263,6 +267,8 @@
     <ClInclude Include="include\UIHeaders\PlayStateUIHeaders\TipsPanel.h" />
     <ClInclude Include="include\UIHeaders\PlayStateUIHeaders\TowersPanel.h" />
     <ClInclude Include="include\UIHeaders\PlayStateUIHeaders\TowerUpgradePanel.h" />
+    <ClInclude Include="include\UIHeaders\VictoryStateUIHeaders\VictoryStatePanel.h" />
+    <ClInclude Include="include\UIHeaders\VictoryStateUIHeaders\VictoryStateUI.h" />
     <ClInclude Include="include\UtilsHeaders\base64.h" />
     <ClInclude Include="include\UtilsHeaders\BaseFactory.h" />
     <ClInclude Include="include\UtilsHeaders\Creator.h" />
