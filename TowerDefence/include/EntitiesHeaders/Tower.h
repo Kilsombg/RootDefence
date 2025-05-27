@@ -85,6 +85,8 @@ public:
 	Resource getSpentResources() const;
 	void setSpentResources(Resource spentResource);
 
+	double getDamageDealt();
+
 	std::weak_ptr<Enemy> getTargetEnemy() const;
 
 	ArrayOf2TowerUpgradesData& getTowerUpgradesData();
@@ -125,7 +127,10 @@ public:
 	* execute attack interval
 	*/
 	virtual void aimEnemy();
-
+	/**
+	* when enemy got hit by tower's projectile, increase damage dealt.
+	*/
+	void incrementDealtDamage(float damage);
 	/**
 	* @return true if selected, otherwise false
 	*/
@@ -146,7 +151,7 @@ private:
 	float m_attackSpeed;
 	Timer m_attackTimer;
 	std::string m_color;
-
+	double m_damageDealt; //damage is counted only if its projectile hit the target enemy.
 	Resource m_spentResources; /// spent resources on tower.
 
 	std::weak_ptr<Enemy> m_targetEnemy;

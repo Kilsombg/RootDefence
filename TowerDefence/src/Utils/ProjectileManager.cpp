@@ -43,11 +43,13 @@ void ProjectileManager::update()
 			// if enemy is still alive then deal damage
 			if (m_activeProjectiles[i]->getTargetEnemy().use_count()) 
 			{
-				m_activeProjectiles[i]->getTargetEnemy().lock()->dealDamage(damageToEnemy(m_activeProjectiles[i].get()));
+				float damageDealt = m_activeProjectiles[i]->getTargetEnemy().lock()->dealDamage(damageToEnemy(m_activeProjectiles[i].get()));
+				m_activeProjectiles[i]->getTowerOrigin()->incrementDealtDamage(damageDealt);
 				//std::cout << "target enemy health: " << m_activeProjectiles[i]->getTargetEnemy().lock()->getHealth() << '\n';
 			}
 
 			// remove projectile from the game
+			m_activeProjectiles[i]->clean();
 			m_activeProjectiles.erase(m_activeProjectiles.begin() + i--);
 		}
 	}
@@ -82,6 +84,7 @@ void ProjectileManager::createProjectile(Tower& tower)
 			
 			projectile->load(params);
 			projectile->setTargetEnemy(tower.getTargetEnemy());
+			projectile->setTowerOrigin(&tower);
 			m_activeProjectiles.push_back(std::move(projectile));
 		}
 		else

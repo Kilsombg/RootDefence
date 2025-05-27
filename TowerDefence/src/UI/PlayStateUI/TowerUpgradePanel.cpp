@@ -370,6 +370,7 @@ void TowerUpgradePanel::updateDynamicLabel()
 	m_labelsMap[UIConsts::radiusValueLabel]->setMessage(TheTextFormatter::Instance()->trimFractionalPart(std::to_string(m_selectedTower->getRadius()), 2));
 	int spentResourceValue = m_selectedTower->getSpentResources().value * TheSellManager::Instance()->getBaseSellPercentage();
 	m_labelsMap[UIConsts::sellValueLabel]->setMessage(std::to_string(spentResourceValue));
+	m_labelsMap[UIConsts::damageDealtLabel]->setMessage(TheTextFormatter::Instance()->trimFractionalPart(std::to_string(m_selectedTower->getDamageDealt()), 2));
 
 	// update special tower parameters
 	if (FreezeTower* freezeTower = dynamic_cast<FreezeTower*>(m_selectedTower.get()))

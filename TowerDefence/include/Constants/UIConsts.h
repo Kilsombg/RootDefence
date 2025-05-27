@@ -27,6 +27,7 @@ namespace UIConsts {
 
 	// tower upgrade panel
 	constexpr char towerNameLabel[] = "towerNameLabel";
+	constexpr char damageDealtLabel[] = "damageDealtLabel";
 	constexpr char slowPercentageLabel[] = "slowPercentageLabel";
 	constexpr char valueLabelSuffix[] = "ValueLabel";
 	constexpr char damageValueLabel[] = "damageValueLabel";

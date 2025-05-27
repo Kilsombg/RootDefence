@@ -50,7 +50,7 @@ public:
 
 	/** reduce health by damage
 	*/
-	void dealDamage(float damage);
+	float dealDamage(float damage);
 
 	bool isAlive();
 

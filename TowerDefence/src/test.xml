@@ -88,6 +88,7 @@
 			<texture filename="src/assets/UI/States/PlayState/icons/ruby_resource16x16.png" ID="rubyResourceIcon16x16"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/ruby_resource32x32.png" ID="rubyResourceIcon32x32"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/sapphire_resource16x16.png" ID="sapphireResourceIcon16x16"/>
+			<texture filename="src/assets/UI/States/PlayState/icons/damage-dealt32x32.png" ID="damageDealtIcon"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/damage_21x21.png" ID="damageIcon"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/attSpeed_29x22.png" ID="attackSpeedIcon"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/radius_23x22.png" ID="radiusIcon"/>
@@ -116,6 +117,8 @@
 			<TOWERUPGRADE type="towerUpgradePanel" x="0.00" y="448.00" width="800" height="92" textureID="towerUpgradesPanel">
 				<OBJECTS>
 					<object type="text" x="100.00" y="465.00" characterWidth="8" height="15" textureID="towerNameLabel" labelId="towerNameLabel" message="" dynamic="false"/>
+					<object type="texture" x="81.00" y="478.00" width="32" height="32" textureID="damageDealtIcon"/>
+					<object type="text" x="110.00" y="490.00" characterWidth="6" height="10" textureID="damageDealtLabel" labelId="damageDealtLabel" message="" dynamic="true"/>
 					<object type="texture" x="204.00" y="461.00" width="21" height="21" textureID="damageIcon"/>
 					<object type="text" x="230.00" y="456.00" characterWidth="6" height="10" textureID="damageLabel" labelId="damageLabel" message="damage" dynamic="false"/>
 					<object type="text" x="230.00" y="466.00" characterWidth="6" height="10" textureID="damageValueLabel" labelId="damageValueLabel" message="" dynamic="false"/>

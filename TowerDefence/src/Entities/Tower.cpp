@@ -139,6 +139,7 @@ Tower::Tower(const Tower& tower) : SDLGameObject(tower)
 	setAttackSpeed(tower.m_attackSpeed);
 
 	m_spentResources = tower.m_spentResources;
+	m_damageDealt = tower.m_damageDealt;
 }
 
 float Tower::getRadius() const
@@ -211,6 +212,11 @@ Resource Tower::getSpentResources() const
 void Tower::setSpentResources(Resource spentResource)
 {
 	m_spentResources = spentResource;
+}
+
+double Tower::getDamageDealt()
+{
+	return m_damageDealt;
 }
 
 std::weak_ptr<Enemy> Tower::getTargetEnemy() const
@@ -318,6 +324,7 @@ void Tower::load(const std::shared_ptr<LoaderParams> pParams)
 	m_radius = pParams->getAttribute<float>(LoaderParamsConsts::radius);
 	m_baseCost.type = getResourceTypeByString(pParams->getAttribute<std::string>(LoaderParamsConsts::costType));
 	m_baseCost.value = pParams->getAttribute<int>(LoaderParamsConsts::costValue);
+	m_damageDealt = 0;
 
 	// load attack speed
 	float attackSpeed = pParams->getAttribute<float>(LoaderParamsConsts::attackSpeed);
@@ -356,9 +363,9 @@ void Tower::targetEnemy(std::shared_ptr<std::vector<std::shared_ptr<Enemy>>> ene
 {
 	if ((*enemies).empty()) return;
 
-	// if tower has target in range then skip searching a target, otherwise clear it
-	if (inRadius(m_targetEnemy.lock())) { return; }
-	else { m_targetEnemy.reset(); }
+	// if target enemy is not in range then clear it, otherwise skip searching a target.
+	if (!inRadius(m_targetEnemy.lock())) { m_targetEnemy.reset();; }
+	// else { return; }
 
 	std::shared_ptr<Enemy> tempEnemy;
 	int index = 0;
@@ -445,6 +452,11 @@ void Tower::aimEnemy()
 	{
 		m_attackTimer.resetToMax();
 	}
+}
+
+void Tower::incrementDealtDamage(float damage)
+{
+	m_damageDealt += damage;
 }
 
 std::unique_ptr<GameObject> TowerCreator::create() const
