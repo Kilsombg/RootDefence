@@ -23,6 +23,12 @@ void VictoryStatePanel::draw()
 	// draw buttons
 	MenuInteractivePanel::draw();
 
+	// draw textures
+	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->draw();
+	}
+
 	// draw labels
 	for (std::map<std::string, std::unique_ptr<Text>>::iterator it = m_labelsMap.begin(); it != m_labelsMap.end(); it++)
 	{
@@ -63,6 +69,10 @@ void VictoryStatePanel::load(std::vector<std::unique_ptr<GameObject>> gameObject
 			m_labelsMap[pText->getLabelID()] = std::move(pText);
 			gameObjects[i].release();
 		}
+		else
+		{
+			m_gameObjects.push_back(std::move(gameObjects[i]));
+		}
 	}
 	// update static labels
 	updateStaticLabel();
@@ -79,9 +89,9 @@ void VictoryStatePanel::loadCallbacks()
 	setCallbacks();
 }
 
-void VictoryStatePanel::setCurrentWaveID(int currentWaveID)
+void VictoryStatePanel::setRewardValue(int rewardValue)
 {
-	m_currentWaveID = currentWaveID;
+	m_rewardValue = rewardValue;
 	updateStaticLabel();
 }
 
@@ -98,8 +108,7 @@ void VictoryStatePanel::s_restartPlay()
 void VictoryStatePanel::updateStaticLabel()
 {
 	// update values
-	std::string waveLevel = "Wave " + std::to_string(m_currentWaveID);
-	m_labelsMap[UIConsts::victorWaveLabel]->setMessage(waveLevel);
+	m_labelsMap[UIConsts::rewardValueLabel]->setMessage(std::to_string(m_rewardValue));
 
 	// update text on screen
 	for (std::map<std::string, std::unique_ptr<Text>>::iterator it = m_labelsMap.begin(); it != m_labelsMap.end(); it++)

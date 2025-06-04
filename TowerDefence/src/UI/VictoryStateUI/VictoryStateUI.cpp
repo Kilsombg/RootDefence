@@ -23,7 +23,7 @@ void VictoryStateUI::load()
 
 	// load current wave
 	auto pVictoryStateUIPanel = getPanel<VictoryStatePanel>();
-	pVictoryStateUIPanel->setCurrentWaveID(m_currentWaveID);
+	pVictoryStateUIPanel->setRewardValue(m_rewardValue);
 }
 
 void VictoryStateUI::handleEvents()
@@ -36,7 +36,7 @@ void VictoryStateUI::clean()
 	StateUI::clean();
 }
 
-void VictoryStateUI::setCurrentWaveID(int currentWaveID)
+void VictoryStateUI::setRewardValue(int rewardValue)
 {
-	m_currentWaveID = currentWaveID;
+	m_rewardValue = rewardValue;
 }

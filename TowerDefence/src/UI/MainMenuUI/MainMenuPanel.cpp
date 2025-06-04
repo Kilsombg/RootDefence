@@ -3,12 +3,14 @@
 #include "../../../include/Game.h"
 
 #include "../../../include/Constants/LoaderParamsConsts.h"
+#include "../../../include/Constants/UIConsts.h"
 
 #include "../../../include/EntitiesHeaders/MenuButton.h"
 
 #include "../../../include/GameStateHeaders/PlayState.h"
 
 #include "../../../include/UIHeaders/MainMenuUIHeaders/MapsPanel.h"
+#include "../../../include/UIHeaders/MainMenuUIHeaders/DeleteProgressConfirmationPanel.h"
 
 bool MainMenuPanel::s_active = true;
 
@@ -18,7 +20,7 @@ MainMenuPanel::MainMenuPanel() : MenuInteractivePanel()
 
 void MainMenuPanel::draw()
 {
-	// draw textures - main background and game Title
+	// draw textures - main background, game Title and coinsPanel
 	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
 	{
 		m_gameObjects[i]->draw();
@@ -39,6 +41,11 @@ void MainMenuPanel::draw()
 			it->second->draw();
 		}
 	}
+	else
+	{
+		// draw labels even not active
+		m_labelsMap[UIConsts::coinsLabelID]->draw();
+	}
 }
 
 void MainMenuPanel::update()
@@ -47,6 +54,9 @@ void MainMenuPanel::update()
 	{
 		// update buttons
 		MenuInteractivePanel::update();
+
+		// update dynamic labels
+		updateDynamicLabels();
 	}
 }
 
@@ -99,6 +109,7 @@ void MainMenuPanel::loadCallbacks()
 {
 	m_callbacks[LoaderParamsConsts::playbuttonCallbackID] = MapsPanel::s_activatePanel;
 	m_callbacks[LoaderParamsConsts::exitbuttonCallbackID] = s_exitFromMenu;
+	m_callbacks[LoaderParamsConsts::openDeleteConfPanelCallbackID] = DeleteProgressConfirmationPanel::s_activatePanel;
 
 	setCallbacks();
 }
@@ -111,6 +122,20 @@ void MainMenuPanel::s_setActivePanel(bool activeFlag)
 void MainMenuPanel::s_exitFromMenu()
 {
 	TheGame::Instance()->quit();
+}
+
+void MainMenuPanel::updateDynamicLabels()
+{
+	m_labelsMap[UIConsts::coinsLabelID]->setMessage(std::to_string(TheGame::Instance()->getProgressManager()->getGameProgress()->coins));
+
+	// update text on screen
+	for (std::map<std::string, std::unique_ptr<Text>>::iterator it = m_labelsMap.begin(); it != m_labelsMap.end(); it++)
+	{
+		if (it->second->getDynamic())
+		{
+			it->second->update();
+		}
+	}
 }
 
 std::unique_ptr<Panel> MainMenuPanelCreator::create() const

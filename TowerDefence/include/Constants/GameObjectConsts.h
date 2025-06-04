@@ -42,6 +42,7 @@ namespace PanelConsts {
 	constexpr char victoryStatePanel[] = "victoryStatePanel";
 	constexpr char mainMenuPanel[] = "mainMenuPanel";
 	constexpr char mapsPanel[] = "mapsPanel";
+	constexpr char deleteProgressConfirmationPanel[] = "deleteProgressConfirmationPanel";
 	constexpr char pauseStatePanel[] = "pauseStatePanel";
 	constexpr char towersPanel[] = "towersPanel";
 	constexpr char towerUpgradePanel[] = "towerUpgradePanel";

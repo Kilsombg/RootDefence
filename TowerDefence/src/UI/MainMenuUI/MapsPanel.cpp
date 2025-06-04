@@ -102,7 +102,7 @@ void MapsPanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)
 void MapsPanel::loadCallbacks()
 {
 	// load map menu buttons' callbacks
-	m_mapMenuButtonCallbacs[LoaderParamsConsts::mapMenuButtonCallbackID] = std::bind(&MapsPanel::mainMenuToPlay, this, std::placeholders::_1);
+	m_mapMenuButtonCallbacs[LoaderParamsConsts::mapMenuButtonCallbackID] = std::bind(&MapsPanel::mainMenuToPlay, this, std::placeholders::_1, std::placeholders::_2);
 
 	// load menu buttons' callbacks
 	m_callbacks[LoaderParamsConsts::closeMapsPanelCallbackID] = s_closePanel;
@@ -141,7 +141,7 @@ void MapsPanel::setCallbacks()
 	}
 }
 
-void MapsPanel::mainMenuToPlay(std::string mapFileName)
+void MapsPanel::mainMenuToPlay(std::string mapFileName, int mapID)
 {
 	// close panel
 	s_active = false;
@@ -149,6 +149,7 @@ void MapsPanel::mainMenuToPlay(std::string mapFileName)
 	// set map to playstate
 	std::string pathToFile = "./src/assets/Map/" + mapFileName;
 	PlayState::setMapLevelPath(pathToFile);
+	PlayState::setMapID(mapID);
 
 	TheGameStateMachine::Instance()->changeState(std::make_shared<PlayState>());
 }

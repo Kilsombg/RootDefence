@@ -6,23 +6,37 @@
 			<texture filename="src/assets/UI/States/MainMenuState/pixel_art_small_147x43.png" ID="title2"/>
 			<texture filename="src/assets/UI/States/MainMenuState/MainMenuPanel.png" ID="mainMenuPanel"/>
 			<texture filename="src/assets/UI/States/MainMenuState/MapsPanel.png" ID="mapsPanel"/>
+			<texture filename="src/assets/UI/States/MainMenuState/coinsPanel80x30.png" ID="coinsPanel"/>
 			<texture filename="src/assets/UI/States/MainMenuState/maps/map_level1_optimized.png" ID="mapLevel1ID"/>
 			<texture filename="src/assets/UI/States/MainMenuState/maps/map_level2_optimized.png" ID="mapLevel2ID"/>
 			<texture filename="src/assets/UI/States/MainMenuState/maps/map_level3_optimized.png" ID="mapLevel3ID"/>
+			<texture filename="src/assets/UI/icons/coin16x16.png" ID="coinsTexture"/>
 			<texture filename="src/assets/UI/States/MainMenuState/buttons/main-button_100x40_anim.png" ID="buttonTexure"/>
 			<texture filename="src/assets/UI/States/MainMenuState/buttons/return-button_38x38_anim.png" ID="returnButtonTexure"/>
+			<texture filename="src/assets/UI/buttons/danger-button_55x32_anim.png" ID="dangerButtonTexture"/>
 		</TEXTURES>
 		<PANELS>
 			<MAINMENU type="mainMenuPanel" x="380.00" y="150.00" width="200" height="300" textureID="mainMenuPanel">
 				<OBJECTS>
 					<object type="texture" x="0.00" y="0.00" width="960" height="540" textureID="mainMenuBackground"/>
 					<object type="texture" x="260.00" y="30.00" width="441" height="129" textureID="title2"/>
-					<object type="menuButton" x="430.00" y="210.00" width="100" height="40" textureID="buttonTexure" numFrames="0" callbackID="playbuttonCallbackID"/>
-					<object type="text" x="440.00" y="222.00" characterWidth="10" height="18" textureID="newGameLabel" labelId="newGameLabel" message="New Game" dynamic="false"/>
-					<object type="menuButton" x="430.00" y="300.00" width="100" height="40" textureID="buttonTexure" numFrames="0" callbackID="exitbuttonCallbackID"/>
-					<object type="text" x="463.00" y="312.00" characterWidth="9" height="18" textureID="exitLabel" labelId="exitLabel" message="Exit" dynamic="false"/>
+					<object type="texture" x="852.00" y="13.00" width="80" height="30" textureID="coinsPanel"/>
+					<object type="texture" x="860.00" y="18.00" width="20" height="20" textureID="coinsTexture"/>
+					<object type="text" x="885.00" y="21.00" characterWidth="10" height="17" textureID="coinsLabel" labelId="coinsLabel" message="" dynamic="true"/>
+					<object type="menuButton" x="430.00" y="190.00" width="100" height="40" textureID="buttonTexure" numFrames="0" callbackID="playbuttonCallbackID"/>
+					<object type="text" x="440.00" y="202.00" characterWidth="10" height="18" textureID="newGameLabel" labelId="newGameLabel" message="New Game" dynamic="false"/>
+					<object type="menuButton" x="430.00" y="255.00" width="100" height="40" textureID="buttonTexure" numFrames="0" callbackID="openDeleteConfPanelCallbackID"/>
+					<object type="text" x="435.00" y="268.00" characterWidth="6" height="14" textureID="deleteProgressLabel" labelId="deleteProgressLabel" message="delete progress" dynamic="false"/>
+					<object type="menuButton" x="430.00" y="320.00" width="100" height="40" textureID="buttonTexure" numFrames="0" callbackID="exitbuttonCallbackID"/>
+					<object type="text" x="463.00" y="332.00" characterWidth="9" height="18" textureID="exitLabel" labelId="exitLabel" message="Exit" dynamic="false"/>
 				</OBJECTS>
 			</MAINMENU>
+			<DELETEPROGRESSCONFIRMATION type="deleteProgressConfirmationPanel" x="535.00" y="259.00" width="55" height="32" textureID="">
+				<OBJECTS>
+					<object type="menuButton" x="535.00" y="259.00" width="55" height="32" textureID="dangerButtonTexture" numFrames="0" callbackID="deleteProgressCallbackID"/>
+					<object type="text" x="541.00" y="269.00" characterWidth="6" height="12" textureID="confirmDeletionLabel" labelId="confirmDeletionLabel" message="confirm" dynamic="false"/>
+				</OBJECTS>
+			</DELETEPROGRESSCONFIRMATION>
 			<MAPS type="mapsPanel" x="25.00" y="140.00" width="910" height="300" textureID="mapsPanel">
 				<OBJECTS>
 					<object type="text" x="420.00" y="185.00" characterWidth="12" height="20" textureID="chooseMapLabel" labelId="chooseMapLabel" message="Choose map" dynamic="false"/>
@@ -38,8 +52,8 @@
 		<TEXTURES>
 			<texture filename="src/assets/helicopter.png" ID="helicopter"/>
 			<texture filename="src/assets/helicopter2.png" ID="helicopter2"/>
+			<texture filename="src/assets/UI/buttons/danger-button_55x32_anim.png" ID="dangerButtonTexture"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/button_64x78_anim.png" ID="startButton"/>
-			<texture filename="src/assets/UI/States/PlayState/buttons/sell-button_55x32_anim.png" ID="sellTowerButton"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/upgrade-button_87x37_anim.png" ID="upgradeButton"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/not-affordable-upgrade-button_87x37.png" ID="upgradeButtonNotAffordable"/>
 			<texture filename="src/assets/UI/States/PlayState/buttons/agate-stump_70x64.png" ID="agateStumpButton"/>
@@ -131,7 +145,7 @@
 					<object type="texture" x="305.00" y="495.00" width="21" height="20" textureID="slowPercentageIcon" hidden="true"/>
 					<object type="text" x="332.00" y="495.00" characterWidth="6" height="10" textureID="slowPercentageLabel" labelId="slowPercentageLabel" message="slow %" dynamic="false" hidden="true"/>
 					<object type="text" x="335.00" y="505.00" characterWidth="6" height="10" textureID="slowPercentageValueLabel" labelId="slowPercentageValueLabel" message="" dynamic="false" hidden="true"/>
-					<object type="towerUpgradedButton" x="450.00" y="475.00" width="87" height="37" textureID="upgradeButton" numFrames="0" 
+					<object type="towerUpgradedButton" x="450.00" y="475.00" width="87" height="37" textureID="upgradeButton" numFrames="0"
 						callbackID="towerUpgradeCallbackID" upgradeID="0"/>
 					<object type="text" x="492.00" y="478.00" characterWidth="6" height="10" textureID="upgrade0Label"  labelId="upgrade0Label" message="upgrade" dynamic="false"/>
 					<object type="text" x="514.00" y="492.00" characterWidth="6" height="10" textureID="towerUpgrade0Button" labelId="towerUpgrade0Label" message="" dynamic="false"/>
@@ -141,7 +155,7 @@
 					<object type="text" x="589.00" y="478.00" characterWidth="6" height="10" textureID="upgrade1Label"  labelId="upgrade1Label" message="upgrade" dynamic="false"/>
 					<object type="text" x="611.00" y="492.00" characterWidth="6" height="10" textureID="towerUpgrade1Button" labelId="towerUpgrade1Label" message="" dynamic="false"/>
 					<object type="text" x="601.00" y="492.00" characterWidth="6" height="10" textureID="maxUpgrade1Button" labelId="maxUpgrade1Button" message="MAX" dynamic="false" hidden="true"/>
-					<object type="sellTowerButton" x="720.00" y="475.00" width="55" height="32" textureID="sellTowerButton" numFrames="0" callbackID="sellTowerCallbackID"/>
+					<object type="sellTowerButton" x="720.00" y="475.00" width="55" height="32" textureID="dangerButtonTexture" numFrames="0" callbackID="sellTowerCallbackID"/>
 					<object type="text" x="733.00" y="479.00" characterWidth="7" height="11" textureID="sellMessageLabel" labelId="sellMessageLabel" message="SELL" dynamic="false"/>
 					<object type="text" x="746.00" y="491.00" characterWidth="7" height="11" textureID="sellValueLabel" labelId="sellValueLabel" message="" dynamic="true"/>
 				</OBJECTS>
@@ -247,7 +261,7 @@
 					<object type="text" x="323.00" y="370.00" characterWidth="8" height="16" textureID="mainMenuLabel" labelId="mainMenuLabel" message="Main menu" dynamic="false"/>
 					<object type="menuButton" x="425.00" y="300.00" width="64" height="64" textureID="restartButton" numFrames="0" callbackID="restartButtonCallbackID"/>
 					<object type="text" x="430.00" y="370.00" characterWidth="8" height="16" textureID="restartLabel" labelId="restartLabel" message="Restart" dynamic="false"/>
-				</OBJECTS>	
+				</OBJECTS>
 			</GAMEOVERSTATE>
 		</PANELS>
 	</GAMEOVER>
@@ -256,12 +270,15 @@
 			<texture filename="src/assets/UI/States/GameOverState/GameOverStatePanel.png" ID="victoryStatePanel"/>
 			<texture filename="src/assets/UI/buttons/restart-button_64x64_anim.png" ID="restartButton"/>
 			<texture filename="src/assets/UI/buttons/main-menu-button_64x64_anim.png" ID="mainMenuButton"/>
+			<texture filename="src/assets/UI/icons/coin16x16.png" ID="coinsTexture"/>
 		</TEXTURES>
 		<PANELS>
 			<VICTORYSTATE type="victoryStatePanel" x="200.00" y="140.00" width="400" height="200" textureID="victoryStatePanel">
 				<OBJECTS>
 					<object type="text" x="325.00" y="130.00" characterWidth="20" height="40" textureID="victoryLabel" labelId="victoryLabel" message="VICTORY" dynamic="false"/>
-					<object type="text" x="380.00" y="230.00" characterWidth="8" height="16" textureID="victorWaveLabel" labelId="victorWaveLabel" message="" dynamic="false"/>
+					<object type="text" x="380.00" y="210.00" characterWidth="8" height="16" textureID="rewardLabel" labelId="rewardLabel" message="REWARD:" dynamic="false"/>
+					<object type="texture" x="390.00" y="230.00" width="26" height="26" textureID="coinsTexture"/>
+					<object type="text" x="397.00" y="255.00" characterWidth="10" height="17" textureID="rewardValueLabel" labelId="rewardValueLabel" message="" dynamic="false"/>
 					<object type="menuButton" x="325.00" y="300.00" width="64" height="64" textureID="mainMenuButton" numFrames="0" callbackID="mainMenuButtonCallbackID"/>
 					<object type="text" x="323.00" y="370.00" characterWidth="8" height="16" textureID="mainMenuLabel" labelId="mainMenuLabel" message="Main menu" dynamic="false"/>
 					<object type="menuButton" x="425.00" y="300.00" width="64" height="64" textureID="restartButton" numFrames="0" callbackID="restartButtonCallbackID"/>

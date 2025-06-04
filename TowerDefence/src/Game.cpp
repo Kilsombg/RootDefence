@@ -2,6 +2,12 @@
 
 #include "../include/Constants/GameObjectConsts.h"
 
+#include "../include/DataHeaders/RepositoriesHeaders/GameProgressRepository.h"
+#include "../include/DataHeaders/RepositoriesHeaders/MapsProgressRepository.h"
+#include "../include/DataHeaders/RepositoriesHeaders/MapsRepository.h"
+
+#include "../include/DataHeaders/UserProgressDBContext.h"
+
 #include "../include/EntitiesHeaders/MenuButton.h"
 #include "../include/EntitiesHeaders/MapMenuButton.h"
 #include "../include/EntitiesHeaders/TowerButton.h"
@@ -24,6 +30,7 @@
 
 #include "../include/UIHeaders/MainMenuUIHeaders/MainMenuPanel.h"
 #include "../include/UIHeaders/MainMenuUIHeaders/MapsPanel.h"
+#include "../include/UIHeaders/MainMenuUIHeaders/DeleteProgressConfirmationPanel.h"
 
 #include "../include/UIHeaders/PauseStateUIHeaders/PauseStatePanel.h"
 
@@ -128,51 +135,19 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	m_gameWidth = width;
 	m_gameHeight = height;
 
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::player, std::make_shared<PlayerCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::greenChoy, std::make_shared<EnemyCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::greenPlant,std::make_shared<EnemyCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::greenBroccoli,std::make_shared<EnemyCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::yellowOrange, std::make_shared<EnemyCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::yellowCarrot,std::make_shared<EnemyCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::yellowSquash,std::make_shared<EnemyCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::redRadish, std::make_shared<EnemyCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::redPepper ,std::make_shared<EnemyCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::redTomato ,std::make_shared<EnemyCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::blueBean,std::make_shared<EnemyCreator>());
+	// register objects
+	registerGameObjects();
 
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::stump , std::make_shared<TowerCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::pine, std::make_shared<TowerCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::oak , std::make_shared<TowerCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::frozenBush , std::make_shared<FreezeTowerCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::projectile, std::make_shared<ProjectileCreator>());
+	// register panels
+	registerPanels();
 
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::menuButton, std::make_shared<MenuButtonCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::mapMenuButton, std::make_shared<MapMenuButtonCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::towerButton, std::make_shared<TowerButtonCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::towerUpgradedButton, std::make_shared<TowerUpgradedButtonCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::sellTowerButton, std::make_shared<SellTowerButtonCreator>());
-
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::animatedGraphic, std::make_shared<AnimatedGraphicCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::text, std::make_shared<TextCreator>());
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::texture, std::make_shared<TextureCreator>());
-
-
-	ThePanelFactory::Instance()->registerType(PanelConsts::gameOverStatePanel, std::make_shared<GameOverStatePanelCreator>());
-
-	ThePanelFactory::Instance()->registerType(PanelConsts::victoryStatePanel, std::make_shared<VictoryStatePanelCreator>());
-
-	ThePanelFactory::Instance()->registerType(PanelConsts::mainMenuPanel, std::make_shared<MainMenuPanelCreator>());
-	ThePanelFactory::Instance()->registerType(PanelConsts::mapsPanel, std::make_shared<MapsPanelCreator>());
-	
-	ThePanelFactory::Instance()->registerType(PanelConsts::pauseStatePanel, std::make_shared<PauseStatePanelCreator>());
-
-	ThePanelFactory::Instance()->registerType(PanelConsts::towersPanel, std::make_shared<TowersPanelCreator>());
-	ThePanelFactory::Instance()->registerType(PanelConsts::towerUpgradePanel, std::make_shared<TowerUpgradePanelCreator>());
-	ThePanelFactory::Instance()->registerType(PanelConsts::tipsPanel, std::make_shared<TipsPanelCreator>());
-
+	// create gameStateMachine
 	m_pGameStateMachine = TheGameStateMachine::Instance();
 	m_pGameStateMachine->changeState(std::make_shared<MainMenuState>());
 
+	// configure progressManager
+	configureProgressManager();
+	m_progressManager->loadAll("src/database/gameProgress.sqlite");
 
 	std::cout << "init success\n";
 	return true;
@@ -200,6 +175,9 @@ void Game::clean()
 	SDL_DestroyRenderer(m_pRenderer);
 
 	m_pGameStateMachine->clean();
+
+	// closing db connection
+	m_progressManager->closeDB();
 
 	TheTextureManager::Instance()->clean();
 
@@ -237,6 +215,11 @@ std::shared_ptr<GameStateMachine> Game::getStateMachine()
 	return m_pGameStateMachine;
 }
 
+std::shared_ptr<ProgressManager> Game::getProgressManager()
+{
+	return m_progressManager;
+}
+
 int Game::getGameWidth() const
 {
 	return m_gameWidth;
@@ -250,6 +233,67 @@ int Game::getGameHeight() const
 bool Game::running()
 {
 	return m_bRunning;
+}
+
+void Game::registerGameObjects()
+{
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::player, std::make_shared<PlayerCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::greenChoy, std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::greenPlant, std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::greenBroccoli, std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::yellowOrange, std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::yellowCarrot, std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::yellowSquash, std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::redRadish, std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::redPepper, std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::redTomato, std::make_shared<EnemyCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::blueBean, std::make_shared<EnemyCreator>());
+
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::stump, std::make_shared<TowerCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::pine, std::make_shared<TowerCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::oak, std::make_shared<TowerCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::frozenBush, std::make_shared<FreezeTowerCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::projectile, std::make_shared<ProjectileCreator>());
+
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::menuButton, std::make_shared<MenuButtonCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::mapMenuButton, std::make_shared<MapMenuButtonCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::towerButton, std::make_shared<TowerButtonCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::towerUpgradedButton, std::make_shared<TowerUpgradedButtonCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::sellTowerButton, std::make_shared<SellTowerButtonCreator>());
+
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::animatedGraphic, std::make_shared<AnimatedGraphicCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::text, std::make_shared<TextCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::texture, std::make_shared<TextureCreator>());
+}
+
+void Game::registerPanels()
+{
+	ThePanelFactory::Instance()->registerType(PanelConsts::gameOverStatePanel, std::make_shared<GameOverStatePanelCreator>());
+
+	ThePanelFactory::Instance()->registerType(PanelConsts::victoryStatePanel, std::make_shared<VictoryStatePanelCreator>());
+
+	ThePanelFactory::Instance()->registerType(PanelConsts::mainMenuPanel, std::make_shared<MainMenuPanelCreator>());
+	ThePanelFactory::Instance()->registerType(PanelConsts::mapsPanel, std::make_shared<MapsPanelCreator>());
+	ThePanelFactory::Instance()->registerType(PanelConsts::deleteProgressConfirmationPanel, std::make_shared<DeleteProgressConfirmationPanelCreator>());
+
+	ThePanelFactory::Instance()->registerType(PanelConsts::pauseStatePanel, std::make_shared<PauseStatePanelCreator>());
+
+	ThePanelFactory::Instance()->registerType(PanelConsts::towersPanel, std::make_shared<TowersPanelCreator>());
+	ThePanelFactory::Instance()->registerType(PanelConsts::towerUpgradePanel, std::make_shared<TowerUpgradePanelCreator>());
+	ThePanelFactory::Instance()->registerType(PanelConsts::tipsPanel, std::make_shared<TipsPanelCreator>());
+}
+
+void Game::configureProgressManager()
+{
+	// create repositories
+	std::shared_ptr<GameProgressRepository> gameRepo = std::make_shared<GameProgressRepository>();
+	std::shared_ptr<MapsRepository> mapRepo = std::make_shared<MapsRepository>();
+	std::shared_ptr<MapsProgressRepository> mapProgressRepo = std::make_shared<MapsProgressRepository>();
+
+	// db context
+	std::shared_ptr<UserProgressDBContext> dbContext = std::make_shared<UserProgressDBContext>();
+
+	m_progressManager = std::make_shared<ProgressManager>(gameRepo, mapRepo, mapProgressRepo, dbContext);
 }
 
 void Game::quit()

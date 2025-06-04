@@ -26,14 +26,16 @@ public:
 
 	bool drawUnderneath() override;
 
+	// getters and setters
+
 	virtual std::string getStateID() const override;
 
-	void setCurrentWaveID(int currentWaveID);
+	void setRewardValue(int rewardValue);
 
 private:
 	std::unique_ptr<VictoryStateUI> m_victoryStateUI;
 
-	int m_currentWaveID;
+	int m_rewardValue;
 };
 
 

@@ -2,6 +2,16 @@
 
 namespace UIConsts {
 #pragma region Label IDs
+	// general
+	constexpr char textLabelID[] = "Label";
+
+	// main menu panel
+	constexpr char coinsLabelID[] = "coinsLabel";
+
+	// maps panel
+	constexpr char mapNameLabelSuffix[] = "NameLabel";
+	constexpr char maxWaveLabelSuffix[] = "MaxWaveLabel";
+
 	// towers panel
 	constexpr char healthLabelID[] = "healthLabel";
 	constexpr char agateResourceLabelID[] = "agateResourceLabelID";
@@ -44,7 +54,7 @@ namespace UIConsts {
 	constexpr char gameOverWaveLabel[] = "gameOverWaveLabel";
 
 	// victory panel
-	constexpr char victorWaveLabel[] = "victorWaveLabel";
+	constexpr char rewardValueLabel[] = "rewardValueLabel";
 #pragma endregion
 
 #pragma region texture iDs

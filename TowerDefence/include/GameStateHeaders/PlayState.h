@@ -55,6 +55,8 @@ public:
 
 	static void setMapLevelPath(std::string mapLevelPath);
 
+	static void setMapID(int mapID);
+
 private:
 	// update all objects
 	void updateObjects();
@@ -67,6 +69,7 @@ private:
 
 	std::shared_ptr<Level> pLevel;
 	static std::string	s_mapLevelPath; // path to level's map file
+	static int s_mapID; // map's id that is played
 
 	std::shared_ptr<std::vector<std::shared_ptr<Tower>>> m_towersObjects;
 

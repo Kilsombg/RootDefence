@@ -1,6 +1,8 @@
 #ifndef __Game__
 #define __Game__
 
+#include "DataHeaders/ProgressManager.h"
+
 #include "EntitiesHeaders/GameObject.h"
 #include "EntitiesHeaders/Player.h"
 #include "EntitiesHeaders/Enemy.h"
@@ -33,12 +35,26 @@ public:
 	TTF_Font* getFont() const;
 	TTF_Font* getFontOutline() const;
 	std::shared_ptr<GameStateMachine> getStateMachine();
+	std::shared_ptr<ProgressManager> getProgressManager();
 	int getGameWidth() const;
 	int getGameHeight() const;
-	
+
 	bool running();
 
 private:
+	/**
+	* register game objects.
+	*/
+	void registerGameObjects();
+	/**
+	* register panels.
+	*/
+	void registerPanels();
+	/**
+	* configure progress manager.
+	*/
+	void configureProgressManager();
+
 	bool m_bRunning;
 	int m_gameWidth;
 	int m_gameHeight;
@@ -54,6 +70,8 @@ private:
 	TTF_Font* m_pFontOutline;
 
 	std::shared_ptr<GameStateMachine> m_pGameStateMachine;
+
+	std::shared_ptr<ProgressManager> m_progressManager;
 };
 
 

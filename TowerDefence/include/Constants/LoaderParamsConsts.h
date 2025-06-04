@@ -18,6 +18,8 @@ namespace LoaderParamsConsts {
 	
 	constexpr char playbuttonCallbackID[] = "playbuttonCallbackID";
 	constexpr char exitbuttonCallbackID[] = "exitbuttonCallbackID";
+	constexpr char openDeleteConfPanelCallbackID[] = "openDeleteConfPanelCallbackID";
+	constexpr char deleteProgressCallbackID[] = "deleteProgressCallbackID";
 	constexpr char mapMenuButtonCallbackID[] = "mapMenuButtonCallbackID";
 	constexpr char closeMapsPanelCallbackID[] = "closeMapsPanelCallbackID";
 

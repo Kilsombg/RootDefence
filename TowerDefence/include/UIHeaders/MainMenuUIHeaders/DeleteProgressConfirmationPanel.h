@@ -1,14 +1,14 @@
-#ifndef __MainMenuPanel__
-#define __MainMenuPanel__
+#ifndef __DeleteProgressConfirmationPanel__
+#define __DeleteProgressConfirmationPanel__
 
 #include "../CommonHeaders/InteractivePanel.h"
 #include "../CommonHeaders/PanelCreator.h"
 
-class MainMenuPanel : public MenuInteractivePanel
+class DeleteProgressConfirmationPanel : public MenuInteractivePanel
 {
 public:
-	MainMenuPanel();
-
+	DeleteProgressConfirmationPanel();
+	
 	void draw() override;
 	void update() override;
 	void clean() override;
@@ -21,23 +21,21 @@ public:
 
 	static void s_setActivePanel(bool activeFlag);
 
-private:
-	// callback functions for menu items
+	/**
+	* callback function for mainMenuPanel.
+	*/
+	static void s_activatePanel();
 
-	static void s_exitFromMenu();
+private:
+	// callback function
+	static void s_deleteProgress();
 
 	static bool s_active;
-
-	/**
-	* Update labels each frame.
-	*/
-	void updateDynamicLabels();
 };
 
-
-class MainMenuPanelCreator : public PanelCreator
+class DeleteProgressConfirmationPanelCreator : public PanelCreator
 {
 	virtual std::unique_ptr<Panel> create() const;
 };
 
-#endif // !__MainMenuPanel__
+#endif // !__DeleteProgressConfirmationPanel__

@@ -18,10 +18,12 @@ public:
 
 	void clean() override;
 
-	void setCurrentWaveID(int currentWaveID);
+	// getters and setters
+
+	void setRewardValue(int rewardValue);
 
 private:
-	int m_currentWaveID;
+	int m_rewardValue;
 };
 
 

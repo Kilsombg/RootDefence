@@ -71,12 +71,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\Programming\vendoors\SDL2_ttf-2.24.0\include;D:\Programming\vendoors\nlohmann-json\json\single_include;D:\Programming\vendoors\zlib-win-x64\include;D:\Programming\vendoors\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Programming\vendoors\SDL2_ttf-2.24.0\lib\x64;D:\Programming\vendoors\zlib-win-x64\lib;D:\Programming\vendoors\SDL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\Programming\vendoors\databases\sqlite-amalgamation-3500000\include;D:\Programming\vendoors\SDL2_ttf-2.24.0\include;D:\Programming\vendoors\nlohmann-json\json\single_include;D:\Programming\vendoors\zlib-win-x64\include;D:\Programming\vendoors\SDL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Programming\vendoors\databases\sqlite-amalgamation-3500000\lib;D:\Programming\vendoors\SDL2_ttf-2.24.0\lib\x64;D:\Programming\vendoors\zlib-win-x64\lib;D:\Programming\vendoors\SDL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>D:\Programming\vendoors\SDL2_ttf-2.24.0\include;D:\Programming\vendoors\nlohmann-json\json\single_include;D:\Programming\vendoors\zlib-win-x64\include;D:\Programming\vendoors\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Programming\vendoors\SDL2_ttf-2.24.0\lib\x64;D:\Programming\vendoors\zlib-win-x64\lib;D:\Programming\vendoors\SDL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\Programming\vendoors\databases\sqlite-amalgamation-3500000\include;D:\Programming\vendoors\SDL2_ttf-2.24.0\include;D:\Programming\vendoors\nlohmann-json\json\single_include;D:\Programming\vendoors\zlib-win-x64\include;D:\Programming\vendoors\SDL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Programming\vendoors\databases\sqlite-amalgamation-3500000\lib;D:\Programming\vendoors\SDL2_ttf-2.24.0\lib\x64;D:\Programming\vendoors\zlib-win-x64\lib;D:\Programming\vendoors\SDL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -116,7 +116,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;zlib.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;zlib.lib;SDL2_ttf.lib;sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -133,10 +133,19 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;zlib.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;zlib.lib;SDL2_ttf.lib;sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Data\ProgressManager.cpp" />
+    <ClCompile Include="src\Data\Repositories\GameProgressRepository.cpp" />
+    <ClCompile Include="src\Data\Repositories\MapsProgressRepository.cpp" />
+    <ClCompile Include="src\Data\Repositories\MapsRepository.cpp" />
+    <ClCompile Include="src\Data\Repositories\Repository.cpp" />
+    <ClCompile Include="src\Data\RJM_SQLite_Handlers\RJMFTime.cpp" />
+    <ClCompile Include="src\Data\RJM_SQLite_Handlers\RJM_SQLite_Resultset.cpp" />
+    <ClCompile Include="src\Data\UserProgressDBContext.cpp" />
+    <ClCompile Include="src\Data\UserProgressDBContextSeeder.cpp" />
     <ClCompile Include="src\Entities\AnimatedGraphic.cpp" />
     <ClCompile Include="src\Entities\Button.cpp" />
     <ClCompile Include="src\Entities\Enemy.cpp" />
@@ -173,6 +182,7 @@
     <ClCompile Include="src\UI\Common\StateUI.cpp" />
     <ClCompile Include="src\UI\GameOverUI\GameOverStatePanel.cpp" />
     <ClCompile Include="src\UI\GameOverUI\GameOverStateUI.cpp" />
+    <ClCompile Include="src\UI\MainMenuUI\DeleteProgressConfirmationPanel.cpp" />
     <ClCompile Include="src\UI\MainMenuUI\MainMenuPanel.cpp" />
     <ClCompile Include="src\UI\MainMenuUI\MapsPanel.cpp" />
     <ClCompile Include="src\UI\PauseStateUI\PauseStatePanel.cpp" />
@@ -215,7 +225,19 @@
     <ClInclude Include="include\Constants\LoaderParamsConsts.h" />
     <ClInclude Include="include\Constants\SettingsConsts.h" />
     <ClInclude Include="include\Constants\UIConsts.h" />
+    <ClInclude Include="include\DataHeaders\DTOsHeaders\GameProgressDTO.h" />
+    <ClInclude Include="include\DataHeaders\DTOsHeaders\MapsProgressDTO.h" />
+    <ClInclude Include="include\DataHeaders\ProgressManager.h" />
+    <ClInclude Include="include\DataHeaders\RepositoriesHeaders\GameProgressRepository.h" />
+    <ClInclude Include="include\DataHeaders\RepositoriesHeaders\MapsProgressRepository.h" />
+    <ClInclude Include="include\DataHeaders\RepositoriesHeaders\MapsRepository.h" />
+    <ClInclude Include="include\DataHeaders\RepositoriesHeaders\Repository.h" />
+    <ClInclude Include="include\DataHeaders\UserProgressDBContext.h" />
     <ClInclude Include="include\DataHeaders\GameSessionData.h" />
+    <ClInclude Include="include\DataHeaders\RJM_SQLite_HandlersHeaders\Glob_Defs.h" />
+    <ClInclude Include="include\DataHeaders\RJM_SQLite_HandlersHeaders\RJMFTime.h" />
+    <ClInclude Include="include\DataHeaders\RJM_SQLite_HandlersHeaders\RJM_SQLite_Resultset.h" />
+    <ClInclude Include="include\DataHeaders\UserProgressDBContextSeeder.h" />
     <ClInclude Include="include\EntitiesHeaders\AnimatedGraphic.h" />
     <ClInclude Include="include\EntitiesHeaders\Button.h" />
     <ClInclude Include="include\EntitiesHeaders\Enemy.h" />
@@ -258,6 +280,7 @@
     <ClInclude Include="include\UIHeaders\CommonHeaders\PanelCreator.h" />
     <ClInclude Include="include\UIHeaders\GameOverUIHeaders\GameOverStatePanel.h" />
     <ClInclude Include="include\UIHeaders\GameOverUIHeaders\GameOverStateUI.h" />
+    <ClInclude Include="include\UIHeaders\MainMenuUIHeaders\DeleteProgressConfirmationPanel.h" />
     <ClInclude Include="include\UIHeaders\MainMenuUIHeaders\MainMenuPanel.h" />
     <ClInclude Include="include\UIHeaders\MainMenuUIHeaders\MainMenuStateUI.h" />
     <ClInclude Include="include\UIHeaders\MainMenuUIHeaders\MapsPanel.h" />

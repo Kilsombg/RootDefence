@@ -42,6 +42,8 @@ public:
 
 	std::vector<Wave*>& getWaves();
 
+	void setMapID(int mapID);
+
 private:
 	WaveManager();
 	static std::shared_ptr<WaveManager> s_pInstance;
@@ -54,6 +56,7 @@ private:
 	std::vector<Wave*> m_waves;
 	std::vector<EnemyCluster>* m_eClusters; // waves' enemies clusters
 
+	int m_mapID; // map's id that is played
 	std::unique_ptr<GameObjectData<LoaderParams>> m_gameObjectData; // base enemy stats
 	std::shared_ptr<std::vector<std::shared_ptr<Enemy>>> m_enemyObjects; // pointer to enemies in playState
 };

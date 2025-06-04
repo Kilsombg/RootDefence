@@ -27,6 +27,7 @@
 #include<functional>
 
 std::string PlayState::s_mapLevelPath = "";
+int PlayState::s_mapID = -1;
 
 PlayState::PlayState()
 {
@@ -101,6 +102,7 @@ void PlayState::loadData()
 	// load waves data
 	WaveParser waveParser;
 	m_waveManager = TheWaveManager::Instance();
+	m_waveManager->setMapID(s_mapID);
 	waveParser.parseWaves("./src/res/waves.json", m_waveManager);
 
 	m_waveManager->setEnemyObjects(m_enemyObjects);
@@ -189,6 +191,11 @@ void PlayState::setMapLevelPath(std::string mapLevelPath)
 	s_mapLevelPath = mapLevelPath;
 }
 
+void PlayState::setMapID(int mapID)
+{
+	s_mapID = mapID;
+}
+
 void PlayState::addEnemy(std::unique_ptr<Enemy> enemy)
 {
 	m_enemyObjects->push_back(std::move(enemy));
@@ -199,9 +206,13 @@ void PlayState::handleEvents()
 	// handle game over
 	if (m_gameSessionData->gameHealth <= 0)
 	{
+		// change state
 		std::shared_ptr<GameOverState> pGameOverState = std::make_shared<GameOverState>();
 		pGameOverState->setCurrentWaveID(m_gameSessionData->currentWaveLevel);
 		TheGame::Instance()->getStateMachine()->pushState(pGameOverState);
+
+		// update max wave
+		TheGame::Instance()->getProgressManager()->updateMaxWave(s_mapID, m_gameSessionData->currentWaveLevel);
 	}
 
 	// handle victory

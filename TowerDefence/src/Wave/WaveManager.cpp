@@ -136,10 +136,23 @@ void WaveManager::handleEvents()
 	// handle victory state
 	if (isFinalWave() && s_hasNoEnemiesOnScreen && m_eClusters != nullptr && m_eClusters->empty())
 	{
+		int reward = 1;
+		// change state
 		std::shared_ptr<VictoryState> victoryState = std::make_shared<VictoryState>();
-		victoryState->setCurrentWaveID(m_currentWaveID + 1);
+		victoryState->setRewardValue(reward);
 		TheGame::Instance()->getStateMachine()->pushState(victoryState);
+
+		std::shared_ptr<ProgressManager> pProgressManager = TheGame::Instance()->getProgressManager();
+		// update maxWave
+		pProgressManager->updateMaxWave(m_mapID, m_currentWaveID + 1);
+		// increase coins
+		pProgressManager->updateCoins(1, pProgressManager->getGameProgress()->coins + reward);
 	}
+}
+
+void WaveManager::setMapID(int mapID)
+{
+	m_mapID = mapID;
 }
 
 bool WaveManager::isActivePlayButton()

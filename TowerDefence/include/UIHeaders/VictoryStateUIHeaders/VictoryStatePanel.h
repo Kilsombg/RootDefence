@@ -19,7 +19,7 @@ public:
 
 	// getters and setters
 
-	void setCurrentWaveID(int currentWaveID);
+	void setRewardValue(int rewardValue);
 
 private:
 	static void s_victoryToMain();
@@ -30,7 +30,7 @@ private:
 	*/
 	void updateStaticLabel();
 
-	int m_currentWaveID;
+	int m_rewardValue;
 };
 
 

@@ -28,7 +28,7 @@ bool VictoryState::onEnter()
 {
 	// load UI
 	m_victoryStateUI = std::make_unique<VictoryStateUI>(s_stateID);
-	m_victoryStateUI->setCurrentWaveID(m_currentWaveID);
+	m_victoryStateUI->setRewardValue(m_rewardValue);
 	m_victoryStateUI->load();
 
 	std::cout << "entering VictoryState\n";
@@ -66,7 +66,7 @@ std::string VictoryState::getStateID() const
 	return s_stateID;
 }
 
-void VictoryState::setCurrentWaveID(int currentWaveID)
+void VictoryState::setRewardValue(int rewardValue)
 {
-	m_currentWaveID = currentWaveID;
+	m_rewardValue = rewardValue;
 }
