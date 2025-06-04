@@ -188,6 +188,9 @@ void Game::clean()
 	TheInputHandler::Instance()->clean();
 
 	SDL_Quit();
+
+	delete s_pInstance;
+	s_pInstance = nullptr;
 }
 
 SDL_Renderer* Game::getRenderer() const
