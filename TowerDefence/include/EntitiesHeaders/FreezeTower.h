@@ -23,6 +23,7 @@ public:
 
 	// getter and setter
 	float getFreezePercentage();
+	void setFreezePercentage(float freezePercentage);
 
 private:
 	float m_freezePercentage;

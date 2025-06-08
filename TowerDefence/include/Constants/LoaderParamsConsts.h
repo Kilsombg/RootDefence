@@ -80,6 +80,7 @@ namespace LoaderParamsConsts {
 
 #pragma region freeze tower
 	constexpr char freezePercentage[] = "freezePercentage";
+	constexpr char slowPercentage[] = "slowPercentage";
 #pragma endregion
 
 

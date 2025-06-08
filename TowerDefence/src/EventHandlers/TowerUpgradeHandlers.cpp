@@ -2,6 +2,8 @@
 
 #include "../../include/Constants/LoaderParamsConsts.h"
 
+#include "../../include/EntitiesHeaders/FreezeTower.h"
+
 #include "../../include/ManagersHeaders/PurchaseManager.h"
 
 #include<string>
@@ -38,6 +40,11 @@ bool TowerUpgradeHandlers::upgradeTowerAttribute(std::shared_ptr<Tower> activeTo
 	if (data.statName == LoaderParamsConsts::damage) { activeTower->setDamage(data.values[data.nextLevel]); return true; }
 	if (data.statName == LoaderParamsConsts::radius) { activeTower->setRadius(data.values[data.nextLevel]); return true; }
 	if (data.statName == LoaderParamsConsts::attackSpeed) { activeTower->setAttackSpeed(data.values[data.nextLevel]); return true; }
+	// upgrade specail attributes
+	if (FreezeTower* freezeTower = dynamic_cast<FreezeTower*>(activeTower.get()))
+	{
+		if (data.statName == LoaderParamsConsts::slowPercentage) { freezeTower->setFreezePercentage(data.values[data.nextLevel]); return true; }
+	}
 
 	return false;
 }

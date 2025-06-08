@@ -31,6 +31,11 @@ float FreezeTower::getFreezePercentage()
 	return m_freezePercentage;
 }
 
+void FreezeTower::setFreezePercentage(float freezePercentage)
+{
+	m_freezePercentage = freezePercentage;
+}
+
 std::unique_ptr<GameObject> FreezeTowerCreator::create() const
 {
 	return std::make_unique<FreezeTower>();
