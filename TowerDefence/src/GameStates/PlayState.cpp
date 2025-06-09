@@ -296,7 +296,7 @@ void PlayState::loadGameSessionData()
 	m_gameSessionData->resources = { Resource {ResourceType {GREEN}, 30},
 					Resource {ResourceType {YELLOW}, 5},
 					Resource {ResourceType {RED}, 5},
-					Resource{ ResourceType {BLUE}, 100 } };
+					Resource{ ResourceType {BLUE}, 0 } };
 	m_gameSessionData->currentWaveLevel = 0;
 }
 
