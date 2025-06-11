@@ -1,7 +1,7 @@
 #ifndef __VictoryState__
 #define __VictoryState__
 
-#include "MenuState.h"
+#include "GameState.h"
 
 #include "../EntitiesHeaders/GameObject.h"
 
@@ -9,7 +9,7 @@
 
 #include<memory>
 
-class VictoryState : public MenuState
+class VictoryState : public GameState
 {
 public:
 	VictoryState();

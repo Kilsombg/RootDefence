@@ -24,9 +24,6 @@
     <ClCompile Include="src\Utils\TextureManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Entities\GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -109,9 +106,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Utils\LoaderParams.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameStates\MenuState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Entities\Button.cpp">
@@ -269,9 +263,6 @@
     <ClInclude Include="include\EntitiesHeaders\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\EntitiesHeaders\Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\EntitiesHeaders\Enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -324,9 +315,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\UtilsHeaders\StateParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GameStateHeaders\MenuState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\MapHeaders\Level.h">

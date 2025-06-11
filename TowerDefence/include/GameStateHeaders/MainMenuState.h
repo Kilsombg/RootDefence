@@ -1,7 +1,7 @@
 #ifndef __MainMenuState__
 #define __MainMenuState__
 
-#include"MenuState.h"
+#include "GameState.h"
 
 #include "../EntitiesHeaders/GameObject.h"
 
@@ -9,7 +9,7 @@
 
 #include<memory>
 
-class MainMenuState : public MenuState
+class MainMenuState : public GameState
 {
 public:
 	MainMenuState();

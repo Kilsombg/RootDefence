@@ -4,7 +4,6 @@
 #include "DataHeaders/ProgressManager.h"
 
 #include "EntitiesHeaders/GameObject.h"
-#include "EntitiesHeaders/Player.h"
 #include "EntitiesHeaders/Enemy.h"
 
 #include "UtilsHeaders/GameStateMachine.h"

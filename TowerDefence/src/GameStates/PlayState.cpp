@@ -218,9 +218,6 @@ void PlayState::handleEvents()
 	// handle victory
 	m_waveManager->handleEvents();
 
-	// handle buttons
-	MenuState::handleEvents();
-
 	// handle UI
 	m_playStateUI->handleEvents();
 

@@ -1,7 +1,7 @@
 #ifndef __PauseState__
 #define __PauseState__
 
-#include "MenuState.h"
+#include "GameState.h"
 
 #include "../EntitiesHeaders/GameObject.h"
 
@@ -9,7 +9,7 @@
 
 #include<memory>
 
-class PauseState : public MenuState
+class PauseState : public GameState
 {
 public:
 	PauseState();

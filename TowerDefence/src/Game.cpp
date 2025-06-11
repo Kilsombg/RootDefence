@@ -240,7 +240,6 @@ bool Game::running()
 
 void Game::registerGameObjects()
 {
-	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::player, std::make_shared<PlayerCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::greenChoy, std::make_shared<EnemyCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::greenPlant, std::make_shared<EnemyCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::greenBroccoli, std::make_shared<EnemyCreator>());

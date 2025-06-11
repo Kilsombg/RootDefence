@@ -1,7 +1,7 @@
 #ifndef __PlayState__
 #define __PlayState__
 
-#include "MenuState.h"
+#include "GameState.h"
 
 #include "../DataHeaders/GameSessionData.h"
 
@@ -29,7 +29,7 @@
 #include<memory>
 #include<string>
 
-class PlayState : public MenuState
+class PlayState : public GameState
 {
 public:
 	PlayState();

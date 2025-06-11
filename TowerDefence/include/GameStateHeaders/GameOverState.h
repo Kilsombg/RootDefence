@@ -1,13 +1,13 @@
 #ifndef __GameOverState__
 #define __GameOverState__
 
-#include "MenuState.h"
+#include "GameState.h"
 
 #include "../UIHeaders/GameOverUIHeaders/GameOverStateUI.h"
 
 #include<map>
 
-class GameOverState : public MenuState
+class GameOverState : public GameState
 {
 public:
 	GameOverState();
