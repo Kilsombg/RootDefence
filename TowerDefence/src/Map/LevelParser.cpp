@@ -12,6 +12,7 @@
 #include<zlib.h>
 #include<iostream>
 #include <sstream>
+#include<set>
 
 std::shared_ptr<Level> LevelParser::parseLevel(const char* levelFile)
 {

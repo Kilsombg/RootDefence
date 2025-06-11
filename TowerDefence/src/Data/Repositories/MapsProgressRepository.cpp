@@ -2,7 +2,6 @@
 
 #include "../../../include/DataHeaders/RJM_SQLite_HandlersHeaders/RJM_SQLite_Resultset.h"
 
-#include<iostream>
 #include<sstream>
 
 std::shared_ptr<std::vector<MapProgressDTO>> MapsProgressRepository::load(sqlite3* db)

@@ -7,7 +7,6 @@
 
 #include "../UIHeaders/CommonHeaders/Panel.h"
 
-#include <iostream>
 #include <vector>
 #include<memory>
 

@@ -4,6 +4,8 @@
 
 #include "../../../include/Constants/LoaderParamsConsts.h"
 
+#include "../../../include/EntitiesHeaders/Text.h"
+
 #include "../../../include/GameStateHeaders/MainMenuState.h"
 #include "../../../include/GameStateHeaders/PlayState.h"
 

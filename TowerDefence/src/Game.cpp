@@ -13,6 +13,7 @@
 #include "../include/EntitiesHeaders/TowerButton.h"
 #include "../include/EntitiesHeaders/TowerUpgradedButton.h"
 #include "../include/EntitiesHeaders/SellTowerButton.h"
+#include "../include/EntitiesHeaders/Enemy.h"
 #include "../include/EntitiesHeaders/Tower.h"
 #include "../include/EntitiesHeaders/FreezeTower.h"
 #include "../include/EntitiesHeaders/Projectile.h"
@@ -43,6 +44,7 @@
 #include "../include/UtilsHeaders/InputHandler.h"
 #include "../include/UtilsHeaders/GameObjectFactory.h"
 #include "../include/UtilsHeaders/PanelFactory.h"
+#include "../include/UtilsHeaders/TextureManager.h"
 
 #include<iostream>
 

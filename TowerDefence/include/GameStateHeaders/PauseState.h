@@ -3,8 +3,6 @@
 
 #include "GameState.h"
 
-#include "../EntitiesHeaders/GameObject.h"
-
 #include "../UIHeaders/PauseStateUIHeaders/PauseStateUI.h"
 
 #include<memory>

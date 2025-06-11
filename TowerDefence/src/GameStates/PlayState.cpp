@@ -4,16 +4,10 @@
 
 #include "../../include/Constants/SettingsConsts.h"
 #include "../../include/Constants/GameObjectConsts.h"
-#include "../../include/Constants/LoaderParamsConsts.h"
 
 #include "../../include/EntitiesHeaders/Enemy.h"
-#include "../../include/EntitiesHeaders/TowerButton.h"
 
 #include "../../include/MapHeaders/LevelParser.h"
-#include "../../include/MapHeaders/TileLayer.h"
-
-#include "../../include/UIHeaders/PlayStateUIHeaders/TowerUpgradePanel.h"
-#include "../../include/UIHeaders/PlayStateUIHeaders/TowersPanel.h"
 
 #include "../../include/UtilsHeaders/InputHandler.h"
 #include "../../include/UtilsHeaders/GameObjectData.h"

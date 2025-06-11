@@ -8,7 +8,6 @@
 
 #include "../../EntitiesHeaders/Tower.h"
 #include "../../EntitiesHeaders/Texture.h"
-#include "../../EntitiesHeaders/Text.h"
 #include "../../EntitiesHeaders/TowerUpgradedButton.h"
 
 #include "../../EventHandlersHeaders/SellTowerHandler.h"

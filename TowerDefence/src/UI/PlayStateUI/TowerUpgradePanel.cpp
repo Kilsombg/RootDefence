@@ -4,19 +4,18 @@
 
 #include "../../../include/Constants/ColorsConsts.h"
 #include "../../../include/Constants/LoaderParamsConsts.h"
-#include "../../../include/Constants/GameObjectConsts.h"
 #include "../../../include/Constants/UIConsts.h"
 
 #include "../../../include/EntitiesHeaders/SelectedTowerButton.h"
 #include "../../../include/EntitiesHeaders/SellTowerButton.h"
 #include "../../../include/EntitiesHeaders/FreezeTower.h"
+#include "../../../include/EntitiesHeaders/Text.h"
 
 #include "../../../include/EventHandlersHeaders/TowerUpgradeHandlers.h"
 
 #include "../../../include/ManagersHeaders/SellManager.h"
 #include "../../../include/ManagersHeaders/PurchaseManager.h"
 
-#include "../../../include/UtilsHeaders/GameObjectFactory.h"
 #include "../../../include/UtilsHeaders/TextFormatter.h"
 #include "../../../include/UtilsHeaders/TextureManager.h"
 

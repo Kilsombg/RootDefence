@@ -1,14 +1,9 @@
 #include "../../../include/UIHeaders/PlayStateUIHeaders/PlayStateUI.h"
 
-#include "../../../include/EntitiesHeaders/TowerUpgradedButton.h"
-#include "../../../include/EntitiesHeaders/TowerButton.h"
-
 #include "../../../include//UIHeaders/CommonHeaders/InteractivePanel.h"
 
 #include "../../../include//UIHeaders/PlayStateUIHeaders/TowerUpgradePanel.h"
 #include "../../../include//UIHeaders/PlayStateUIHeaders/TowersPanel.h"
-
-#include "../../../include/UtilsHeaders/TextureManager.h"
 
 PlayStateUI::PlayStateUI(std::string stateID) : StateUI(stateID)
 {

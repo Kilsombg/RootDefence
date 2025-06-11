@@ -5,8 +5,6 @@
 
 #include "../../UtilsHeaders/Creator.h"
 
-#include<memory>
-
 class PanelCreator : public Creator<Panel>
 {
 public:

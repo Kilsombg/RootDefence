@@ -5,10 +5,7 @@
 
 #include "../DataHeaders/GameSessionData.h"
 
-#include "../EntitiesHeaders/GameObject.h"
-#include "../EntitiesHeaders/SDLGameObject.h"
 #include "../EntitiesHeaders/Enemy.h"
-#include "../EntitiesHeaders/Button.h"
 
 #include "../ManagersHeaders/PurchaseManager.h"
 #include "../ManagersHeaders/SellManager.h"
@@ -20,7 +17,6 @@
 
 #include "../UtilsHeaders/TowerFactory.h"
 #include "../UtilsHeaders/ProjectileManager.h"
-#include "../UtilsHeaders/Vector2D.h"
 
 #include "../WaveHeaders/WaveManager.h"
 #include "../WaveHeaders/Wave.h"

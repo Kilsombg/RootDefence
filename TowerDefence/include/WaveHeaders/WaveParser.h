@@ -4,7 +4,6 @@
 #include "WaveManager.h"
 
 #include<memory>
-#include<vector>
 
 #include<nlohmann\json.hpp>
 using json = nlohmann::json;

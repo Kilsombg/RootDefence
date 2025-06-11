@@ -4,8 +4,6 @@
 #include "../CommonHeaders/InteractivePanel.h"
 #include "../CommonHeaders/PanelCreator.h"
 
-#include "../../EntitiesHeaders/Text.h"
-
 class PauseStatePanel : public MenuInteractivePanel
 {
 public:

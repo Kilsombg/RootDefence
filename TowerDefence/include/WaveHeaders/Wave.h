@@ -1,8 +1,6 @@
 #ifndef __Wave__
 #define __Wave__
 
-#include "../Constants/WaveConstans.h"
-
 #include "../UtilsHeaders/Timer.h"
 
 #include<string>

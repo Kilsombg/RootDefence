@@ -5,8 +5,6 @@
 
 #include "../../include/Constants/LoaderParamsConsts.h"
 
-#include "../../include/EntitiesHeaders/Button.h"
-
 #include "../../include/Game.h"
 
 bool StateParser::parseState(const char* stateFile, std::string stateID, std::vector<std::string>* pTextureIDs, std::vector<std::unique_ptr<Panel>>* pPanels)

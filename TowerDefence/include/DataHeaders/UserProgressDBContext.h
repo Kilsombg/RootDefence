@@ -1,8 +1,6 @@
 #ifndef __UserProgressDBContext__
 #define __UserProgressDBContext__
 
-#include "DTOsHeaders/MapsProgressDTO.h"
-
 #include<sqlite3.h>
 #include<string>
 #include<memory>

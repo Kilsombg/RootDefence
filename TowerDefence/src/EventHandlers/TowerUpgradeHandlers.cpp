@@ -6,8 +6,6 @@
 
 #include "../../include/ManagersHeaders/PurchaseManager.h"
 
-#include<string>
-
 void TowerUpgradeHandlers::handleUpgradeEvent(std::shared_ptr<Tower> activeTower, int upgradeID)
 {
 	// if tower not passed, then return

@@ -1,7 +1,5 @@
 #include "../../include/EntitiesHeaders/MenuButton.h"
 
-#include "../../include/Constants/LoaderParamsConsts.h"
-
 #include "../../include/UtilsHeaders/InputHandler.h"
 
 MenuButton::MenuButton() : Button()

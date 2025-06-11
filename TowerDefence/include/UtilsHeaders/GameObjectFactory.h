@@ -6,9 +6,7 @@
 
 #include "../EntitiesHeaders/GameObject.h"
 
-#include<map>
 #include<memory>
-#include<iostream>
 
 class GameObjectFactory : public BaseFactory<GameObject, BaseCreator>
 {

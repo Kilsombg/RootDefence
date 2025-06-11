@@ -7,18 +7,13 @@
 #include "../../include/Constants/SettingsConsts.h"
 #include "../../include/Constants/ColorsConsts.h"
 
-#include "../../include/DataHeaders/GameSessionData.h"
-
 #include "../../include/EventHandlersHeaders/ClickToPlaceTowerHandler.h"
 
 #include "../../include/ManagersHeaders/PurchaseManager.h"
 
 #include "../../include/UtilsHeaders/Vector2D.h"
-#include "../../include/UtilsHeaders/GameObjectFactory.h"
 #include "../../include/UtilsHeaders/ProjectileManager.h"
 #include "../../include/UtilsHeaders/TextureManager.h"
-#include "../../include/UtilsHeaders/InputHandler.h"
-
 
 #include<iostream>
 #include<functional>

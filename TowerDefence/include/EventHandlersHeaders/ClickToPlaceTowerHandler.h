@@ -1,7 +1,7 @@
 #ifndef __ClickToPlaceListener__
 #define __ClickToPlaceListener__
 
-#include "BaseButtonHandler.h".h"
+#include "BaseButtonHandler.h"
 
 #include "../../include/Constants/ColorsConsts.h"
 
@@ -9,8 +9,6 @@
 #include "../EntitiesHeaders/TowerButton.h"
 
 #include "../MapHeaders/Level.h"
-
-#include "../UtilsHeaders/Vector2D.h"
 
 #include<vector>
 #include<memory>

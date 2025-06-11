@@ -1,11 +1,9 @@
 #include "../../include/GameStateHeaders/PauseState.h"
-#include "../../include/GameStateHeaders/MainMenuState.h"
 
-#include "../../include/Constants/LoaderParamsConsts.h"
+#include "../../include/EntitiesHeaders/GameObject.h"
 
 #include "../../include/UtilsHeaders/TextureManager.h"
 #include "../../include/UtilsHeaders/InputHandler.h"
-#include "../../include/UtilsHeaders/StateParser.h"
 
 #include "../../include/Game.h"
 

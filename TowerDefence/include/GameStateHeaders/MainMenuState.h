@@ -3,8 +3,6 @@
 
 #include "GameState.h"
 
-#include "../EntitiesHeaders/GameObject.h"
-
 #include "../UIHeaders/MainMenuUIHeaders/MainMenuStateUI.h"
 
 #include<memory>

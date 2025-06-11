@@ -7,8 +7,6 @@
 
 #include "../../../include/EntitiesHeaders/MenuButton.h"
 
-#include "../../../include/GameStateHeaders/PlayState.h"
-
 #include "../../../include/UIHeaders/MainMenuUIHeaders/MapsPanel.h"
 #include "../../../include/UIHeaders/MainMenuUIHeaders/DeleteProgressConfirmationPanel.h"
 

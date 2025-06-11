@@ -4,10 +4,8 @@
 #include "DataHeaders/ProgressManager.h"
 
 #include "EntitiesHeaders/GameObject.h"
-#include "EntitiesHeaders/Enemy.h"
 
 #include "UtilsHeaders/GameStateMachine.h"
-#include "UtilsHeaders/TextureManager.h"
 
 #include<SDL.h>
 #include<SDL_ttf.h>

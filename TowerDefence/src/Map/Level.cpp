@@ -1,7 +1,5 @@
 #include "../../include/MapHeaders/Level.h"
 
-#include "../../include/Game.h"
-
 #include "../../include/UtilsHeaders/TextureManager.h"
 
 Level::Level()

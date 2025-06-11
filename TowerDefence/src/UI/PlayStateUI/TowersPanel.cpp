@@ -2,7 +2,6 @@
 
 #include "../../../include/Game.h"
 
-#include "../../../include/Constants/ColorsConsts.h"
 #include "../../../include/Constants/LoaderParamsConsts.h"
 #include "../../../include/Constants/GameObjectConsts.h"
 #include "../../../include/Constants/UIConsts.h"

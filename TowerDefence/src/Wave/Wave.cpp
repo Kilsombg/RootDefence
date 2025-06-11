@@ -1,5 +1,7 @@
 #include "../../include/WaveHeaders/Wave.h"
 
+#include "../../include/Constants/WaveConstans.h"
+
 Wave::Wave()
 {
 }

@@ -6,7 +6,6 @@
 
 #include "../../EntitiesHeaders/Tower.h"
 #include "../../EntitiesHeaders/Text.h"
-#include "../../EntitiesHeaders/Texture.h"
 
 #include "../../DataHeaders/GameSessionData.h"
 
