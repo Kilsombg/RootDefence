@@ -105,7 +105,7 @@
         "nextLevel": 0
       },
       {
-        "statName": "slowPercentage",
+        "statName": "freezePercentage",
         "values": [
           0.20,
           0.25

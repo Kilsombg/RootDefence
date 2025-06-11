@@ -43,7 +43,7 @@ bool TowerUpgradeHandlers::upgradeTowerAttribute(std::shared_ptr<Tower> activeTo
 	// upgrade specail attributes
 	if (FreezeTower* freezeTower = dynamic_cast<FreezeTower*>(activeTower.get()))
 	{
-		if (data.statName == LoaderParamsConsts::slowPercentage) { freezeTower->setFreezePercentage(data.values[data.nextLevel]); return true; }
+		if (data.statName == LoaderParamsConsts::freezePercentage) { freezeTower->setFreezePercentage(data.values[data.nextLevel]); return true; }
 	}
 
 	return false;

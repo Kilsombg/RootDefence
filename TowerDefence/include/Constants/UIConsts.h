@@ -4,6 +4,7 @@ namespace UIConsts {
 #pragma region Label IDs
 	// general
 	constexpr char textLabelID[] = "Label";
+	constexpr char IconID[] = "Icon";
 
 	// main menu panel
 	constexpr char coinsLabelID[] = "coinsLabel";
@@ -38,12 +39,12 @@ namespace UIConsts {
 	// tower upgrade panel
 	constexpr char towerNameLabel[] = "towerNameLabel";
 	constexpr char damageDealtLabel[] = "damageDealtLabel";
-	constexpr char slowPercentageLabel[] = "slowPercentageLabel";
+	constexpr char freezePercentageLabel[] = "freezePercentageLabel";
 	constexpr char valueLabelSuffix[] = "ValueLabel";
 	constexpr char damageValueLabel[] = "damageValueLabel";
 	constexpr char attackSpeedValueLabel[] = "attackSpeedValueLabel";
 	constexpr char radiusValueLabel[] = "radiusValueLabel";
-	constexpr char slowPercentageValueLabel[] = "slowPercentageValueLabel";
+	constexpr char freezePercentageValueLabel[] = "freezePercentageValueLabel";
 	constexpr char sellValueLabel[] = "sellValueLabel";
 	constexpr char upgradeButtonCostPrefix[] = "towerUpgrade";
 	constexpr char upgradeButtonCostSufix[] = "Label";

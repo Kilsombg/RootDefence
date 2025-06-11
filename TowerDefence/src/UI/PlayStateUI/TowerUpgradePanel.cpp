@@ -244,7 +244,7 @@ void TowerUpgradePanel::setSelectedTowerToObjects(std::shared_ptr<Tower> selecte
 		{
 			if (Texture* pTexture = dynamic_cast<Texture*>(m_gameObjects[i].get()))
 			{
-				if (pTexture->getTextureID() == "slowPercentageIcon")
+				if (pTexture->getTextureID() == std::string(LoaderParamsConsts::freezePercentage + std::string(UIConsts::IconID)))
 				{
 					pTexture->setHidden(m_selectedTower->getName() != "Frozen Bush");
 				}
@@ -347,11 +347,11 @@ void TowerUpgradePanel::updateStaticLabel()
 	m_labelsMap[UIConsts::towerNameLabel]->setMessage(m_selectedTower->getName());
 	if (FreezeTower* freezeTower = dynamic_cast<FreezeTower*>(m_selectedTower.get()))
 	{
-		m_labelsMap[UIConsts::slowPercentageLabel]->setHidden(false);
+		m_labelsMap[UIConsts::freezePercentageLabel]->setHidden(false);
 	}
 	else
 	{
-		m_labelsMap[UIConsts::slowPercentageLabel]->setHidden(true);
+		m_labelsMap[UIConsts::freezePercentageLabel]->setHidden(true);
 	}
 
 
@@ -375,13 +375,13 @@ void TowerUpgradePanel::updateDynamicLabel()
 	// update special tower parameters
 	if (FreezeTower* freezeTower = dynamic_cast<FreezeTower*>(m_selectedTower.get()))
 	{
-		m_labelsMap[UIConsts::slowPercentageValueLabel]->setMessage(TheTextFormatter::Instance()->extractPercentage(std::to_string(freezeTower->getFreezePercentage())));
-		m_labelsMap[UIConsts::slowPercentageValueLabel]->setHidden(false);
+		m_labelsMap[UIConsts::freezePercentageValueLabel]->setMessage(TheTextFormatter::Instance()->extractPercentage(std::to_string(freezeTower->getFreezePercentage())));
+		m_labelsMap[UIConsts::freezePercentageValueLabel]->setHidden(false);
 		freezeTower = nullptr;
 	}
 	else
 	{
-		m_labelsMap[UIConsts::slowPercentageValueLabel]->setHidden(true);
+		m_labelsMap[UIConsts::freezePercentageValueLabel]->setHidden(true);
 	}
 
 	// update text on screen
@@ -408,7 +408,7 @@ void TowerUpgradePanel::updateUpgradeParameterLabels(TowerUpgradedButton* pUpgra
 	{
 		// change upgrade parameter when mouse on button if there is next level upgrade
 		m_labelsMap[upgradeValueLabelID]->setFontColor(m_upgradeFontColor);
-		if (upgradeValueLabelID == std::string(UIConsts::slowPercentageValueLabel))
+		if (upgradeValueLabelID == std::string(UIConsts::freezePercentageValueLabel))
 		{
 			m_labelsMap[upgradeValueLabelID]->setMessage(TextFormatter::Instance()->extractPercentage(std::to_string(upgradeData.values[upgradeData.nextLevel])));
 		}
