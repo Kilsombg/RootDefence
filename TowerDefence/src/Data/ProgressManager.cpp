@@ -16,14 +16,14 @@ bool ProgressManager::loadAll(const std::string& dbPath)
 {
 	// open database
 	if (!m_dbContext->open(dbPath)) return false;
-
+	
 	// check if tables exists
 	if (!m_dbContext->tableExists("game_progress") || !m_dbContext->tableExists("maps") || !m_dbContext->tableExists("map_progress"))
 	{
 		std::cout << "A table in db is not present.\n";
 		// Create tables - rurn this only if tables doesn't exists
 		// Uncomment ONLY if there are no tables present
-		// m_dbContext.createTables();
+		m_dbContext->createTables();
 		//m_dbContext->seedProgressTables();
 	}
 

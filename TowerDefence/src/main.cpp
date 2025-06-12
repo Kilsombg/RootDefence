@@ -10,10 +10,12 @@ int main(int argc, char* argv[])
 	Uint32 frameStart, frameTime;
 
 
+#if _DEBUG
 	// remove before sharing
 	AllocConsole();
 	FILE* stream;
 	freopen_s(&stream, "CON", "w", stdout);
+#endif
 
 	std::cout << "game init attempt...\n";
 	if (TheGame::Instance()->init("Root Defence", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 960,540, true))
