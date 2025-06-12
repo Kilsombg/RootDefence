@@ -86,11 +86,17 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 		if (m_pWindow != 0)
 		{
 			std::cout << "window creation success\n";
+
+			// stretching window
+			SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
+			SDL_SetWindowMinimumSize(m_pWindow, width, height);
+
 			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
 
 			if (m_pRenderer != 0)
 			{
 				std::cout << "renderer creation success\n";
+				SDL_RenderSetLogicalSize(m_pRenderer, width, height);
 
 				if (TTF_Init() == -1) {
 					std::cout << "Could not initailize SDL2_ttf, error: " << TTF_GetError() << std::endl;
@@ -110,10 +116,6 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 				SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
 
-				// stretching window
-				SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
-				SDL_RenderSetLogicalSize(m_pRenderer, width, height);
-				SDL_SetWindowMinimumSize(m_pWindow, width, height);
 			}
 			else
 			{
