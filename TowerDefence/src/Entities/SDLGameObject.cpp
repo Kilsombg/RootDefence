@@ -43,6 +43,7 @@ void SDLGameObject::draw()
 {
 	if (m_velocity.getX() < 0)
 	{
+		// flip image if going backwards.
 		TextureManager::Instance()->drawFrame(m_textureID,
 			(Uint32)m_position.getX(), (Uint32)m_position.getY(),
 			m_width, m_height, m_currentRow, m_currentFrame,
@@ -50,6 +51,7 @@ void SDLGameObject::draw()
 	}
 	else
 	{
+		// keep image as is if going forwards.
 		TextureManager::Instance()->drawFrame(m_textureID,
 			(Uint32)m_position.getX(), (Uint32)m_position.getY(),
 			m_width, m_height, m_currentRow, m_currentFrame,

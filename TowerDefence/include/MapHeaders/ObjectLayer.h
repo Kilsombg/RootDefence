@@ -8,6 +8,11 @@
 #include<vector>
 #include<memory>
 
+/**
+* Object layer of map.
+* 
+* It contains enemy's path and pathAreas.
+*/
 class ObjectLayer : public Layer
 {
 public:

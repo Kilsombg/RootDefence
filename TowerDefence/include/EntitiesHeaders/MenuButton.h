@@ -7,19 +7,25 @@
 
 #include<memory>
 
+/**
+* State of the button.
+*/
 enum MenuMode
 {
 	ACTIVE = 1,
 	DISABLED = 2
 };
 
+/**
+* Button with static callback that has not have parameters.
+*/
 class MenuButton : public Button
 {
 public:
 	MenuButton();
 	MenuButton(const MenuButton* menuButton);
 
-	virtual void update();
+	virtual void update() override;
 
 	virtual void load(const std::shared_ptr<LoaderParams> pParams) override;
 	virtual void handleEvent() override;
@@ -28,6 +34,9 @@ public:
 
 	void setCallback(void(*callback)());
 
+	/**
+	* Change texture based on button's MenuMode.
+	*/
 	void setCurrentRow(int currentRow);
 
 

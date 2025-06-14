@@ -7,6 +7,9 @@
 #include<vector>
 #include<memory>
 
+/**
+* Base class for stateUI.
+*/
 class BaseStateUI 
 {
 public:
@@ -23,6 +26,9 @@ protected:
 };
 	
 
+/**
+* Each state has it's own stateUI that includes panels.
+*/
 class StateUI : public BaseStateUI
 {
 public:

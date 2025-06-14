@@ -7,6 +7,9 @@
 
 #include<memory>
 
+/**
+* GameState when pausing from PlayState.
+*/
 class PauseState : public GameState
 {
 public:

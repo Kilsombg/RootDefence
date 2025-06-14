@@ -7,6 +7,9 @@
 #include<memory>
 #include<string>
 
+/**
+* Base class for each object in RootDefence.
+*/
 class GameObject
 {
 public:

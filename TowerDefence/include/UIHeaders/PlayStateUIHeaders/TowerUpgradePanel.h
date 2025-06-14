@@ -19,6 +19,11 @@
 #include<map>
 #include<array>
 
+/**
+* Panel, shown when tower is selected.
+* 
+* It contains information about tower and it's upgrade buttons.
+*/
 class TowerUpgradePanel : public TowerInteractivePanel
 {
 public:

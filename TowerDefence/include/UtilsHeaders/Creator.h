@@ -3,6 +3,11 @@
 
 #include<memory>
 
+/**
+* Base Creator class.
+* 
+* T is base class that created objects inherits.
+*/
 template <typename T>
 class Creator
 {

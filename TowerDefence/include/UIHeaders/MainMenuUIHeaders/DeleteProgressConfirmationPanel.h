@@ -4,6 +4,9 @@
 #include "../CommonHeaders/InteractivePanel.h"
 #include "../CommonHeaders/PanelCreator.h"
 
+/**
+* Panel that is open when clicked on delete progress to confirm the deletion.
+*/
 class DeleteProgressConfirmationPanel : public MenuInteractivePanel
 {
 public:

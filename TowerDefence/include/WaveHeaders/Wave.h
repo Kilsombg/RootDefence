@@ -10,12 +10,22 @@
 #include<nlohmann\json.hpp>
 using json = nlohmann::json;
 
+/**
+* Each wave is divided in clusters of one type of enemy.
+*/
 struct EnemyCluster
 {
-	std::string enemyType;
-	int count;
+	std::string enemyType; // enemy type of the cluster
+	int count; // count of enemies
 };
 
+/**
+* A single wave.
+* 
+* Wave contains enemyClusters that are spawned by WaveManager when spawnTimer runs out.
+* 
+* RoundTimer is timer between waves calls.
+*/
 class Wave
 {
 public:
@@ -31,7 +41,7 @@ public:
 
 private:
 	Timer m_spawnTimer, m_roundTimer;
-	float m_spawnInterval, m_roundInterval;
+	float m_spawnInterval, m_roundInterval; // interval value for corresponding timer
 	std::vector<EnemyCluster> m_enemyClusters;
 
 	friend void to_json(json& j, const Wave& w);

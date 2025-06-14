@@ -8,10 +8,12 @@
 
 #include<memory>
 
+/**
+* Factory class for creating gameObjects.
+*/
 class GameObjectFactory : public BaseFactory<GameObject, BaseCreator>
 {
 public:
-
 	static std::shared_ptr<GameObjectFactory> Instance();
 
 private:

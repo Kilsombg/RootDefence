@@ -9,14 +9,27 @@
 #include<map>
 #include<memory>
 
+/**
+* Factory class for creating towers.
+* 
+* It sets tower upgrades if exists.
+*/
 class TowerFactory
 {
 public:
 	static std::shared_ptr<TowerFactory> Instance();
 
 	std::unique_ptr<GameObject> createTower(std::string towerTypeID);
+	/**
+	* Creates tower and loads with base attributes.
+	* 
+	* @param towerTypeId - id of towers to be created.
+	* @param color - type of tower.
+	*/
 	std::shared_ptr<Tower> createShadowTower(std::string towerTypeID, std::string color);
 
+
+	// getters and setters.
 
 	/**
 	* Get data for a specific tower.

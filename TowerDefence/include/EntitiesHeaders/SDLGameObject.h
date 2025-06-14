@@ -7,16 +7,21 @@
 
 #include<memory>
 
+/**
+* Base game object that has animation and movement.
+*/
 class SDLGameObject : public GameObject
 {
 public:
 	SDLGameObject();
 
-	virtual void draw();
-	virtual void update();
-	virtual void clean();
+	virtual void draw() override;
+	virtual void update() override;
+	virtual void clean() override;
 
-	 virtual void load(const std::shared_ptr<LoaderParams> pParams);
+	 virtual void load(const std::shared_ptr<LoaderParams> pParams) override;
+
+	 // setter and getters
 
 	 void setPosition(const Vector2D newPosition);
 	Vector2D& getPosition();

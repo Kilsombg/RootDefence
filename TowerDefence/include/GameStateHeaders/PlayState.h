@@ -25,6 +25,11 @@
 #include<memory>
 #include<string>
 
+/**
+* GameState for playing on maps.
+* 
+* PlayState manages map's gameplay logic.
+*/
 class PlayState : public GameState
 {
 public:
@@ -40,7 +45,9 @@ public:
 	* Load data needed for playstate
 	*/
 	void loadData();
-
+	/**
+	* Callback method for WaveManager to add enemy when spawn timer ends.
+	*/
 	void addEnemy(std::unique_ptr<Enemy> enemy);
 
 	void handleEvents() override;

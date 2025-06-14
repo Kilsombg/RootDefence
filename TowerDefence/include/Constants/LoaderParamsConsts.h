@@ -98,12 +98,12 @@ namespace LoaderParamsConsts {
 #pragma endregion
 
 
-#pragma region Text and Texture
+#pragma region Text and Texture params
 	constexpr char hidden[] = "hidden";
 #pragma endregion
 
 
-#pragma region Text
+#pragma region Text params
 	constexpr char characterWidth[] = "characterWidth";
 	constexpr char message[] = "message";
 	constexpr char labelId[] = "labelId";

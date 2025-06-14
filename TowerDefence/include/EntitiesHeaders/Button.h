@@ -3,13 +3,18 @@
 
 #include "SDLGameObject.h"
 
+/**
+* Base class for buttons.
+* 
+* override handleEvent() to handle button's event.
+*/
 class Button : public SDLGameObject
 {
 public:
 	Button();
 	Button(const Button* button);
 
-	virtual void load(const std::shared_ptr<LoaderParams> pParams);
+	virtual void load(const std::shared_ptr<LoaderParams> pParams) override;
 	virtual void handleEvent();
 
 	std::string getCallbackID();

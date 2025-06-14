@@ -6,7 +6,7 @@
 #include "../UtilsHeaders/BaseCreator.h"
 
 /**
-* Tower that slows enemies in radius.
+* Tower that freezes enemies in radius.
 */
 class FreezeTower : public Tower
 {
@@ -18,8 +18,8 @@ public:
 	/**
 	* Each enemy in radius is effected.
 	*/
-	virtual void targetEnemy(std::shared_ptr<std::vector<std::shared_ptr<Enemy>>> enemies);
-	virtual void aimEnemy() {};
+	virtual void targetEnemy(std::shared_ptr<std::vector<std::shared_ptr<Enemy>>> enemies) override;
+	virtual void aimEnemy() override {};
 
 	// getter and setter
 	float getFreezePercentage();

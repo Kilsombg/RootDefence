@@ -7,6 +7,17 @@
 #include<vector>
 #include<memory>
 
+/**
+* Base class for game state.
+* 
+* Represent a state of a game that GameStateMachine manages.
+* 
+* When game state appears it is called onEnter() method to initiate the state.
+* When game state is popped, then onExit() is called to clean state's memory.
+* 
+* drawUnderneath() is false by default. Override if you need the gameState to be drawn
+* on top of another state.
+*/
 class GameState
 {
 public:

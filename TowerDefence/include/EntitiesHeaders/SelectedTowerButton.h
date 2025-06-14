@@ -6,12 +6,17 @@
 
 #include<memory>
 
+/**
+* Button that has pointer to selected tower.
+*/
 class SelectedTowerButton : public Button
 {
 public:
 	SelectedTowerButton();
 
 	virtual void load(const std::shared_ptr<LoaderParams> pParams);
+
+	// setters and getters
 
 	void setSelectedTower(std::shared_ptr<Tower> selectedTower);
 	

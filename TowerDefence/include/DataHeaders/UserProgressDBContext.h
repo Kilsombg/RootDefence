@@ -8,20 +8,22 @@
 /**
 * DBContext for SQLite database.
 *
-* To use this context first you need to gather user from database.
-* Invoke load() to load user progress from database.
+* ProgressManager::loadAll() automatically calls open() to open the connection to the databse.
+* You don't need to call it outside.
 *
-* When you finish working with UserProgressDBContext, call clean().
+* When you finish working with UserProgressDBContext, call clean() or call ProgressManager::closeDB().
 */
 class UserProgressDBContext
 {
 public:
 	/**
 	* Open connection to database.
+	* 
+	* @return false if failed to open DB.
 	*/
 	bool open(const std::string dbPath);
 	/**
-	* Close connection to database.
+	* Close connection to database if not already.
 	*/
 	void close();
 	/**

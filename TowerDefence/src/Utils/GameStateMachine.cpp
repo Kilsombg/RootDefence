@@ -23,6 +23,7 @@ std::string GameStateMachine::getCurrentState()
 
 void GameStateMachine::pushState(std::shared_ptr<GameState> pState)
 {
+	// remove same state in the state stack if present
 	for (auto it = m_gameStates.begin(); it != m_gameStates.end(); ++it)
 	{
 		if (((*it)->getStateID() == pState->getStateID()) && ((*it)->onExit()))
@@ -32,6 +33,7 @@ void GameStateMachine::pushState(std::shared_ptr<GameState> pState)
 		}
 	}
 
+	// push given state in the stack
 	m_gameStates.push_back(pState);
 
 	if (!m_gameStates.back()->onEnter())
@@ -42,6 +44,7 @@ void GameStateMachine::pushState(std::shared_ptr<GameState> pState)
 
 void GameStateMachine::popStatePrivate()
 {
+	// removes current state from state stack
 	if (!m_gameStates.empty())
 	{
 		if (m_gameStates.back()->onExit())
@@ -65,11 +68,13 @@ void GameStateMachine::changeStatePrivate(std::shared_ptr<GameState> pState)
 			return;
 		}
 
+		// remove current state
 		if (m_gameStates.back()->onExit())
 		{
 			m_gameStates.pop_back();
 		}
 
+		// remove same state in the state stack if present
 		for (auto it = m_gameStates.begin(); it != m_gameStates.end(); ++it)
 		{
 			if (((*it)->getStateID() == pState->getStateID()) && ((*it)->onExit()))
@@ -81,6 +86,7 @@ void GameStateMachine::changeStatePrivate(std::shared_ptr<GameState> pState)
 		}
 	}
 
+	// push state on top of state stack
 	m_gameStates.push_back(pState);
 
 	m_gameStates.back()->onEnter();
@@ -96,6 +102,7 @@ void GameStateMachine::changeState(std::shared_ptr<GameState> pState)
 
 void GameStateMachine::handleEvents()
 {
+	// handle current state
 	if (!m_gameStates.empty())
 	{
 		m_gameStates.back()->handleEvents();
@@ -104,6 +111,7 @@ void GameStateMachine::handleEvents()
 
 void GameStateMachine::update()
 {
+	// update current state
 	if (!m_gameStates.empty())
 	{
 		m_gameStates.back()->update();
@@ -111,12 +119,14 @@ void GameStateMachine::update()
 
 	if (m_bChangeStateFlag)
 	{
+		// change state if needed
 		std::cout << "Going to change state\n";
 		changeStatePrivate(newState);
 		m_bChangeStateFlag = false;
 	}
 	else if (m_bPopStateFlag)
 	{
+		// pop state if needed
 		std::cout << "Going to pop state\n";
 		popStatePrivate();
 		m_bPopStateFlag = false;
@@ -141,6 +151,7 @@ void GameStateMachine::render()
 
 void GameStateMachine::clean()
 {
+	// clean each state from state stack
 	while (!m_gameStates.empty())
 	{
 		if (m_gameStates.back()->onExit())

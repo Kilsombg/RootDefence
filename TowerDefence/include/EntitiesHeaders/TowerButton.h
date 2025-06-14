@@ -11,6 +11,9 @@
 #include<memory>
 #include<functional>
 
+/**
+* Button for buying towers.
+*/
 class TowerButton : public Button
 {
 public:

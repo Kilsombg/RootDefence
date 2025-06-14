@@ -4,6 +4,9 @@
 
 namespace ColorsConsts
 {
+	/**
+	* Struct that stores a color attributes.
+	*/
 	struct Color {
 		std::uint8_t r, g, b, a;
 

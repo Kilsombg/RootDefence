@@ -24,6 +24,7 @@ void CollisionManager::setTowersObjects(std::shared_ptr<std::vector<std::shared_
 
 bool CollisionManager::collideTowerPlacement(SDLGameObject* gameObject, std::shared_ptr<Level> pLevel)
 {
+	// get game objects sides
 	int rightGameObject, bottomGameObject;
 	rightGameObject = gameObject->getPosition().getX() + gameObject->getWidth();
 	bottomGameObject = gameObject->getPosition().getY() + gameObject->getHeight();
@@ -34,6 +35,7 @@ bool CollisionManager::collideTowerPlacement(SDLGameObject* gameObject, std::sha
 
 bool CollisionManager::checkCollisionWithPathArea(SDLGameObject* gameObject, std::vector<SDL_Rect>& pathArea)
 {
+	// check collision with each pathArea
 	for (std::vector<SDL_Rect>::size_type i = 0; i < pathArea.size(); i++)
 	{
 		if (checkCollisionWithRectangleArea(gameObject, pathArea[i]))
@@ -50,6 +52,7 @@ CollisionManager::CollisionManager()
 
 bool CollisionManager::collideWithTowers(SDLGameObject* gameObject)
 {
+	// check collision with each tower on screen
 	for (std::vector<std::shared_ptr<Tower>>::size_type i = 0; i < m_towersObjects->size(); i++)
 	{
 		if (checkCollision(gameObject, (*m_towersObjects)[i].get()))
@@ -67,6 +70,7 @@ bool CollisionManager::checkCollision(SDLGameObject* gameObject1, SDLGameObject*
 	int topA, topB;
 	int bottomA, bottomB;
 
+	//Calculate the sides of rect A
 	leftA = gameObject1->getPosition().getX();
 	rightA = gameObject1->getPosition().getX() + gameObject1->getWidth();
 	topA = gameObject1->getPosition().getY();
@@ -95,6 +99,7 @@ bool CollisionManager::checkCollisionWithRectangleArea(SDLGameObject* gameObject
 	int topA, topB;
 	int bottomA, bottomB;
 
+	//Calculate the sides of rect A
 	leftA = gameObject1->getPosition().getX();
 	rightA = gameObject1->getPosition().getX() + gameObject1->getWidth();
 	topA = gameObject1->getPosition().getY();

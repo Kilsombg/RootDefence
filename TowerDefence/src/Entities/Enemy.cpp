@@ -95,8 +95,10 @@ bool Enemy::isAlive()
 
 void Enemy::draw()
 {
+	// draw enemy object
 	SDLGameObject::draw();
 
+	// draw progress bar
 	if (m_health < m_maxHealth)
 	{
 		TheTextureManager::Instance()->drawProgressBar(

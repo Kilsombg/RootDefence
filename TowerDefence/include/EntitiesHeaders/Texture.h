@@ -27,6 +27,11 @@ public:
 
 	void loadAttributes(std::string textureID, float x, float y, int width, int height);
 
+	/**
+	* Center texture based on position i.e. make position coordinates texture's center.
+	* 
+	* Call this method only once.
+	*/
 	void centerTexture();
 
 	// getters and setters

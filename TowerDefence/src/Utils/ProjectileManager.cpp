@@ -26,6 +26,7 @@ ProjectileManager::ProjectileManager()
 
 float ProjectileManager::damageToEnemy(Projectile* projectile)
 {
+	// if enemy type is the same as tower's than it hits at 100%, otherwise reduce to 50% damage
 	float damageMultiplier = projectile->getTargetEnemy().lock()->getDrop().type == projectile->getTowersType() ? 1. : 0.5;
 
 	return damageMultiplier * projectile->getDamage();

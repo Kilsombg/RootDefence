@@ -20,6 +20,9 @@ public:
 		std::shared_ptr<MapsProgressRepository> mapsProgressRepo
 	);
 
+	/**
+	* Call this when you want to seed the database. If table has rows it won't seed the table.
+	*/
 	void seed(sqlite3* db);
 
 private:

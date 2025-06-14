@@ -11,16 +11,19 @@
 #include<memory>
 #include<string>
 
+/**
+* Base class for enemies.
+*/
 class Enemy : public SDLGameObject
 {
 public:
 	Enemy();
 	Enemy(const Enemy& e);
-	virtual void draw();
-	virtual void update();
-	virtual void clean();
+	virtual void draw() override;
+	virtual void update() override;
+	virtual void clean() override;
 
-	virtual void load(const std::shared_ptr<LoaderParams> pParams);
+	virtual void load(const std::shared_ptr<LoaderParams> pParams) override;
 
 	// setters and getters
 

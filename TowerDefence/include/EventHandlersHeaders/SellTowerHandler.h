@@ -10,6 +10,8 @@
 
 /**
 * Event handler for selling selected tower.
+* 
+* Towers nad Level needs to be set.
 */
 class SellTowerHandler
 {

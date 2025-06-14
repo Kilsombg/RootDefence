@@ -7,12 +7,16 @@
 
 /**
 * Base repository class.
+* 
+* After writing querry to the databse, you should call validResult() to execute and validate it.
 */
 class Repository
 {
 protected:
 	/**
-	* Validates sqlite query.
+	* Execute and validates sqlite query.
+	* 
+	* @return true if querry is executed without errors.
 	*/
 	bool validResult(const char* query, RJM_SQLite_Resultset*& pRS, sqlite3* db);
 };

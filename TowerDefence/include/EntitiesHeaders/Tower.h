@@ -42,6 +42,8 @@ struct TowerUpgradeData
 
 typedef std::array<TowerUpgradeData, 2> ArrayOf2TowerUpgradesData;
 
+// methods for nlohmann/json parsing.
+
 void to_json(json& j, const TowerUpgradeData& data);
 void from_json(const json& j, TowerUpgradeData& data);
 
@@ -50,6 +52,9 @@ void from_json(const json& j, ArrayOf2TowerUpgradesData& arrayOf3TowerUpgradesDa
 
 void to_json(json& j, const std::map<std::string, std::shared_ptr<ArrayOf2TowerUpgradesData>>& dataMap);
 void from_json(const json& j, std::map<std::string, std::shared_ptr<ArrayOf2TowerUpgradesData>>& dataMap);
+
+
+
 
 /**
 * Base class for towers
@@ -102,7 +107,7 @@ public:
 	// override methods
 	virtual void update() override;
 	virtual void draw() override;
-	void load(const std::shared_ptr<LoaderParams> pParams);
+	void load(const std::shared_ptr<LoaderParams> pParams) override;
 
 
 
@@ -120,7 +125,7 @@ public:
 	*/
 	virtual void targetEnemy(std::shared_ptr<std::vector<std::shared_ptr<Enemy>>> enemies);
 	/**
-	* check wheather the enemy is in tower radius
+	* check whether the enemy is in tower radius
 	*/
 	bool inRadius(std::shared_ptr<Enemy> enemy);
 	/**

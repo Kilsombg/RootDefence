@@ -6,15 +6,33 @@
 #include<string>
 #include<iostream>
 
+/**
+* Base factory class.
+* 
+* Registers objects with TCreator class and typeID.
+* 
+* After registering object you can create that object with their type ID.
+*/
 template <typename TObject ,typename TCreator>
 class BaseFactory
 {
 public:
+	/**
+	* Register object class with typeID and creator class.
+	* 
+	* @param typeID - id of the type. When you want to create this class you have to use this id.
+	* @param pCreator - Creator class for that class.
+	* 
+	* @return true if registered successfully.
+	*/
 	bool registerType(std::string typeID, std::shared_ptr<TCreator> pCreator);
+	/**
+	* Create corresponding object class by its typeID.
+	*/
 	std::unique_ptr<TObject> create(std::string typeID);
 
 private:
-	std::map<std::string, std::shared_ptr<TCreator>> m_creators;
+	std::map<std::string, std::shared_ptr<TCreator>> m_creators; // map of creators
 };
 
 

@@ -9,6 +9,9 @@ namespace TileTypeConsts
 	constexpr char towerTileID[] = "towerTileID";
 }
 
+/**
+* Type for tiles.
+*/
 enum TileType
 {
 	NOT_TILE_TYPE = 0,
@@ -17,6 +20,12 @@ enum TileType
 	PATH = 3	// enemy path
 };
 
+
+/**
+* Helper function for getting tileType by string.
+* 
+* @param strTileType - TileTypeConsts value, otherwise returns NOT_TILE_TYPE.
+*/
 inline TileType getTileTypeByString(std::string strTileType)
 {
 	if (strTileType == TileTypeConsts::pathTileID)

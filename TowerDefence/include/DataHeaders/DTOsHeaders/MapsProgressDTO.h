@@ -3,6 +3,9 @@
 
 #include<string>
 
+/**
+* DTO struct for storing map's information.
+*/
 struct MapDTO
 {
 	long id;
@@ -10,11 +13,13 @@ struct MapDTO
 };
 
 
-
+/**
+* DTO struct for storing map's progression.
+*/
 struct MapProgressDTO
 {
 	long mapID;
-	long maxWave;
+	long maxWave; // best wave achieved
 };
 
 

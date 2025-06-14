@@ -10,17 +10,44 @@
 #include<vector>
 #include<memory>
 
+/**
+* Level parser from XML file.
+* 
+* Calls parseLevel() to get the map's level.
+*/
 class LevelParser
 {
 public:
+	/**
+	* Parse xml file into Level.
+	* 
+	* @param levelFile - path to map's level.
+	*/
 	std::shared_ptr<Level> parseLevel(const char* levelFile);
 
 private:
+	/**
+	* Parse tileset.
+	*/
 	void parseTilesets(TiXmlElement* pTilesetRoot);
+	/**
+	* Parse tile types (TileType).
+	*/
 	void parseTileSetProperties(TiXmlElement* pPropertiesRoot, int firstGridID);
+	/**
+	* Parse tile layer data.
+	* 
+	* Gets data by decoding with base64 and uncompressing with zlib.
+	*/
 	void parseTileLayer(TiXmlElement* pTileElement);
+	/**
+	* Parse objects in map.
+	*/
 	void parseObjectLayer(TiXmlElement* pObjectElement);
 
+	/**
+	* sets type of level's tiles map.
+	*/
 	void setMapTileTypes(std::vector<std::vector<int>> data);
 
 	/**

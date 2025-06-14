@@ -24,6 +24,8 @@ public:
 	static std::shared_ptr<CollisionManager> Instance();
 	void clean();
 
+	// setters and getters
+
 	void setTowersObjects(std::shared_ptr<std::vector<std::shared_ptr<Tower>>> towersObjects);
 		
 	/**

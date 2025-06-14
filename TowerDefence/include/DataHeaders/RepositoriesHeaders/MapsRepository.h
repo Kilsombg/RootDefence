@@ -23,10 +23,14 @@ public:
 	std::shared_ptr<std::vector<MapDTO>> load(sqlite3* db);
 	/**
 	* Get single map by id.
+	* 
+	* @param id - map's id that you want to select.
 	*/
 	MapDTO getMapByID(sqlite3* db, long id);
 	/**
 	* Update map if exists, otherwise insert it.
+	* 
+	* @param map - map object you want to update. If map's id is not in table, then it will be inserted.
 	*/
 	void upsert(sqlite3* db, MapDTO map);
 	/**

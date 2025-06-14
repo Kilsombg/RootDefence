@@ -2,6 +2,10 @@
 #define __Vector2D__
 
 #include<math.h>
+
+/**
+* Helper class representing Vector in 2D.
+*/
 class Vector2D
 {
 public:
@@ -11,11 +15,20 @@ public:
 	void setX(float x);
 	void setY(float y);
 
+	/**
+	* Get length of the vector.
+	*/
 	float length();
-	
+	/**
+	* Distance between two vectors.
+	*/
 	static float distance(const Vector2D& v1, const Vector2D& v2);
-	
+	/**
+	* Distance between this vector and v2.
+	*/
 	float distanceTo(const Vector2D& v2);
+
+	// operators overriding
 
 	Vector2D operator+(const Vector2D& v2) const;
 
@@ -33,6 +46,9 @@ public:
 
 	Vector2D& operator/=(float scalar);
 
+	/**
+	* Normalize vector.
+	*/
 	void normalize();
 
 private:

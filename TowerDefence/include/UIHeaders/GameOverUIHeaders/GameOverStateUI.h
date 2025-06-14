@@ -5,7 +5,9 @@
 
 #include<string>
 
-
+/**
+* Class that manages gameOver state panels.
+*/
 class GameOverStateUI : public StateUI
 {
 public:

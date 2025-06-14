@@ -7,15 +7,18 @@
 
 #include<memory>
 
+/**
+* Class for animaiton graphics. It is running with m_animSpeed frames per second.
+*/
 class AnimatedGraphic : public SDLGameObject
 {
 public:
 	AnimatedGraphic();
 
-	void update();
-	void draw();
-	void clean();
-	void load(const std::shared_ptr<LoaderParams> pParams);
+	void update() override;
+	void draw() override;
+	void clean() override;
+	void load(const std::shared_ptr<LoaderParams> pParams) override;
 
 private:
 	int m_animSpeed;

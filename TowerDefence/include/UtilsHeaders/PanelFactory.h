@@ -8,6 +8,9 @@
 
 #include<memory>
 
+/**
+* Factory class for panels.
+*/
 class PanelFactory : public BaseFactory<Panel, PanelCreator>
 {
 public:

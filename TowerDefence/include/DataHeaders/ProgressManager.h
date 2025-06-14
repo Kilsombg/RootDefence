@@ -18,7 +18,7 @@
 * 
 * Load all data from database with loadALL().
 * 
-* After loading data, you can get 
+* After loading data, you can manage all the database from here.
 */
 class ProgressManager
 {
@@ -32,10 +32,14 @@ public:
 
     /**
     * open coonection and load data from SQLite.
+    * 
+    * @paramm dbPath - path to sqlite db file.
     */
     bool loadAll(const std::string& dbPath);
     /**
     * deletes game and maps' progress.
+    * 
+    * Instead of deleting the rows, it returns their default values.
     */
     void deleteProgress();
     /**
@@ -52,6 +56,9 @@ public:
     std::shared_ptr<GameProgressDTO> getGameProgress() const;
     /**
     * Update coins in game progress.
+    * 
+    * @param id - gameProgress' id.
+    * @param coins - amount of coins to be updated.
     */
     void updateCoins(int id, int coins);
 
@@ -63,10 +70,14 @@ public:
     std::shared_ptr<std::vector<MapDTO>> getMaps() const;
     /**
     * get single map by id.
+    * 
+    * @param id - map's id to be selected.
     */
     MapDTO getMapByID(long id);
     /**
     * update map if exists, otherwise insert it.
+    * 
+    * @param map - map's object that is updated. If map's id is not in table, then it will be inserted.
     */
     void upsertMap(MapDTO map);
 
@@ -78,6 +89,9 @@ public:
     std::shared_ptr<std::vector<MapProgressDTO>> getMapsProgress() const;
     /**
     * Update max wave for a map.
+    * 
+    * @param mapID - id of the map to be updated.
+    * @param maxWave - best wave achieved. It has to be higher than the previous map's maxWave.
     */
     void updateMaxWave(int mapID, int maxWave);
 

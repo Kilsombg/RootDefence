@@ -5,6 +5,9 @@
 
 #include<string>
 
+/**
+* StateUI for PuaseState.
+*/
 class PauseStateUI : public StateUI
 {
 public:

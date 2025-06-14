@@ -7,6 +7,11 @@
 
 #include<map>
 
+/**
+* Game state that occurs on game defeat.
+* 
+* When game health point goes to 0, then GameOverState occurs.
+*/
 class GameOverState : public GameState
 {
 public:

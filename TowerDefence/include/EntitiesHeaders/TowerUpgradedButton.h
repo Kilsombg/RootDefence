@@ -9,6 +9,9 @@
 #include<functional>
 #include<memory>
 
+/**
+* Button for tower upgrades.
+*/
 class TowerUpgradedButton : public SelectedTowerButton
 {
 public:

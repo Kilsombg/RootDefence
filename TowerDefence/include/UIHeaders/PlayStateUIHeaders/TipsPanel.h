@@ -9,6 +9,11 @@
 #include<vector>
 #include<string>
 
+/**
+* Panel for showing tips.
+* 
+* This panel is shown when not selected tower.
+*/
 class TipsPanel : public Panel
 {
 public:

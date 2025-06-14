@@ -27,10 +27,15 @@ public:
 	bool exists(sqlite3* db, int mapID);
 	/**
 	* Update map's progression if exists, otherwise insert it.
+	* 
+	* @param mapProgress - map's prgoression to be updated. If id of MapProgress is not in table, then it will be inserted.
 	*/
 	void upsert(sqlite3* db, MapProgressDTO mapProgress);
 	/**
 	* Update max wave for a map.
+	* 
+	* @param mapID - map's id that was played.
+	* @param maxWave - best wave achieved on that map.
 	*/
 	void updateMaxWave(sqlite3* db, int mapID, int maxWave);
 	/**

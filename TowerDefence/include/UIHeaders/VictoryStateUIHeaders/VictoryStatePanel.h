@@ -4,6 +4,11 @@
 #include "../CommonHeaders/InteractivePanel.h"
 #include "../CommonHeaders/PanelCreator.h"
 
+/**
+* Panel for VictoryState UI.
+* 
+* In this panel are buttons for switching to other states.
+*/
 class VictoryStatePanel : public MenuInteractivePanel
 {
 public:

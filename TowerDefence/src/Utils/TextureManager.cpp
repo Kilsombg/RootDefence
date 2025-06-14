@@ -100,14 +100,17 @@ void TextureManager::drawTile(std::string id, int margin, int spacing, int x, in
 
 void TextureManager::drawFilledCircle(int centerX, int centerY, int radius, SDL_Color color, SDL_Renderer* renderer, SDL_BlendMode blendMode)
 {
+	// get current color
 	SDL_Color oldColor;
 	SDL_GetRenderDrawColor(renderer, &oldColor.r, &oldColor.g, &oldColor.b, &oldColor.a);
 
+	// set color and blendmode
 	SDL_SetRenderDrawBlendMode(renderer, blendMode);
 	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 
 	drawCircle(centerX, centerY, radius, renderer);
 
+	// return back old colors and blendMode
 	SDL_SetRenderDrawColor(renderer, oldColor.r, oldColor.g, oldColor.b, oldColor.a);
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
 }
@@ -115,15 +118,19 @@ void TextureManager::drawFilledCircle(int centerX, int centerY, int radius, SDL_
 
 void TextureManager::drawProgressBar(int x, int y, int width, int height, SDL_Color bgColor, SDL_Color fillColor, float progress, SDL_Renderer* renderer)
 {
+	// get current color
 	SDL_Color oldColor;
 	SDL_GetRenderDrawColor(renderer, &oldColor.r, &oldColor.g, &oldColor.b, &oldColor.a);
 
+	// draw frame
 	SDL_SetRenderDrawColor(renderer, bgColor.r, bgColor.g, bgColor.b, bgColor.a);
 	drawRectangle(x, y, width, height, renderer);
 
+	// draw progress inside
 	SDL_SetRenderDrawColor(renderer, fillColor.r, fillColor.g, fillColor.b, fillColor.a);
 	drawRectangle(x, y, progress * width, height, renderer);
 
+	// return old color
 	SDL_SetRenderDrawColor(renderer, oldColor.r, oldColor.g, oldColor.b, oldColor.a);
 }
 
@@ -179,10 +186,10 @@ void TextureManager::drawCircle(int centerX, int centerY, int radius, SDL_Render
 {
 	int x = radius;
 	int y = 0;
-	int decisionOver2 = 1 - x; // Начално условие
+	int decisionOver2 = 1 - x; // initial condition
 
 	while (x >= y) {
-		// Рисуване на хоризонтални линии вместо отделни пиксели
+		// draw horizontal line
 		drawHorizontalLine(centerX - x, centerX + x, centerY + y, renderer);
 		drawHorizontalLine(centerX - x, centerX + x, centerY - y, renderer);
 		drawHorizontalLine(centerX - y, centerX + y, centerY + x, renderer);
@@ -191,7 +198,7 @@ void TextureManager::drawCircle(int centerX, int centerY, int radius, SDL_Render
 		y++;
 
 		if (decisionOver2 <= 0) {
-			decisionOver2 += 2 * y + 1; // Корекция на грешката
+			decisionOver2 += 2 * y + 1; // error correction
 		}
 		else {
 			x--;

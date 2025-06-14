@@ -26,14 +26,21 @@ public:
 	bool exists(sqlite3* db);
 	/**
 	* Update game progress if exists, otherwise insert it.
+	* 
+	* @param gameProgress - game progress you want to upsert. If gameProgress' id is not in table, then it will be inserted.
 	*/
 	void upsert(sqlite3* db, GameProgressDTO gameProgress);
 	/**
 	* Update coins in game progress.
+	* 
+	* @param id - id of the gmaeProgress row in database.
+	* @param coins - amount of coins to be updated.
 	*/
 	void updateCoins(sqlite3* db, int id, int coins);
 	/**
 	* Delete game progress.
+	* 
+	* @param id - id of the gmaeProgress row in database.
 	*/
 	void deleteProgress(sqlite3* db, int id);
 };

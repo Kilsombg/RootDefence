@@ -4,6 +4,11 @@
 #include "../CommonHeaders/InteractivePanel.h"
 #include "../CommonHeaders/PanelCreator.h"
 
+/**
+* Panel that is shown when gameOverState occurs.
+* 
+* It has logic for switching to others states and representing the panel on screen.
+*/
 class GameOverStatePanel : public MenuInteractivePanel
 {
 public:
@@ -22,7 +27,15 @@ public:
 	void setCurrentWaveID(int currentWaveID);
 
 private:
+	// static callbacks
+
+	/**
+	* Change state from gameOver to MainMenu.
+	*/
 	static void s_gameOverToMain();
+	/**
+	* Changes to new PlayState.
+	*/
 	static void s_restartPlay();
 
 	/**

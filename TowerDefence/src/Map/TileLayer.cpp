@@ -20,8 +20,12 @@ void TileLayer::render()
 {
 	int x, y, x2, y2 = 0;
 
+	// get camera position. By default it is (0,0).
+	// if camera is moving m_position will move, 
+	// with that the position of the map also moves.
 	x = m_position.getX() / m_tileSize;
 	y = m_position.getY() / m_tileSize;
+	// remainder of tile that it should be discarder from screen.
 	x2 = int(m_position.getX()) % m_tileSize;
 	y2 = int(m_position.getY()) % m_tileSize;
 
@@ -35,6 +39,7 @@ void TileLayer::render()
 				continue;
 			}
 
+			// get tileSet where the tile is in
 			Tileset tileset = getTilesetByID(id);
 
 			id--;

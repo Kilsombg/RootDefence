@@ -3,6 +3,9 @@
 
 #include "../../include/EntitiesHeaders/Button.h"
 
+/**
+* Base handler for events that accept buttons.
+*/
 class BaseButtonHandler
 {
 public:

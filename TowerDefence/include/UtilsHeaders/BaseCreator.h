@@ -5,6 +5,9 @@
 
 #include "../EntitiesHeaders/GameObject.h"
 
+/**
+* Creator class for gameObjects.
+*/
 class BaseCreator : public Creator<GameObject>
 {
 public:

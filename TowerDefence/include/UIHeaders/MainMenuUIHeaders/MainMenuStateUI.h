@@ -5,6 +5,9 @@
 
 #include<string>
 
+/**
+* StateUI for MainMenuState.
+*/
 class MainMenuStateUI : public StateUI
 {
 public:

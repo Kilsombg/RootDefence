@@ -19,6 +19,7 @@ bool StateParser::parseState(const char* stateFile, std::string stateID, std::ve
 	TiXmlElement* pRoot = xmlDoc.RootElement();
 	TiXmlElement* pStateRoot = 0;
 
+	// take state root node
 	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
 		if (e->Value() == stateID)
@@ -27,6 +28,7 @@ bool StateParser::parseState(const char* stateFile, std::string stateID, std::ve
 		}
 	}
 
+	// get texture root
 	TiXmlElement* pTextureRoot = 0;
 	for (TiXmlElement* e = pStateRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
@@ -38,7 +40,7 @@ bool StateParser::parseState(const char* stateFile, std::string stateID, std::ve
 
 	parseTextures(pTextureRoot, pTextureIDs);
 
-
+	// get panel root
 	TiXmlElement* pPanelRoot = 0;
 	for (TiXmlElement* e = pStateRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
@@ -125,6 +127,7 @@ void StateParser::parseObjects(TiXmlElement* pStateRoot, std::vector<std::unique
 	{
 		std::shared_ptr<LoaderParams> pParams = std::make_shared<LoaderParams>();
 
+		// get attributes of gameObject
 		for (TiXmlAttribute* attribute = e->FirstAttribute(); attribute != NULL; attribute = attribute->Next())
 		{
 			std::string name = attribute->Name();

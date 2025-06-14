@@ -12,24 +12,50 @@
 #include<memory>
 #include<functional>
 
+/**
+* Manages waves.
+* 
+* Calls current wave and spawns enemies.
+* When wave finished it calls next wave.
+* 
+* When waves finished it calls GameStateMachine to switch state.
+*/
 class WaveManager
 {
 public:
 	static std::shared_ptr<WaveManager> Instance();
-	
+	/**
+	* Activates wave if there is not current wave playing.
+	*/
 	static void s_activateWave();
 	/**
 	* @return true if play button is ready to be clicked.
 	*/
 	static bool isActivePlayButton();
-
+	/**
+	* Spawn enemies from wave.
+	* Calls nextWave() when wave finished and clicked on start button.
+	*/
 	void spawnWaveEnemies(std::vector<std::shared_ptr<Vector2D>>& enemyPath, Wave& wave, std::function<void(std::unique_ptr<Enemy>)> addEnemyCallback, float dT);
+	/**
+	* Change wave.
+	*/
 	void nextWave(Wave& wave);
+	/**
+	* Cheks if current wave is final.
+	*/
 	bool isFinalWave();
-
+	/**
+	* Loads manager.
+	*/
 	void load();
+	/**
+	* Clean manager.
+	*/
 	void clean();
-
+	/**
+	* Handles victory state.
+	*/
 	void handleEvents();
 
 	// getters and setters

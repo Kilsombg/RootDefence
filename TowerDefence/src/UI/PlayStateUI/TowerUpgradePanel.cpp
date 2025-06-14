@@ -343,7 +343,10 @@ void TowerUpgradePanel::setSellTowerButtonCallbacks()
 
 void TowerUpgradePanel::updateStaticLabel()
 {
+	// update tower's name
 	m_labelsMap[UIConsts::towerNameLabel]->setMessage(m_selectedTower->getName());
+
+	// set special attributes visibility
 	if (FreezeTower* freezeTower = dynamic_cast<FreezeTower*>(m_selectedTower.get()))
 	{
 		m_labelsMap[UIConsts::freezePercentageLabel]->setHidden(false);
@@ -354,7 +357,7 @@ void TowerUpgradePanel::updateStaticLabel()
 	}
 
 
-
+	// update labels
 	for (std::map<std::string, std::unique_ptr<Text>>::iterator it = m_labelsMap.begin(); it != m_labelsMap.end(); it++)
 	{
 		it->second->update();
@@ -451,10 +454,12 @@ void TowerUpgradePanel::updateUpgradeParameterLabels(TowerUpgradedButton* pUpgra
 
 void TowerUpgradePanel::updateMaxUpgradeButtons(bool mode, int upgradeID)
 {
+	// get labelIDs
 	std::string upgradeCostLabelID = UIConsts::upgradeButtonCostPrefix + std::to_string(upgradeID) + UIConsts::upgradeButtonCostSufix;
 	std::string upgradeTextLabelID = UIConsts::upgradeButtonTextPrefix + std::to_string(upgradeID) + UIConsts::upgradeButtonTextSufix;
 	std::string maxUpgradeButtonLabelID = "maxUpgrade" + std::to_string(upgradeID) + "Button";
 
+	// update visibility labels and icons
 	m_labelsMap[upgradeCostLabelID]->setHidden(mode);
 	m_labelsMap[upgradeTextLabelID]->setHidden(mode);
 	m_labelsMap[maxUpgradeButtonLabelID]->setHidden(!mode);

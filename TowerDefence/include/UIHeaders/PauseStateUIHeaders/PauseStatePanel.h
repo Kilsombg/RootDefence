@@ -4,6 +4,11 @@
 #include "../CommonHeaders/InteractivePanel.h"
 #include "../CommonHeaders/PanelCreator.h"
 
+/**
+* Panel for PauseStateUI.
+* 
+* Here you can switch to MainMenu or Play states.
+*/
 class PauseStatePanel : public MenuInteractivePanel
 {
 public:

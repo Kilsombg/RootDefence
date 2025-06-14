@@ -3,17 +3,21 @@
 namespace UIConsts {
 #pragma region Label IDs
 	// general
+
 	constexpr char textLabelID[] = "Label";
 	constexpr char IconID[] = "Icon";
 
 	// main menu panel
+
 	constexpr char coinsLabelID[] = "coinsLabel";
 
 	// maps panel
+
 	constexpr char mapNameLabelSuffix[] = "NameLabel";
 	constexpr char maxWaveLabelSuffix[] = "MaxWaveLabel";
 
 	// towers panel
+
 	constexpr char healthLabelID[] = "healthLabel";
 	constexpr char agateResourceLabelID[] = "agateResourceLabelID";
 	constexpr char amberResourceLabelID[] = "amberResourceLabelID";
@@ -22,6 +26,7 @@ namespace UIConsts {
 	constexpr char waveValueLabel[] = "waveValueLabel";
 
 	// tower cost labels
+
 	constexpr char agateStumpCostLabelID[] = "agateStumpCostLabelID";
 	constexpr char agatePineCostLabelID[] = "agatePineCostLabelID";
 	constexpr char agateOakCostLabelID[] = "agateOakCostLabelID";
@@ -34,9 +39,11 @@ namespace UIConsts {
 	constexpr char frozenBushCostLabelID[] = "frozenBushCostLabelID";
 
 	// tips panel
+
 	constexpr char tipMessageLabel[] = "tipMessageLabel";
 
 	// tower upgrade panel
+
 	constexpr char towerNameLabel[] = "towerNameLabel";
 	constexpr char damageDealtLabel[] = "damageDealtLabel";
 	constexpr char freezePercentageLabel[] = "freezePercentageLabel";
@@ -52,9 +59,11 @@ namespace UIConsts {
 	constexpr char upgradeButtonTextSufix[] = "Label";
 
 	// game over panel
+
 	constexpr char gameOverWaveLabel[] = "gameOverWaveLabel";
 
 	// victory panel
+
 	constexpr char rewardValueLabel[] = "rewardValueLabel";
 #pragma endregion
 

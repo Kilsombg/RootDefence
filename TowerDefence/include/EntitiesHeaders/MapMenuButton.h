@@ -11,6 +11,9 @@
 
 typedef std::function<void(std::string, int)> MapMenuButtonCallback;
 
+/**
+* Class for choosing a map in mapMenuPanel.
+*/
 class MapMenuButton : public MenuButton
 {
 public:
@@ -26,7 +29,9 @@ public:
 
 private:
 	void handleClickOnButton() override;
-
+	/**
+	* Update best wave achieved label on button.
+	*/
 	void updateMaxWaveLabel();
 	/**
 	* Load a text label for map name.

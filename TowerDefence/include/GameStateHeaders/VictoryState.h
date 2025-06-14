@@ -7,6 +7,11 @@
 
 #include<memory>
 
+/**
+* GameState when victory occurs.
+* 
+* If all waves are finished and still has positive health points from PlayState, then VictoryState occurs.
+*/
 class VictoryState : public GameState
 {
 public:

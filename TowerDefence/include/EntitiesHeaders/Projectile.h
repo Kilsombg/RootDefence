@@ -13,6 +13,9 @@
 
 #include<memory>
 
+/**
+* Class representing tower's projectile.
+*/
 class Projectile : public SDLGameObject
 {
 public:
@@ -39,6 +42,9 @@ public:
 	bool hitEnemy();
 
 private:
+	/**
+	* Move towards target enemy.
+	*/
 	void move();
 
 	float m_damage;

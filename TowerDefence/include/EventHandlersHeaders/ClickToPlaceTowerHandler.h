@@ -13,25 +13,49 @@
 #include<vector>
 #include<memory>
 
-
+/**
+* Button states.
+*/
 enum ClickToPlaceTowerStates
 {
-	IDLE = 0,
-	MOVING = 1,
-	PLACING = 2,
-	INTERRUPTED = 3
+	IDLE = 0, // not interracted
+	MOVING = 1, // when clicked and dummyTower on screen
+	PLACING = 2, // second clicked handled
+	INTERRUPTED = 3 // interruption event occured
 };
 
+/**
+* Click to place handler for tower placement.
+* 
+* When clicked on TowerButton, handleEvent() is called for handling the state of the event.
+* 
+* states of handler:
+* - IDLE : do nothing, waits for click on towerButton to switch state to MOVING and creates shadowObject.
+* - MOVING: render shadowObject on screen untill clicked on free tower space or outside map, then switch to PLACING.
+* - PLACING: calls addObject() to add tower object to the game.
+* - INTERRUPTED: return handler to default values and switch to IDLE.
+* 
+* * Warning: level, that is played on, needs to be set to work.
+*/
 class ClickToPlaceTowerHandler : public BaseButtonHandler
 {
 public:
 	ClickToPlaceTowerHandler();
 
 	/**
-	* handle click event send from TowerButton
+	* Handle click event send from TowerButton.
+	* 
+	* If sourceButton is nullptr then interrupt handler.
+	* Handle corresponding state otherwise.
 	*/
 	void handleEvent(Button* sourceButton) override;
+	/**
+	* Update event.
+	*/
 	void update(std::shared_ptr<std::vector<std::shared_ptr<Tower>>> gameObjects);
+	/**
+	* Renders tower shadow object on screen.
+	*/
 	void render();
 	void clean();
 
@@ -58,7 +82,7 @@ private:
 	*/
 	void createShadowObject();
 	/**
-	* update state
+	* Update based on the handler's state.
 	*/
 	void updateState(std::shared_ptr<std::vector<std::shared_ptr<Tower>>> gameObjects);
 	void updateShadowObject();

@@ -14,19 +14,45 @@
 
 #define OUTLINE_SIZE 2
 
+/**
+* Main class.
+* 
+* Game initiate SDL2 components and registers dynamic objects to be created on runtime.
+*/
 class Game
 {
 public:
 	static Game* Instance();
 	~Game();
-	
+	/**
+	* Initiate SDL2 window and renderer.
+	* 
+	* Register gameObjects and Panels.
+	*/
 	bool init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
+	/**
+	* Renders game.
+	*/
 	void render();
+	/**
+	* Update game.
+	*/
 	void update();
+	/**
+	* Handle game.
+	*/
 	void handleEvents();
+	/**
+	* Clean memory on exit.
+	*/
 	void clean();
+	/**
+	* Exit from the game.
+	*/
 	void quit();
 	
+	// getters and setters 
+
 	SDL_Renderer* getRenderer() const;
 	SDL_Window* getWindow() const;
 	TTF_Font* getFont() const;
@@ -36,6 +62,8 @@ public:
 	int getGameWidth() const;
 	int getGameHeight() const;
 
+
+	// @return true if still playing. When you quit game it returns false.
 	bool running();
 
 private:
@@ -52,12 +80,14 @@ private:
 	*/
 	void configureProgressManager();
 
-	bool m_bRunning;
+	bool m_bRunning; // flag for running main game loop.
 	int m_gameWidth;
 	int m_gameHeight;
 
 	Game();
 	static Game* s_pInstance;
+
+	// SDL components
 
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
@@ -65,6 +95,8 @@ private:
 
 	TTF_Font* m_pFont;
 	TTF_Font* m_pFontOutline;
+
+	// game components
 
 	std::shared_ptr<GameStateMachine> m_pGameStateMachine;
 

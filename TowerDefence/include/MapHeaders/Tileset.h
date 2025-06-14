@@ -3,6 +3,9 @@
 
 #include<string>
 
+/**
+* Tileset data.
+*/
 struct Tileset
 {
 	int firstGridID;

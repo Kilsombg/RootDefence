@@ -14,6 +14,9 @@
 #include<memory>
 #include<unordered_map>
 
+/**
+* Class representing map's data.
+*/
 class Level
 {
 public:
@@ -22,6 +25,8 @@ public:
 	void update();
 	void render();
 	void clean();
+
+	// getters and setters 
 
 	std::vector<Tileset>* getTilesets();
 	std::vector<std::shared_ptr<Layer>>* getLayers();

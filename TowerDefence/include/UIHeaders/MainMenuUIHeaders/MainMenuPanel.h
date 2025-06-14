@@ -4,6 +4,12 @@
 #include "../CommonHeaders/InteractivePanel.h"
 #include "../CommonHeaders/PanelCreator.h"
 
+/**
+* Main panel for MainMenuState.
+* 
+* In that panel you can exit or open MapsMenuPanel.
+* Also you can delete your progress in here.
+*/
 class MainMenuPanel : public MenuInteractivePanel
 {
 public:

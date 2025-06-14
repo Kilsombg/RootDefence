@@ -13,6 +13,11 @@
 #include<string>
 #include<memory>
 
+/**
+* StateUI for PlayState.
+* 
+* It contains TowersPanel, TipsPanel and TowerUpgradePanel.
+*/
 class PlayStateUI : public StateUI
 {
 public:

@@ -1,6 +1,9 @@
 #ifndef __Layer__
 #define __Layer__
 
+/**
+* Base class for map's layers.
+*/
 class Layer
 {
 public:

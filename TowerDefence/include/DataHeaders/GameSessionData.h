@@ -16,8 +16,7 @@ namespace ResourceTypeConst {
 }
 
 /**
-* Resource is used in buying towers and tower upgrades.
-* Drops from corresponding color enemies.
+* Represent a type of Resource.
 */
 enum ResourceType
 {
@@ -28,7 +27,11 @@ enum ResourceType
 	NOT_RESOURCE_TYPE
 };
 
-
+/**
+* Helper function to get ResourceType by string.
+* 
+* @param resourceType - string with ResourceTypeConst value, otherwise function will return NOT_RESOURCE_TYPE.
+*/
 inline ResourceType getResourceTypeByString(std::string resourceType)
 {
 	if (resourceType == ResourceTypeConst::green) return ResourceType::GREEN;
@@ -42,7 +45,11 @@ inline ResourceType getResourceTypeByString(std::string resourceType)
 
 
 /**
-* Resource keeps track of the type and value of the resource.
+* Resource is used in buying towers and tower upgrades.
+* 
+* Keeps track of the type and value of the resource.
+* 
+* Drops from corresponding color enemies.
 */
 struct Resource
 {
@@ -58,7 +65,7 @@ typedef std::array<Resource, 4> ArrayOfResources;
 
 
 /**
-* GameSessionData is used to store data for a game session
+* GameSessionData is used to store data for a game session.
 */
 struct GameSessionData
 {

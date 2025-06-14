@@ -17,6 +17,9 @@
 #include<string>
 #include<memory>
 
+/**
+* Panel, contaning tower creation buttons, resources and buttons for starting wave and settings.
+*/
 class TowersPanel : public TowerInteractivePanel
 {
 public:

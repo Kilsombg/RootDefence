@@ -7,6 +7,11 @@
 
 #include<memory>
 
+/**
+* GameState when you are in main menu screen.
+* 
+* MainMenu handles exiting the game and manages persistent game logic.
+*/
 class MainMenuState : public GameState
 {
 public:

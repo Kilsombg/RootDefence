@@ -5,7 +5,9 @@
 
 #include<string>
 
-
+/**
+* StateUI for victoryState.
+*/
 class VictoryStateUI : public StateUI
 {
 public:

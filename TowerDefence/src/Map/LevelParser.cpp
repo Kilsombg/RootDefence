@@ -16,13 +16,15 @@
 
 std::shared_ptr<Level> LevelParser::parseLevel(const char* levelFile)
 {
+	// load file
 	TiXmlDocument levelDocument;
 	levelDocument.LoadFile(levelFile);
 
-
+	// read root node
 	m_pLevel = std::shared_ptr<Level>(new Level);
 	TiXmlElement* pRoot = levelDocument.RootElement();
 
+	// read root's attributes
 	pRoot->Attribute("tilewidth", &m_tileSize);
 	pRoot->Attribute("width", &m_width);
 	pRoot->Attribute("height", &m_height);
@@ -31,6 +33,7 @@ std::shared_ptr<Level> LevelParser::parseLevel(const char* levelFile)
 
 	m_pLevel->m_tileSize = m_tileSize;
 
+	// get tileset XML node
 	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
 		if (e->Value() == std::string("tileset"))
@@ -39,6 +42,7 @@ std::shared_ptr<Level> LevelParser::parseLevel(const char* levelFile)
 		}
 	}
 
+	// get tile layer XML node
 	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
 		if (e->Value() == std::string("layer"))
@@ -47,6 +51,7 @@ std::shared_ptr<Level> LevelParser::parseLevel(const char* levelFile)
 		}
 	}
 
+	// get objects XML node
 	for (TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
 		if (e->Value() == std::string("objectgroup"))
@@ -67,6 +72,7 @@ std::shared_ptr<Level> LevelParser::parseLevel(const char* levelFile)
 
 void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot)
 {
+	// read tileset's attributes
 	Tileset tileset;
 	pTilesetRoot->Attribute("firstgid", &tileset.firstGridID);
 	pTilesetRoot->Attribute("tilewidth", &tileset.tileWidth);
@@ -75,14 +81,17 @@ void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot)
 	pTilesetRoot->Attribute("margin", &tileset.margin);
 	tileset.name = pTilesetRoot->Attribute("name");
 
+	// read properties
 	for (TiXmlElement* e = pTilesetRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
 		if (e->Value() == std::string("properties"))
 		{
+			// parse TileTypes ids
 			parseTileSetProperties(e, tileset.firstGridID);
 		}
 		else if (e->Value() == std::string("image"))
 		{
+			// parse tileSet image
 			std::string sourcePath = std::string("src/assets/Map/") + e->Attribute("source");
 			std::cout << "Tile source path:" << sourcePath << "\n";
 			TheTextureManager::Instance()->load(sourcePath, pTilesetRoot->Attribute("name"), TheGame::Instance()->getRenderer());
@@ -98,6 +107,7 @@ void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot)
 
 void LevelParser::parseTileSetProperties(TiXmlElement* pPropertiesRoot, int firstGridID)
 {
+	// Parse each tileType - path and towers tiles
 	for (TiXmlElement* property = pPropertiesRoot->FirstChildElement(); property != NULL; property = property->NextSiblingElement())
 	{
 		if (std::string(property->Attribute("name")).find("TileID") != std::string::npos)
@@ -115,6 +125,7 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement)
 	std::string decodedIDs;
 	TiXmlElement* pDataNode = nullptr;
 
+	// get data node
 	for (TiXmlElement* e = pTileElement->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
 		if (e->Value() == std::string("data"))
@@ -123,6 +134,7 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement)
 		}
 	}
 
+	// decodes data value
 	for (TiXmlNode* e = pDataNode->FirstChild(); e != NULL; e = e->NextSibling())
 	{
 		TiXmlText* text = e->ToText();
@@ -135,12 +147,14 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement)
 	std::vector<unsigned> gids(numGids);
 	uncompress((Bytef*)&gids[0], &numGids, (const Bytef*)decodedIDs.c_str(), decodedIDs.size());
 
+	// fill vector with plain data
 	std::vector<int> layerRow(m_width);
 	for (int j = 0; j < m_height; j++)
 	{
 		data.push_back(layerRow);
 	}
 
+	// fill data with actual values
 	for (int rows = 0; rows < m_height; rows++)
 	{
 		for (int cols = 0; cols < m_width; cols++)
@@ -149,6 +163,7 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement)
 		}
 	}
 
+	// set map of tileTypes and set data to tileLayer
 	setMapTileTypes(data);
 	pTileLayer->setTileIDs(data);
 
@@ -192,6 +207,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement)
 								continue;
 							}
 
+							// set attribute in pParams
 							if (std::isdigit(value[0]) || (value[0] == '-' && std::isdigit(value[1]))) {
 								if (std::string(value).find('.') != std::string::npos) {
 									pParams->setAttribute(name, std::stof(value));
@@ -226,14 +242,17 @@ void LevelParser::setMapTileTypes(std::vector<std::vector<int>> data)
 		return;
 	}
 
+	// get pointer to level's tileTypeMap
 	std::vector<std::vector<TileType>>* pTileTypeMap = &(m_pLevel->getTileTypeMap());
 
+	// fill map with plain data
 	std::vector<TileType> layerRow(m_width);
 	for (int j = 0; j < m_height; j++)
 	{
 		pTileTypeMap->push_back(layerRow);
 	}
 
+	// fill map with actual tileTypes
 	for (std::vector<std::vector<int>>::size_type i = 0; i < data.size(); i++)
 	{
 		for (std::vector<int>::size_type j = 0; j < data[i].size(); j++)
@@ -287,6 +306,7 @@ void LevelParser::parseEnemyPath(TiXmlElement* pPathElement)
 	pPathElement->Attribute("x", &x);
 	pPathElement->Attribute("y", &y);
 
+	// get points from polyline node
 	for (TiXmlElement* polyline = pPathElement->FirstChildElement(); polyline != NULL; polyline = polyline->NextSiblingElement())
 	{
 		if (polyline->Value() == std::string("polyline"))
@@ -295,6 +315,7 @@ void LevelParser::parseEnemyPath(TiXmlElement* pPathElement)
 		}
 	}
 
+	// parse points from string and set them to level's enemyPath
 	m_pLevel->getEnemyPath() = std::move(parsePolylinePoints(points, static_cast<float>(x), static_cast<float>(y)));
 }
 
@@ -316,10 +337,12 @@ std::vector<std::shared_ptr<Vector2D>> LevelParser::parsePolylinePoints(std::str
 	std::stringstream ss(strPoints);
 	std::string pair;
 
+	// get pair of X,Y values seperated by comma
 	while (std::getline(ss, pair, ' ')) {
 		std::stringstream pairStream(pair);
 		std::string strX, strY;
 
+		// get X and Y values
 		if (std::getline(pairStream, strX, ',') && std::getline(pairStream, strY, ',')) {
 			float pointX = objectX + std::stof(strX);
 			float pointY = objectY + std::stof(strY);

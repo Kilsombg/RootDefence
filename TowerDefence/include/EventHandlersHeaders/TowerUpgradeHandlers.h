@@ -7,8 +7,6 @@
 
 /**
 * Base class for tower upgrades buttons handlers
-* 
-* each tower will have two upgrade types.
 */
 class BaseTowerUpgradeHandlers
 {
