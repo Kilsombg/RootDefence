@@ -7,9 +7,9 @@
       "name": "Stump",
       "projectileID": "rootStick",
       "numFrames": 4,
-      "damage": 6.0,
+      "damage": 8.0,
       "radius": 65.0,
-      "costValue": 10,
+      "costValue": 15,
       "attackSpeed": 2.0,
       "canBeColored": true
     },
@@ -20,9 +20,9 @@
       "name": "Pine",
       "projectileID": "pineCone",
       "numFrames": 4,
-      "damage": 4.0,
+      "damage": 6.0,
       "radius": 70.0,
-      "costValue": 15,
+      "costValue": 25,
       "attackSpeed": 3.0,
       "canBeColored": true
     },
@@ -35,7 +35,7 @@
       "numFrames": 4,
       "damage": 20.0,
       "radius": 85.0,
-      "costValue": 20,
+      "costValue": 40,
       "attackSpeed": 1.5,
       "canBeColored": true
     },
