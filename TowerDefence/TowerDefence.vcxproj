@@ -270,7 +270,6 @@
     <ClInclude Include="include\MapHeaders\ObjectLayer.h" />
     <ClInclude Include="include\MapHeaders\TileLayer.h" />
     <ClInclude Include="include\MapHeaders\Tileset.h" />
-    <ClInclude Include="include\MapHeaders\TileType.h" />
     <ClInclude Include="include\UIHeaders\CommonHeaders\InteractivePanel.h" />
     <ClInclude Include="include\UIHeaders\CommonHeaders\StateUI.h" />
     <ClInclude Include="include\UIHeaders\CommonHeaders\Panel.h" />

@@ -178,23 +178,6 @@ bool ClickToPlaceTowerHandler::addObject(std::shared_ptr<std::vector<std::shared
 		return false;
 	}
 
-	// if tilesize is not set then interrupt
-	if (pLevel->getTileSize() == 0)
-	{
-		return false;
-	}
-
-	// find indexes of the tile on which the shadowObject will be placed
-	int r, c;
-	r = m_shadowObject->getPosition().getY() / pLevel->getTileSize();
-	c = m_shadowObject->getPosition().getX() / pLevel->getTileSize();
-
-	// if clicked outside map
-	if (r > pLevel->getTileTypeMap().size() || c > pLevel->getTileTypeMap()[0].size())
-	{
-		return false;
-	}
-
 	gameTowers->push_back(m_shadowObject);
 
 	// update active tower in sell manager

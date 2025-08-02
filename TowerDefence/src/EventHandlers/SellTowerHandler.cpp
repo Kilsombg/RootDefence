@@ -7,14 +7,6 @@ void SellTowerHandler::handleSellTowerEvent(std::shared_ptr<Tower> selectedTower
 	// if tower not passed, then return
 	if (!selectedTower) return;
 
-	// find indexes of the tile on which the shadowObject will be placed
-	int r, c;
-	r = selectedTower->getPosition().getY() / pLevel->getTileSize();
-	c = selectedTower->getPosition().getX() / pLevel->getTileSize();
-
-	// set the tile, on which it will be placed, to OCCUPIED
-	pLevel->getTileTypeMap()[r][c] = TileType::TOWER;
-
 	// erase from towers' vector
 	TheSellManager::Instance()->sellSelectedTower();
 	for (auto it = m_playStateTowers->begin(); it != m_playStateTowers->end(); it++)

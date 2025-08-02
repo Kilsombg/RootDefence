@@ -31,10 +31,6 @@ private:
 	*/
 	void parseTilesets(TiXmlElement* pTilesetRoot);
 	/**
-	* Parse tile types (TileType).
-	*/
-	void parseTileSetProperties(TiXmlElement* pPropertiesRoot, int firstGridID);
-	/**
 	* Parse tile layer data.
 	* 
 	* Gets data by decoding with base64 and uncompressing with zlib.
@@ -44,11 +40,6 @@ private:
 	* Parse objects in map.
 	*/
 	void parseObjectLayer(TiXmlElement* pObjectElement);
-
-	/**
-	* sets type of level's tiles map.
-	*/
-	void setMapTileTypes(std::vector<std::vector<int>> data);
 
 	/**
 	*  Parse a string of tileID values into set of integers.

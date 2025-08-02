@@ -2,7 +2,6 @@
 #define __Level__
 
 #include "Tileset.h"
-#include "TileType.h"
 #include "Layer.h"
 
 #include "../UtilsHeaders/Vector2D.h"
@@ -32,13 +31,6 @@ public:
 	std::vector<std::shared_ptr<Layer>>* getLayers();
 	// gets indexes for each tiletype on the tilemap
 	std::unordered_map<std::string, std::set<int>>& getTileTypeIDs();
-	/** get a tiletype of the map at a specific position (Y, X)
-	* 
-	* @param x,y represents the coordinates of the position
-	*/
-	TileType getTileTypeByPosition(float x, float y) const;
-	// gets TileMap's tiles by TileType
-	std::vector<std::vector<TileType>>& getTileTypeMap();
 	// gets tile size of the tilemap
 	int getTileSize();
 	/**
@@ -67,8 +59,6 @@ private:
 	std::vector<std::shared_ptr<Layer>> m_layers;
 	// contains indexes for each tiletype on the tilemap
 	std::unordered_map<std::string, std::set<int>> m_tileTypeIDs;
-	// represents TileMap's tiles by TileType
-	std::vector<std::vector<TileType>> m_tileTypeMap;
 	int m_tileSize;
 	// map's width
 	int m_width;

@@ -389,9 +389,6 @@
     <ClInclude Include="include\EntitiesHeaders\Tower.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\MapHeaders\TileType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\EntitiesHeaders\Projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>

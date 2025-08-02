@@ -84,12 +84,7 @@ void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot)
 	// read properties
 	for (TiXmlElement* e = pTilesetRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
 	{
-		if (e->Value() == std::string("properties"))
-		{
-			// parse TileTypes ids
-			parseTileSetProperties(e, tileset.firstGridID);
-		}
-		else if (e->Value() == std::string("image"))
+		if (e->Value() == std::string("image"))
 		{
 			// parse tileSet image
 			std::string sourcePath = std::string("src/assets/Map/") + e->Attribute("source");
@@ -103,18 +98,6 @@ void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot)
 	tileset.numColumns = tileset.width / (tileset.tileWidth + tileset.spacing);
 
 	m_pLevel->getTilesets()->push_back(tileset);
-}
-
-void LevelParser::parseTileSetProperties(TiXmlElement* pPropertiesRoot, int firstGridID)
-{
-	// Parse each tileType - path and towers tiles
-	for (TiXmlElement* property = pPropertiesRoot->FirstChildElement(); property != NULL; property = property->NextSiblingElement())
-	{
-		if (std::string(property->Attribute("name")).find("TileID") != std::string::npos)
-		{
-			parseTileIDs(property->Attribute("name"), property->Attribute("value"), firstGridID);
-		}
-	}
 }
 
 void LevelParser::parseTileLayer(TiXmlElement* pTileElement)
@@ -163,8 +146,7 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement)
 		}
 	}
 
-	// set map of tileTypes and set data to tileLayer
-	setMapTileTypes(data);
+	// set data to tileLayer
 	pTileLayer->setTileIDs(data);
 
 	m_pLevel->getLayers()->push_back(pTileLayer);
@@ -228,46 +210,6 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement)
 		}
 	}
 	m_pLevel->getLayers()->push_back(pObjectLayer);
-}
-
-void LevelParser::setMapTileTypes(std::vector<std::vector<int>> data)
-{
-	if (data.empty())
-	{
-		return;
-	}
-
-	if (data[0].empty())
-	{
-		return;
-	}
-
-	// get pointer to level's tileTypeMap
-	std::vector<std::vector<TileType>>* pTileTypeMap = &(m_pLevel->getTileTypeMap());
-
-	// fill map with plain data
-	std::vector<TileType> layerRow(m_width);
-	for (int j = 0; j < m_height; j++)
-	{
-		pTileTypeMap->push_back(layerRow);
-	}
-
-	// fill map with actual tileTypes
-	for (std::vector<std::vector<int>>::size_type i = 0; i < data.size(); i++)
-	{
-		for (std::vector<int>::size_type j = 0; j < data[i].size(); j++)
-		{
-			for (auto& it : m_pLevel->getTileTypeIDs())
-			{
-				const std::string& tileType = it.first;
-				const std::set<int>& tileIDs = it.second;
-				if (tileIDs.find(data[i][j]) != tileIDs.end())
-				{
-					(*pTileTypeMap)[i][j] = getTileTypeByString(tileType);
-				}
-			}
-		}
-	}
 }
 
 void LevelParser::parseTileIDs(std::string tileTypeName, std::string strTileIDs, int firstGridID)
