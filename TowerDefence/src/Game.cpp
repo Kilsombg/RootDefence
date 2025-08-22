@@ -180,7 +180,8 @@ void Game::clean()
 
 	m_pGameStateMachine->clean();
 
-	// closing db connection
+	// save and close db connection
+	m_progressManager->updateLevelToDB(1);
 	m_progressManager->closeDB();
 
 	TheTextureManager::Instance()->clean();

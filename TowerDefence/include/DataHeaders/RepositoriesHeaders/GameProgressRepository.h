@@ -38,6 +38,14 @@ public:
 	*/
 	void updateCoins(sqlite3* db, int id, int coins);
 	/**
+	* Update level in game progress.
+	*
+	* @param id - id of the gmaeProgress row in database.
+	* @param level_xp - xp of that level.
+	* @param level - current level.
+	*/
+	void updateLevel(sqlite3* db, int id, long level_xp, int level);
+	/**
 	* Delete game progress.
 	* 
 	* @param id - id of the gmaeProgress row in database.

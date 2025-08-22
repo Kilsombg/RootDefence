@@ -9,6 +9,8 @@ struct GameProgressDTO
 {
 	long id;
 	long coins;
+	long level_xp;
+	long level;
 };
 
 #endif // !__GameProgressDTO__

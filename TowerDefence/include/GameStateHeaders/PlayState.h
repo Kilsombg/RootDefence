@@ -10,6 +10,7 @@
 #include "../ManagersHeaders/PurchaseManager.h"
 #include "../ManagersHeaders/SellManager.h"
 #include "../ManagersHeaders/CollisionManager.h"
+#include "../ManagersHeaders/LevelManager.h"
 
 #include "../MapHeaders/Level.h"
 
@@ -86,6 +87,8 @@ private:
 	std::shared_ptr<SellManager> m_sellManager;
 
 	std::shared_ptr<CollisionManager> m_collisionManager;
+
+	std::shared_ptr<LevelManager> m_levelManager;
 
 	std::shared_ptr<TowerFactory> m_towerFactory;
 

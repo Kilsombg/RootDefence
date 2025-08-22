@@ -31,6 +31,8 @@ public:
 
 	Resource getDrop();
 
+	int getExp();
+
 	/**
 	* set points for the path that enemies follow
 	*/
@@ -75,6 +77,7 @@ private:
 	float getActualMovementSpeed();
 
 	std::vector < std::shared_ptr<Vector2D>> m_path;
+	int m_exp; // experience value that drops upon death
 	int m_movePathTileID; // represent which point from the path the Enemy is heading
 	float m_distFromWaypoint; // current distance from passed path tile to enemy
 	float m_distanceToWaypoint; // distance from the start to currently passed path tile

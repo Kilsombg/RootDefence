@@ -62,6 +62,21 @@ public:
     */
     void updateCoins(int id, int coins);
 
+    /**
+    * Update level in loaded game progress.
+    *
+    * @param id - gameProgress' id.
+    * @param level_xp - xp of that level.
+	* @param level - current level.
+    */
+    void updateLoadedLevel(int id, long level_xp, int level);
+
+    /**
+    * Update level in database.
+    */
+    void updateLevelToDB(int id);
+
+
     /********** maps operations **********/
 
     /**

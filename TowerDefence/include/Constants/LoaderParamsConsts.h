@@ -61,6 +61,7 @@ namespace LoaderParamsConsts {
 	constexpr char defence[] = "defence";
 	constexpr char dropType[] = "dropType";
 	constexpr char dropValue[] = "dropValue";
+	constexpr char exp[] = "experience";
 #pragma endregion
 
 

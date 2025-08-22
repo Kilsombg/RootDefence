@@ -52,7 +52,9 @@ void UserProgressDBContext::createTables()
 	const char* query = R"(
         CREATE TABLE IF NOT EXISTS game_progress (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            coins INTEGER DEFAULT 0
+            coins INTEGER DEFAULT 0,
+			level_xp INTEGER NOT NULL DEFAULT 0,
+			level INTEGER NOT NULL DEFAULT 1
         );
 
         CREATE TABLE IF NOT EXISTS maps (

@@ -33,6 +33,7 @@ void Enemy::load(const std::shared_ptr<LoaderParams> pParams)
 	m_defence = pParams->getAttribute<float>(LoaderParamsConsts::defence) ? pParams->getAttribute<float>(LoaderParamsConsts::defence) : 0;
 	m_drop.type = getResourceTypeByString(pParams->getAttribute<std::string>(LoaderParamsConsts::dropType));
 	m_drop.value = pParams->getAttribute<int>(LoaderParamsConsts::dropValue) ? pParams->getAttribute<int>(LoaderParamsConsts::dropValue) : 0;
+	m_exp = pParams->getAttribute<int>(LoaderParamsConsts::exp) ? pParams->getAttribute<int>(LoaderParamsConsts::exp) : 0;
 	m_movePathTileID = 0;
 	m_distFromWaypoint = 0;
 	m_distanceToWaypoint = 0;
@@ -56,6 +57,11 @@ float Enemy::getHealth()
 Resource Enemy::getDrop()
 {
 	return m_drop;
+}
+
+int Enemy::getExp()
+{
+	return m_exp;
 }
 
 void Enemy::setPath(const std::vector<std::shared_ptr<Vector2D>>& pathPoints)

@@ -127,6 +127,9 @@ void PlayState::loadData()
 	m_collisionManager = TheCollisionManager::Instance();
 	m_collisionManager->setTowersObjects(m_towersObjects);
 
+	// load level manager
+	m_levelManager = TheLevelManager::Instance();
+
 	/* load UI */
 	m_playStateUI = std::make_unique<PlayStateUI>(s_stateID);
 	m_playStateUI->setPlayStateTowers(m_towersObjects);
@@ -170,6 +173,9 @@ bool PlayState::onExit()
 
 	// clean collision manager
 	m_collisionManager->clean();
+
+	// clean level manager
+	m_levelManager->clean();
 
 	std::cout << "exiting PlayState\n";
 	return true;
@@ -266,6 +272,9 @@ void PlayState::updateEnemyObjects()
 				// increase gameSession resources
 				Resource drop = (*m_enemyObjects)[i]->getDrop();
 				m_gameSessionData->resources[drop.type].value += drop.value;
+
+				// gain experience
+				m_levelManager->addExperience((*m_enemyObjects)[i]->getExp());
 			}
 
 			// remove enemy

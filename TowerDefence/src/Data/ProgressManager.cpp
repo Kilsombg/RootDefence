@@ -16,7 +16,7 @@ bool ProgressManager::loadAll(const std::string& dbPath)
 {
 	// open database
 	if (!m_dbContext->open(dbPath)) return false;
-	
+
 	// check if tables exists
 	if (!m_dbContext->tableExists("game_progress") || !m_dbContext->tableExists("maps") || !m_dbContext->tableExists("map_progress"))
 	{
@@ -47,7 +47,7 @@ void ProgressManager::deleteProgress()
 
 	// delete game progress
 	if (m_gameProgress != nullptr) {
-		m_gameRepo->upsert(db, GameProgressDTO{ 1, 0 });
+		m_gameRepo->upsert(db, GameProgressDTO{ 1, 0 , 0, 1 });
 		m_gameProgress = m_gameRepo->load(db);
 	}
 
@@ -82,6 +82,18 @@ void ProgressManager::updateCoins(int id, int coins)
 	m_gameRepo->updateCoins(m_dbContext->getDB(), id, coins);
 }
 
+void ProgressManager::updateLoadedLevel(int id, long level_xp, int level)
+{
+	// update loaded data
+	m_gameProgress->level_xp = level_xp;
+	m_gameProgress->level = level;
+}
+
+void ProgressManager::updateLevelToDB(int id)
+{
+	m_gameRepo->updateLevel(m_dbContext->getDB(), id, m_gameProgress->level_xp, m_gameProgress->level);
+}
+
 std::shared_ptr<std::vector<MapDTO>> ProgressManager::getMaps() const
 {
 	return m_maps;
@@ -105,7 +117,7 @@ std::shared_ptr<std::vector<MapProgressDTO>> ProgressManager::getMapsProgress() 
 void ProgressManager::updateMaxWave(int mapID, int maxWave)
 {
 	long currentMaxWave = (*m_mapsProgress)[mapID - 1].maxWave;
-	
+
 	if (currentMaxWave < maxWave)
 	{
 		// update loaded data
