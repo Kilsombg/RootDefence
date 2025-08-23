@@ -153,6 +153,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	configureProgressManager();
 	m_progressManager->loadAll("src/database/gameProgress.sqlite");
 
+	// load level manager
+	m_levelManager = TheLevelManager::Instance();
+
 	std::cout << "init success\n";
 	return true;
 }
@@ -183,6 +186,9 @@ void Game::clean()
 	// save and close db connection
 	m_progressManager->updateLevelToDB(1);
 	m_progressManager->closeDB();
+
+	// clean level manager
+	m_levelManager->clean();
 
 	TheTextureManager::Instance()->clean();
 
@@ -226,6 +232,11 @@ std::shared_ptr<GameStateMachine> Game::getStateMachine()
 std::shared_ptr<ProgressManager> Game::getProgressManager()
 {
 	return m_progressManager;
+}
+
+std::shared_ptr<LevelManager> Game::getLevelManager()
+{
+	return m_levelManager;
 }
 
 int Game::getGameWidth() const

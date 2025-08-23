@@ -10,6 +10,7 @@ namespace UIConsts {
 	// main menu panel
 
 	constexpr char coinsLabelID[] = "coinsLabel";
+	constexpr char levelLabelID[] = "levelLabel";
 
 	// maps panel
 

@@ -22,6 +22,8 @@ Text::Text(float x, float y, int characterWidth, int width, int height, std::str
 	m_labelID = labelID;
 	m_dynamic = dynamic;
 
+	m_isCentered = false;
+
 	loadTexture();
 }
 
@@ -39,7 +41,7 @@ void Text::update()
 	if (m_message != m_prevMessage || m_fontColor != m_prevFontColor)
 	{
 		loadTexture();
-		m_width = m_message.length() * m_characterWidth;
+		updateWidth();
 		m_prevMessage = m_message;
 		m_prevFontColor = m_fontColor;
 	}
@@ -65,6 +67,8 @@ void Text::load(const std::shared_ptr<LoaderParams> pParams)
 	m_fontColor = ColorsConsts::white;
 	m_prevFontColor = m_fontColor;
 	m_fontOutlineColor = ColorsConsts::black;
+
+	m_isCentered = false;
 
 	loadTexture();
 }
@@ -97,6 +101,21 @@ ColorsConsts::Color Text::getFontColor()
 void Text::setFontColor(ColorsConsts::Color fontColor)
 {
 	m_fontColor = fontColor;
+}
+
+void Text::updateWidth()
+{
+	m_width = m_message.length() * m_characterWidth;
+}
+
+void Text::centerText()
+{
+	if (!m_isCentered)
+	{
+		updateWidth();
+		m_position.setX(m_position.getX() - 0.5 * m_width);
+		m_isCentered = true;
+	}
 }
 
 void Text::loadTexture()

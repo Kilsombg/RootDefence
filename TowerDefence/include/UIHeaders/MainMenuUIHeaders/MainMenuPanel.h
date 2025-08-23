@@ -35,6 +35,10 @@ private:
 	static bool s_active;
 
 	/**
+	* Load static labels.
+	*/
+	void loadStaticLabels();
+	/**
 	* Update labels each frame.
 	*/
 	void updateDynamicLabels();

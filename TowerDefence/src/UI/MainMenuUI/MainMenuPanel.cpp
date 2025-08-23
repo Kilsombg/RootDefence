@@ -10,6 +10,8 @@
 #include "../../../include/UIHeaders/MainMenuUIHeaders/MapsPanel.h"
 #include "../../../include/UIHeaders/MainMenuUIHeaders/DeleteProgressConfirmationPanel.h"
 
+#include "../../../include/UtilsHeaders/TextureManager.h"
+
 bool MainMenuPanel::s_active = true;
 
 MainMenuPanel::MainMenuPanel() : MenuInteractivePanel()
@@ -23,6 +25,15 @@ void MainMenuPanel::draw()
 	{
 		m_gameObjects[i]->draw();
 	}
+
+	// draw level progress bar
+	TheTextureManager::Instance()->drawProgressBar(
+		59, 23, 78, 17,
+		{ ColorsConsts::levelBG.r, ColorsConsts::levelBG.g, ColorsConsts::levelBG.b, ColorsConsts::levelBG.a },
+		{ ColorsConsts::green.r, ColorsConsts::green.g, ColorsConsts::green.b, ColorsConsts::green.a },
+		(float)TheGame::Instance()->getProgressManager()->getGameProgress()->level_xp / TheGame::Instance()->getLevelManager()->getNextLevelXP(),
+		TheGame::Instance()->getRenderer()
+	);
 
 	if (s_active)
 	{
@@ -43,12 +54,13 @@ void MainMenuPanel::draw()
 	{
 		// draw labels even not active
 		m_labelsMap[UIConsts::coinsLabelID]->draw();
+		m_labelsMap[UIConsts::levelLabelID]->draw();
 	}
 }
 
 void MainMenuPanel::update()
 {
-	if(s_active)
+	if (s_active)
 	{
 		// update buttons
 		MenuInteractivePanel::update();
@@ -99,6 +111,9 @@ void MainMenuPanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)
 		}
 	}
 
+	// load static labels
+	loadStaticLabels();
+
 	// load callbacks
 	loadCallbacks();
 }
@@ -120,6 +135,22 @@ void MainMenuPanel::s_setActivePanel(bool activeFlag)
 void MainMenuPanel::s_exitFromMenu()
 {
 	TheGame::Instance()->quit();
+}
+
+void MainMenuPanel::loadStaticLabels()
+{
+	// level label
+	m_labelsMap[UIConsts::levelLabelID]->setMessage(std::to_string(TheGame::Instance()->getProgressManager()->getGameProgress()->level));
+	m_labelsMap[UIConsts::levelLabelID]->centerText();
+
+	// update text on screen
+	for (std::map<std::string, std::unique_ptr<Text>>::iterator it = m_labelsMap.begin(); it != m_labelsMap.end(); it++)
+	{
+		if (!it->second->getDynamic())
+		{
+			it->second->update();
+		}
+	}
 }
 
 void MainMenuPanel::updateDynamicLabels()

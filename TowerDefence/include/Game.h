@@ -5,6 +5,8 @@
 
 #include "EntitiesHeaders/GameObject.h"
 
+#include "ManagersHeaders/LevelManager.h"
+
 #include "UtilsHeaders/GameStateMachine.h"
 
 #include<SDL.h>
@@ -59,8 +61,10 @@ public:
 	TTF_Font* getFontOutline() const;
 	std::shared_ptr<GameStateMachine> getStateMachine();
 	std::shared_ptr<ProgressManager> getProgressManager();
+	std::shared_ptr<LevelManager> getLevelManager();
 	int getGameWidth() const;
 	int getGameHeight() const;
+
 
 
 	// @return true if still playing. When you quit game it returns false.
@@ -101,6 +105,8 @@ private:
 	std::shared_ptr<GameStateMachine> m_pGameStateMachine;
 
 	std::shared_ptr<ProgressManager> m_progressManager;
+
+	std::shared_ptr<LevelManager> m_levelManager;
 };
 
 

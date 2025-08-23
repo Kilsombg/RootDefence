@@ -15,6 +15,7 @@
 #include "../../../include/UtilsHeaders/TowerFactory.h"
 #include "../../../include/UtilsHeaders/GameStateMachine.h"
 #include "../../../include/UtilsHeaders/InputHandler.h"
+#include "../../../include/UtilsHeaders/TextureManager.h"
 
 #include "../../../include/WaveHeaders/WaveManager.h"
 
@@ -44,6 +45,15 @@ void TowersPanel::draw()
 		}
 
 		m_buttonObjects[i]->draw();
+
+		// draw level progress bar
+		TheTextureManager::Instance()->drawProgressBar(
+			59, 23, 78, 17,
+			{ ColorsConsts::levelBG.r, ColorsConsts::levelBG.g, ColorsConsts::levelBG.b, ColorsConsts::levelBG.a },
+			{ ColorsConsts::green.r, ColorsConsts::green.g, ColorsConsts::green.b, ColorsConsts::green.a },
+			(float)TheGame::Instance()->getProgressManager()->getGameProgress()->level_xp / TheGame::Instance()->getLevelManager()->getNextLevelXP(),
+			TheGame::Instance()->getRenderer()
+		);
 	}
 
 	// draw text labels
@@ -243,6 +253,11 @@ void TowersPanel::updateLabel(Text* pText)
 	else if (labelId == UIConsts::rubyResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::RED].value));
 	else if (labelId == UIConsts::sapphireResourceLabelID) pText->setMessage(std::to_string(m_gameSessionData->resources[ResourceType::BLUE].value));
 	else if (labelId == UIConsts::waveValueLabel) pText->setMessage(std::to_string(m_gameSessionData->currentWaveLevel));
+	else if (labelId == UIConsts::levelLabelID) 
+	{
+		pText->setMessage(std::to_string(TheGame::Instance()->getProgressManager()->getGameProgress()->level));
+		pText->centerText();
+	}
 	else if (labelId == UIConsts::agateStumpCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::stump]));
 	else if (labelId == UIConsts::agatePineCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::pine]));
 	else if (labelId == UIConsts::agateOakCostLabelID) pText->setMessage(std::to_string(m_towersCosts[GameObjectConsts::oak]));

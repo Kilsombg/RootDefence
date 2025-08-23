@@ -68,6 +68,15 @@ public:
 	ColorsConsts::Color getFontColor();
 	void setFontColor(ColorsConsts::Color fontColor);
 
+	/**
+	* Update width
+	*/
+	void updateWidth();
+	/**
+	* Center text at position
+	*/
+	void centerText();
+
 private:
 	/**
 	* Load text texture into TrueTypeManager.
@@ -80,6 +89,7 @@ private:
 	int m_characterWidth; // width for one character, dynamicaly changes with message's length
 	bool m_dynamic; // true if message is changing, otherwise false. When true - update() is called each frame.
 	bool m_hidden; // toggle visibility of text
+	bool m_isCentered; // helper variable for centering text
 	ColorsConsts::Color m_fontColor;
 	ColorsConsts::Color m_prevFontColor; // for checking a change
 	ColorsConsts::Color m_fontOutlineColor;
