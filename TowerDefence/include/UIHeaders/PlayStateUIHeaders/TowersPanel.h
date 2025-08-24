@@ -50,9 +50,13 @@ private:
 	*/
 	void setTowerButtonLevel();
 	/**
-	* update labels' value.
+	* update static labels' value.
 	*/
-	void updateLabel(Text* pText);
+	void updateStaticLabel();
+	/**
+	* update dynamic labels' value.
+	*/
+	void updateDynamicLabel();
 
 	static void s_playToPause();
 
