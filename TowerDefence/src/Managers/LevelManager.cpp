@@ -35,11 +35,10 @@ void LevelManager::addExperience(int exp)
 
 	long currentXP = m_gameProgress->level_xp + exp;
 
+	// if m_nextLevelXP is -1, then something worng with gameProgress or hitted max level
 	if (currentXP > m_nextLevelXP && m_nextLevelXP != -1)
 	{
-		// level up
-		TheGame::Instance()->getProgressManager()->updateLoadedLevel(1, currentXP - m_nextLevelXP, m_gameProgress->level + 1);
-		m_nextLevelXP = getLevelMaxExp();
+		levelUp(currentXP);
 	}
 	else
 	{
@@ -68,4 +67,14 @@ long LevelManager::getLevelMaxExp()
 	else if (10 <= lvl <= 20) d = 150;
 
 	return 10 * (a1 + (lvl - 1) * d);
+}
+
+void LevelManager::levelUp(int currentXP)
+{
+	// update XP
+	TheGame::Instance()->getProgressManager()->updateLoadedLevel(1, currentXP - m_nextLevelXP, m_gameProgress->level + 1);
+	m_nextLevelXP = getLevelMaxExp();
+
+	// get reward
+	TheGame::Instance()->getTowerUnlockManager()->unlockTowerByLevelUp();
 }

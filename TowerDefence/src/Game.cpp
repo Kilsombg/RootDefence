@@ -153,6 +153,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	configureProgressManager();
 	m_progressManager->loadAll("src/database/gameProgress.sqlite");
 
+	// create towerUnlockManager
+	m_towerUnlockManager = TheTowerUnlockManager::Instance();
+
 	// load level manager
 	m_levelManager = TheLevelManager::Instance();
 
@@ -239,6 +242,11 @@ std::shared_ptr<LevelManager> Game::getLevelManager()
 	return m_levelManager;
 }
 
+std::shared_ptr<TowerUnlockManager> Game::getTowerUnlockManager()
+{
+	return m_towerUnlockManager;
+}
+
 int Game::getGameWidth() const
 {
 	return m_gameWidth;
@@ -307,11 +315,12 @@ void Game::configureProgressManager()
 	std::shared_ptr<GameProgressRepository> gameRepo = std::make_shared<GameProgressRepository>();
 	std::shared_ptr<MapsRepository> mapRepo = std::make_shared<MapsRepository>();
 	std::shared_ptr<MapsProgressRepository> mapProgressRepo = std::make_shared<MapsProgressRepository>();
+	std::shared_ptr<TowerUnlocksRepository> towerUnlockRepo = std::make_shared<TowerUnlocksRepository>();
 
 	// db context
 	std::shared_ptr<UserProgressDBContext> dbContext = std::make_shared<UserProgressDBContext>();
 
-	m_progressManager = std::make_shared<ProgressManager>(gameRepo, mapRepo, mapProgressRepo, dbContext);
+	m_progressManager = std::make_shared<ProgressManager>(gameRepo, mapRepo, mapProgressRepo, towerUnlockRepo, dbContext);
 }
 
 void Game::quit()

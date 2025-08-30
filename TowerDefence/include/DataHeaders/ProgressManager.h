@@ -5,10 +5,12 @@
 
 #include "DTOsHeaders/GameProgressDTO.h"
 #include "DTOsHeaders/MapsProgressDTO.h"
+#include "DTOsHeaders/TowerUnlocksDTO.h"
 
 #include "RepositoriesHeaders/GameProgressRepository.h"
 #include "RepositoriesHeaders/MapsProgressRepository.h"
 #include "RepositoriesHeaders/MapsRepository.h"
+#include "RepositoriesHeaders/TowerUnlocksRepository.h"
 
 #include<memory>
 #include<vector>
@@ -27,6 +29,7 @@ public:
         std::shared_ptr<GameProgressRepository> gameRepo,
         std::shared_ptr<MapsRepository> mapsRepo,
         std::shared_ptr<MapsProgressRepository> mapsProgressRepo,
+        std::shared_ptr< TowerUnlocksRepository> towerUnlocksRepo,
         std::shared_ptr<UserProgressDBContext> dbContext 
     );
 
@@ -110,6 +113,17 @@ public:
     */
     void updateMaxWave(int mapID, int maxWave);
 
+    /********** towerUnlock operations **********/
+
+    /**
+    * Before calling unlockTower(), find the tower that is unlocked by the player level.
+    */
+    void unlockTower(long id);
+    /**
+    * Get  all tower unlocks.
+    */
+    std::shared_ptr<std::vector<TowerUnlocksDTO>> getTowerUnlocks();
+
 private:
     // database context.
     std::shared_ptr<UserProgressDBContext> m_dbContext;
@@ -119,12 +133,14 @@ private:
     std::shared_ptr<GameProgressDTO> m_gameProgress;
     std::shared_ptr<std::vector<MapDTO>> m_maps;
     std::shared_ptr<std::vector<MapProgressDTO>> m_mapsProgress;
+    std::shared_ptr<std::vector<TowerUnlocksDTO>> m_towerUnlocks;
 
     // repos
 
     std::shared_ptr<GameProgressRepository> m_gameRepo;
     std::shared_ptr<MapsRepository> m_mapsRepo;
     std::shared_ptr<MapsProgressRepository> m_mapsProgressRepo;
+    std::shared_ptr< TowerUnlocksRepository> m_towerUnlocksRepo;
 };
 
 #endif // !__ProgressManager__

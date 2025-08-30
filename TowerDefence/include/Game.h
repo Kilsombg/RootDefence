@@ -6,6 +6,7 @@
 #include "EntitiesHeaders/GameObject.h"
 
 #include "ManagersHeaders/LevelManager.h"
+#include "ManagersHeaders/TowerUnlockManager.h"
 
 #include "UtilsHeaders/GameStateMachine.h"
 
@@ -62,6 +63,7 @@ public:
 	std::shared_ptr<GameStateMachine> getStateMachine();
 	std::shared_ptr<ProgressManager> getProgressManager();
 	std::shared_ptr<LevelManager> getLevelManager();
+	std::shared_ptr<TowerUnlockManager> getTowerUnlockManager();
 	int getGameWidth() const;
 	int getGameHeight() const;
 
@@ -107,6 +109,8 @@ private:
 	std::shared_ptr<ProgressManager> m_progressManager;
 
 	std::shared_ptr<LevelManager> m_levelManager;
+
+	std::shared_ptr<TowerUnlockManager> m_towerUnlockManager;
 };
 
 

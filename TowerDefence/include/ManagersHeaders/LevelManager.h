@@ -34,8 +34,14 @@ private:
 
 	/**
 	* Get experience needed to level up.
+	* 
+	* If returns -1, then there is something wrong with gameProgress or hitted max level
 	*/
 	long getLevelMaxExp();
+	/**
+	* Calls this when player level up.
+	*/
+	void levelUp(int currentXP);
 	/**
 	* xp needed to level up;
 	*/

@@ -255,6 +255,12 @@
     <ClCompile Include="src\Managers\LevelManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Data\Repositories\TowerUnlocksRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Managers\TowerUnlockManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game.h">
@@ -552,6 +558,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ManagersHeaders\LevelManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DataHeaders\DTOsHeaders\TowerUnlocksDTO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DataHeaders\RepositoriesHeaders\TowerUnlocksRepository.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ManagersHeaders\TowerUnlockManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

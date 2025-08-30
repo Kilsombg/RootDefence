@@ -7,8 +7,9 @@
 ProgressManager::ProgressManager(std::shared_ptr<GameProgressRepository> gameRepo,
 	std::shared_ptr<MapsRepository> mapsRepo,
 	std::shared_ptr<MapsProgressRepository> mapsProgressRepo,
+	std::shared_ptr<TowerUnlocksRepository> towerUnlocksRepo,
 	std::shared_ptr<UserProgressDBContext> dbContext) :
-	m_gameRepo(gameRepo), m_mapsRepo(mapsRepo), m_mapsProgressRepo(mapsProgressRepo), m_dbContext(dbContext)
+	m_gameRepo(gameRepo), m_mapsRepo(mapsRepo), m_mapsProgressRepo(mapsProgressRepo), m_towerUnlocksRepo(towerUnlocksRepo), m_dbContext(dbContext)
 {
 }
 
@@ -37,6 +38,7 @@ bool ProgressManager::loadAll(const std::string& dbPath)
 	m_gameProgress = m_gameRepo->load(db);
 	m_maps = m_mapsRepo->load(db);
 	m_mapsProgress = m_mapsProgressRepo->load(db);
+	m_towerUnlocks = m_towerUnlocksRepo->loadAll(db);
 
 	return true;
 }
@@ -61,6 +63,9 @@ void ProgressManager::deleteProgress()
 		}
 		m_mapsProgress = m_mapsProgressRepo->load(db);
 	}
+
+	// delete tower unlocks
+	m_towerUnlocksRepo->resetUnlocks(db);
 }
 
 void ProgressManager::closeDB()
@@ -126,4 +131,16 @@ void ProgressManager::updateMaxWave(int mapID, int maxWave)
 		// update database
 		m_mapsProgressRepo->updateMaxWave(m_dbContext->getDB(), mapID, maxWave);
 	}
+}
+
+void ProgressManager::unlockTower(long id)
+{
+	(*m_towerUnlocks)[id - 1].unlocked = true;
+
+	m_towerUnlocksRepo->unlockTower(m_dbContext->getDB(), id);
+}
+
+std::shared_ptr<std::vector<TowerUnlocksDTO>> ProgressManager::getTowerUnlocks()
+{
+	return m_towerUnlocks;
 }
