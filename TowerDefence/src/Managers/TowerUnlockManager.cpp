@@ -33,3 +33,17 @@ void TowerUnlockManager::unlockTowerByLevelUp()
 		}
 	}
 }
+
+bool TowerUnlockManager::isUnlocked(std::string towerName)
+{
+	for (std::vector<TowerUnlocksDTO>::iterator it = m_towerUnlocks->begin(); it != m_towerUnlocks->end(); it++)
+	{
+		if (it->name == towerName)
+		{
+			return it->unlocked;
+		}
+	}
+
+	// if not found then return false
+	return false;
+}

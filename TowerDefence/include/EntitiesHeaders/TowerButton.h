@@ -66,8 +66,10 @@ private:
 	bool m_isMouseOutsideMap;
 	// flag for texture.
 	bool m_disabled;
-	// base textureID of button without modification (disabled)
+	// base textureID of button without modification (disabled).
 	std::string m_baseTextureID;
+	// tower name with color type included.
+	std::string m_towerNameID;
 	// button callback.
 	TowerButtonCallback m_callback;
 	// pointer to level.

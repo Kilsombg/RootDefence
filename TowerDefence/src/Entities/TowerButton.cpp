@@ -1,5 +1,7 @@
 #include "../../include/EntitiesHeaders/TowerButton.h"
 
+#include "../../include/Game.h"
+
 #include "../../include/Constants/UIConsts.h"
 #include "../../include/Constants/LoaderParamsConsts.h"
 
@@ -9,6 +11,7 @@
 #include "../../include/UtilsHeaders/InputHandler.h"
 #include "../../include/UtilsHeaders/TowerFactory.h"
 
+#include<regex>
 
 TowerButton::TowerButton() : Button(), m_selected(false), m_pressed(false), m_isMouseOnFreeTowerTile(false), m_disabled(false)
 {
@@ -18,12 +21,15 @@ TowerButton::TowerButton(const TowerButton* towerButton) : Button(towerButton)
 {
 	m_towerName = towerButton->m_towerName;
 	m_towerColor = towerButton->m_towerColor;
+	m_baseTextureID = towerButton->m_baseTextureID;
+	m_towerNameID = towerButton->m_towerNameID;
+
 	m_selected = towerButton->m_selected;
 	m_pressed = towerButton->m_pressed;
 	m_isMouseOnFreeTowerTile = towerButton->m_isMouseOnFreeTowerTile;
 	m_isMouseOutsideMap = towerButton->m_isMouseOutsideMap;
 	m_disabled = towerButton->m_disabled;
-	m_baseTextureID = towerButton->m_baseTextureID;
+	
 	m_callback = towerButton->m_callback;
 	m_towerParams = towerButton->m_towerParams;
 	m_dummyObject = towerButton->m_dummyObject;
@@ -34,6 +40,7 @@ void TowerButton::load(const std::shared_ptr<LoaderParams> pParams)
 	m_towerName = pParams->getAttribute<std::string>(LoaderParamsConsts::towerName);
 	m_towerColor = pParams->getAttribute<std::string>(LoaderParamsConsts::towerColor);
 	m_baseTextureID = pParams->getAttribute<std::string>(LoaderParamsConsts::textureID);
+	m_towerNameID = std::regex_replace(m_baseTextureID, std::regex(LoaderParamsConsts::towerButtonSuffix), LoaderParamsConsts::towerNameIDSuffix);
 
 	m_towerParams = TheTowerFactory::Instance()->getTowerData(m_towerName);
 	m_towerParams->setAttribute(LoaderParamsConsts::x, 0.0f);
@@ -50,15 +57,16 @@ void TowerButton::update()
 	// check if mouse is on button
 	m_isMouseOnButton = TheInputHandler::Instance()->isMouseOnObject(m_position, m_width, m_height);
 
-	// update dummy position
-	setDummyObjectPosition();
-
 	// update texture
-	m_disabled = !ThePurchaseManager::Instance()->canPurchaseTower(m_towerName, m_towerColor);
+	m_disabled = !ThePurchaseManager::Instance()->canPurchaseTower(m_towerName, m_towerColor) || 
+		!TheGame::Instance()->getTowerUnlockManager()->isUnlocked(m_towerNameID);
 	m_textureID = m_disabled ? m_baseTextureID + UIConsts::disabledSuffix : m_baseTextureID;
 
 	if (m_selected)
 	{
+		// update dummy position
+		setDummyObjectPosition();
+
 		// check if there is free space to place tower
 		m_isMouseOnFreeTowerTile = !TheCollisionManager::Instance()->collideTowerPlacement(m_dummyObject.get(), pLevel);
 
@@ -163,7 +171,7 @@ void TowerButton::handleClickOnButton()
 			//m_currentFrame = CLICKED;
 
 			// invoke callback only if there are enough resources to buy the tower.
-			if (ThePurchaseManager::Instance()->canPurchaseTower(m_towerName, m_towerColor))
+			if (!m_disabled)
 			{
 				m_callback(this);
 

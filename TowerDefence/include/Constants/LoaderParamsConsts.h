@@ -47,6 +47,8 @@ namespace LoaderParamsConsts {
 #pragma region TowerButton params
 	constexpr char towerName[] = "towerName";
 	constexpr char towerColor[] = "towerColor";
+	constexpr char towerButtonSuffix[] = "Button";
+	constexpr char towerNameIDSuffix[] = "Tower";
 #pragma endregion
 
 

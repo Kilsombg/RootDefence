@@ -5,6 +5,7 @@
 
 #include<memory>
 #include<vector>
+#include<string>
 
 /**
 * Manaages unlocking towers.
@@ -18,6 +19,10 @@ public:
 	static std::shared_ptr<TowerUnlockManager> Instance();
 
 	void unlockTowerByLevelUp();
+	/**
+	* Return true if tower is unlocked.
+	*/
+	bool isUnlocked(std::string towerName);
 
 private:
 	TowerUnlockManager();
