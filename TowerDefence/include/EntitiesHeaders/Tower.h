@@ -118,7 +118,7 @@ public:
 	* 
 	* @return string value with tower type.
 	*/
-	std::string getTowerType(std::string towerColor);
+	static std::string getTowerType(std::string towerColor);
 	/**
 	* look for enemy in radius to target
 	* @param enemies is a vector of objects in current state

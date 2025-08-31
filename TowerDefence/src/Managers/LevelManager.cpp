@@ -36,7 +36,7 @@ void LevelManager::addExperience(int exp)
 	long currentXP = m_gameProgress->level_xp + exp;
 
 	// if m_nextLevelXP is -1, then something worng with gameProgress or hitted max level
-	if (currentXP > m_nextLevelXP && m_nextLevelXP != -1)
+	if (currentXP >= m_nextLevelXP && m_nextLevelXP != -1)
 	{
 		levelUp(currentXP);
 	}

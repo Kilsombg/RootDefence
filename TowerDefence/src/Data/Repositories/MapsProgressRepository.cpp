@@ -88,3 +88,14 @@ void MapsProgressRepository::deleteProgress(sqlite3* db)
 
 	SAFE_DELETE(pRS);
 }
+
+void MapsProgressRepository::resetProgress(sqlite3* db)
+{
+	const char* query = "UPDATE map_progress SET max_wave = 0;";
+
+	// validate result
+	RJM_SQLite_Resultset* pRS = NULL;
+	if (!validResult(query, pRS, db)) return;
+
+	SAFE_DELETE(pRS);
+}

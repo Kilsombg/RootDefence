@@ -36,6 +36,12 @@ void InteractivePanel::clean()
 		m_gameObjects[i]->clean();
 	}
 
+	// clean buttons
+	for (std::vector<std::shared_ptr<Button>>::size_type i = 0; i < m_buttonObjects.size(); i++)
+	{
+		m_buttonObjects[i]->clean();
+	}
+
 	// clean labels
 	for (std::map<std::string, std::unique_ptr<Text>>::iterator it = m_labelsMap.begin(); it != m_labelsMap.end(); it++)
 	{

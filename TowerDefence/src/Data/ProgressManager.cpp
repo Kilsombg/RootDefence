@@ -3,6 +3,7 @@
 #include "../../include/DataHeaders/UserProgressDBContextSeeder.h"
 
 #include<iostream>
+#include<thread>
 
 ProgressManager::ProgressManager(std::shared_ptr<GameProgressRepository> gameRepo,
 	std::shared_ptr<MapsRepository> mapsRepo,
@@ -56,16 +57,16 @@ void ProgressManager::deleteProgress()
 	// delete maps' progress
 	if (!m_mapsProgress->empty())
 	{
-		for (const MapDTO& map : *m_maps) {
-			if (m_mapsProgressRepo->exists(db, map.id)) {
-				m_mapsProgressRepo->upsert(db, MapProgressDTO{ map.id, 0 });
-			}
-		}
-		m_mapsProgress = m_mapsProgressRepo->load(db);
+		m_mapsProgressRepo->resetProgress(db);
 	}
+	m_mapsProgress = m_mapsProgressRepo->load(db);
 
 	// delete tower unlocks
 	m_towerUnlocksRepo->resetUnlocks(db);
+	for (std::vector<TowerUnlocksDTO>::size_type i = 1; i < m_towerUnlocks->size(); i++)
+	{
+		(*m_towerUnlocks)[i].unlocked = false;
+	}
 }
 
 void ProgressManager::closeDB()
@@ -137,7 +138,9 @@ void ProgressManager::unlockTower(long id)
 {
 	(*m_towerUnlocks)[id - 1].unlocked = true;
 
-	m_towerUnlocksRepo->unlockTower(m_dbContext->getDB(), id);
+	std::thread([this, id]() {
+		m_towerUnlocksRepo->unlockTower(m_dbContext->getDB(), id);
+		}).detach();
 }
 
 std::shared_ptr<std::vector<TowerUnlocksDTO>> ProgressManager::getTowerUnlocks()

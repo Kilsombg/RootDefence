@@ -72,6 +72,7 @@ namespace UIConsts {
 	constexpr char resourceIconSmall[] = "ResourceIcon16x16";
 	constexpr char	upgradeButtonNotAffordable[] = "upgradeButtonNotAffordable";
 	constexpr char disabledSuffix[] = "Disabled";
+	constexpr char lock[] = "lockIcon";
 #pragma endregion
 
 }

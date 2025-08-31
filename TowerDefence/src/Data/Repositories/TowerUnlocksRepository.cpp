@@ -53,7 +53,7 @@ void TowerUnlocksRepository::unlockTower(sqlite3* db, long id)
 
 void TowerUnlocksRepository::resetUnlocks(sqlite3* db)
 {
-	const char* query = "UPDATE tower_unlocks SET unlocked = 0 where unlocked = 1";
+	const char* query = "UPDATE tower_unlocks SET unlocked = 0 where unlocked = 1 and id != 1;";
 
 	// validate result
 	RJM_SQLite_Resultset* pRS = NULL;

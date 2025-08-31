@@ -3,7 +3,6 @@
 #include "../../../include/Game.h"
 
 #include "../../../include/Constants/LoaderParamsConsts.h"
-#include "../../../include/Constants/GameObjectConsts.h"
 #include "../../../include/Constants/UIConsts.h"
 
 #include "../../../include/EntitiesHeaders/TowerButton.h"
@@ -169,7 +168,7 @@ void TowersPanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)
 	}
 
 	// load static labels
-	updateStaticLabel();
+	//updateStaticLabel();
 
 	// load callbacks
 	loadCallbacks();
@@ -246,19 +245,6 @@ void TowersPanel::setTowerButtonLevel()
 
 void TowersPanel::updateStaticLabel()
 {
-	// set tower cost value labels
-	m_labelsMap[UIConsts::agateStumpCostLabelID]->setMessage(std::to_string(m_towersCosts[GameObjectConsts::stump]));
-	m_labelsMap[UIConsts::agatePineCostLabelID]->setMessage(std::to_string(m_towersCosts[GameObjectConsts::pine]));
-	m_labelsMap[UIConsts::agateOakCostLabelID]->setMessage(std::to_string(m_towersCosts[GameObjectConsts::oak]));
-	m_labelsMap[UIConsts::amberStumpCostLabelID]->setMessage(std::to_string(m_towersCosts[GameObjectConsts::stump]));
-	m_labelsMap[UIConsts::amberPineCostLabelID]->setMessage(std::to_string(m_towersCosts[GameObjectConsts::pine]));
-	m_labelsMap[UIConsts::amberOakCostLabelID]->setMessage(std::to_string(m_towersCosts[GameObjectConsts::oak]));
-	m_labelsMap[UIConsts::rubyStumpCostLabelID]->setMessage(std::to_string(m_towersCosts[GameObjectConsts::stump]));
-	m_labelsMap[UIConsts::rubyPineCostLabelID]->setMessage(std::to_string(m_towersCosts[GameObjectConsts::pine]));
-	m_labelsMap[UIConsts::rubyOakCostLabelID]->setMessage(std::to_string(m_towersCosts[GameObjectConsts::oak]));
-	m_labelsMap[UIConsts::frozenBushCostLabelID]->setMessage(std::to_string(m_towersCosts[GameObjectConsts::frozenBush]));
-
-
 	// update text on screen
 	for (std::map<std::string, std::unique_ptr<Text>>::iterator it = m_labelsMap.begin(); it != m_labelsMap.end(); it++)
 	{

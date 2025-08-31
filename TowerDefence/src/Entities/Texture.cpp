@@ -8,6 +8,10 @@ Texture::Texture() : SDLGameObject(), m_hidden(false)
 {
 }
 
+Texture::Texture(const Texture& texture) : m_hidden(texture.m_hidden), SDLGameObject(texture)
+{
+}
+
 void Texture::clean()
 {
 	TheTextureManager::Instance()->clearFromTextureMap(m_textureID);

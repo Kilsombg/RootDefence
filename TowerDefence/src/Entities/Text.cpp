@@ -10,19 +10,39 @@ Text::Text() : GameObject()
 {
 }
 
-Text::Text(float x, float y, int characterWidth, int width, int height, std::string textureID, std::string labelID, std::string message, bool dynamic)
+Text::Text(float x, float y, int characterWidth, int height, std::string textureID, std::string labelID, std::string message, bool hidden, bool dynamic)
 {
 	m_position = Vector2D(x, y);
 	m_characterWidth = characterWidth;
-	m_width = width;
 	m_height = height;
 	m_textureID = textureID;
 	m_message = message;
 	m_prevMessage = message;
 	m_labelID = labelID;
 	m_dynamic = dynamic;
+	m_hidden = hidden;
 
+	m_fontColor = ColorsConsts::white;
+	m_prevFontColor = m_fontColor;
+	m_fontOutlineColor = ColorsConsts::black;
+
+	updateWidth();
 	m_isCentered = false;
+
+	loadTexture();
+}
+
+Text::Text(const Text& text) : m_characterWidth(text.m_characterWidth), m_message(text.m_message), m_prevMessage(text.m_prevMessage), m_labelID(text.m_labelID), m_dynamic(text.m_dynamic), m_isCentered(text.m_isCentered), m_hidden(text.m_hidden)
+{
+	m_position = text.m_position;
+	m_height = text.m_height;
+	m_textureID = text.m_textureID;
+
+	m_fontColor = ColorsConsts::white;
+	m_prevFontColor = m_fontColor;
+	m_fontOutlineColor = ColorsConsts::black;
+
+	updateWidth();
 
 	loadTexture();
 }
@@ -61,7 +81,7 @@ void Text::load(const std::shared_ptr<LoaderParams> pParams)
 	m_labelID = pParams->getAttribute<std::string>(LoaderParamsConsts::labelId);
 	m_message = pParams->getAttribute<std::string>(LoaderParamsConsts::message);
 	m_prevMessage = m_message;
-	m_width = m_message.length() * m_characterWidth;
+	updateWidth();
 	m_dynamic = pParams->getAttribute<bool>(LoaderParamsConsts::dynamic);
 	m_hidden = pParams->getAttribute<bool>(LoaderParamsConsts::hidden);
 	m_fontColor = ColorsConsts::white;

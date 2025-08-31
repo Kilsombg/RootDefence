@@ -42,6 +42,10 @@ public:
 	* Delete maps' progress.
 	*/
 	void deleteProgress(sqlite3* db);
+	/**
+	* Reset map progress back to 0.
+	*/
+	void resetProgress(sqlite3* db);
 };
 
 #endif // !__MapsProgressRepository__

@@ -20,6 +20,8 @@ class Texture : public SDLGameObject
 {
 public:
 	Texture();
+	Texture(const Texture& texture);
+
 	void clean() override;
 	void draw() override;
 

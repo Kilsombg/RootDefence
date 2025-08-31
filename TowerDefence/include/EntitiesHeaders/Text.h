@@ -28,7 +28,8 @@ public:
 	* @param id - textureId
 	* @param message to be displayed
 	*/
-	Text(float x, float y, int characterWidth, int width, int height, std::string textureID, std::string labelID, std::string message, bool dynamic = false);
+	Text(float x, float y, int characterWidth, int height, std::string textureID, std::string labelID, std::string message, bool hidden = false, bool dynamic = false);
+	Text(const Text& text);
 	/**
 	* Draw text on sccreen.
 	*/

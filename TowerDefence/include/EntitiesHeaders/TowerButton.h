@@ -2,6 +2,8 @@
 #define __TowerButton__
 
 #include "Button.h"
+#include "Text.h"
+#include "Texture.h"
 
 #include "../UtilsHeaders/BaseCreator.h"
 
@@ -26,6 +28,8 @@ public:
 	void handleEvent() override;
 
 	virtual void update() override;
+	virtual void draw() override;
+	virtual void clean() override;
 
 	/**
 	* set mouse position to dummy object
@@ -48,6 +52,19 @@ private:
 	void handleOutsideCLick();
 	void handleClickOnButton();
 
+	/**
+	* Create cost resource texture in load().
+	*/
+	void loadCostResourceTexture();
+	/**
+	* Create lock texture in load().
+	*/
+	void loadLockTexture();
+	/**
+	* Create cost value label in load().
+	*/
+	void loadCostValueLabel(std::string value);
+
 	// name of the tower that the button will create.
 	std::string m_towerName;
 	// color of the tower
@@ -66,10 +83,18 @@ private:
 	bool m_isMouseOutsideMap;
 	// flag for texture.
 	bool m_disabled;
+	// flag for unlocked tower.
+	bool m_unlocked;
 	// base textureID of button without modification (disabled).
 	std::string m_baseTextureID;
 	// tower name with color type included.
 	std::string m_towerNameID;
+	// tower button cost label.
+	std::unique_ptr<Text> m_costLabel;
+	// tower button cost texture.
+	std::unique_ptr<Texture> m_costResourceTexture;
+	// tower lock texture.
+	std::unique_ptr<Texture> m_lockTexture;
 	// button callback.
 	TowerButtonCallback m_callback;
 	// pointer to level.
