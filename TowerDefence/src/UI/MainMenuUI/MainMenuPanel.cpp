@@ -112,7 +112,7 @@ void MainMenuPanel::load(std::vector<std::unique_ptr<GameObject>> gameObjects)
 	}
 
 	// load static labels
-	loadStaticLabels();
+	//loadStaticLabels();
 
 	// load callbacks
 	loadCallbacks();
@@ -139,9 +139,6 @@ void MainMenuPanel::s_exitFromMenu()
 
 void MainMenuPanel::loadStaticLabels()
 {
-	// level label
-	m_labelsMap[UIConsts::levelLabelID]->setMessage(std::to_string(TheGame::Instance()->getProgressManager()->getGameProgress()->level));
-	m_labelsMap[UIConsts::levelLabelID]->centerText();
 
 	// update text on screen
 	for (std::map<std::string, std::unique_ptr<Text>>::iterator it = m_labelsMap.begin(); it != m_labelsMap.end(); it++)
@@ -156,6 +153,10 @@ void MainMenuPanel::loadStaticLabels()
 void MainMenuPanel::updateDynamicLabels()
 {
 	m_labelsMap[UIConsts::coinsLabelID]->setMessage(std::to_string(TheGame::Instance()->getProgressManager()->getGameProgress()->coins));
+
+	// level label
+	m_labelsMap[UIConsts::levelLabelID]->setMessage(std::to_string(TheGame::Instance()->getProgressManager()->getGameProgress()->level));
+	m_labelsMap[UIConsts::levelLabelID]->centerText();
 
 	// update text on screen
 	for (std::map<std::string, std::unique_ptr<Text>>::iterator it = m_labelsMap.begin(); it != m_labelsMap.end(); it++)

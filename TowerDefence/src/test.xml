@@ -22,7 +22,7 @@
 					<object type="texture" x="0.00" y="0.00" width="960" height="540" textureID="mainMenuBackground"/>
 					<object type="texture" x="260.00" y="30.00" width="441" height="129" textureID="title2"/>
 					<object type="texture" x="13.00" y="8.00" width="128" height="48" textureID="levelBarTexture"/>
-					<object type="text" x="37.00" y="22.00" characterWidth="15" height="25" textureID="levelLabel" labelId="levelLabel" message="" dynamic="false"/>
+					<object type="text" x="37.00" y="22.00" characterWidth="15" height="25" textureID="levelLabel" labelId="levelLabel" message="" dynamic="true"/>
 					<object type="texture" x="852.00" y="15.00" width="80" height="30" textureID="coinsPanel"/>
 					<object type="texture" x="860.00" y="20.00" width="20" height="20" textureID="coinsTexture"/>
 					<object type="text" x="885.00" y="23.00" characterWidth="10" height="17" textureID="coinsLabel" labelId="coinsLabel" message="" dynamic="true"/>
