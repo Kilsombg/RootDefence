@@ -24,8 +24,6 @@ public:
 	void handleEvents() override;
 
 	bool drawUnderneath() override;
-	
-	virtual std::string getStateID() const;
 
 private:
 	std::unique_ptr<PauseStateUI> m_pauseStateUI;

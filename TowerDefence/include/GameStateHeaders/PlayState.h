@@ -30,7 +30,7 @@
 * 
 * PlayState manages map's gameplay logic.
 */
-class PlayState : public GameState
+class PlayState : public BaseGameState
 {
 public:
 	PlayState();

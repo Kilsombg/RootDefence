@@ -31,8 +31,6 @@ public:
 
 	// getters and setters
 
-	virtual std::string getStateID() const override;
-
 	void setRewardValue(int rewardValue);
 
 private:

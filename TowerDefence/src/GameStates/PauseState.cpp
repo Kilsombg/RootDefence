@@ -16,17 +16,9 @@ PauseState::PauseState()
 	s_stateID = "PAUSE";
 }
 
-std::string PauseState::getStateID() const
-{
-	return s_stateID;
-}
-
 void PauseState::update()
 {
-	for (std::vector<GameObject*>::size_type i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->update();
-	}
+	GameState::update();
 
 	// update UI
 	m_pauseStateUI->update();
@@ -34,10 +26,7 @@ void PauseState::update()
 
 void PauseState::render()
 {
-	for (std::vector<GameObject*>::size_type i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->draw();
-	}
+	GameState::render();
 
 	// dimming underneath
 	TheTextureManager::Instance()->dimBackground(TheGame::Instance()->getWindow(), TheGame::Instance()->getRenderer());
@@ -58,19 +47,8 @@ bool PauseState::onEnter()
 
 bool PauseState::onExit()
 {
-	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->clean();
-		m_gameObjects[i] = nullptr;
-	}
-	m_gameObjects.clear();
+	GameState::onExit();
 
-	// clean textures
-	for (int i = 0; i < m_textureIDList.size(); i++)
-	{
-		TheTextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
-	}
-	
 	// reset the mouse button states to false
 	TheInputHandler::Instance()->reset();
 

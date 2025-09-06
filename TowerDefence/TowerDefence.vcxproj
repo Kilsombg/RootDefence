@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\UI\LevelUpStateUI\LevelUpPanel.cpp" />
     <ClCompile Include="src\Data\ProgressManager.cpp" />
     <ClCompile Include="src\Data\Repositories\GameProgressRepository.cpp" />
     <ClCompile Include="src\Data\Repositories\MapsProgressRepository.cpp" />
@@ -169,6 +170,8 @@
     <ClCompile Include="src\EventHandlers\TowerUpgradeHandlers.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameStates\GameOverState.cpp" />
+    <ClCompile Include="src\GameStates\GameState.cpp" />
+    <ClCompile Include="src\GameStates\LevelUpState.cpp" />
     <ClCompile Include="src\GameStates\VictoryState.cpp" />
     <ClCompile Include="src\Managers\CollisionManager.cpp" />
     <ClCompile Include="src\Managers\LevelManager.cpp" />
@@ -183,6 +186,7 @@
     <ClCompile Include="src\UI\Common\StateUI.cpp" />
     <ClCompile Include="src\UI\GameOverUI\GameOverStatePanel.cpp" />
     <ClCompile Include="src\UI\GameOverUI\GameOverStateUI.cpp" />
+    <ClCompile Include="src\UI\LevelUpStateUI\LevelUpStateUI.cpp" />
     <ClCompile Include="src\UI\MainMenuUI\DeleteProgressConfirmationPanel.cpp" />
     <ClCompile Include="src\UI\MainMenuUI\MainMenuPanel.cpp" />
     <ClCompile Include="src\UI\MainMenuUI\MapsPanel.cpp" />
@@ -265,6 +269,7 @@
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\GameStateHeaders\GameOverState.h" />
     <ClInclude Include="include\GameStateHeaders\GameState.h" />
+    <ClInclude Include="include\GameStateHeaders\LevelUpState.h" />
     <ClInclude Include="include\GameStateHeaders\VictoryState.h" />
     <ClInclude Include="include\ManagersHeaders\CollisionManager.h" />
     <ClInclude Include="include\ManagersHeaders\LevelManager.h" />
@@ -283,6 +288,8 @@
     <ClInclude Include="include\UIHeaders\CommonHeaders\PanelCreator.h" />
     <ClInclude Include="include\UIHeaders\GameOverUIHeaders\GameOverStatePanel.h" />
     <ClInclude Include="include\UIHeaders\GameOverUIHeaders\GameOverStateUI.h" />
+    <ClInclude Include="include\UIHeaders\LevelUpUIHeaders\LevelUpPanel.h" />
+    <ClInclude Include="include\UIHeaders\LevelUpUIHeaders\LevelUpStateUI.h" />
     <ClInclude Include="include\UIHeaders\MainMenuUIHeaders\DeleteProgressConfirmationPanel.h" />
     <ClInclude Include="include\UIHeaders\MainMenuUIHeaders\MainMenuPanel.h" />
     <ClInclude Include="include\UIHeaders\MainMenuUIHeaders\MainMenuStateUI.h" />

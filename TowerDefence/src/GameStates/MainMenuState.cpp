@@ -7,7 +7,6 @@
 #include "../../include/Game.h"
 
 #include<iostream>
-#include<memory>
 #include<vector>
 
 MainMenuState::MainMenuState()
@@ -17,10 +16,7 @@ MainMenuState::MainMenuState()
 
 void MainMenuState::update()
 {
-	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->update();
-	}
+	GameState::update();
 
 	// update UI
 	m_mainMenuStateUI->update();
@@ -28,10 +24,7 @@ void MainMenuState::update()
 
 void MainMenuState::render()
 {
-	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->draw();
-	}
+	GameState::render();
 
 	// draw UI
 	m_mainMenuStateUI->draw();
@@ -49,17 +42,7 @@ bool MainMenuState::onEnter()
 
 bool MainMenuState::onExit()
 {
-	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->clean();
-	}
-
-	m_gameObjects.clear();
-
-	for (int i = 0; i < m_textureIDList.size(); i++)
-	{
-		TheTextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
-	}
+	GameState::onExit();
 
 	// clean UI
 	m_mainMenuStateUI->clean();
@@ -72,10 +55,4 @@ void MainMenuState::handleEvents()
 {
 	// handle UI
 	m_mainMenuStateUI->handleEvents();
-}
-
-
-std::string MainMenuState::getStateID() const
-{
-	return s_stateID;
 }

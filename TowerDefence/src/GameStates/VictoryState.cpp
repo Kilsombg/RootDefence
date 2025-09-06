@@ -37,13 +37,9 @@ bool VictoryState::onEnter()
 
 bool VictoryState::onExit()
 {
-	// cleaning textures
-	for (std::vector<std::string>::size_type i = 0; i < m_textureIDList.size(); i++)
-	{
-		TheTextureManager::Instance()->clearFromTextureMap(m_textureIDList[i]);
-	}
+	GameState::onExit();
 
-	// clean ui
+	// clean UI
 	m_victoryStateUI->clean();
 
 	std::cout << "exiting VictoryState\n";
@@ -59,11 +55,6 @@ void VictoryState::handleEvents()
 bool VictoryState::drawUnderneath()
 {
 	return true;
-}
-
-std::string VictoryState::getStateID() const
-{
-	return s_stateID;
 }
 
 void VictoryState::setRewardValue(int rewardValue)

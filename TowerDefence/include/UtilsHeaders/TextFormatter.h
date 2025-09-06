@@ -2,6 +2,7 @@
 #define __TextFormatter__
 
 #include<memory>
+#include<vector>
 #include<string>
 
 /**
@@ -26,6 +27,10 @@ public:
 	* @return two digits after floating point.
 	*/
 	std::string extractPercentage(std::string floatStr);
+	/**
+	* Split a  string into vector of words written in camelCase.
+	*/
+	static std::vector<std::string> splitCamelCase(const std::string& str);
 
 private:
 	TextFormatter();

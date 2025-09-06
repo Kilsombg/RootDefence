@@ -22,11 +22,11 @@ public:
 	* 
 	* @param pState - pushed state.
 	*/
-	void pushState(std::shared_ptr<GameState> pState);
+	void pushState(std::shared_ptr<BaseGameState> pState);
 	/**
 	* Mark there is a change to be done.
 	*/
-	void changeState(std::shared_ptr<GameState> pState);
+	void changeState(std::shared_ptr<BaseGameState> pState);
 	/**
 	* Mark that current state needs to be removed.
 	*/
@@ -60,8 +60,8 @@ private:
 	GameStateMachine();
 	static std::shared_ptr<GameStateMachine> s_pInstance;
 
-	std::vector<std::shared_ptr<GameState>> m_gameStates;
-	std::shared_ptr<GameState> newState;
+	std::vector<std::shared_ptr<BaseGameState>> m_gameStates;
+	std::shared_ptr<BaseGameState> newState;
 	bool m_bPopStateFlag;
 	bool m_bChangeStateFlag;
 
@@ -75,7 +75,7 @@ private:
 	* If other instance of that state presents in state stack
 	* it removes them and calls onExit().
 	*/
-	void changeStatePrivate(std::shared_ptr<GameState> pState);
+	void changeStatePrivate(std::shared_ptr<BaseGameState> pState);
 };
 
 typedef GameStateMachine TheGameStateMachine;

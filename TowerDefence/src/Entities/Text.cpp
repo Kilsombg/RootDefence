@@ -93,6 +93,16 @@ void Text::load(const std::shared_ptr<LoaderParams> pParams)
 	loadTexture();
 }
 
+void Text::setPosition(Vector2D position)
+{
+	m_position = position;
+}
+
+Vector2D Text::getPosition()
+{
+	return m_position;
+}
+
 void Text::setMessage(std::string message)
 {
 	m_message = message;

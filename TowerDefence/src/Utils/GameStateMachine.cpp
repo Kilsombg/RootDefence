@@ -21,7 +21,7 @@ std::string GameStateMachine::getCurrentState()
 	return m_gameStates.back()->getStateID();
 }
 
-void GameStateMachine::pushState(std::shared_ptr<GameState> pState)
+void GameStateMachine::pushState(std::shared_ptr<BaseGameState> pState)
 {
 	// remove same state in the state stack if present
 	for (auto it = m_gameStates.begin(); it != m_gameStates.end(); ++it)
@@ -59,7 +59,7 @@ void GameStateMachine::popState()
 	m_bPopStateFlag = true;
 }
 
-void GameStateMachine::changeStatePrivate(std::shared_ptr<GameState> pState)
+void GameStateMachine::changeStatePrivate(std::shared_ptr<BaseGameState> pState)
 {
 	if (!m_gameStates.empty())
 	{
@@ -92,7 +92,7 @@ void GameStateMachine::changeStatePrivate(std::shared_ptr<GameState> pState)
 	m_gameStates.back()->onEnter();
 }
 
-void GameStateMachine::changeState(std::shared_ptr<GameState> pState)
+void GameStateMachine::changeState(std::shared_ptr<BaseGameState> pState)
 {
 	std::cout << "change state flag activated\n";
 	m_bChangeStateFlag = true;

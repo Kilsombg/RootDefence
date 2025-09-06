@@ -2,6 +2,10 @@
 
 #include "../../include/Game.h"
 
+#include "../../include/GameStateHeaders/LevelUpState.h"
+
+#include "../../include/UtilsHeaders/GameStateMachine.h"
+
 #include<ostream>
 
 std::shared_ptr<LevelManager> LevelManager::s_pInstance = nullptr;
@@ -76,5 +80,10 @@ void LevelManager::levelUp(int currentXP)
 	m_nextLevelXP = getLevelMaxExp();
 
 	// get reward
-	TheGame::Instance()->getTowerUnlockManager()->unlockTowerByLevelUp();
+	std::string towerUnlockedID = TheGame::Instance()->getTowerUnlockManager()->unlockTowerByLevelUp();
+
+	// change state
+	auto pState = std::make_shared<LevelUpState>();
+	pState->setTowerUnlockedID(towerUnlockedID);
+	TheGameStateMachine::Instance()->pushState(pState);
 }

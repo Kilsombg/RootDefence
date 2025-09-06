@@ -25,8 +25,6 @@ public:
 
 	virtual void handleEvents() override;
 
-	virtual std::string getStateID() const;
-
 private:
 	std::unique_ptr<MainMenuStateUI> m_mainMenuStateUI;
 };

@@ -19,9 +19,9 @@ TowerUnlockManager::TowerUnlockManager()
 	m_towerUnlocks = TheGame::Instance()->getProgressManager()->getTowerUnlocks();
 }
 
-void TowerUnlockManager::unlockTowerByLevelUp()
+std::string TowerUnlockManager::unlockTowerByLevelUp()
 {
-	if (!m_towerUnlocks.use_count()) return;
+	if (!m_towerUnlocks.use_count()) return std::string();
 
 	short curLVL = TheGame::Instance()->getProgressManager()->getGameProgress()->level;
 
@@ -30,8 +30,11 @@ void TowerUnlockManager::unlockTowerByLevelUp()
 		if (it->require_level == curLVL)
 		{
 			TheGame::Instance()->getProgressManager()->unlockTower(it->id);
+			return it->name;
 		}
 	}
+
+	return std::string();
 }
 
 bool TowerUnlockManager::isUnlocked(std::string towerName)

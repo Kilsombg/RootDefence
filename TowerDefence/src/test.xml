@@ -11,7 +11,7 @@
 			<texture filename="src/assets/UI/States/MainMenuState/maps/map_level2_optimized.png" ID="mapLevel2ID"/>
 			<texture filename="src/assets/UI/States/MainMenuState/maps/map_level3_optimized.png" ID="mapLevel3ID"/>
 			<texture filename="src/assets/UI/icons/coin16x16.png" ID="coinsTexture"/>
-			<texture filename="src/assets/UI/States/MainMenuState/buttons/main-button_100x40_anim.png" ID="buttonTexure"/>
+			<texture filename="src/assets/UI/buttons/main-button_100x40_anim.png" ID="buttonTexure"/>
 			<texture filename="src/assets/UI/States/MainMenuState/buttons/return-button_38x38_anim.png" ID="returnButtonTexure"/>
 			<texture filename="src/assets/UI/buttons/danger-button_55x32_anim.png" ID="dangerButtonTexture"/>
 			<texture filename="src/assets/UI/commons/level-bar_128x48.png" ID="levelBarTexture"/>
@@ -109,16 +109,16 @@
 			<texture filename="src/assets/UI/States/PlayState/icons/radius_23x22.png" ID="radiusIcon"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/freeze_percentage_21x20.png" ID="freezePercentageIcon"/>
 			<texture filename="src/assets/UI/States/PlayState/icons/lock_32x32.png" ID="lockIcon"/>
-			<texture filename="src/assets/UI/States/PlayState/towers/agate-stump_53x33.png" ID="agateStumpTower"/>
-			<texture filename="src/assets/UI/States/PlayState/towers/agate-pine_38x72.png" ID="agatePineTower"/>
-			<texture filename="src/assets/UI/States/PlayState/towers/agate-oak_58x64.png" ID="agateOakTower"/>
-			<texture filename="src/assets/UI/States/PlayState/towers/amber-stump_53x33.png" ID="amberStumpTower"/>
-			<texture filename="src/assets/UI/States/PlayState/towers/amber-pine_38x72.png" ID="amberPineTower"/>
-			<texture filename="src/assets/UI/States/PlayState/towers/amber-oak_58x64.png" ID="amberOakTower"/>
-			<texture filename="src/assets/UI/States/PlayState/towers/ruby-stump_53x33.png" ID="rubyStumpTower"/>
-			<texture filename="src/assets/UI/States/PlayState/towers/ruby-pine_38x72.png" ID="rubyPineTower"/>
-			<texture filename="src/assets/UI/States/PlayState/towers/ruby-oak_58x64.png" ID="rubyOakTower"/>
-			<texture filename="src/assets/UI/States/PlayState/towers/frozen-bush_52x48.png" ID="frozenBushTower"/>
+			<texture filename="src/assets/UI/commons/towers/agate-stump_53x33.png" ID="agateStumpTower"/>
+			<texture filename="src/assets/UI/commons/towers/agate-pine_38x72.png" ID="agatePineTower"/>
+			<texture filename="src/assets/UI/commons/towers/agate-oak_58x64.png" ID="agateOakTower"/>
+			<texture filename="src/assets/UI/commons/towers/amber-stump_53x33.png" ID="amberStumpTower"/>
+			<texture filename="src/assets/UI/commons/towers/amber-pine_38x72.png" ID="amberPineTower"/>
+			<texture filename="src/assets/UI/commons/towers/amber-oak_58x64.png" ID="amberOakTower"/>
+			<texture filename="src/assets/UI/commons/towers/ruby-stump_53x33.png" ID="rubyStumpTower"/>
+			<texture filename="src/assets/UI/commons/towers/ruby-pine_38x72.png" ID="rubyPineTower"/>
+			<texture filename="src/assets/UI/commons/towers/ruby-oak_58x64.png" ID="rubyOakTower"/>
+			<texture filename="src/assets/UI/commons/towers/frozen-bush_52x48.png" ID="frozenBushTower"/>
 			<texture filename="src/assets/UI/States/PlayState/TowersPanel.png" ID="towersPanel"/>
 			<texture filename="src/assets/UI/States/PlayState/TowerUpgradesPanel.png" ID="towerUpgradesPanel"/>
 			<texture filename="src/assets/UI/States/PlayState/TipsPanel.png" ID="tipsPanel"/>
@@ -192,6 +192,36 @@
 			</TOWERS>
 		</PANELS>
 	</PLAY>
+	<LEVELUP>
+		<TEXTURES>
+			<texture filename="src/assets/UI/States/LevelUpState/LevelUpPanel.png" ID="levelUpPanel"/>
+			<texture filename="src/assets/UI/commons/level-BG_48x48.png" ID="levelBGIcon"/>
+			<texture filename="src/assets/UI/buttons/main-button_100x40_anim.png" ID="buttonTexure"/>
+			<texture filename="src/assets/UI/commons/towers/agate-stump_53x33.png" ID="agateStumpTowerLUP"/>
+			<texture filename="src/assets/UI/commons/towers/agate-pine_38x72.png" ID="agatePineTowerLUP"/>
+			<texture filename="src/assets/UI/commons/towers/agate-oak_58x64.png" ID="agateOakTowerLUP"/>
+			<texture filename="src/assets/UI/commons/towers/amber-stump_53x33.png" ID="amberStumpTowerLUP"/>
+			<texture filename="src/assets/UI/commons/towers/amber-pine_38x72.png" ID="amberPineTowerLUP"/>
+			<texture filename="src/assets/UI/commons/towers/amber-oak_58x64.png" ID="amberOakTowerLUP"/>
+			<texture filename="src/assets/UI/commons/towers/ruby-stump_53x33.png" ID="rubyStumpTowerLUP"/>
+			<texture filename="src/assets/UI/commons/towers/ruby-pine_38x72.png" ID="rubyPineTowerLUP"/>
+			<texture filename="src/assets/UI/commons/towers/ruby-oak_58x64.png" ID="rubyOakTowerLUP"/>
+			<texture filename="src/assets/UI/commons/towers/frozen-bush_52x48.png" ID="frozenBushTowerLUP"/>
+		</TEXTURES>
+		<PANELS>
+			<LEVELUP type="levelUpPanel" x="380.00" y="-400.00" width="200" height="400" textureID="levelUpPanel">
+				<OBJECTS>
+					<object type="texture" x="432.00" y="-448.00" width="96" height="96" textureID="levelBGIcon"/>
+					<object type="text" x="480.00" y="-420.00" characterWidth="30" height="50" textureID="levelLUPLabel" labelId="levelLUPLabel" message="" dynamic="false"/>
+					<object type="text" x="418.00" y="-350.00" characterWidth="15" height="20" textureID="levelUpLabel" labelId="levelUpLabel" message="Level up" dynamic="false"/>
+					<object type="text" x="455.00" y="-290.00" characterWidth="8" height="14" textureID="unlockedLabel" labelId="unlockedLabel" message="You unlocked:" dynamic="false" hidden="true"/>
+					<object type="text" x="507.00" y="-270.00" characterWidth="8" height="14" textureID="towerUnlockedLabel" labelId="towerUnlockedLabel" message="" dynamic="false" hidden="true"/>
+					<object type="text" x="450.00" y="-40.00" characterWidth="11" height="22" textureID="claimRewardLabel" labelId="claimRewardLabel" message="Claim" dynamic="false"/>
+					<object type="menuButton" x="430.00" y="-50.00" width="100" height="40" textureID="buttonTexure" numFrames="0" callbackID="returnToPlayCallbackID"/>
+				</OBJECTS>
+			</LEVELUP>
+		</PANELS>
+	</LEVELUP>
 	<PAUSE>
 		<TEXTURES>
 			<texture filename="src/assets/UI/buttons/continue-button_64x64_anim.png" ID="continueButton"/>

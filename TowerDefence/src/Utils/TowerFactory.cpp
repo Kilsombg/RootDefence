@@ -6,6 +6,7 @@
 
 
 #include "../../include/Constants/LoaderParamsConsts.h"
+#include "../../include/Constants/GameObjectConsts.h"
 
 std::shared_ptr<TowerFactory> TowerFactory::s_pInstance = nullptr;
 
@@ -59,6 +60,11 @@ std::shared_ptr<Tower> TowerFactory::createShadowTower(std::string towerTypeID, 
 		}
 	}
 	return nullptr;
+}
+
+bool TowerFactory::canTowerBeColored(std::string colorType)
+{
+	return colorType == TowerTypeConsts::green || colorType == TowerTypeConsts::yellow || colorType == TowerTypeConsts::red;
 }
 
 std::shared_ptr<LoaderParams> TowerFactory::getTowerData(std::string towerTypeID)

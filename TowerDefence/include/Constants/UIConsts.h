@@ -59,6 +59,12 @@ namespace UIConsts {
 	constexpr char upgradeButtonTextPrefix[] = "upgrade";
 	constexpr char upgradeButtonTextSufix[] = "Label";
 
+	// level up panel
+	constexpr char levelUpPanelSuffix[] = "LUP";
+	constexpr char levelLUPLabel[] = "levelLUPLabel";
+	constexpr char unlockedLabel[] = "unlockedLabel";
+	constexpr char towerUnlockedLabel[] = "towerUnlockedLabel";
+
 	// game over panel
 
 	constexpr char gameOverWaveLabel[] = "gameOverWaveLabel";

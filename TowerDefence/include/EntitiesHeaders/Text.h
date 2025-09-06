@@ -52,6 +52,14 @@ public:
 	// setters and getters
 
 	/**
+	* Set text position.
+	*/
+	void setPosition(Vector2D position);
+	/**
+	* Get position of text.
+	*/
+	Vector2D getPosition();
+	/**
 	* Change text's message.
 	*/
 	void setMessage(std::string message);

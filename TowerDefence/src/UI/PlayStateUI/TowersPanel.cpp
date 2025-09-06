@@ -48,7 +48,7 @@ void TowersPanel::draw()
 
 	// draw level progress bar
 	TheTextureManager::Instance()->drawProgressBar(
-		59, 23, 78, 17,
+		60, 23, 77, 17,
 		{ ColorsConsts::levelBG.r, ColorsConsts::levelBG.g, ColorsConsts::levelBG.b, ColorsConsts::levelBG.a },
 		{ ColorsConsts::green.r, ColorsConsts::green.g, ColorsConsts::green.b, ColorsConsts::green.a },
 		(float)TheGame::Instance()->getProgressManager()->getGameProgress()->level_xp / TheGame::Instance()->getLevelManager()->getNextLevelXP(),

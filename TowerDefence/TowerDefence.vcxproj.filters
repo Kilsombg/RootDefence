@@ -261,6 +261,18 @@
     <ClCompile Include="src\Managers\TowerUnlockManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameStates\LevelUpState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameStates\GameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\LevelUpStateUI\LevelUpPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\LevelUpStateUI\LevelUpStateUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game.h">
@@ -567,6 +579,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ManagersHeaders\TowerUnlockManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GameStateHeaders\LevelUpState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UIHeaders\LevelUpUIHeaders\LevelUpStateUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\UIHeaders\LevelUpUIHeaders\LevelUpPanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

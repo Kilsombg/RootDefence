@@ -18,7 +18,7 @@ class TowerUnlockManager
 public:
 	static std::shared_ptr<TowerUnlockManager> Instance();
 
-	void unlockTowerByLevelUp();
+	std::string unlockTowerByLevelUp();
 	/**
 	* Return true if tower is unlocked.
 	*/

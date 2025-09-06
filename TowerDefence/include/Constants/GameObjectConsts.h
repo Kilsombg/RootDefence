@@ -47,6 +47,7 @@ namespace PanelConsts {
 	constexpr char towersPanel[] = "towersPanel";
 	constexpr char towerUpgradePanel[] = "towerUpgradePanel";
 	constexpr char tipsPanel[] = "tipsPanel";
+	constexpr char levelUpPanel[] = "levelUpPanel";
 #pragma endregion
 
 }

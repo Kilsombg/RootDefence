@@ -27,8 +27,6 @@ public:
 
 	bool drawUnderneath() override;
 
-	virtual std::string getStateID() const override;
-
 
 	// getters and setters
 

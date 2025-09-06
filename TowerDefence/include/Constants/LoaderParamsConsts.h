@@ -16,6 +16,7 @@ namespace LoaderParamsConsts {
 #pragma region xml states params specific
 	constexpr char callbackID[] = "callbackID";
 	
+	// main menu callbacks
 	constexpr char playbuttonCallbackID[] = "playbuttonCallbackID";
 	constexpr char exitbuttonCallbackID[] = "exitbuttonCallbackID";
 	constexpr char openDeleteConfPanelCallbackID[] = "openDeleteConfPanelCallbackID";
@@ -23,17 +24,24 @@ namespace LoaderParamsConsts {
 	constexpr char mapMenuButtonCallbackID[] = "mapMenuButtonCallbackID";
 	constexpr char closeMapsPanelCallbackID[] = "closeMapsPanelCallbackID";
 
+	// maps menu callbacks
 	constexpr char mainMenuButtonCallbackID[] = "mainMenuButtonCallbackID";
 	
+	// pause callbacks
 	constexpr char restartButtonCallbackID[] = "restartButtonCallbackID";
 	constexpr char resumeButtonCallbackID[] = "resumeButtonCallbackID";
 	
+	// play callbacks
 	constexpr char createTowerCallbackID[] = "createTowerCallbackID";
 	constexpr char startWaveCallbackID[] = "startWaveCallbackID";
 	constexpr char pauseStateCallbackID[] = "pauseStateCallbackID";
-	
+
 	constexpr char towerUpgradeCallbackID[] = "towerUpgradeCallbackID";
 	constexpr char sellTowerCallbackID[] = "sellTowerCallbackID";
+
+	// level up callbacks
+	constexpr char returnToPlayCallbackID[] = "returnToPlayCallbackID";
+
 	
 	constexpr char animSpeed[] = "animSpeed";
 #pragma endregion

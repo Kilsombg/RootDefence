@@ -27,7 +27,10 @@ public:
 	* @param color - type of tower.
 	*/
 	std::shared_ptr<Tower> createShadowTower(std::string towerTypeID, std::string color);
-
+	/**
+	* Check the prefix from textureID of towers if it color type.
+	*/
+	bool canTowerBeColored(std::string colorType);
 
 	// getters and setters.
 

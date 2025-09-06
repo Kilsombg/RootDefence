@@ -39,6 +39,7 @@
 #include "../include/UIHeaders/PlayStateUIHeaders/TowerUpgradePanel.h"
 #include "../include/UIHeaders/PlayStateUIHeaders/TipsPanel.h"
 
+#include "../include/UIHeaders/LevelUpUIHeaders/LevelUpPanel.h"
 
 #include "../include/UtilsHeaders/TrueTypeManager.h"
 #include "../include/UtilsHeaders/InputHandler.h"
@@ -307,6 +308,8 @@ void Game::registerPanels()
 	ThePanelFactory::Instance()->registerType(PanelConsts::towersPanel, std::make_shared<TowersPanelCreator>());
 	ThePanelFactory::Instance()->registerType(PanelConsts::towerUpgradePanel, std::make_shared<TowerUpgradePanelCreator>());
 	ThePanelFactory::Instance()->registerType(PanelConsts::tipsPanel, std::make_shared<TipsPanelCreator>());
+
+	ThePanelFactory::Instance()->registerType(PanelConsts::levelUpPanel, std::make_shared<LevelUpPanelCreator>());
 }
 
 void Game::configureProgressManager()
