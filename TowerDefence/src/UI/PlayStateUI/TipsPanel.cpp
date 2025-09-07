@@ -113,7 +113,8 @@ void TipsPanel::loadTips()
 		std::string("Each tower type uses its own resource - easy to gather resources for towers."),
 		std::string("Some towers have large placement area, so plan ahead your placements."),
 		std::string("A wise man once said - upgraded tower is always better than not upgraded."),
-		std::string("Hover tower's upgrade button to preview stat changes.")
+		std::string("Hover tower's upgrade button to preview stat changes."),
+		std::string("You unlock towers by leveling up.")
 	};
 }
 
