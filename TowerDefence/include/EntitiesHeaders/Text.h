@@ -24,7 +24,7 @@ public:
 	* Object to display text on screen.
 	*
 	* @param x,y - position of text
-	* @param width, height of the text
+	* @param characterWidth, height of the text
 	* @param id - textureId
 	* @param message to be displayed
 	*/

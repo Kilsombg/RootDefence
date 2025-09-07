@@ -2,6 +2,8 @@
 
 #include "../../include/DataHeaders/UserProgressDBContextSeeder.h"
 
+#include "../../include/ManagersHeaders/LevelManager.h"
+
 #include<iostream>
 #include<thread>
 
@@ -50,23 +52,37 @@ void ProgressManager::deleteProgress()
 
 	// delete game progress
 	if (m_gameProgress != nullptr) {
-		m_gameRepo->upsert(db, GameProgressDTO{ 1, 0 , 0, 1 });
-		m_gameProgress = m_gameRepo->load(db);
+		// local
+		m_gameProgress->coins = 0;
+		m_gameProgress->level_xp = 0;
+		m_gameProgress->level = 1;
+		// db
+		m_gameRepo->upsert(db, *m_gameProgress);
 	}
 
 	// delete maps' progress
 	if (!m_mapsProgress->empty())
 	{
+		// db
 		m_mapsProgressRepo->resetProgress(db);
+		// local
+		for (std::vector<MapProgressDTO>::size_type i = 0; i < m_mapsProgress->size(); i++)
+		{
+			(*m_mapsProgress)[i].maxWave = 0;
+		}
 	}
-	m_mapsProgress = m_mapsProgressRepo->load(db);
 
 	// delete tower unlocks
+	// db
 	m_towerUnlocksRepo->resetUnlocks(db);
+	// local
 	for (std::vector<TowerUnlocksDTO>::size_type i = 1; i < m_towerUnlocks->size(); i++)
 	{
 		(*m_towerUnlocks)[i].unlocked = false;
 	}
+
+	// reset level manaager
+	TheLevelManager::Instance()->reset();
 }
 
 void ProgressManager::closeDB()

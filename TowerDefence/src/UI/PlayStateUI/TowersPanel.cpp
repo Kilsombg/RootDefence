@@ -14,7 +14,6 @@
 #include "../../../include/UtilsHeaders/TowerFactory.h"
 #include "../../../include/UtilsHeaders/GameStateMachine.h"
 #include "../../../include/UtilsHeaders/InputHandler.h"
-#include "../../../include/UtilsHeaders/TextureManager.h"
 
 #include "../../../include/WaveHeaders/WaveManager.h"
 
@@ -47,13 +46,7 @@ void TowersPanel::draw()
 	}
 
 	// draw level progress bar
-	TheTextureManager::Instance()->drawProgressBar(
-		60, 23, 77, 17,
-		{ ColorsConsts::levelBG.r, ColorsConsts::levelBG.g, ColorsConsts::levelBG.b, ColorsConsts::levelBG.a },
-		{ ColorsConsts::green.r, ColorsConsts::green.g, ColorsConsts::green.b, ColorsConsts::green.a },
-		(float)TheGame::Instance()->getProgressManager()->getGameProgress()->level_xp / TheGame::Instance()->getLevelManager()->getNextLevelXP(),
-		TheGame::Instance()->getRenderer()
-	);
+	TheGame::Instance()->getLevelManager()->drawLevelProgressBar();
 
 	// draw textures
 	for (std::vector<std::unique_ptr<GameObject>>::size_type i = 0; i < m_gameObjects.size(); i++)
