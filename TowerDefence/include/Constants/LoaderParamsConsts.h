@@ -23,6 +23,8 @@ namespace LoaderParamsConsts {
 	constexpr char deleteProgressCallbackID[] = "deleteProgressCallbackID";
 	constexpr char mapMenuButtonCallbackID[] = "mapMenuButtonCallbackID";
 	constexpr char closeMapsPanelCallbackID[] = "closeMapsPanelCallbackID";
+	constexpr char backToMapsPanelCallbackID[] = "backToMapsPanelCallbackID";
+	constexpr char difficultyButtonCallbackID[] = "difficultyButtonCallbackID";
 
 	// maps menu callbacks
 	constexpr char mainMenuButtonCallbackID[] = "mainMenuButtonCallbackID";
@@ -49,6 +51,10 @@ namespace LoaderParamsConsts {
 
 #pragma region MapMenuButton params
 	constexpr char mapLevelFileName[] = "mapLevelFileName";
+#pragma endregion
+
+#pragma region DifficultyButton params
+	constexpr char difficulty[] = "difficulty";
 #pragma endregion
 
 	

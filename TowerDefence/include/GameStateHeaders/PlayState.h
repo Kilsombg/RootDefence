@@ -26,6 +26,17 @@
 #include<string>
 
 /**
+* Data context for map that user plays.
+* 
+* Used for loading map and saving game data.
+*/
+struct MapDetail
+{
+	std::string	mapLevelPath; // path to level's map file
+	int mapID; // map's id that is played
+};
+
+/**
 * GameState for playing on maps.
 * 
 * PlayState manages map's gameplay logic.
@@ -56,9 +67,7 @@ public:
 
 	virtual std::string getStateID() const;
 
-	static void setMapLevelPath(std::string mapLevelPath);
-
-	static void setMapID(int mapID);
+	static void s_setCurrentMap(MapDetail currentMap);
 
 private:
 	// update all objects
@@ -70,9 +79,9 @@ private:
 	// load needed data for towers
 	void loadTowerData();	
 
+	static MapDetail s_currentMap; // details for current map playing. Static member, so it can restart the game
+
 	std::shared_ptr<Level> pLevel;
-	static std::string	s_mapLevelPath; // path to level's map file
-	static int s_mapID; // map's id that is played
 
 	std::shared_ptr<std::vector<std::shared_ptr<Tower>>> m_towersObjects;
 

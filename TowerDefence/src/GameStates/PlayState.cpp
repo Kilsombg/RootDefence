@@ -20,8 +20,7 @@
 #include<iostream>
 #include<functional>
 
-std::string PlayState::s_mapLevelPath = "";
-int PlayState::s_mapID = -1;
+MapDetail PlayState::s_currentMap = MapDetail();
 
 PlayState::PlayState()
 {
@@ -86,7 +85,7 @@ void PlayState::loadData()
 {
 	// load level
 	LevelParser levelParser;
-	pLevel = levelParser.parseLevel(s_mapLevelPath.c_str());
+	pLevel = levelParser.parseLevel(s_currentMap.mapLevelPath.c_str());
 	if (!pLevel->getEnemyPath().empty())
 	{
 		pLevel->setSpawnPoint(*(pLevel->getEnemyPath()[0].get()));
@@ -96,7 +95,7 @@ void PlayState::loadData()
 	// load waves data
 	WaveParser waveParser;
 	m_waveManager = TheWaveManager::Instance();
-	m_waveManager->setMapID(s_mapID);
+	m_waveManager->setMapID(s_currentMap.mapID);
 	waveParser.parseWaves("./src/res/waves.json", m_waveManager);
 
 	m_waveManager->setEnemyObjects(m_enemyObjects);
@@ -180,14 +179,9 @@ std::string PlayState::getStateID() const
 	return s_stateID;
 }
 
-void PlayState::setMapLevelPath(std::string mapLevelPath)
+void PlayState::s_setCurrentMap(MapDetail currentMap)
 {
-	s_mapLevelPath = mapLevelPath;
-}
-
-void PlayState::setMapID(int mapID)
-{
-	s_mapID = mapID;
+	s_currentMap = currentMap;
 }
 
 void PlayState::addEnemy(std::unique_ptr<Enemy> enemy)
@@ -206,7 +200,7 @@ void PlayState::handleEvents()
 		TheGame::Instance()->getStateMachine()->pushState(pGameOverState);
 
 		// update max wave
-		TheGame::Instance()->getProgressManager()->updateMaxWave(s_mapID, m_gameSessionData->currentWaveLevel);
+		TheGame::Instance()->getProgressManager()->updateMaxWave(s_currentMap.mapID, m_gameSessionData->currentWaveLevel);
 	}
 
 	// handle victory

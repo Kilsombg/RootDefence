@@ -13,6 +13,7 @@
 #include "../include/EntitiesHeaders/TowerButton.h"
 #include "../include/EntitiesHeaders/TowerUpgradedButton.h"
 #include "../include/EntitiesHeaders/SellTowerButton.h"
+#include "../include/EntitiesHeaders/DifficultyButton.h"
 #include "../include/EntitiesHeaders/Enemy.h"
 #include "../include/EntitiesHeaders/Tower.h"
 #include "../include/EntitiesHeaders/FreezeTower.h"
@@ -32,6 +33,7 @@
 #include "../include/UIHeaders/MainMenuUIHeaders/MainMenuPanel.h"
 #include "../include/UIHeaders/MainMenuUIHeaders/MapsPanel.h"
 #include "../include/UIHeaders/MainMenuUIHeaders/DeleteProgressConfirmationPanel.h"
+#include "../include/UIHeaders/MainMenuUIHeaders/MapDifficultyPanel.h"
 
 #include "../include/UIHeaders/PauseStateUIHeaders/PauseStatePanel.h"
 
@@ -265,6 +267,7 @@ bool Game::running()
 
 void Game::registerGameObjects()
 {
+	// enemies
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::greenChoy, std::make_shared<EnemyCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::greenPlant, std::make_shared<EnemyCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::greenBroccoli, std::make_shared<EnemyCreator>());
@@ -276,18 +279,22 @@ void Game::registerGameObjects()
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::redTomato, std::make_shared<EnemyCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::blueBean, std::make_shared<EnemyCreator>());
 
+	// towers
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::stump, std::make_shared<TowerCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::pine, std::make_shared<TowerCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::oak, std::make_shared<TowerCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::frozenBush, std::make_shared<FreezeTowerCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::projectile, std::make_shared<ProjectileCreator>());
 
+	// buttons
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::menuButton, std::make_shared<MenuButtonCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::mapMenuButton, std::make_shared<MapMenuButtonCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::towerButton, std::make_shared<TowerButtonCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::towerUpgradedButton, std::make_shared<TowerUpgradedButtonCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::sellTowerButton, std::make_shared<SellTowerButtonCreator>());
+	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::difficultyButton, std::make_shared<DifficultyButtonCreator>());
 
+	// others
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::animatedGraphic, std::make_shared<AnimatedGraphicCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::text, std::make_shared<TextCreator>());
 	TheGameObjectFactory::Instance()->registerType(GameObjectConsts::texture, std::make_shared<TextureCreator>());
@@ -295,20 +302,27 @@ void Game::registerGameObjects()
 
 void Game::registerPanels()
 {
+	// game over state
 	ThePanelFactory::Instance()->registerType(PanelConsts::gameOverStatePanel, std::make_shared<GameOverStatePanelCreator>());
 
+	//victory state
 	ThePanelFactory::Instance()->registerType(PanelConsts::victoryStatePanel, std::make_shared<VictoryStatePanelCreator>());
 
+	//main menu state
 	ThePanelFactory::Instance()->registerType(PanelConsts::mainMenuPanel, std::make_shared<MainMenuPanelCreator>());
 	ThePanelFactory::Instance()->registerType(PanelConsts::mapsPanel, std::make_shared<MapsPanelCreator>());
 	ThePanelFactory::Instance()->registerType(PanelConsts::deleteProgressConfirmationPanel, std::make_shared<DeleteProgressConfirmationPanelCreator>());
+	ThePanelFactory::Instance()->registerType(PanelConsts::mapDifficultyPanel, std::make_shared<MapDifficultyPanelCreator>());
 
+	// pause state
 	ThePanelFactory::Instance()->registerType(PanelConsts::pauseStatePanel, std::make_shared<PauseStatePanelCreator>());
 
+	// play state
 	ThePanelFactory::Instance()->registerType(PanelConsts::towersPanel, std::make_shared<TowersPanelCreator>());
 	ThePanelFactory::Instance()->registerType(PanelConsts::towerUpgradePanel, std::make_shared<TowerUpgradePanelCreator>());
 	ThePanelFactory::Instance()->registerType(PanelConsts::tipsPanel, std::make_shared<TipsPanelCreator>());
 
+	// level up state
 	ThePanelFactory::Instance()->registerType(PanelConsts::levelUpPanel, std::make_shared<LevelUpPanelCreator>());
 }
 

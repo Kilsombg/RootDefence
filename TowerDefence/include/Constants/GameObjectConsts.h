@@ -28,6 +28,7 @@ namespace GameObjectConsts {
 	constexpr char towerButton[] = "towerButton";
 	constexpr char towerUpgradedButton[] = "towerUpgradedButton";
 	constexpr char sellTowerButton[] = "sellTowerButton";
+	constexpr char difficultyButton[] = "difficultyButton";
 	constexpr char animatedGraphic[] = "animatedGraphic";
 	constexpr char text[] = "text";
 	constexpr char texture[] = "texture";
@@ -43,6 +44,7 @@ namespace PanelConsts {
 	constexpr char mainMenuPanel[] = "mainMenuPanel";
 	constexpr char mapsPanel[] = "mapsPanel";
 	constexpr char deleteProgressConfirmationPanel[] = "deleteProgressConfirmationPanel";
+	constexpr char mapDifficultyPanel[] = "mapDifficultyPanel";
 	constexpr char pauseStatePanel[] = "pauseStatePanel";
 	constexpr char towersPanel[] = "towersPanel";
 	constexpr char towerUpgradePanel[] = "towerUpgradePanel";

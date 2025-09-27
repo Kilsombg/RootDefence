@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Entities\DifficultyButton.cpp" />
     <ClCompile Include="src\UI\LevelUpStateUI\LevelUpPanel.cpp" />
     <ClCompile Include="src\Data\ProgressManager.cpp" />
     <ClCompile Include="src\Data\Repositories\GameProgressRepository.cpp" />
@@ -189,6 +190,7 @@
     <ClCompile Include="src\UI\LevelUpStateUI\LevelUpStateUI.cpp" />
     <ClCompile Include="src\UI\MainMenuUI\DeleteProgressConfirmationPanel.cpp" />
     <ClCompile Include="src\UI\MainMenuUI\MainMenuPanel.cpp" />
+    <ClCompile Include="src\UI\MainMenuUI\MapDifficultyPanel.cpp" />
     <ClCompile Include="src\UI\MainMenuUI\MapsPanel.cpp" />
     <ClCompile Include="src\UI\PauseStateUI\PauseStatePanel.cpp" />
     <ClCompile Include="src\UI\PauseStateUI\PauseStateUI.cpp" />
@@ -247,6 +249,7 @@
     <ClInclude Include="include\DataHeaders\UserProgressDBContextSeeder.h" />
     <ClInclude Include="include\EntitiesHeaders\AnimatedGraphic.h" />
     <ClInclude Include="include\EntitiesHeaders\Button.h" />
+    <ClInclude Include="include\EntitiesHeaders\DifficultyButton.h" />
     <ClInclude Include="include\EntitiesHeaders\Enemy.h" />
     <ClInclude Include="include\EntitiesHeaders\FreezeTower.h" />
     <ClInclude Include="include\EntitiesHeaders\GameObject.h" />
@@ -293,6 +296,7 @@
     <ClInclude Include="include\UIHeaders\MainMenuUIHeaders\DeleteProgressConfirmationPanel.h" />
     <ClInclude Include="include\UIHeaders\MainMenuUIHeaders\MainMenuPanel.h" />
     <ClInclude Include="include\UIHeaders\MainMenuUIHeaders\MainMenuStateUI.h" />
+    <ClInclude Include="include\UIHeaders\MainMenuUIHeaders\MapDifficultyPanel.h" />
     <ClInclude Include="include\UIHeaders\MainMenuUIHeaders\MapsPanel.h" />
     <ClInclude Include="include\UIHeaders\PauseStateUIHeaders\PauseStatePanel.h" />
     <ClInclude Include="include\UIHeaders\PauseStateUIHeaders\PauseStateUI.h" />

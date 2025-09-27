@@ -7,12 +7,16 @@
 			<texture filename="src/assets/UI/States/MainMenuState/MainMenuPanel.png" ID="mainMenuPanel"/>
 			<texture filename="src/assets/UI/States/MainMenuState/MapsPanel.png" ID="mapsPanel"/>
 			<texture filename="src/assets/UI/States/MainMenuState/coinsPanel80x30.png" ID="coinsPanel"/>
+			<texture filename="src/assets/UI/States/MainMenuState/MapDifficultyPanel.png" ID="mapDifficultyPanel"/>
 			<texture filename="src/assets/UI/States/MainMenuState/maps/map_level1_optimized.png" ID="mapLevel1ID"/>
 			<texture filename="src/assets/UI/States/MainMenuState/maps/map_level2_optimized.png" ID="mapLevel2ID"/>
 			<texture filename="src/assets/UI/States/MainMenuState/maps/map_level3_optimized.png" ID="mapLevel3ID"/>
 			<texture filename="src/assets/UI/icons/coin16x16.png" ID="coinsTexture"/>
 			<texture filename="src/assets/UI/buttons/main-button_100x40_anim.png" ID="buttonTexure"/>
 			<texture filename="src/assets/UI/States/MainMenuState/buttons/return-button_38x38_anim.png" ID="returnButtonTexure"/>
+			<texture filename="src/assets/UI/States/MainMenuState/buttons/easyDifficultyButtons_96x96_anim.png" ID="easyDifficultyButtonTexture"/>
+			<texture filename="src/assets/UI/States/MainMenuState/buttons/normalDifficultyButtons_96x96_anim.png" ID="normalDifficultyButtonTexture"/>
+			<texture filename="src/assets/UI/States/MainMenuState/buttons/hardDifficultyButtons_96x96_anim.png" ID="hardDifficultyButtonTexture"/>
 			<texture filename="src/assets/UI/buttons/danger-button_55x32_anim.png" ID="dangerButtonTexture"/>
 			<texture filename="src/assets/UI/commons/level-bar_128x48.png" ID="levelBarTexture"/>
 		</TEXTURES>
@@ -49,6 +53,19 @@
 					<object type="menuButton" x="870.00" y="150.00" width="38" height="38" textureID="returnButtonTexure" numFrames="0" callbackID="closeMapsPanelCallbackID"/>
 				</OBJECTS>
 			</MAPS>
+			<MAPDIFFICULTY type="mapDifficultyPanel" x="272.00" y="140.00" width="416" height="240" textureID="mapDifficultyPanel">
+				<OBJECTS>
+					<object type="text" x="365.00" y="165.00" characterWidth="14" height="24" textureID="chooseDifficultyLabel" labelId="chooseDifficultyLabel" message="Choose difficulty" dynamic="false"/>
+					<object type="difficultyButton" x="304.00" y="203.00" width="96" height="96" textureID="easyDifficultyButtonTexture" numFrames="0" callbackID="difficultyButtonCallbackID" difficulty="EASY"/>
+					<object type="text" x="330.00" y="300.00" characterWidth="10" height="16" textureID="easyDifficultyLabel" labelId="easyDifficultyLabel" message="EASY" dynamic="false"/>
+					<object type="difficultyButton" x="432.00" y="203.00" width="96" height="96" textureID="normalDifficultyButtonTexture" numFrames="0" callbackID="difficultyButtonCallbackID" difficulty="NORMAL"/>
+					<object type="text" x="450.00" y="300.00" characterWidth="10" height="16" textureID="normalDifficultyLabel" labelId="normalDifficultyLabel" message="NORMAL" dynamic="false"/>
+					<object type="difficultyButton" x="560.00" y="203.00" width="96" height="96" textureID="hardDifficultyButtonTexture" numFrames="0" callbackID="difficultyButtonCallbackID" difficulty="HARD"/>
+					<object type="text" x="588.00" y="300.00" characterWidth="10" height="16" textureID="hardDifficultyLabel" labelId="hardDifficultyLabel" message="HARD" dynamic="false"/>
+					<object type="menuButton" x="430.00" y="330.00" width="100" height="40" textureID="buttonTexure" numFrames="0" callbackID="backToMapsPanelCallbackID"/>
+					<object type="text" x="452.00" y="341.00" characterWidth="14" height="20" textureID="backToMapsPanelLabel" labelId="backToMapsPanelLabel" message="BACK" dynamic="false"/>
+				</OBJECTS>
+			</MAPDIFFICULTY>
 		</PANELS>
 	</MENU>
 	<PLAY>

@@ -8,6 +8,7 @@
 #include "../../../include/GameStateHeaders/PlayState.h"
 
 #include "../../../include/UIHeaders/MainMenuUIHeaders/MainMenuPanel.h"
+#include "../../../include/UIHeaders/MainMenuUIHeaders/MapDifficultyPanel.h"
 
 #include "../../../include/UtilsHeaders/GameStateMachine.h"
 #include "../../../include/UtilsHeaders/InputHandler.h"
@@ -61,7 +62,7 @@ void MapsPanel::handleEvents()
 		MenuInteractivePanel::handleEvents();
 
 		// handle click outside of panel
-		if (TheInputHandler::Instance()->getMouseButtonState(LEFT) && 
+		if (TheInputHandler::Instance()->getMouseButtonState(LEFT) &&
 			!TheInputHandler::Instance()->isMouseOnObject(m_backgroundTexture->getPosition(),
 				m_backgroundTexture->getWidth(), m_backgroundTexture->getHeight()))
 		{
@@ -116,6 +117,11 @@ void MapsPanel::s_activatePanel()
 	MainMenuPanel::s_setActivePanel(false);
 }
 
+void MapsPanel::s_setActivePanel(bool activeFlag)
+{
+	s_active = activeFlag;
+}
+
 void MapsPanel::s_closePanel()
 {
 	s_active = false;
@@ -146,12 +152,9 @@ void MapsPanel::mainMenuToPlay(std::string mapFileName, int mapID)
 	// close panel
 	s_active = false;
 
-	// set map to playstate
-	std::string pathToFile = "./src/assets/Map/" + mapFileName;
-	PlayState::setMapLevelPath(pathToFile);
-	PlayState::setMapID(mapID);
-
-	TheGameStateMachine::Instance()->changeState(std::make_shared<PlayState>());
+	// open difficulty panel
+	MapDifficultyPanel::s_setMapDetail(MapDetail{ mapFileName, mapID });
+	MapDifficultyPanel::s_activatePanel();
 }
 
 std::unique_ptr<Panel> MapsPanelCreator::create() const

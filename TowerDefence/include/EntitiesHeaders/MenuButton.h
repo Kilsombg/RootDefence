@@ -33,7 +33,7 @@ public:
 	// getters and setters
 
 	void setCallback(void(*callback)());
-
+	
 	/**
 	* Change texture based on button's MenuMode.
 	*/

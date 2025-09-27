@@ -31,6 +31,12 @@ public:
 	* callback function for mainMenuPanel.
 	*/
 	static void s_activatePanel();
+	/**
+	* set active flag for MapsPanel.
+	* 
+	* Use this method from other panels to activate or deactivate MapsPanel.
+	*/
+	static void s_setActivePanel(bool activeFlag);
 
 private:
 	/**
@@ -43,6 +49,7 @@ private:
 	* change state to playState with selected map.
 	*/
 	void mainMenuToPlay(std::string mapFileName, int mapID);
+
 	std::map<std::string, MapMenuButtonCallback> m_mapMenuButtonCallbacs;
 
 	static bool s_active;
