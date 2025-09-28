@@ -148,6 +148,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	// register panels
 	registerPanels();
 
+	// create difficultyManager
+	m_difficultyManager = DifficultyManager::Instance();
+
 	// create gameStateMachine
 	m_pGameStateMachine = TheGameStateMachine::Instance();
 	m_pGameStateMachine->changeState(std::make_shared<MainMenuState>());
@@ -188,6 +191,8 @@ void Game::clean()
 	SDL_DestroyRenderer(m_pRenderer);
 
 	m_pGameStateMachine->clean();
+
+	m_difficultyManager->clean();
 
 	// save and close db connection
 	m_progressManager->updateLevelToDB(1);

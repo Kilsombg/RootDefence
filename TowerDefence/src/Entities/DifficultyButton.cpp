@@ -74,19 +74,3 @@ std::unique_ptr<GameObject> DifficultyButtonCreator::create() const
 {
 	return std::make_unique<DifficultyButton>();
 }
-
-Difficulty getDifficultyByString(std::string difficultryStr)
-{
-	if (!difficultryStr.compare(DifficultyConsts::difficultyEasyStr))
-		return EASY;
-
-	if (!difficultryStr.compare(DifficultyConsts::difficultyNormalStr))
-		return NORMAL;
-
-	if (!difficultryStr.compare(DifficultyConsts::difficultyHardStr))
-		return HARD;
-
-
-	// erorr
-	return Difficulty();
-}

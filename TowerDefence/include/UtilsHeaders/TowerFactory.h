@@ -50,10 +50,16 @@ public:
 	* Set all tower upgrades data.
 	*/
 	void setTowerUpgradeObjectData(GameObjectData<ArrayOf2TowerUpgradesData>& towerUpgradeData);
+	/**
+	* Get current tower cost.
+	*/
+	int getTowerCost(int baseCost);
 
 private:
 	TowerFactory();
 	static std::shared_ptr<TowerFactory> s_pInstance;
+
+	void modifyTower(std::shared_ptr<Tower> tower, std::shared_ptr<LoaderParams> params);
 
 	std::unique_ptr<GameObjectData<LoaderParams>> m_towerObjectData; // base tower stats
 	std::unique_ptr<GameObjectData<ArrayOf2TowerUpgradesData>> m_towerUpgradeData; // tower upgrade stats

@@ -184,9 +184,9 @@
 				<OBJECTS>
 					<object type="texture" x="13.00" y="8.00" width="128" height="48" textureID="levelBarTexture"/>
 					<object type="text" x="37.00" y="22.00" characterWidth="15" height="25" textureID="levelLabel" labelId="levelLabel" message="" dynamic="true"/>
-					<object type="text" x="845.00" y="14.00" characterWidth="15" height="22" textureID="healthLabel" labelId="healthLabel" message="" dynamic="true"/>
-					<object type="text" x="885.00" y="14.00" characterWidth="8" height="15" textureID="waveLabel" labelId="waveLabel" message="Wave:" dynamic="false"/>
-					<object type="text" x="930.00" y="14.00" characterWidth="8" height="15" textureID="waveValueLabel" labelId="waveValueLabel" message="" dynamic="true"/>
+					<object type="text" x="843.00" y="15.00" characterWidth="13" height="18" textureID="healthLabel" labelId="healthLabel" message="" dynamic="true"/>
+					<object type="text" x="885.00" y="16.00" characterWidth="8" height="15" textureID="waveLabel" labelId="waveLabel" message="Wave:" dynamic="false"/>
+					<object type="text" x="930.00" y="16.00" characterWidth="8" height="15" textureID="waveValueLabel" labelId="waveValueLabel" message="" dynamic="true"/>
 					<object type="text" x="840.00" y="42.00" characterWidth="8" height="18" textureID="agateResourceLabelID" labelId="agateResourceLabelID" message="" dynamic="true"/>
 					<object type="text" x="840.00" y="70.00" characterWidth="8" height="18" textureID="amberResourceLabelID" labelId="amberResourceLabelID" message="" dynamic="true"/>
 					<object type="text" x="840.00" y="92.00" characterWidth="8" height="18" textureID="rubyResourceLabelID" labelId="rubyResourceLabelID" message="" dynamic="true"/>

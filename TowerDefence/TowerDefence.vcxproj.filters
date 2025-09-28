@@ -279,6 +279,9 @@
     <ClCompile Include="src\Entities\DifficultyButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Managers\DifficultyManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game.h">
@@ -600,6 +603,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\EntitiesHeaders\DifficultyButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ManagersHeaders\DifficultyManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

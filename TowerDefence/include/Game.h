@@ -7,6 +7,7 @@
 
 #include "ManagersHeaders/LevelManager.h"
 #include "ManagersHeaders/TowerUnlockManager.h"
+#include "ManagersHeaders/DifficultyManager.h"
 
 #include "UtilsHeaders/GameStateMachine.h"
 
@@ -111,6 +112,8 @@ private:
 	std::shared_ptr<LevelManager> m_levelManager;
 
 	std::shared_ptr<TowerUnlockManager> m_towerUnlockManager;
+
+	std::shared_ptr<DifficultyManager> m_difficultyManager;
 };
 
 

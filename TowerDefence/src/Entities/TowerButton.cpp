@@ -61,7 +61,8 @@ void TowerButton::load(const std::shared_ptr<LoaderParams> pParams)
 	// setting up resource texture and cost label
 	loadCostResourceTexture();
 	loadLockTexture();
-	loadCostValueLabel(std::to_string(m_towerParams->getAttribute<int>(LoaderParamsConsts::costValue)));
+	int baseCost = m_towerParams->getAttribute<int>(LoaderParamsConsts::costValue);
+	loadCostValueLabel(std::to_string(TheTowerFactory::Instance()->getTowerCost(baseCost)));
 }
 
 void TowerButton::update()

@@ -138,6 +138,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Entities\DifficultyButton.cpp" />
+    <ClCompile Include="src\Managers\DifficultyManager.cpp" />
     <ClCompile Include="src\UI\LevelUpStateUI\LevelUpPanel.cpp" />
     <ClCompile Include="src\Data\ProgressManager.cpp" />
     <ClCompile Include="src\Data\Repositories\GameProgressRepository.cpp" />
@@ -275,6 +276,7 @@
     <ClInclude Include="include\GameStateHeaders\LevelUpState.h" />
     <ClInclude Include="include\GameStateHeaders\VictoryState.h" />
     <ClInclude Include="include\ManagersHeaders\CollisionManager.h" />
+    <ClInclude Include="include\ManagersHeaders\DifficultyManager.h" />
     <ClInclude Include="include\ManagersHeaders\LevelManager.h" />
     <ClInclude Include="include\ManagersHeaders\PurchaseManager.h" />
     <ClInclude Include="include\ManagersHeaders\SellManager.h" />

@@ -8,6 +8,8 @@
 
 #include "../../../include/EntitiesHeaders/MenuButton.h"
 
+#include "../../../include/ManagersHeaders/DifficultyManager.h"
+
 #include "../../../include/UtilsHeaders/InputHandler.h"
 #include "../../../include/UtilsHeaders/GameStateMachine.h"
 
@@ -123,8 +125,8 @@ void MapDifficultyPanel::s_closePanel()
 
 void MapDifficultyPanel::mainMenuToPlay(Difficulty difficulty)
 {
-	//TO-DO
 	// set map's difficulty
+	TheDifficultyManager::Instance()->setDifficulty(difficulty);
 
 	// set map to playstate
 	s_mapDetail.mapLevelPath = "./src/assets/Map/" + s_mapDetail.mapLevelPath;

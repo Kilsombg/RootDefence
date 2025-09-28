@@ -8,9 +8,36 @@
 #include "../../include/Constants/LoaderParamsConsts.h"
 #include "../../include/Constants/GameObjectConsts.h"
 
+#include "../../include/ManagersHeaders/DifficultyManager.h"
+
 std::shared_ptr<TowerFactory> TowerFactory::s_pInstance = nullptr;
 
+int TowerFactory::getTowerCost(int baseCost)
+{
+	float costMulti = DifficultyManager::Instance()->getTowerPriceMultiplayer();
+
+	return std::floor(baseCost * costMulti);;
+}
+
 TowerFactory::TowerFactory() {}
+
+void TowerFactory::modifyTower(std::shared_ptr<Tower> tower, std::shared_ptr<LoaderParams> params)
+{
+	float costMulti = DifficultyManager::Instance()->getTowerPriceMultiplayer();
+
+	// modify cost
+	int towerBaseCost = params->getAttribute<int>(LoaderParamsConsts::costValue);
+	params->setAttribute(LoaderParamsConsts::costValue, getTowerCost(towerBaseCost));
+
+	// modify upgrades
+	for (auto& towerUpgrade : tower->getTowerUpgradesData())
+	{
+		for (auto& costUpgrade : towerUpgrade.costs)
+		{
+			costUpgrade = std::floor(costUpgrade * costMulti);
+		}
+	}
+}
 
 
 std::shared_ptr<TowerFactory> TowerFactory::Instance()
@@ -51,6 +78,10 @@ std::shared_ptr<Tower> TowerFactory::createShadowTower(std::string towerTypeID, 
 			params->setAttribute(LoaderParamsConsts::costType, color);
 			params->setAttribute(LoaderParamsConsts::color, color);
 
+
+			// set tower modifications
+			modifyTower(shadowObject, params);
+
 			// load params into the shadow object and return it
 			shadowObject->load(params);
 			return shadowObject;
@@ -75,7 +106,7 @@ std::shared_ptr<LoaderParams> TowerFactory::getTowerData(std::string towerTypeID
 std::map<std::string, int> TowerFactory::getTowersCostValue()
 {
 	std::map<std::string, int> towersCost;
-	
+
 	// get all data for towers
 	std::map<std::string, std::shared_ptr<LoaderParams>> towersData = m_towerObjectData->getObjectsData();
 

@@ -280,7 +280,7 @@ void PlayState::loadGameSessionData()
 {
 	m_gameSessionData = std::make_shared<GameSessionData>();
 
-	m_gameSessionData->gameHealth = 5;
+	m_gameSessionData->gameHealth = TheDifficultyManager::Instance()->getGameHealthPoints();
 	m_gameSessionData->resources = { Resource {ResourceType {GREEN}, 30},
 					Resource {ResourceType {YELLOW}, 5},
 					Resource {ResourceType {RED}, 5},

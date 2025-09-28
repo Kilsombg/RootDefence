@@ -3,29 +3,11 @@
 
 #include "MenuButton.h"
 
+#include "../ManagersHeaders/DifficultyManager.h"
+
 #include "../UtilsHeaders/BaseCreator.h"
 
-#include<string>
 #include<functional>
-
-/**
-* Represents game difficulty.
-*/
-enum Difficulty
-{
-	EASY,
-	NORMAL,
-	HARD
-};
-
-namespace DifficultyConsts
-{
-	constexpr char difficultyEasyStr[] = "EASY";
-	constexpr char difficultyNormalStr[] = "NORMAL";
-	constexpr char difficultyHardStr[] = "HARD";
-}
-
-Difficulty getDifficultyByString(std::string difficultryStr);
 
 typedef std::function<void(Difficulty)> DifficultyButtonCallback;
 

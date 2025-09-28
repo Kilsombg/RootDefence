@@ -58,7 +58,8 @@ int PurchaseManager::getTowerCostByName(std::string towerName)
 	{
 		// not found in map, get the data from towerFactory
 		std::shared_ptr<LoaderParams> pParams = TheTowerFactory::Instance()->getTowerData(towerName);
-		m_towerCosts[towerName] = pParams->getAttribute<int>(LoaderParamsConsts::costValue);
+		int baseCost = pParams->getAttribute<int>(LoaderParamsConsts::costValue);
+		m_towerCosts[towerName] = TheTowerFactory::Instance()->getTowerCost(baseCost);
 		return m_towerCosts[towerName];
 	}
 
