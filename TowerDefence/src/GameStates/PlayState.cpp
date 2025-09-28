@@ -262,7 +262,7 @@ void PlayState::updateEnemyObjects()
 				m_gameSessionData->resources[drop.type].value += drop.value;
 
 				// gain experience
-				TheGame::Instance()->getLevelManager()->addExperience((*m_enemyObjects)[i]->getExp());
+				TheGame::Instance()->getLevelManager()->addEnemyExperience((*m_enemyObjects)[i]->getExp());
 			}
 
 			// remove enemy

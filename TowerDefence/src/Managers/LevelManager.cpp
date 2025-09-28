@@ -4,6 +4,8 @@
 
 #include "../../include/GameStateHeaders/LevelUpState.h"
 
+#include "../../include/ManagersHeaders/DifficultyManager.h"
+
 #include "../../include/UtilsHeaders/GameStateMachine.h"
 #include "../../include/UtilsHeaders/TextureManager.h"
 
@@ -51,6 +53,13 @@ std::shared_ptr<LevelManager> LevelManager::Instance()
 		return s_pInstance;
 	}
 	return s_pInstance;
+}
+
+void LevelManager::addEnemyExperience(int exp)
+{
+	float diffMulti = TheDifficultyManager::Instance()->getGameExperienceMultiplayer();
+	int actualXP = std::floor(exp * diffMulti);
+	addExperience(actualXP);
 }
 
 void LevelManager::addExperience(int exp)

@@ -20,6 +20,17 @@ public:
 
 	/**
 	* add enemy experience.
+	* 
+	* Calculates xp gained with multipliers.
+	* Use this method to get current gained XP.
+	* 
+	* @param exp - enemy XP
+	*/
+	void addEnemyExperience(int exp);
+	/**
+	* add exact experience.
+	* 
+	* Use addEnemyExperience() if you wants to get XP multiplier.
 	*/
 	void addExperience(int exp);
 	/**
