@@ -114,7 +114,11 @@ void TipsPanel::loadTips()
 		std::string("Some towers have large placement area, so plan ahead your placements."),
 		std::string("A wise man once said - upgraded tower is always better than not upgraded."),
 		std::string("Hover tower's upgrade button to preview stat changes."),
-		std::string("You unlock towers by leveling up.")
+		std::string("You unlock towers by leveling up."),
+		std::string("With each difficulty towers get more expensive, you get less game health but gain more XP."),
+		std::string("If you want to level up faster play on bigger difficulty, but be prepared for a challenge."),
+		std::string("If you are a beginner choose EASY difficulty to get through enemy waves easily."),
+		std::string("Challenge yourself with beating harder difficulty and harder maps.")
 	};
 }
 
