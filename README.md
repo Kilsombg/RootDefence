@@ -11,7 +11,7 @@ Feel free to browse the code, fork it, or use any part of it if it helps you in 
 ---
 
 ### Download
-<a href="https://github.com/Kilsombg/RootDefence/releases/tag/v0.0.1">
+<a href="https://github.com/Kilsombg/RootDefence/releases/tag/v0.1.0">
 Latest release
 </a>
 
@@ -19,7 +19,7 @@ Latest release
 
 # Downloading the game (pre-built)
 There is currently only a windows installer.
-To install the game go to [latest release](https://github.com/Kilsombg/RootDefence/releases/tag/v0.0.1).
+To install the game go to [latest release](https://github.com/Kilsombg/RootDefence/releases/tag/v0.1.0).
 
  Windows installer instructions:<br>
 Install RootDefence by running setup.exe or Setup.msi.
